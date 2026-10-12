@@ -1,0 +1,82 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum NotificationStatus {
+  ACCEPTED
+  FAILED
+}
+
+model Category {
+  id        String            @id @default(cuid())
+  slug      String            @unique @db.VarChar(120)
+  title     String            @db.VarChar(120)
+  note      String?           @db.VarChar(300)
+  imageUrl  String?           @db.VarChar(2048)
+  imageAlt  String?           @db.VarChar(300)
+  status    PublicationStatus @default(DRAFT)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  products  Product[]
+}
+
+model Product {
+  id             String            @id @default(cuid())
+  slug           String            @unique @db.VarChar(180)
+  name           String            @db.VarChar(160)
+  categoryId     String
+  price          Decimal           @db.Decimal(10, 2)
+  wasPrice       Decimal?          @db.Decimal(10, 2)
+  wood           String            @db.VarChar(100)
+  tone           String            @db.VarChar(100)
+  imageUrl       String            @db.VarChar(2048)
+  imageAlt       String            @db.VarChar(300)
+  specifications Json
+  status         PublicationStatus @default(DRAFT)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  category       Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@index([categoryId, status])
+}
+
+model Enquiry {
+  id                   String                @id @default(cuid())
+  name                 String                @db.VarChar(100)
+  email                String                @db.VarChar(254)
+  phone                String?               @db.VarChar(40)
+  projectType          String?               @db.VarChar(60)
+  rooms                String?               @db.VarChar(200)
+  area                 Decimal?              @db.Decimal(8, 2)
+  product              String?               @db.VarChar(120)
+  timeline             String?               @db.VarChar(40)
+  details              String?               @db.Text
+  createdAt            DateTime              @default(now())
+  notificationAttempts NotificationAttempt[]
+
+  @@index([createdAt])
+}
+
+model NotificationAttempt {
+  id                String             @id @default(cuid())
+  enquiryId         String?
+  provider          String             @db.VarChar(50)
+  status            NotificationStatus
+  createdAt         DateTime           @default(now())
+  providerMessageId String?            @db.VarChar(255)
+  errorCode         String?            @db.VarChar(100)
+  enquiry           Enquiry?           @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+
+  @@index([enquiryId, createdAt])
+}
