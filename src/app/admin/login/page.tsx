@@ -1,0 +1,4 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+export const metadata:Metadata={title:'Admin sign in',robots:{index:false,follow:false}};
+export default function AdminLoginPage(){return <div className="admin-login"><div className="admin-login-card"><Link href="/" className="admin-back">← Back to public site</Link><span className="admin-mark">V</span><div className="eyebrow"><span/>VCARE ADMINISTRATION</div><h1>Sign in to your workspace.</h1><p>The redesigned admin sign-in screen is ready for the secure authentication system. Access is not enabled in this preview build.</p><div className="admin-login-notice"><b>Secure sign-in is not configured yet.</b><br/>Admin authentication, roles, password reset and audit logging must be connected before staff can sign in.</div><a className="button button-primary" href="mailto:sales@vcarehardwoodfloors.ca?subject=Vcare%20website%20admin%20access">Contact Vcare ↗</a></div></div>}
