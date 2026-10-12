@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ProductCard } from '@/components/catalog-ui';
+import { ProductCard } from '@/components/product-card';
 import { Breadcrumbs, PageIntro } from '@/components/site-shell';
 import { products } from '@/data/catalog';
 import { jsonLd } from '@/lib/seo';

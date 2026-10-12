@@ -12,9 +12,10 @@ Status means: **Verified** is supported by repository inspection or a recorded c
 ## Privacy, accessibility, and performance
 
 - **Pending** — Review the privacy notice and consent behavior against the actual analytics and data-handling practices. The current consent UI has no visible way to reopen preferences after dismissal.
-- **Pending** — Check key pages and interactions for accessibility, including keyboard use, screen-reader behavior, responsive layouts, and color contrast. The audit measured the primary orange (`#ed4a16`) against white at about 3.76:1, below 4.5:1 for normal text.
-- **Pending** — Review image loading and performance. Product and gallery images are external and frequently use `unoptimized`; test representative mobile and desktop routes with approved assets.
+- **Pending** — Check key pages and interactions for accessibility, including keyboard use, screen-reader behavior, responsive layouts, and color contrast. The primary orange has been darkened to `#b8390f`; its contrast is at least 4.72:1 on the inspected white, paper, cream, warm-neutral, and hero backgrounds. Accent text on the orange offer band and focus indicators on dark surfaces have separate high-contrast colors. Browser and full-site contrast verification remain pending.
+- **Pending** — Review image loading and performance. Product-card and product-detail images now use Next.js image optimization, but other external imagery remains unoptimized and performance has not been measured. Use approved assets and test representative mobile and desktop routes.
 - **Pending** — Validate SEO metadata, redirects, sitemap contents, and canonical URLs against production URLs and legacy links before a domain migration.
+- **Pending** — The default Open Graph image uses the supplied wide logo. Obtain a business-approved social-preview image (recommended 1200 × 630), confirm its branding and usage rights, and update the metadata before launch; no replacement artwork has been created.
 
 ## Engineering and operations
 

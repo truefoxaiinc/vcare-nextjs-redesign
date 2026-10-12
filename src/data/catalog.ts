@@ -11,7 +11,7 @@ export const categories = [
   { title: 'Laminate', slug: 'laminate', note: 'Everyday durability, beautifully done', image: photo('photo-1600566753086-00f18fb6b3ea') },
   { title: 'Vinyl', slug: 'vinyl', note: 'Water-ready style for busy homes', image: photo('photo-1600573472591-ee6b68d14c68') }
 ];
-export const products: Product[] = [
+const catalogProducts: Product[] = [
   { slug:'tf1108-f-laminate-floors',name:'TF1108-F Laminate',category:'Laminate',price:1.35,was:1.99,wood:'Oak look',tone:'Natural',image:photo('photo-1600566753086-00f18fb6b3ea'),alt:'Warm oak-look laminate flooring in a bright living room',specs:specs([['Thickness','12 mm'],['Finish','Textured'],['Installation','Click system']]) },
   { slug:'tf1119-laminate-floors',name:'TF1119-F 12.3mm Laminate',category:'Laminate',price:1.35,was:1.99,wood:'Oak look',tone:'Warm brown',image:photo('photo-1600607687939-ce8a6c25118c'),alt:'Wide plank laminate floor in a contemporary home',specs:specs([['Thickness','12.3 mm'],['Finish','Matte'],['Installation','Click & lock']]) },
   { slug:'woodside-laminate-floors',name:'Woodside Laminate',category:'Laminate',price:1.99,was:2.19,wood:'Oak look',tone:'Light',image:photo('photo-1600210492486-724fe5c67fb0'),alt:'Light wood laminate in a calm open-plan room',specs:specs([['Thickness','12 mm'],['Finish','Embossed'],['Installation','Click system']]) },
@@ -28,6 +28,8 @@ export const products: Product[] = [
   { slug:'saybrook-maple-soild-flooring',name:'Saybrook Maple Solid Hardwood',category:'Hardwood',price:5.89,was:6.55,wood:'Maple',tone:'Warm',image:photo('photo-1600566752355-35792bedcfea'),alt:'Warm maple hardwood planks in a family living room',specs:specs([['Species','Maple'],['Finish','Matte'],['Construction','Solid']]) },
   ...[['Cinnamon',6.49],['Cherry',6.29],['Roasted Marshmallow',6.1]].map(([name,price],i) => ({slug:String(name).toLowerCase().replaceAll(' ','-')+'-maple-solid-hardwood',name:String(name)+' Maple Solid Hardwood',category:'Hardwood' as const,price:Number(price),wood:'Maple',tone:['Warm','Rich','Honey'][i],image:photo(['photo-1600210492486-724fe5c67fb0','photo-1600607687920-4e2a09cf159d','photo-1600566753086-00f18fb6b3ea'][i]),alt:String(name)+' maple solid hardwood floor with natural grain',specs:specs([['Species','Maple'],['Finish','Matte'],['Construction','Solid']]) }))
 ];
+export const illustrativeProductImageAlt = 'Illustrative room scene showing flooring; it is not a photograph of the listed product.';
+export const products: Product[] = catalogProducts.map(product => ({ ...product, alt: illustrativeProductImageAlt }));
 export const posts = [
  {slug:'is-it-essential-to-hire-a-flooring-installer-for-your-home',title:'Is It Essential to Hire a Flooring Installer for Your Home?',category:'Installation',date:'March 11, 2024',excerpt:'A closer look at when professional installation can protect your investment and help a renovation go smoothly.',image:photo('photo-1600607687939-ce8a6c25118c')},
  {slug:'hardwood-floors-for-ho',title:'How Do Hardwood Floors Impact the Value of Your Home?',category:'Hardwood',date:'March 11, 2024',excerpt:'Explore the long-term appeal of hardwood and the practical choices that matter for your home.',image:photo('photo-1600210492486-724fe5c67fb0')},

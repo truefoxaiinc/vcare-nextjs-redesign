@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { categories, posts, products } from '@/data/catalog';
-import { ProductCard } from '@/components/catalog-ui';
-import { jsonLd } from '@/lib/seo';
+import { ProductCard } from '@/components/product-card';
+import { jsonLd, siteUrl } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 export const metadata:Metadata={alternates:{canonical:'/'},openGraph:{url:'/',title:'Vcare Hardwood Floors | Find a floor you love',description:'Explore hardwood, engineered hardwood, laminate and vinyl flooring in Thornton, Ontario.'}};
@@ -20,6 +20,6 @@ export default function HomePage() {
   <section className="section"><div className="container"><div className="section-top"><div><div className="eyebrow"><span/>A MORE CONFIDENT FLOORING PROJECT</div><h2>Here for every step.</h2></div><p>Friendly advice and clear next steps make it easier to turn an idea into a room you love.</p></div><div className="steps">{[{n:'01',t:'Tell us about it',p:'Share the rooms, the look and the timing you have in mind.'},{n:'02',t:'Explore your options',p:'Compare materials, finishes and price points with our team.'},{n:'03',t:'Plan the details',p:'Measure carefully and work through the preparation.'},{n:'04',t:'Make it home',p:'Bring the floor together with installation support.'}].map(s=><div className="step-card" key={s.n}><span className="step-num">{s.n}</span><h3>{s.t}</h3><p>{s.p}</p></div>)}</div></div></section>
   <section className="section section-cream"><div className="container"><div className="section-top"><div><div className="eyebrow"><span/>THE FLOORING JOURNAL</div><h2>A little know-how goes a long way.</h2></div><Link className="section-link" href="/blog">Read all articles <span>↗</span></Link></div><div className="journal-grid">{posts.map(p=><article className="journal-card" key={p.slug}><Link className="journal-image" href={'/blog/'+p.slug}><Image src={p.image} alt={p.title} fill sizes="25vw" unoptimized/></Link><div className="journal-copy"><small>{p.category} · {p.date}</small><h3><Link href={'/blog/'+p.slug}>{p.title}</Link></h3><p>{p.excerpt}</p><Link href={'/blog/'+p.slug}>Read article ↗</Link></div></article>)}</div></div></section>
   <section className="showroom"><div className="showroom-copy"><div className="eyebrow"><span/>SEE THE FLOOR IN PERSON</div><h2>Come by.<br/>We’ll make time.</h2><p>Visit Vcare Hardwood Floors in Thornton to browse styles, talk through your project and get thoughtful, local advice.</p><p><strong>240 Barrie Street, Thornton, ON</strong><br/>Call ahead: <a href="tel:+16473914283">647 391 4283</a></p><Link className="section-link" href="/contact-us">Plan your visit <span>↗</span></Link></div><div className="showroom-map"><a className="map-card" href="https://maps.google.com/?q=240+Barrie+Street+Thornton+ON" target="_blank" rel="noreferrer"><span>⌖</span><b>Vcare Flooring</b><p>240 Barrie Street · Thornton, ON<br/>Open directions ↗</p></a></div></section>
-  <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({'@context':'https://schema.org','@type':'WebSite','name':'Vcare Hardwood Floors','url':'https://www.vcarehardwoodfloors.ca','inLanguage':'en-CA'})}/>
+  <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({'@context':'https://schema.org','@type':'WebSite','name':'Vcare Hardwood Floors','url':siteUrl,'inLanguage':'en-CA'})}/>
  </>;
 }

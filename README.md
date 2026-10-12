@@ -33,6 +33,8 @@ Admin routes are design previews only; no authentication, authorization, databas
 
 The project includes route metadata, canonical paths, Open Graph fields, en-CA language, JSON-LD for the local flooring business, products, offers, FAQ and articles, sitemap.xml, robots.txt, legacy product redirects and noindex rules for the admin preview. Review actual legacy URLs and run a full redirect crawl before changing DNS.
 
+The default Open Graph image currently uses the supplied wide logo. Before launch, the business should provide an approved social-preview image (recommended 1200 × 630) and confirm its branding and usage rights; do not substitute unapproved artwork.
+
 ## Quality checks
 
 Run after dependency install:
