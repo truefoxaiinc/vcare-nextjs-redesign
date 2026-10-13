@@ -36,3 +36,5 @@ body:has(.admin-shell)>.topbar,body:has(.admin-shell)>.site-header,body:has(.adm
 .offers-band :focus-visible{outline-color:#fff}
 .footer-col a:hover{color:#f3835f}
 .offers-band .eyebrow{color:#fff1e8}
+.whatsapp-button{position:fixed;z-index:80;right:22px;bottom:22px;width:56px;height:56px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:#25d366;color:#fff;box-shadow:0 8px 24px rgba(37,35,33,.2);transition:transform .18s,box-shadow .18s}.whatsapp-button:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,35,33,.25)}.whatsapp-button:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+@media(max-width:760px){.whatsapp-button{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px}body:has(.cookie-card) .whatsapp-button{bottom:calc(150px + env(safe-area-inset-bottom))}}
