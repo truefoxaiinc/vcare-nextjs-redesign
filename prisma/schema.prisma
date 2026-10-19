@@ -18,6 +18,13 @@ enum NotificationStatus {
   FAILED
 }
 
+enum NotificationJobStatus {
+  PENDING
+  PROCESSING
+  SENT
+  DEAD
+}
+
 model Category {
   id        String            @id @default(cuid())
   slug      String            @unique @db.VarChar(120)
@@ -53,6 +60,7 @@ model Product {
 
 model Enquiry {
   id                   String                @id @default(cuid())
+  submissionKey        String?               @unique @db.VarChar(64)
   name                 String                @db.VarChar(100)
   email                String                @db.VarChar(254)
   phone                String?               @db.VarChar(40)
@@ -64,19 +72,45 @@ model Enquiry {
   details              String?               @db.Text
   createdAt            DateTime              @default(now())
   notificationAttempts NotificationAttempt[]
+  notificationJob      NotificationJob?
 
   @@index([createdAt])
+}
+
+model NotificationJob {
+  id                   String                @id @default(cuid())
+  enquiryId            String?               @unique
+  provider             String                @db.VarChar(50)
+  status               NotificationJobStatus @default(PENDING)
+  attemptCount         Int                   @default(0)
+  maxAttempts          Int                   @default(8)
+  availableAt          DateTime              @default(now())
+  leaseExpiresAt       DateTime?
+  leaseToken           String?               @db.VarChar(36)
+  lastFailureRetryable Boolean               @default(false)
+  lastErrorCode        String?               @db.VarChar(100)
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deliveredAt          DateTime?
+  enquiry              Enquiry?              @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  attempts             NotificationAttempt[]
+
+  @@index([status, availableAt])
+  @@index([status, leaseExpiresAt])
 }
 
 model NotificationAttempt {
   id                String             @id @default(cuid())
   enquiryId         String?
+  notificationJobId String?
   provider          String             @db.VarChar(50)
   status            NotificationStatus
   createdAt         DateTime           @default(now())
   providerMessageId String?            @db.VarChar(255)
   errorCode         String?            @db.VarChar(100)
   enquiry           Enquiry?           @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  notificationJob   NotificationJob?   @relation(fields: [notificationJobId], references: [id], onDelete: SetNull)
 
   @@index([enquiryId, createdAt])
+  @@index([notificationJobId, createdAt])
 }

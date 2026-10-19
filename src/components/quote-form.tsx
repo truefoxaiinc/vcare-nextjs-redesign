@@ -20,6 +20,7 @@ export function QuoteForm({ prefill = '' }: { prefill?: string }) {
   const [state, setState] = useState<SubmissionState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const submitting = useRef(false);
+  const submissionKey = useRef<string | null>(null);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -27,6 +28,7 @@ export function QuoteForm({ prefill = '' }: { prefill?: string }) {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    submissionKey.current ??= crypto.randomUUID();
     const payload = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -48,7 +50,10 @@ export function QuoteForm({ prefill = '' }: { prefill?: string }) {
     try {
       const response = await fetch('/api/enquiries', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': submissionKey.current
+        },
         body: JSON.stringify(payload)
       });
       let result: unknown;
@@ -77,6 +82,7 @@ export function QuoteForm({ prefill = '' }: { prefill?: string }) {
       }
 
       setState('success');
+      submissionKey.current = null;
       form.reset();
     } catch (error) {
       setState('error');

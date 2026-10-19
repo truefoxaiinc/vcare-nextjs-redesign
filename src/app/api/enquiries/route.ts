@@ -1,106 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { parseEnquiry } from '@/lib/enquiry-validation';
 
 export const runtime = 'nodejs';
 
 const maxBodyBytes = 16 * 1024;
 const turnstileAction = 'vcare_enquiry';
-const projectTypes = new Set([
-  'Flooring supply',
-  'Supply and installation',
-  'Installation support',
-  "I'm still exploring"
-]);
-const timelines = new Set([
-  'As soon as possible',
-  'Within 1–3 months',
-  'Later this year',
-  'Just planning ahead'
-]);
-
-type Enquiry = {
-  name: string;
-  email: string;
-  phone: string;
-  projectType: string;
-  rooms: string;
-  area: string;
-  product: string;
-  timeline: string;
-  details: string;
-  turnstileToken: string;
-};
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function readText(value: unknown, maxLength: number, required = false, multiline = false): string | null {
-  if (typeof value !== 'string') return required ? null : '';
-  const cleaned = value.normalize('NFC').replace(/\r\n?/g, '\n').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '');
-  const normalized = (multiline ? cleaned : cleaned.replace(/\s+/g, ' ')).trim();
-  if (normalized.length > maxLength || (required && !normalized)) return null;
-  return normalized;
-}
-
-function parseEnquiry(value: unknown): { enquiry: Enquiry; error?: never } | { enquiry?: never; error: string } {
-  if (!isRecord(value)) return { error: 'Please check the form and try again.' };
-  if (typeof value.website === 'string' && value.website.trim()) {
-    return { error: 'We could not verify this request. Please try again.' };
-  }
-
-  const name = readText(value.name, 100, true);
-  const email = readText(value.email, 254, true)?.toLowerCase() ?? null;
-  const phone = readText(value.phone, 40);
-  const projectType = readText(value.projectType, 60);
-  const rooms = readText(value.rooms, 200);
-  const product = readText(value.product, 120);
-  const timeline = readText(value.timeline, 40);
-  const details = readText(value.details, 3000, false, true);
-  const areaValue = value.area;
-  let area = '';
-
-  if (
-    name === null ||
-    email === null ||
-    phone === null ||
-    projectType === null ||
-    rooms === null ||
-    product === null ||
-    timeline === null ||
-    details === null
-  ) {
-    return { error: 'Please check the form fields and keep each answer within its allowed length.' };
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { error: 'Enter a valid email address.' };
-  }
-  if (projectType && !projectTypes.has(projectType)) {
-    return { error: 'Choose a valid project type.' };
-  }
-  if (timeline && !timelines.has(timeline)) {
-    return { error: 'Choose a valid timeline.' };
-  }
-
-  if (areaValue !== '' && areaValue !== null && areaValue !== undefined) {
-    if (typeof areaValue !== 'number' && typeof areaValue !== 'string') {
-      return { error: 'Enter a valid approximate area.' };
-    }
-    const parsedArea = typeof areaValue === 'number' ? areaValue : Number(areaValue);
-    if (!Number.isFinite(parsedArea) || parsedArea < 0 || parsedArea > 100000) {
-      return { error: 'Enter an approximate area between 0 and 100,000 square feet.' };
-    }
-    area = String(parsedArea);
-  }
-
-  const turnstileToken = readText(value.turnstileToken, 2048, true);
-  if (turnstileToken === null) {
-    return { error: 'Complete the spam check and submit again.' };
-  }
-
-  return {
-    enquiry: { name, email, phone, projectType, rooms, area, product, timeline, details, turnstileToken }
-  };
 }
 
 async function verifyTurnstile(
@@ -198,13 +105,13 @@ export async function POST(request: NextRequest) {
   const parsed = parseEnquiry(body);
   if (!parsed.enquiry) return responseError(400, parsed.error);
 
-  const { RESEND_API_KEY, RESEND_FROM_EMAIL, QUOTE_TO_EMAIL, TURNSTILE_SECRET_KEY } = process.env;
-  if (!RESEND_API_KEY || !RESEND_FROM_EMAIL || !QUOTE_TO_EMAIL || !TURNSTILE_SECRET_KEY) {
-    return responseError(
-      503,
-      'Online enquiry submission is temporarily unavailable. Please contact Vcare directly.'
-    );
+  const submissionKey = request.headers.get('idempotency-key')?.toLowerCase();
+  if (!submissionKey || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionKey)) {
+    return responseError(400, 'Please refresh the form and submit again.');
   }
+
+  const { TURNSTILE_SECRET_KEY } = process.env;
+  if (!TURNSTILE_SECRET_KEY) return responseError(503, 'The spam check is not configured.');
 
   const verification = await verifyTurnstile(
     parsed.enquiry.turnstileToken,
@@ -218,53 +125,52 @@ export async function POST(request: NextRequest) {
     return responseError(400, 'The spam check could not verify your request. Please try again.');
   }
 
-  const enquiry = parsed.enquiry;
-  const lines = [
-    'A new flooring enquiry was submitted through the Vcare website.',
-    '',
-    `Name: ${enquiry.name}`,
-    `Email: ${enquiry.email}`,
-    `Phone: ${enquiry.phone || 'Not provided'}`,
-    `Project type: ${enquiry.projectType || 'Not provided'}`,
-    `Room(s): ${enquiry.rooms || 'Not provided'}`,
-    `Approximate area (sq. ft.): ${enquiry.area || 'Not provided'}`,
-    `Preferred floor: ${enquiry.product || 'Not provided'}`,
-    `Timeline: ${enquiry.timeline || 'Not provided'}`,
-    '',
-    'Project details:',
-    enquiry.details || 'Not provided'
-  ];
-
-  let emailResponse: Response;
   try {
-    emailResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
+    const { getPrisma } = await import('@/lib/prisma');
+    const { Prisma } = await import('@/generated/prisma/client');
+    const prisma = getPrisma();
+    await prisma.enquiry.create({
+      data: {
+        submissionKey,
+        name: parsed.enquiry.name,
+        email: parsed.enquiry.email,
+        phone: parsed.enquiry.phone || null,
+        projectType: parsed.enquiry.projectType || null,
+        rooms: parsed.enquiry.rooms || null,
+        area: parsed.enquiry.area ? new Prisma.Decimal(parsed.enquiry.area) : null,
+        product: parsed.enquiry.product || null,
+        timeline: parsed.enquiry.timeline || null,
+        details: parsed.enquiry.details || null,
+        notificationJob: {
+          create: {
+            provider: 'resend'
+          }
+        }
       },
-      body: JSON.stringify({
-        from: RESEND_FROM_EMAIL,
-        to: [QUOTE_TO_EMAIL],
-        reply_to: enquiry.email,
-        subject: 'New Vcare website flooring enquiry',
-        text: lines.join('\n')
-      }),
-      cache: 'no-store',
-      signal: AbortSignal.timeout(10000)
+      select: { id: true }
     });
   } catch (error) {
-    console.error(
-      error instanceof Error && error.name === 'TimeoutError'
-        ? 'Resend enquiry request timed out.'
-        : 'Resend enquiry request failed due to a network error.'
-    );
-    return responseError(502, 'We could not submit your request. Please try again or contact Vcare directly.');
-  }
-
-  if (!emailResponse.ok) {
-    console.error(`Resend rejected the enquiry request with status ${emailResponse.status}.`);
-    return responseError(502, 'We could not submit your request. Please try again or contact Vcare directly.');
+    if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'P2002') {
+      try {
+        const { getPrisma } = await import('@/lib/prisma');
+        const prisma = getPrisma();
+        const existing = await prisma.enquiry.findUnique({
+          where: { submissionKey },
+          select: { id: true }
+        });
+        if (existing) {
+          return NextResponse.json({
+            ok: true,
+            message: 'Your enquiry was accepted for processing. This does not confirm email delivery.'
+          });
+        }
+      } catch {
+        console.error('Failed to confirm an idempotent enquiry retry.');
+        return responseError(503, 'We could not save your enquiry. Please try again or contact Vcare directly.');
+      }
+    }
+    console.error('Failed to persist an enquiry and its notification job.');
+    return responseError(503, 'We could not save your enquiry. Please try again or contact Vcare directly.');
   }
 
   return NextResponse.json({

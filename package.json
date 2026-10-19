@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
     "db:up": "docker compose up -d db",
     "db:down": "docker compose stop db",
     "db:generate": "prisma generate",
@@ -35,6 +36,7 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.0",
     "prisma": "7.10.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^3.2.7"
   }
 }

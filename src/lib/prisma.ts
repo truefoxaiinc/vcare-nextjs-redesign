@@ -9,22 +9,20 @@ const globalForPrisma = globalThis as typeof globalThis & {
   postgresPool?: Pool;
 };
 
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) {
-  throw new Error('DATABASE_URL must be configured before using the Prisma client.');
+let prismaClient = globalForPrisma.prisma;
+let postgresPool = globalForPrisma.postgresPool;
+
+export function getPrisma(): PrismaClient {
+  if (prismaClient) return prismaClient;
+
+  const databaseUrl = process.env.DATABASE_URL;
+  if (!databaseUrl) throw new Error('DATABASE_URL must be configured before using the Prisma client.');
+
+  postgresPool ??= new Pool({ connectionString: databaseUrl });
+  prismaClient = new PrismaClient({ adapter: new PrismaPg(postgresPool) });
+  if (process.env.NODE_ENV !== 'production') {
+    globalForPrisma.postgresPool = postgresPool;
+    globalForPrisma.prisma = prismaClient;
+  }
+  return prismaClient;
 }
-
-const pool = globalForPrisma.postgresPool ?? new Pool({
-  connectionString: databaseUrl
-});
-
-const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  adapter: new PrismaPg(pool)
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.postgresPool = pool;
-  globalForPrisma.prisma = prisma;
-}
-
-export { prisma };

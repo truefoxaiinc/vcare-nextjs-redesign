@@ -1,5 +1,7 @@
 # Phase 2B: Database-backed catalogue proposal
 
+> Superseded: the client selected a static product catalogue. Product records and publication status remain in source data; this proposal is historical planning, not an implementation instruction.
+
 ## Current state
 
 Public product and category pages read sample records from `src/data/catalog.ts`. Product/category detail pages, metadata, canonical URLs, JSON-LD and sitemap entries are derived from those records. The home page selects featured products by array position, offers are selected by a non-null prior price, and catalogue search/filter/sorting is client-side. The product and category models exist in Prisma, but public pages do not use the database. Records default to `DRAFT`; no seed data was found.
