@@ -1,6 +1,15 @@
 const nextConfig = {
   poweredByHeader: false,
-  images: { remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }] },
+  images: { remotePatterns: [
+    { protocol: 'https', hostname: 'images.unsplash.com' },
+    { protocol: 'https', hostname: 'floorsatwork.com' },
+    { protocol: 'https', hostname: 'cdn.shopify.com' },
+    { protocol: 'https', hostname: 'toscaflooring.com' }
+    ,{ protocol: 'https', hostname: 'vidarflooring.com' }
+    ,{ protocol: 'https', hostname: 'www.vidarflooring.com' }
+    ,{ protocol: 'https', hostname: 'leeflooring.ca' }
+    ,{ protocol: 'https', hostname: 'wickhamhardwood.com' }
+  ] },
   async headers() {
     return [{ source: '/(.*)', headers: [
       { key: 'X-Content-Type-Options', value: 'nosniff' },

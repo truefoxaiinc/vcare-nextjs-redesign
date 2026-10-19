@@ -1,14 +1,80 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { AreaCalculator, ProductExplorer } from '@/components/catalog-ui';
-import { ProductCard } from '@/components/product-card';
+import { ProductExplorer } from '@/components/catalog-ui';
+import { ProductDetail } from '@/components/product-detail';
 import { Breadcrumbs, PageIntro } from '@/components/site-shell';
-import { categories, illustrativeProductImageAlt, money, products } from '@/data/catalog';
-import { jsonLd, siteUrl } from '@/lib/seo';
-type Props={params:Promise<{slug:string}>};
-export function generateStaticParams(){return [...products.map(p=>({slug:p.slug})),...categories.map(c=>({slug:c.slug}))]}
-export async function generateMetadata({params}:Props):Promise<Metadata>{const {slug}=await params;const p=products.find(item=>item.slug===slug);if(p)return {title:p.name+' | '+p.category+' Flooring',description:'Explore '+p.name+' at Vcare Hardwood Floors in Thornton, Ontario. Priced at '+money(p.price)+' per square foot. Ask us about samples, availability and installation.',alternates:{canonical:'/products/'+p.slug},openGraph:{url:'/products/'+p.slug,images:[{url:p.image,alt:illustrativeProductImageAlt}]}};const c=categories.find(item=>item.slug===slug);if(c)return {title:c.title+' Flooring in Barrie & Thornton',description:'Explore '+c.title.toLowerCase()+' floors at Vcare Hardwood Floors in Thornton, Ontario. Compare styles, check pricing per square foot and request a project quote.',alternates:{canonical:'/products/'+c.slug}};return {}}
-export default async function ProductPage({params}:Props){const {slug}=await params;const collection=categories.find(c=>c.slug===slug);if(collection){const categoryMap:Record<string,string>={hardwood:'Hardwood','engineered-hardwood':'Engineered Hardwood',laminate:'Laminate',vinyl:'Vinyl'};const title=categoryMap[slug];const selected=products.filter(p=>p.category===title);return <><PageIntro eyebrow="THE VCARE COLLECTION" title={title+' flooring.'} description={collection.note+'. Explore colours, textures and price points, then talk with our local team about your room.'}/><Breadcrumbs items={[{label:'Shop floors',href:'/products'},{label:title}]}/><div className="container"><ProductExplorer products={selected} initialCategory={title}/></div></>}
-const product=products.find(p=>p.slug===slug);if(!product)notFound();const related=products.filter(p=>p.category===product.category&&p.slug!==product.slug).slice(0,4);const categorySlug=categories.find(c=>c.title===product.category)?.slug??'products';const schema={'@context':'https://schema.org','@type':'Product',name:product.name,category:product.category,brand:{'@type':'Brand',name:'Vcare'},offers:{'@type':'Offer',priceCurrency:'CAD',price:product.price.toFixed(2),url:siteUrl+'/products/'+product.slug,unitText:'per square foot'}};return <><div className="product-detail container"><Breadcrumbs items={[{label:'Shop floors',href:'/products'},{label:product.category,href:'/products/'+categorySlug},{label:product.name}]}/><div className="detail-grid"><div className="detail-photo"><Image src={product.image} alt={illustrativeProductImageAlt} fill sizes="(max-width: 760px) 100vw, 55vw" priority/></div><div className="detail-copy"><span className="detail-kicker">{product.category} · {product.tone} tones</span><h1>{product.name}</h1><div className="detail-price"><strong>{money(product.price)}</strong><span>/ sq. ft.</span>{product.was&&<del>{money(product.was)}</del>}</div><p>Thoughtfully selected for homes that are lived in and loved. Ask our team about colour, availability, box coverage, samples and installation for your project.</p><div className="spec-list">{Object.entries(product.specs).map(([k,v])=><div className="spec-row" key={k}><span>{k}</span><strong>{v}</strong></div>)}</div><div className="detail-actions"><Link className="button button-primary" href={'/get-a-quote?product='+encodeURIComponent(product.name)}>Request a quote <span>↗</span></Link><a className="button button-outline" href="tel:+16473914283">Call 647 391 4283</a></div><p className="detail-small">Displayed price is per sq. ft. Confirm stock, box coverage and final project pricing with our team.</p></div></div><AreaCalculator price={product.price}/></div><section className="section section-cream"><div className="container"><div className="section-top"><div><div className="eyebrow"><span/>MORE TO EXPLORE</div><h2>Similar floors to consider.</h2></div><Link className="section-link" href="/products">Browse all floors <span>↗</span></Link></div><div className="product-grid">{related.map(p=><ProductCard key={p.slug} product={p}/>)}</div></div></section><script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(schema)}/></>}
+import { categories, publishedProducts } from '@/data/catalog';
+import { jsonLd } from '@/lib/seo';
+
+export const dynamicParams = false;
+
+type Props = { params: Promise<{ slug: string }> };
+
+export function generateStaticParams() {
+  return [
+    ...categories.map(category => ({ slug: category.slug })),
+    ...publishedProducts.map(product => ({ slug: product.slug }))
+  ];
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const product = publishedProducts.find(item => item.slug === slug);
+  if (product) {
+    return {
+      title: product.name + ' | ' + product.category + ' Flooring',
+      description: product.description,
+      alternates: { canonical: '/products/' + product.slug },
+      openGraph: { url: '/products/' + product.slug, images: [{ url: product.imageUrl, alt: product.imageAlt }] }
+    };
+  }
+
+  const category = categories.find(item => item.slug === slug);
+  if (!category) return {};
+  return {
+    title: category.title + ' Flooring in Barrie & Thornton',
+    description: 'Explore ' + category.title.toLowerCase() + ' products and suppliers at Vcare Hardwood Floors in Thornton, Ontario. Request a quote to confirm current availability.',
+    alternates: { canonical: '/products/' + category.slug }
+  };
+}
+
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params;
+  const category = categories.find(item => item.slug === slug);
+  if (category) {
+    return (
+      <>
+        <PageIntro
+          eyebrow="THE VCARE COLLECTION"
+          title={category.title + ' flooring.'}
+          description={category.note + '. Browse verified products and suppliers for this floor type, then request a quote to confirm current options.'}
+        />
+        <Breadcrumbs items={[{ label: 'Shop floors', href: '/products' }, { label: category.title }]} />
+        <div className="container">
+          <ProductExplorer products={publishedProducts} initialCategory={category.title} />
+        </div>
+      </>
+    );
+  }
+
+  const product = publishedProducts.find(item => item.slug === slug);
+  if (!product) notFound();
+  const related = publishedProducts.filter(item => item.category === product.category && item.slug !== product.slug).slice(0, 4);
+  const categorySlug = categories.find(item => item.title === product.category)?.slug ?? 'products';
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: { '@type': 'Brand', name: product.supplier },
+    image: product.imageUrl
+  };
+
+  return (
+    <>
+      <ProductDetail product={product} related={related} categoryHref={'/products/' + categorySlug} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(productSchema)} />
+    </>
+  );
+}
