@@ -13,7 +13,7 @@ export function Header() {
           <Link href="/installation-services">Installation</Link><Link href="/offers">Suppliers</Link><Link href="/about">Our story</Link>
         </nav>
         <div className="header-actions"><a className="header-phone" href="tel:+16473914283" aria-label="Call Vcare">↗</a><Link className="button button-primary button-small" href="/get-a-quote">Get a quote <span>↗</span></Link></div>
-        <details className="mobile-menu"><summary aria-label="Open navigation menu"><i></i><i></i></summary><nav aria-label="Mobile navigation"><Link href="/products">Shop floors</Link><Link href="/products/hardwood">Hardwood</Link><Link href="/products/engineered-hardwood">Engineered hardwood</Link><Link href="/products/laminate">Laminate</Link><Link href="/products/vinyl">Vinyl</Link><Link href="/installation-services">Installation</Link><Link href="/offers">Suppliers</Link><Link href="/about">Our story</Link><Link href="/contact-us">Contact</Link><Link className="button button-primary" href="/get-a-quote">Get a free quote ↗</Link></nav></details>
+        <details className="mobile-menu"><summary aria-label="Toggle navigation menu"><i aria-hidden="true"></i><i aria-hidden="true"></i></summary><nav aria-label="Mobile navigation"><Link href="/products">Shop floors</Link><Link href="/products/hardwood">Hardwood</Link><Link href="/products/engineered-hardwood">Engineered hardwood</Link><Link href="/products/laminate">Laminate</Link><Link href="/products/vinyl">Vinyl</Link><Link href="/installation-services">Installation</Link><Link href="/offers">Suppliers</Link><Link href="/about">Our story</Link><Link href="/contact-us">Contact</Link><Link className="button button-primary" href="/get-a-quote">Get a free quote ↗</Link></nav></details>
       </div>
     </header>
   </>;
@@ -34,5 +34,5 @@ export function PageIntro({eyebrow,title,description}:{eyebrow:string;title:stri
 }
 
 export function Breadcrumbs({items}:{items:{label:string;href?:string}[]}) {
- return <nav className="breadcrumbs container" aria-label="Breadcrumb"><Link href="/">Home</Link>{items.map((item,i)=><span key={item.label+i}> / {item.href?<Link href={item.href}>{item.label}</Link>:<span aria-current="page">{item.label}</span>}</span>)}</nav>;
+ return <nav className="breadcrumbs container" aria-label="Breadcrumb"><Link href="/">Home</Link>{items.map((item,i)=><span key={item.label+i}><span aria-hidden="true"> / </span>{item.href?<Link href={item.href}>{item.label}</Link>:<span aria-current="page">{item.label}</span>}</span>)}</nav>;
 }
