@@ -1,5 +1,4 @@
 import { readdir, stat } from 'node:fs/promises';
-import { join, relative } from 'node:path';
 
 const root = new URL('../public/images/installation/', import.meta.url);
 const maxFileBytes = 250 * 1024;
