@@ -5,26 +5,18 @@ import sitemap from '@/app/sitemap';
 import { siteUrl } from '@/lib/seo';
 
 describe('flooring supplier mapping', () => {
-  it('keeps each supplier assigned to the client-requested floor types', () => {
-    expect(Object.fromEntries(categories.map(category => [category.title, category.suppliers]))).toEqual({
-      'Engineered Hardwood': ['Vidar', 'Floors at Work', 'Canadian Standards'],
-      Vinyl: ['Toucan', 'Floors at Work', 'Pangolin Floors', 'Lee Flooring'],
-      Hardwood: ['Wickham', 'Tosca'],
-      Laminate: ['Toucan', 'Floors at Work', 'Lee Flooring']
-    });
-  });
-
-  it('shows each supplier once with all of its mapped floor types', () => {
-    expect(suppliers).toEqual([
-      { name: 'Wickham', categories: ['Hardwood'] },
-      { name: 'Tosca', categories: ['Hardwood'] },
-      { name: 'Vidar', categories: ['Engineered Hardwood'] },
-      { name: 'Floors at Work', categories: ['Engineered Hardwood', 'Laminate', 'Vinyl'] },
-      { name: 'Canadian Standards', categories: ['Engineered Hardwood'] },
-      { name: 'Toucan', categories: ['Laminate', 'Vinyl'] },
-      { name: 'Lee Flooring', categories: ['Laminate', 'Vinyl'] },
-      { name: 'Pangolin Floors', categories: ['Vinyl'] }
+  it('uses only the 12 client-approved suppliers in the requested order', () => {
+    expect(suppliers.map(supplier => supplier.name)).toEqual([
+      'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
+      'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss'
     ]);
+    expect(Object.fromEntries(categories.map(category => [category.title, category.suppliers]))).toEqual({
+      'Hardwood': ['Wickham', 'Tosca'],
+      'Engineered Hardwood': ['Floorsatwork'],
+      'Laminate': ['Toucan', 'Floorsatwork', 'Lee Flooring'],
+      'Vinyl': ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring']
+    });
+    expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
   });
 
   it('imports the 48 existing supplier products and applies client-reported authorization', () => {
@@ -42,7 +34,7 @@ describe('flooring supplier mapping', () => {
     });
 
     for (const product of products) {
-      expect(suppliers.some(supplier => supplier.name === product.supplier && supplier.categories.includes(product.category))).toBe(true);
+      // Preserve historical imported records for review, even when the supplier is no longer approved for display.
       expect(product.sourceUrl).toMatch(/^https:\/\//);
       expect(product.imageUrl).toMatch(/^https:\/\//);
       expect(product.description.trim().length).toBeGreaterThan(0);
@@ -58,7 +50,10 @@ describe('flooring supplier mapping', () => {
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
     expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(41);
-    expect(publishedProducts).toHaveLength(41);
+    expect(publishedProducts).toHaveLength(38);
+    expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
+    expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(false);
+    expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
   });
 
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
