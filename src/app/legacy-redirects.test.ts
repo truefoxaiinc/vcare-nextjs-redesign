@@ -15,7 +15,7 @@ describe('legacy WordPress redirects', () => {
     );
     expect(response.status).toBe(301);
     expect(response.headers.get('location')).toBe(
-      'https://www.vcarehardwoodfloors.ca/products/example-floor?utm_source=old-site'
+      'https://www.vcarehardwoodfloors.ca/products/example-floor/?utm_source=old-site'
     );
   });
 
@@ -36,7 +36,7 @@ describe('legacy WordPress redirects', () => {
       { params: Promise.resolve({ category }) }
     );
     expect(response.status).toBe(301);
-    expect(new URL(response.headers.get('location')!).pathname).toBe(expected);
+    expect(new URL(response.headers.get('location')!).pathname).toBe(`${expected}/`);
   });
 
   it('does not redirect to an external host via a category name', async () => {
@@ -46,7 +46,7 @@ describe('legacy WordPress redirects', () => {
     );
     const location = new URL(response.headers.get('location')!);
     expect(location.origin).toBe('https://www.vcarehardwoodfloors.ca');
-    expect(location.pathname).toBe('/products');
+    expect(location.pathname).toBe('/products/');
     expect(location.searchParams.get('ref')).toBe('legacy');
   });
 });
