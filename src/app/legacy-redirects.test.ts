@@ -46,7 +46,7 @@ describe('legacy WordPress redirects', () => {
     );
     const location = new URL(response.headers.get('location')!);
     expect(location.origin).toBe('https://www.vcarehardwoodfloors.ca');
-    expect(location.pathname).toBe('/products/');
+    expect(location.pathname).toBe('/products');
     expect(location.searchParams.get('ref')).toBe('legacy');
   });
 });
