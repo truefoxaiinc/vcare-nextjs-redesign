@@ -133,8 +133,8 @@ export default function InstallationPage() {
           <p>Browse room and staircase photographs supplied for this page. Materials, products and project locations have not been independently verified; ask our team about the floor that suits your space.</p>
         </div>
         <div className="gallery-grid">
-          {photos.map((photo,index)=><figure className="gallery-tile" key={photo.src} style={{margin:0}}>
-            <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 700px) 50vw, 33vw" loading={index<2?'eager':'lazy'} />
+          {photos.map((photo)=><figure className="gallery-tile" key={photo.src} style={{margin:0}}>
+            <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) calc((100vw - 44px) / 2), (max-width: 1050px) calc((100vw - 72px) / 3), (max-width: 1240px) calc((100vw - 92px) / 3), 400px" loading="lazy" />
             <figcaption><span>{photo.alt}</span></figcaption>
           </figure>)}
         </div>
