@@ -53,29 +53,38 @@ export const categories: FloorCategory[] = [
     slug: 'engineered-hardwood',
     note: 'Real wood, thoughtfully built',
     image: photo('photo-1600607687939-ce8a6c25118c'),
-    suppliers: ['Vidar', 'Floors at Work', 'Canadian Standards']
+    suppliers: ['Floorsatwork']
   },
   {
     title: 'Laminate',
     slug: 'laminate',
     note: 'Everyday durability, beautifully done',
     image: photo('photo-1600566753086-00f18fb6b3ea'),
-    suppliers: ['Toucan', 'Floors at Work', 'Lee Flooring']
+    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring']
   },
   {
     title: 'Vinyl',
     slug: 'vinyl',
     note: 'Water-ready style for busy homes',
     image: photo('photo-1600573472591-ee6b68d14c68'),
-    suppliers: ['Toucan', 'Floors at Work', 'Pangolin Floors', 'Lee Flooring']
+    suppliers: ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring']
   }
 ];
 
-export const suppliers: Supplier[] = [...new Set(categories.flatMap(category => category.suppliers))]
-  .map(name => ({
-    name,
-    categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
-  }));
+/** Client-approved supplier names. Do not infer product ranges for unclassified suppliers. */
+export const suppliers: Supplier[] = [
+  'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
+  'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss'
+].map(name => ({
+  name,
+  categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
+}));
+
+const approvedSupplierAliases: Record<string, string> = {
+  'Floors at Work': 'Floorsatwork',
+  'Pangolin Floors': 'Pangolin'
+};
+const approvedSupplierNames = new Set(suppliers.map(supplier => supplier.name));
 
 const existingProductRecords: Product[] = [
   {
@@ -232,7 +241,9 @@ export function isProductPublishable(product: Product): boolean {
     product.sourceStatus === 'verified';
 }
 
-export const publishedProducts = products.filter(isProductPublishable);
+export const publishedProducts = products.filter(product =>
+  isProductPublishable(product) && approvedSupplierNames.has(approvedSupplierAliases[product.supplier] ?? product.supplier)
+);
 
 export const posts = [
   {slug:'is-it-essential-to-hire-a-flooring-installer-for-your-home',title:'Is It Essential to Hire a Flooring Installer for Your Home?',category:'Installation',date:'March 11, 2024',excerpt:'A closer look at when professional installation can protect your investment and help a renovation go smoothly.',image:photo('photo-1600607687939-ce8a6c25118c')},
