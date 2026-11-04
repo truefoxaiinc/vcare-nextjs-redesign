@@ -241,9 +241,9 @@ export function isProductPublishable(product: Product): boolean {
     product.sourceStatus === 'verified';
 }
 
-export const publishedProducts = products.filter(product =>
-  isProductPublishable(product) && approvedSupplierNames.has(approvedSupplierAliases[product.supplier] ?? product.supplier)
-);
+export const publishedProducts = products
+  .filter(product => isProductPublishable(product) && approvedSupplierNames.has(approvedSupplierAliases[product.supplier] ?? product.supplier))
+  .map(product => ({ ...product, supplier: approvedSupplierAliases[product.supplier] ?? product.supplier }));
 
 export const posts = [
   {slug:'is-it-essential-to-hire-a-flooring-installer-for-your-home',title:'Is It Essential to Hire a Flooring Installer for Your Home?',category:'Installation',date:'March 11, 2024',excerpt:'A closer look at when professional installation can protect your investment and help a renovation go smoothly.',image:photo('photo-1600607687939-ce8a6c25118c')},
