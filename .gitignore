@@ -15,3 +15,5 @@ npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
 src/generated/prisma/
+# Generated from docs/supplier-logos by predev/prebuild
+/public/images/suppliers/
