@@ -73,12 +73,27 @@ export const categories: FloorCategory[] = [
   }
 ];
 
+/** User-provided supplier logo files; Pangolin and Woden remain text-only. */
+const supplierLogoFiles: Record<string, string> = {
+  "Grandeur": "grandeurflooring-logo.png",
+  "Tosca": "Tosca-logo.webp",
+  "Floorsatwork": "Floorsatwork-logo.avif",
+  "Toucan": "Toucan-logo.avif",
+  "Simba": "Simba-logo.png",
+  "Wickham": "Wickham-logo.svg",
+  "Northernest": "Northernest-logo.png",
+  "Sherwood": "Sherwood-logo.webp",
+  "Lee Flooring": "Lee Flooring-logo.webp",
+  "Weiss": "Weiss-logo.avif"
+};
+
 /** Client-approved supplier names. Do not infer product ranges for unclassified suppliers. */
 export const suppliers: Supplier[] = [
   'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
   'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss'
 ].map(name => ({
   name,
+  logoPath: supplierLogoFiles[name] ? '/images/suppliers/' + encodeURIComponent(supplierLogoFiles[name]) : undefined,
   categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
 }));
 

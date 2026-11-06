@@ -19,6 +19,15 @@ describe('flooring supplier mapping', () => {
     expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
   });
 
+  it('maps ten locally provided logos and leaves missing logos text-only', () => {
+    const withLogos = suppliers.filter(supplier => supplier.logoPath);
+    expect(withLogos).toHaveLength(10);
+    expect(withLogos.every(supplier => supplier.logoPath?.startsWith('/images/suppliers/'))).toBe(true);
+    expect(suppliers.find(supplier => supplier.name === 'Pangolin')?.logoPath).toBeUndefined();
+    expect(suppliers.find(supplier => supplier.name === 'Woden')?.logoPath).toBeUndefined();
+    expect(suppliers.find(supplier => supplier.name === 'Lee Flooring')?.logoPath).toContain('Lee%20Flooring-logo.webp');
+  });
+
   it('imports the 48 existing supplier products and applies client-reported authorization', () => {
     expect(products).toHaveLength(48);
     expect(products.reduce<Record<string, number>>((counts, product) => {
