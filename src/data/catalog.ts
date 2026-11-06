@@ -36,6 +36,8 @@ export type FloorCategory = {
 export type Supplier = {
   name: string;
   categories: Category[];
+  /** Approved, locally hosted logo asset. Omit until supplied and licensed. */
+  logoPath?: string;
 };
 
 const photo = (id: string) => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1100&q=82';
