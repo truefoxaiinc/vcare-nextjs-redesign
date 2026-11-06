@@ -18,7 +18,9 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:status": "prisma migrate status",
-    "db:validate": "prisma validate"
+    "db:validate": "prisma validate",
+    "predev": "node scripts/prepare-supplier-logos.mjs",
+    "prebuild": "node scripts/prepare-supplier-logos.mjs"
   },
   "dependencies": {
     "@next/env": "16.4.5",
