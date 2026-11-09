@@ -7,6 +7,8 @@ from urllib.parse import urlparse
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from app.knowledge.query_language import normalized_terms
+
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SHA = re.compile(r"^[0-9a-f]{40}$")
 CATEGORIES = {"Hardwood", "Engineered Hardwood", "Laminate", "Vinyl"}
@@ -86,7 +88,7 @@ def load_snapshot(path: str, expected_sha256: str) -> CatalogueSnapshot:
 
 def search(snapshot: CatalogueSnapshot, query: str, limit: int = 5) -> list[ApprovedProduct]:
     """Deterministic token matching; no LLM claims or approximate product inference."""
-    terms = set(re.findall(r"[a-z0-9]+", query.casefold()))
+    terms = normalized_terms(query)
     if not terms:
         return []
     ranked = []
