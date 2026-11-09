@@ -3,6 +3,7 @@ from app.core.config import Settings
 from app.knowledge.catalogue import ApprovedProduct, load_snapshot, search
 from app.knowledge.query_language import has_product_intent
 
+
 def wants_products(message: str) -> bool:
     return has_product_intent(message)
 
