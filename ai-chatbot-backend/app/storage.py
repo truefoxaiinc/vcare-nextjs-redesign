@@ -1,6 +1,6 @@
 """Isolated asynchronous chatbot database; no Next.js/Prisma schema changes."""
 from collections.abc import AsyncIterator
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from functools import lru_cache
 from uuid import uuid4
 
@@ -16,7 +16,7 @@ class Base(DeclarativeBase):
 
 
 def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class Conversation(Base):
