@@ -43,9 +43,8 @@ def test_lock_prevents_overlapping_turns():
 def test_lock_is_scoped_to_session():
     async def check():
         redis = LockRedis()
-        async with conversation_lock(redis, "a", 40):
-            async with conversation_lock(redis, "b", 40):
-                assert len(redis.values) == 2
+        async with conversation_lock(redis, "a", 40), conversation_lock(redis, "b", 40):
+            assert len(redis.values) == 2
 
     asyncio.run(check())
 
