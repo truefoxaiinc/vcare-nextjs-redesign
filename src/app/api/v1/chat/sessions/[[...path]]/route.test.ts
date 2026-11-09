@@ -7,6 +7,7 @@ const id = '123e4567-e89b-12d3-a456-426614174000';
 const token = 'a'.repeat(40);
 const previousFlag = process.env.VCARE_CHAT_PROXY_ENABLED;
 const previousOrigin = process.env.VCARE_CHAT_BACKEND_ORIGIN;
+const previousAllowedHosts = process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -14,9 +15,12 @@ afterEach(() => {
   else process.env.VCARE_CHAT_PROXY_ENABLED = previousFlag;
   if (previousOrigin === undefined) delete process.env.VCARE_CHAT_BACKEND_ORIGIN;
   else process.env.VCARE_CHAT_BACKEND_ORIGIN = previousOrigin;
+  if (previousAllowedHosts === undefined) delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
+  else process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = previousAllowedHosts;
 });
 
 function enable(origin = 'http://127.0.0.1:18690') {
+  delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
   process.env.VCARE_CHAT_PROXY_ENABLED = 'true';
   process.env.VCARE_CHAT_BACKEND_ORIGIN = origin;
 }
@@ -49,6 +53,39 @@ describe('disabled-by-default chatbot proxy', () => {
       expect(fetchMock).not.toHaveBeenCalled();
     }
   );
+
+  it('permits reviewed remote HTTPS origins only when explicitly allowlisted', async () => {
+    enable('https://chat.vcarehardwoodfloors.ca');
+    process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = 'chat.vcarehardwoodfloors.ca';
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ session_id: id, token, expires_at: '2099-01-01T00:00:00Z' }), {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    const response = await POST(
+      new NextRequest('https://vcarehardwoodfloors.ca/api/v1/chat/sessions', { method: 'POST' }),
+      context()
+    );
+    expect(response.status).toBe(201);
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://chat.vcarehardwoodfloors.ca/api/v1/chat/sessions',
+      expect.objectContaining({ method: 'POST', redirect: 'manual' })
+    );
+  });
+
+  it('does not allow a substring domain match', async () => {
+    enable('https://chat.vcarehardwoodfloors.ca.evil.example');
+    process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = 'chat.vcarehardwoodfloors.ca';
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    expect((await POST(
+      new NextRequest('https://vcarehardwoodfloors.ca/api/v1/chat/sessions', { method: 'POST' }),
+      context()
+    )).status).toBe(404);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
 
   it('rejects cross-origin browser requests and unsupported paths', async () => {
     enable();
