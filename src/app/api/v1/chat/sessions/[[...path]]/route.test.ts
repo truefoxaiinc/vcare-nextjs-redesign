@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 
 import { DELETE, GET, POST } from './route';
@@ -8,6 +8,14 @@ const token = 'a'.repeat(40);
 const previousFlag = process.env.VCARE_CHAT_PROXY_ENABLED;
 const previousOrigin = process.env.VCARE_CHAT_BACKEND_ORIGIN;
 const previousAllowedHosts = process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
+
+// Explicitly reset the proxy's test environment before every case. Vitest may
+// shuffle files or reuse workers; no test may depend on a previous test's flag.
+beforeEach(() => {
+  delete process.env.VCARE_CHAT_PROXY_ENABLED;
+  delete process.env.VCARE_CHAT_BACKEND_ORIGIN;
+  delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
+});
 
 afterEach(() => {
   vi.unstubAllGlobals();
