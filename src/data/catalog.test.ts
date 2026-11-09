@@ -19,12 +19,13 @@ describe('flooring supplier mapping', () => {
     expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
   });
 
-  it('maps ten locally provided logos and leaves missing logos text-only', () => {
+  it('maps all twelve supplied supplier logos', () => {
     const withLogos = suppliers.filter(supplier => supplier.logoPath);
-    expect(withLogos).toHaveLength(10);
+    expect(withLogos).toHaveLength(12);
     expect(withLogos.every(supplier => supplier.logoPath?.startsWith('/images/suppliers/'))).toBe(true);
-    expect(suppliers.find(supplier => supplier.name === 'Pangolin')?.logoPath).toBeUndefined();
-    expect(suppliers.find(supplier => supplier.name === 'Woden')?.logoPath).toBeUndefined();
+    expect(suppliers.find(supplier => supplier.name === 'Pangolin')?.logoPath).toContain('Pangol-logo.webp');
+    expect(suppliers.find(supplier => supplier.name === 'Woden')?.logoPath).toContain('woodenflooring-logo.avif');
+    expect(suppliers.find(supplier => supplier.name === 'Sherwood')?.logoPath).toContain('sharwood-logo.jpeg');
     expect(suppliers.find(supplier => supplier.name === 'Lee Flooring')?.logoPath).toContain('Lee%20Flooring-logo.webp');
   });
 
