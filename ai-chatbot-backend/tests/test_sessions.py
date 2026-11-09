@@ -159,3 +159,51 @@ def test_catalogue_rejects_cross_session_access(client):
     url = "/api/v1/chat/sessions/" + first["session_id"] + "/catalogue?q=oak"
     response = http.get(url, headers={"Authorization": "Bearer " + other["token"]})
     assert response.status_code == 403
+
+
+def test_product_question_uses_fail_closed_evidence(client, monkeypatch):
+    from app.api import sessions
+
+    captured = []
+
+    async def capture_complete(messages, settings):
+        captured.extend(messages)
+        return "Hardwood is a flooring category. Which room are you updating?"
+
+    monkeypatch.setattr(sessions, "complete", capture_complete)
+    http, _ = client
+    session = new_session(http)
+    url = "/api/v1/chat/sessions/" + session["session_id"] + "/messages"
+    response = http.post(
+        url,
+        headers={"Authorization": "Bearer " + session["token"]},
+        json={"message": "Can you recommend hardwood flooring?"},
+    )
+    assert response.status_code == 200
+    assert any(
+        "No matching verified product evidence" in item["content"]
+        for item in captured
+    )
+    assert captured[-1]["role"] == "user"
+
+
+def test_greeting_omits_catalogue_context(client, monkeypatch):
+    from app.api import sessions
+
+    captured = []
+
+    async def capture_complete(messages, settings):
+        captured.extend(messages)
+        return "Hello! How can I help?"
+
+    monkeypatch.setattr(sessions, "complete", capture_complete)
+    http, _ = client
+    session = new_session(http)
+    url = "/api/v1/chat/sessions/" + session["session_id"] + "/messages"
+    response = http.post(
+        url,
+        headers={"Authorization": "Bearer " + session["token"]},
+        json={"message": "Hello there"},
+    )
+    assert response.status_code == 200
+    assert not any("CATALOGUE EVIDENCE" in item["content"] for item in captured)
