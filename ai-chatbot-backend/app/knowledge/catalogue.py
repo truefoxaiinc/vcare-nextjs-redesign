@@ -95,7 +95,7 @@ def search(snapshot: CatalogueSnapshot, query: str, limit: int = 5) -> list[Appr
         supplier = item.supplier.casefold()
         category = item.category.casefold()
         slug = item.slug.replace("-", " ")
-        searchable = " ".join((name, supplier, category, slug, item.description.casefold()))
+        searchable = f"{name} {supplier} {category} {slug} {item.description.casefold()}"
         score = sum(
             4 if term in name.split() else
             3 if term in supplier.split() or term in category.split() else
