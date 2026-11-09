@@ -1,19 +1,10 @@
 """Bounded, citation-backed product evidence for sales conversations."""
-import re
-
 from app.core.config import Settings
 from app.knowledge.catalogue import ApprovedProduct, load_snapshot, search
-
-PRODUCT_TERMS = re.compile(
-    r"\b(floor|flooring|hardwood|laminate|vinyl|oak|plank|product|"
-    r"collection|supplier|brand|colour|color|finish|waterproof|"
-    r"recommend|option|catalogue|catalog|price|stock|available)\b",
-    re.IGNORECASE,
-)
-
+from app.knowledge.query_language import has_product_intent
 
 def wants_products(message: str) -> bool:
-    return bool(PRODUCT_TERMS.search(message))
+    return has_product_intent(message)
 
 
 def retrieve(message: str, settings: Settings) -> tuple[list[ApprovedProduct], str | None]:
