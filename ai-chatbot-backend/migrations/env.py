@@ -1,11 +1,11 @@
 import asyncio
 
 from alembic import context
-from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
+from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from app.storage import Base
 from app.core.config import get_settings
+from app.storage import Base
 
 config = context.config
 target_metadata = Base.metadata
