@@ -73,7 +73,7 @@ export const categories: FloorCategory[] = [
   }
 ];
 
-/** User-provided supplier logo files; Pangolin and Woden remain text-only. */
+/** User-provided supplier logo files; brand identity should be reviewed before merging. */
 const supplierLogoFiles: Record<string, string> = {
   "Grandeur": "grandeurflooring-logo.png",
   "Tosca": "Tosca-logo.webp",
@@ -82,7 +82,9 @@ const supplierLogoFiles: Record<string, string> = {
   "Simba": "Simba-logo.png",
   "Wickham": "Wickham-logo.svg",
   "Northernest": "Northernest-logo.png",
-  "Sherwood": "Sherwood-logo.webp",
+  "Sherwood": "sharwood-logo.jpeg",
+  "Pangolin": "Pangol-logo.webp",
+  "Woden": "woodenflooring-logo.avif",
   "Lee Flooring": "Lee Flooring-logo.webp",
   "Weiss": "Weiss-logo.avif"
 };
