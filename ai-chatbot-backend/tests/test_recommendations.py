@@ -2,11 +2,11 @@
 import hashlib
 import json
 
+import pytest
+from test_sessions import client as session_client, new_session
+
 from app.knowledge.catalogue import CatalogueSnapshot
 from app.knowledge.recommendations import recommend
-import pytest
-
-from test_sessions import client as session_client, new_session
 
 
 @pytest.fixture
