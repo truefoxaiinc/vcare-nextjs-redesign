@@ -2,16 +2,14 @@
 import hashlib
 import json
 
-import pytest
-from test_sessions import client as session_client, new_session
+from test_sessions import client as session_client
+from test_sessions import new_session
 
 from app.knowledge.catalogue import CatalogueSnapshot
 from app.knowledge.recommendations import recommend
 
 
-@pytest.fixture
-def client(session_client):
-    return session_client
+http_client = session_client
 
 
 def record(slug="oak-sample", name="Oak Sample"):
@@ -41,8 +39,8 @@ def test_recommendations_are_structured_and_source_backed():
     assert recommend(snapshot, "nonexistent").evidence_status == "no_match"
 
 
-def test_api_requires_session_and_fails_closed_without_snapshot(client):
-    http, _ = client
+def test_api_requires_session_and_fails_closed_without_snapshot(http_client):
+    http, _ = http_client
     session = new_session(http)
     url = "/api/v1/chat/sessions/" + session["session_id"] + "/recommendations?q=oak"
     assert http.get(url).status_code == 401
@@ -53,19 +51,19 @@ def test_api_requires_session_and_fails_closed_without_snapshot(client):
     }
 
 
-def test_api_rejects_other_session(client):
-    http, _ = client
+def test_api_rejects_other_session(http_client):
+    http, _ = http_client
     first, second = new_session(http), new_session(http)
     url = "/api/v1/chat/sessions/" + first["session_id"] + "/recommendations?q=oak"
     response = http.get(url, headers={"Authorization": "Bearer " + second["token"]})
     assert response.status_code == 403
 
 
-def test_api_approved_snapshot_and_tampering(client, tmp_path):
+def test_api_approved_snapshot_and_tampering(http_client, tmp_path):
     from app.core.config import Settings, get_settings
     from app.main import app
 
-    http, _ = client
+    http, _ = http_client
     session = new_session(http)
     url = "/api/v1/chat/sessions/" + session["session_id"] + "/recommendations?q=oak"
     headers = {"Authorization": "Bearer " + session["token"]}
