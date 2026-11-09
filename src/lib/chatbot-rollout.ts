@@ -3,7 +3,7 @@
  * It validates the exact upstream origin and hostname rather than relying on
  * URL string prefixes or the mere presence of an allowlist.
  */
-export function isLiveChatEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
+export function isLiveChatEnabled(env: Readonly<Record<string, string | undefined>> = process.env): boolean {
   if (env.VCARE_AI_CHAT_UI_ENABLED !== 'true' || env.VCARE_CHAT_PROXY_ENABLED !== 'true') {
     return false;
   }
