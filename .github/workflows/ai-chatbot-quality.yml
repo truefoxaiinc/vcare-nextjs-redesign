@@ -18,6 +18,28 @@ jobs:
   python:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: chatbot_test
+          POSTGRES_PASSWORD: chatbot_test_password
+          POSTGRES_DB: chatbot_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U chatbot_test -d chatbot_test"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+      redis:
+        image: redis:7.4-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      CHATBOT_INTEGRATION_DATABASE_URL: postgresql+asyncpg://chatbot_test:chatbot_test_password@127.0.0.1:5432/chatbot_test
+      CHATBOT_INTEGRATION_REDIS_URL: redis://127.0.0.1:6379/0
     defaults:
       run:
         working-directory: ai-chatbot-backend
