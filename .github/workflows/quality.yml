@@ -34,6 +34,8 @@ jobs:
         run: npm run db:generate
       - name: Check installation image asset budget
         run: node scripts/check-installation-assets.mjs
+      - name: Catalogue snapshot exporter contract tests
+        run: node --test scripts/catalogue-export.test.mjs
       - name: Typecheck
         run: npm run typecheck
       - name: Lint
