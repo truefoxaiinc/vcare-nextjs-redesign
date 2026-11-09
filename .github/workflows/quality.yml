@@ -36,6 +36,8 @@ jobs:
         run: node scripts/check-installation-assets.mjs
       - name: Catalogue snapshot exporter contract tests
         run: node --test scripts/catalogue-export.test.mjs
+      - name: Dry-run real catalogue snapshot export (never deploy)
+        run: node scripts/catalogue-export.mjs --out "$RUNNER_TEMP/vcare-catalogue-review.json"
       - name: Typecheck
         run: npm run typecheck
       - name: Lint
