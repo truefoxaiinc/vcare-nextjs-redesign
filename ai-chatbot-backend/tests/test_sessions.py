@@ -1,5 +1,5 @@
 """Session isolation and bounded-memory contract tests without external services."""
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
@@ -121,7 +121,7 @@ async def _expired_token_rejected():
         await connection.run_sync(Base.metadata.create_all)
     token = issue_token()
     async with async_sessionmaker(engine, expire_on_commit=False)() as db:
-        db.add(Conversation(token_hash=hash_token(token), expires_at=datetime.now(timezone.utc) - timedelta(seconds=1)))
+        db.add(Conversation(token_hash=hash_token(token), expires_at=datetime.now(UTC) - timedelta(seconds=1)))
         await db.commit()
         with pytest.raises(HTTPException) as error:
             await authenticate(db, "Bearer " + token)
