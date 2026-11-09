@@ -4,7 +4,14 @@ import json
 
 from app.knowledge.catalogue import CatalogueSnapshot
 from app.knowledge.recommendations import recommend
-from test_sessions import client, new_session  # noqa: F401
+import pytest
+
+from test_sessions import client as session_client, new_session
+
+
+@pytest.fixture
+def client(session_client):
+    return session_client
 
 
 def record(slug="oak-sample", name="Oak Sample"):
