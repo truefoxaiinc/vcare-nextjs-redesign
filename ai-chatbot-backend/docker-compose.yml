@@ -2,6 +2,7 @@ name: vcare-ai-chatbot
 
 services:
   api:
+    image: vcare-ai-chatbot-api:local
     build: .
     env_file: .env
     environment:
@@ -24,6 +25,24 @@ services:
     mem_limit: 512m
     cpus: 1.0
     networks: [chatbot_internal, chatbot_egress]
+
+  cleanup:
+    image: vcare-ai-chatbot-api:local
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://vcare:${CHATBOT_DB_PASSWORD:?Set CHATBOT_DB_PASSWORD}@db:5432/vcare_chatbot
+    command: ["sh", "-c", "while true; do python -m app.cleanup; sleep 3600; done"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 50
+    mem_limit: 256m
+    cpus: 0.25
+    networks: [chatbot_internal]
 
   db:
     image: postgres:16-alpine
