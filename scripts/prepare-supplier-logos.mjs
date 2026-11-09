@@ -1,7 +1,7 @@
 import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Copy only the ten reviewed supplier assets from docs to Next.js public assets.
+// Copy the twelve mapped supplier assets from docs to Next.js public assets.
 const files = [
   "grandeurflooring-logo.png",
   "Tosca-logo.webp",
@@ -10,7 +10,9 @@ const files = [
   "Simba-logo.png",
   "Wickham-logo.svg",
   "Northernest-logo.png",
-  "Sherwood-logo.webp",
+  "sharwood-logo.jpeg",
+  "Pangol-logo.webp",
+  "woodenflooring-logo.avif",
   "Lee Flooring-logo.webp",
   "Weiss-logo.avif"
 ];
