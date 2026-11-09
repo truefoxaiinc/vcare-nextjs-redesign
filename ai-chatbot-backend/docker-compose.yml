@@ -1,0 +1,16 @@
+name: vcare-ai-chatbot
+services:
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "127.0.0.1:18720:8000"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    mem_limit: 512m
+    cpus: 1.0
