@@ -5,6 +5,8 @@ import { businessJsonLd, jsonLd, siteUrl } from '@/lib/seo';
 import { CookieConsent } from '@/components/cookie-consent';
 import { WhatsAppButton } from '@/components/whatsapp-button';
 import { VcareChatWidget } from '@/components/vcare-chat-widget';
+import { VcareAiChatLauncher } from '@/components/vcare-ai-chat-launcher';
+import { isLiveChatEnabled } from '@/lib/chatbot-rollout';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -18,5 +20,5 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { themeColor:'#f7f3ec',width:'device-width',initialScale:1 };
 export default function RootLayout({children}:{children:ReactNode}) {
- return <html lang="en-CA"><body><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main">{children}</main><Footer/><CookieConsent/><WhatsAppButton/><VcareChatWidget/><script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(businessJsonLd)}/></body></html>;
+ return <html lang="en-CA"><body><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main">{children}</main><Footer/><CookieConsent/><WhatsAppButton/>{isLiveChatEnabled() ? <VcareAiChatLauncher/> : <VcareChatWidget/>}<script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(businessJsonLd)}/></body></html>;
 }
