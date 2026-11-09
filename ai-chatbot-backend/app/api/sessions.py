@@ -11,8 +11,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.agent.sales import SYSTEM_PROMPT
 from app.core.config import Settings, get_settings
 from app.limits import get_redis
-from app.locks import conversation_lock
 from app.llm.openrouter import ProviderUnavailable, complete
+from app.locks import conversation_lock
 from app.security import authenticate, expiry, hash_token, issue_token, throttle
 from app.storage import Conversation, Turn, get_db
 
