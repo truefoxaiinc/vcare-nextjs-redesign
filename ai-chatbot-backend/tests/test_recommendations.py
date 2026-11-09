@@ -8,7 +8,6 @@ from test_sessions import new_session
 from app.knowledge.catalogue import CatalogueSnapshot
 from app.knowledge.recommendations import recommend
 
-
 http_client = session_client
 
 
