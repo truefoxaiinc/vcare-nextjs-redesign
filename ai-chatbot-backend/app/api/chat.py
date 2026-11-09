@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
@@ -18,7 +20,7 @@ class ChatResponse(BaseModel):
 
 
 @router.post("/messages", response_model=ChatResponse)
-async def chat(payload: ChatRequest, settings: Settings = Depends(get_settings)) -> ChatResponse:
+async def chat(payload: ChatRequest, settings: Annotated[Settings, Depends(get_settings)]) -> ChatResponse:
     if not payload.message.strip() or len(payload.message) > settings.max_message_length:
         raise HTTPException(status_code=422, detail="Invalid message")
     try:

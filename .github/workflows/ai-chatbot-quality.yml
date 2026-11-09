@@ -1,0 +1,38 @@
+name: AI chatbot backend quality
+
+on:
+  pull_request:
+    paths:
+      - "ai-chatbot-backend/**"
+      - ".github/workflows/ai-chatbot-quality.yml"
+  push:
+    branches: [main]
+    paths:
+      - "ai-chatbot-backend/**"
+      - ".github/workflows/ai-chatbot-quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: ai-chatbot-backend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ai-chatbot-backend/pyproject.toml
+      - name: Install backend and test dependencies
+        run: python -m pip install -e '.[dev]'
+      - name: Lint
+        run: ruff check .
+      - name: Run tests
+        run: pytest -q
