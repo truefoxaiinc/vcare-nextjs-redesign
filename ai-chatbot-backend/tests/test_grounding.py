@@ -5,8 +5,8 @@ import json
 import pytest
 
 from app.core.config import Settings
-from app.knowledge.grounding import evidence_message, retrieve, wants_products
 from app.knowledge.catalogue import ApprovedProduct
+from app.knowledge.grounding import evidence_message, retrieve, wants_products
 
 
 def product(description="Oak hardwood flooring"):
