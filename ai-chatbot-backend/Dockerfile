@@ -4,6 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 RUN useradd --system --uid 10001 appuser
 COPY pyproject.toml ./
 COPY app ./app
+COPY alembic.ini ./alembic.ini
+COPY migrations ./migrations
 RUN pip install --no-cache-dir .
 USER appuser
 EXPOSE 8000
