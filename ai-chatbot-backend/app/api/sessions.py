@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.agent.sales import SYSTEM_PROMPT
 from app.core.config import Settings, get_settings
 from app.limits import get_redis
+from app.locks import conversation_lock
 from app.llm.openrouter import ProviderUnavailable, complete
 from app.security import authenticate, expiry, hash_token, issue_token, throttle
 from app.storage import Conversation, Turn, get_db
@@ -70,30 +71,38 @@ async def message(
         raise HTTPException(status_code=422, detail="Invalid message")
     await throttle(redis, ip_key(request), settings.ip_rate_limit, 60)
     await throttle(redis, "vcare:session:" + conversation.id, settings.session_rate_limit, 60)
-    history = (await db.scalars(
-        select(Turn).where(Turn.conversation_id == conversation.id)
-        .order_by(Turn.id.desc()).limit(settings.history_turn_limit)
-    )).all()
-    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-    messages.extend({"role": turn.role, "content": turn.content} for turn in reversed(history))
-    messages.append({"role": "user", "content": payload.message})
-    try:
-        reply = await complete(messages, settings)
-    except ProviderUnavailable as exc:
-        raise HTTPException(status_code=503, detail="AI assistant temporarily unavailable") from exc
-    db.add_all([
-        Turn(conversation_id=conversation.id, role="user", content=payload.message),
-        Turn(conversation_id=conversation.id, role="assistant", content=reply),
-    ])
-    await db.commit()
-    return MessageOut(reply=reply, session_id=conversation.id)
+    async with conversation_lock(redis, conversation.id, settings.message_lock_ttl_seconds):
+        # Re-check authorization after acquiring the lock: the session may have expired.
+        await authenticate(db, authorization)
+        history = (await db.scalars(
+            select(Turn).where(Turn.conversation_id == conversation.id)
+            .order_by(Turn.id.desc()).limit(settings.history_turn_limit)
+        )).all()
+        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+        messages.extend({"role": turn.role, "content": turn.content} for turn in reversed(history))
+        messages.append({"role": "user", "content": payload.message})
+        try:
+            reply = await complete(messages, settings)
+        except ProviderUnavailable as exc:
+            raise HTTPException(status_code=503, detail="AI assistant temporarily unavailable") from exc
+        db.add_all([
+            Turn(conversation_id=conversation.id, role="user", content=payload.message),
+            Turn(conversation_id=conversation.id, role="assistant", content=reply),
+        ])
+        await db.commit()
+        return MessageOut(reply=reply, session_id=conversation.id)
 
 
 @router.get("/{session_id}/messages", response_model=HistoryOut)
-async def history(session_id: str, db: Db, settings: Config, authorization: Auth = None) -> HistoryOut:
+async def history(
+    session_id: str, request: Request, db: Db, redis: Cache, settings: Config,
+    authorization: Auth = None,
+) -> HistoryOut:
     conversation = await authenticate(db, authorization)
     if conversation.id != session_id:
         raise HTTPException(status_code=403, detail="Session access denied")
+    await throttle(redis, ip_key(request), settings.ip_rate_limit, 60)
+    await throttle(redis, "vcare:session:" + session_id, settings.session_rate_limit, 60)
     turns = (await db.scalars(
         select(Turn).where(Turn.conversation_id == session_id)
         .order_by(Turn.id.desc()).limit(settings.history_turn_limit)
@@ -104,13 +113,18 @@ async def history(session_id: str, db: Db, settings: Config, authorization: Auth
 
 
 @router.delete("/{session_id}", status_code=204)
-async def delete_session(session_id: str, db: Db, authorization: Auth = None) -> None:
+async def delete_session(
+    session_id: str, request: Request, db: Db, redis: Cache, settings: Config,
+    authorization: Auth = None,
+) -> None:
     conversation = await authenticate(db, authorization)
     if conversation.id != session_id:
         raise HTTPException(status_code=403, detail="Session access denied")
-    # Explicit delete is required for SQLite tests; PostgreSQL also enforces FK cascade.
-    turns = (await db.scalars(select(Turn).where(Turn.conversation_id == session_id))).all()
-    for turn in turns:
-        await db.delete(turn)
-    await db.delete(conversation)
-    await db.commit()
+    await throttle(redis, ip_key(request), settings.ip_rate_limit, 60)
+    await throttle(redis, "vcare:session:" + session_id, settings.session_rate_limit, 60)
+    async with conversation_lock(redis, session_id, settings.message_lock_ttl_seconds):
+        turns = (await db.scalars(select(Turn).where(Turn.conversation_id == session_id))).all()
+        for turn in turns:
+            await db.delete(turn)
+        await db.delete(conversation)
+        await db.commit()
