@@ -20,9 +20,20 @@ function configuredUpstream(): string | null {
   try {
     const url = new URL(raw);
     const local = ['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname);
+    // A server-only allowlist is mandatory for remote HTTPS upstreams.
+    // Merely setting BACKEND_ORIGIN must not authorize an arbitrary host.
+    const allowedHosts = (process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS ?? '')
+      .split(',')
+      .map((host) => host.trim().toLowerCase())
+      .filter(Boolean);
+    const allowedRemote = url.protocol === 'https:' && allowedHosts.includes(url.hostname.toLowerCase());
     if (
-      (url.protocol !== 'https:' && !(url.protocol === 'http:' && local)) ||
-      url.username || url.password || url.pathname !== '/' || url.search || url.hash
+      !(local && url.protocol === 'http:') &&
+      !allowedRemote
+    ) return null;
+    if (
+      url.username || url.password || url.pathname !== '/' || url.search || url.hash ||
+      (url.port && !/^\\d{1,5}$/.test(url.port))
     ) return null;
     return url.origin;
   } catch {
