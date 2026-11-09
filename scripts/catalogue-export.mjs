@@ -67,7 +67,7 @@ function compileCatalogue(directory) {
     });
     if (result.diagnostics?.length) throw new Error('TypeScript transpilation failed: ' + source);
     const js = result.outputText.replaceAll(
-      /from ['"]@\\/data\\/(catalog-authorization|supplier-product-imports)['"]/g,
+      /from ['"]@\/data\/(catalog-authorization|supplier-product-imports)['"]/g,
       (_match, name) => `from './${name}.mjs'`,
     );
     if (js.includes('@/data/')) throw new Error('Unexpected unresolved module alias: ' + source);
