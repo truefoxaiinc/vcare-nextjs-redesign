@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.agent.sales import SYSTEM_PROMPT
 from app.core.config import Settings, get_settings
 from app.knowledge.grounding import evidence_message, retrieve, wants_products
+from app.knowledge.response_guard import guard_reply
 from app.limits import get_redis
 from app.llm.openrouter import ProviderUnavailable, complete
 from app.locks import conversation_lock
@@ -94,19 +95,7 @@ async def message(
             reply = await complete(messages, settings)
         except ProviderUnavailable as exc:
             raise HTTPException(status_code=503, detail="AI assistant temporarily unavailable") from exc
-        if product_intent and evidence:
-            # Do not allow unlinked named recommendations; model output is untrusted.
-            # The evidence is the sole allowed source of specific product facts.
-            mentioned = [
-                item for item in evidence
-                if item.name.casefold() in reply.casefold()
-            ]
-            if any(item.canonical_url not in reply for item in mentioned):
-                reply = (
-                    "I found some relevant flooring options in our catalogue, "
-                    "but I cannot verify the recommendation details right now. "
-                    "Would you like help narrowing down the flooring type?"
-                )
+        reply = guard_reply(reply, evidence, product_intent)
         db.add_all([
             Turn(conversation_id=conversation.id, role="user", content=payload.message),
             Turn(conversation_id=conversation.id, role="assistant", content=reply),
