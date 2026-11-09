@@ -207,3 +207,21 @@ def test_greeting_omits_catalogue_context(client, monkeypatch):
     )
     assert response.status_code == 200
     assert not any("CATALOGUE EVIDENCE" in item["content"] for item in captured)
+
+
+def test_session_blocks_unapproved_product_link(client, monkeypatch):
+    from app.api import sessions
+
+    async def fake_complete(messages, settings):
+        return "See https://www.vcarehardwoodfloors.ca/products/invented-product"
+
+    monkeypatch.setattr(sessions, "complete", fake_complete)
+    http, _ = client
+    session = new_session(http)
+    url = "/api/v1/chat/sessions/" + session["session_id"] + "/messages"
+    headers = {"Authorization": "Bearer " + session["token"]}
+    response = http.post(url, headers=headers, json={"message": "Recommend hardwood flooring"})
+    assert response.status_code == 200
+    assert "invented-product" not in response.json()["reply"]
+    history = http.get(url, headers=headers).json()["messages"]
+    assert "invented-product" not in history[-1]["content"]
