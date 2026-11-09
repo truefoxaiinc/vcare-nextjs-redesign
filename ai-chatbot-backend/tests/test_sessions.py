@@ -16,10 +16,22 @@ from app.storage import Base, Conversation, get_db
 class FakeRedis:
     def __init__(self):
         self.counts = {}
+        self.locks = {}
 
-    async def eval(self, script, number_of_keys, key, window):
+    async def eval(self, script, number_of_keys, key, value):
+        if "GET" in script:
+            if self.locks.get(key) == value:
+                del self.locks[key]
+                return 1
+            return 0
         self.counts[key] = self.counts.get(key, 0) + 1
         return self.counts[key]
+
+    async def set(self, key, value, nx=False, ex=None):
+        if nx and key in self.locks:
+            return None
+        self.locks[key] = value
+        return True
 
 
 @pytest.fixture
@@ -52,7 +64,7 @@ def client(monkeypatch):
     app.dependency_overrides[get_redis] = redis_override
     app.dependency_overrides[get_settings] = lambda: Settings(
         openrouter_api_key="test-only", _env_file=None, ip_rate_limit=100,
-        session_rate_limit=2, history_turn_limit=4,
+        session_rate_limit=5, history_turn_limit=4,
     )
     try:
         with TestClient(app) as test_client:
@@ -94,7 +106,7 @@ def test_session_rate_limit(client):
     a = new_session(http)
     url = "/api/v1/chat/sessions/" + a["session_id"] + "/messages"
     headers = {"Authorization": "Bearer " + a["token"]}
-    for _ in range(2):
+    for _ in range(5):
         assert http.post(url, headers=headers, json={"message": "Hello"}).status_code == 200
     assert http.post(url, headers=headers, json={"message": "Hello"}).status_code == 429
 

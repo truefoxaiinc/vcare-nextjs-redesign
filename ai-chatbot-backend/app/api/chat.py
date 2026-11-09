@@ -1,11 +1,6 @@
-from typing import Annotated
-
-from fastapi import APIRouter, Depends, HTTPException
+"""Legacy stateless chat is deliberately disabled to prevent unauthenticated LLM spending."""
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-
-from app.agent.sales import answer
-from app.core.config import Settings, get_settings
-from app.llm.openrouter import ProviderUnavailable
 
 router = APIRouter(prefix="/api/v1/chat", tags=["chat"])
 
@@ -19,12 +14,9 @@ class ChatResponse(BaseModel):
     agent: str = "vcare-ai-sales"
 
 
-@router.post("/messages", response_model=ChatResponse)
-async def chat(payload: ChatRequest, settings: Annotated[Settings, Depends(get_settings)]) -> ChatResponse:
-    if not payload.message.strip() or len(payload.message) > settings.max_message_length:
-        raise HTTPException(status_code=422, detail="Invalid message")
-    try:
-        reply = await answer(payload.message, settings)
-    except ProviderUnavailable as exc:
-        raise HTTPException(status_code=503, detail="AI assistant temporarily unavailable") from exc
-    return ChatResponse(reply=reply)
+@router.post("/messages", response_model=ChatResponse, deprecated=True)
+async def chat(payload: ChatRequest) -> ChatResponse:
+    raise HTTPException(
+        status_code=410,
+        detail="Legacy chat disabled. Create a session at /api/v1/chat/sessions.",
+    )
