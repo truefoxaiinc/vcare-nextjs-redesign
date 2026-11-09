@@ -14,7 +14,7 @@ def product(**changes):
     record = {
         "slug": "oak-sample", "name": "Oak Sample", "category": "Hardwood",
         "supplier": "Approved Supplier", "description": "Oak hardwood plank",
-        "canonical_url": "https://vcarehardwoodfloors.com/products/oak-sample",
+        "canonical_url": "https://www.vcarehardwoodfloors.ca/products/oak-sample",
         "publication_status": "published", "source_status": "verified",
         "description_authorization_status": "approved",
         "description_authorization_reference": "reviewed-description",
@@ -33,10 +33,10 @@ def snapshot(*items):
     {"source_status": "unresolved"},
     {"description_authorization_status": "pending"},
     {"image_authorization_status": "pending"},
-    {"canonical_url": "http://vcarehardwoodfloors.com/products/oak-sample"},
+    {"canonical_url": "http://www.vcarehardwoodfloors.ca/products/oak-sample"},
     {"canonical_url": "https://evil.example/products/oak-sample"},
-    {"canonical_url": "https://vcarehardwoodfloors.com/products/other"},
-    {"canonical_url": "https://vcarehardwoodfloors.com/products/oak-sample?draft=1"},
+    {"canonical_url": "https://www.vcarehardwoodfloors.ca/products/other"},
+    {"canonical_url": "https://www.vcarehardwoodfloors.ca/products/oak-sample?draft=1"},
     {"slug": "../admin"},
     {"category": "Other"},
 ])
@@ -53,7 +53,7 @@ def test_rejects_duplicate_slugs():
 def test_ranked_search_and_empty_queries():
     approved = CatalogueSnapshot.model_validate(snapshot(
         product(), product(slug="vinyl-sample", name="Vinyl Sample", category="Vinyl",
-                           description="Vinyl floor", canonical_url="https://vcarehardwoodfloors.com/products/vinyl-sample"),
+                           description="Vinyl floor", canonical_url="https://www.vcarehardwoodfloors.ca/products/vinyl-sample"),
     ))
     assert [item.slug for item in search(approved, "oak")] == ["oak-sample"]
     assert search(approved, "notinthecatalogue") == []
