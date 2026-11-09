@@ -47,7 +47,7 @@ class ApprovedProduct(BaseModel):
             or url.password is not None
             or url.query
             or url.fragment
-            or url.hostname.lower() not in {"vcarehardwoodfloors.com", "www.vcarehardwoodfloors.com"}
+            or url.hostname.lower() not in {"www.vcarehardwoodfloors.ca", "vcarehardwoodfloors.ca"}
             or url.path != "/products/" + self.slug
         ):
             raise ValueError("Invalid canonical product URL")
