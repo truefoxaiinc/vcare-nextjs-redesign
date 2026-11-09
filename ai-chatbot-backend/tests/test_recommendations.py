@@ -4,7 +4,7 @@ import json
 
 from app.knowledge.catalogue import CatalogueSnapshot
 from app.knowledge.recommendations import recommend
-from test_sessions import new_session
+from test_sessions import client, new_session  # noqa: F401
 
 
 def record(slug="oak-sample", name="Oak Sample"):
