@@ -139,3 +139,23 @@ async def _expired_token_rejected():
             await authenticate(db, "Bearer " + token)
         assert error.value.status_code == 401
     await engine.dispose()
+
+
+def test_catalogue_requires_session_and_returns_no_unapproved_inventory(client):
+    http, _ = client
+    session = new_session(http)
+    url = "/api/v1/chat/sessions/" + session["session_id"] + "/catalogue?q=oak"
+    assert http.get(url).status_code == 401
+    headers = {"Authorization": "Bearer " + session["token"]}
+    response = http.get(url, headers=headers)
+    assert response.status_code == 200
+    assert response.json() == {"results": [], "source_commit": None}
+
+
+def test_catalogue_rejects_cross_session_access(client):
+    http, _ = client
+    first = new_session(http)
+    other = new_session(http)
+    url = "/api/v1/chat/sessions/" + first["session_id"] + "/catalogue?q=oak"
+    response = http.get(url, headers={"Authorization": "Bearer " + other["token"]})
+    assert response.status_code == 403

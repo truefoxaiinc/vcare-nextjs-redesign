@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     max_output_tokens: int = Field(default=400, ge=1, le=1000)
     database_url: str = "postgresql+asyncpg://vcare:vcare@db:5432/vcare_chatbot"
     redis_url: str = "redis://redis:6379/0"
+    catalogue_snapshot_path: str = ""
+    catalogue_snapshot_sha256: str = ""
     session_ttl_seconds: int = Field(default=86400, ge=60, le=604800)
     history_turn_limit: int = Field(default=20, ge=2, le=40)
     ip_rate_limit: int = Field(default=30, ge=1, le=1000)
