@@ -1,10 +1,19 @@
 name: vcare-ai-chatbot
+
 services:
   api:
     build: .
     env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://vcare:${CHATBOT_DB_PASSWORD:?Set CHATBOT_DB_PASSWORD}@db:5432/vcare_chatbot
+      REDIS_URL: redis://redis:6379/0
     ports:
       - "127.0.0.1:18720:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     restart: unless-stopped
     read_only: true
     tmpfs:
@@ -14,3 +23,39 @@ services:
     pids_limit: 100
     mem_limit: 512m
     cpus: 1.0
+    networks: [chatbot_internal, chatbot_egress]
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vcare_chatbot
+      POSTGRES_USER: vcare
+      POSTGRES_PASSWORD: ${CHATBOT_DB_PASSWORD:?Set CHATBOT_DB_PASSWORD}
+    volumes:
+      - chatbot_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vcare -d vcare_chatbot"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks: [chatbot_internal]
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "64mb", "--maxmemory-policy", "noeviction"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks: [chatbot_internal]
+
+networks:
+  chatbot_internal:
+    internal: true
+  chatbot_egress: {}
+
+volumes:
+  chatbot_pgdata:

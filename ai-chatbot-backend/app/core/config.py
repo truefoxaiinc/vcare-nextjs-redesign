@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -11,6 +12,12 @@ class Settings(BaseSettings):
     openrouter_timeout_seconds: float = 20
     max_message_length: int = 2000
     max_output_tokens: int = 400
+    database_url: str = "postgresql+asyncpg://vcare:vcare@db:5432/vcare_chatbot"
+    redis_url: str = "redis://redis:6379/0"
+    session_ttl_seconds: int = Field(default=86400, ge=60, le=604800)
+    history_turn_limit: int = Field(default=20, ge=2, le=40)
+    ip_rate_limit: int = Field(default=30, ge=1, le=1000)
+    session_rate_limit: int = Field(default=12, ge=1, le=1000)
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
