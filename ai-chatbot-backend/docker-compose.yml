@@ -23,7 +23,7 @@ services:
     pids_limit: 100
     mem_limit: 512m
     cpus: 1.0
-    networks: [chatbot_internal]
+    networks: [chatbot_internal, chatbot_egress]
 
   db:
     image: postgres:16-alpine
@@ -55,6 +55,7 @@ services:
 networks:
   chatbot_internal:
     internal: true
+  chatbot_egress: {}
 
 volumes:
   chatbot_pgdata:
