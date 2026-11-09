@@ -2,8 +2,8 @@
 
 Release is compare-and-delete so an expired lock cannot delete a successor's lock.
 """
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator
 
 from fastapi import HTTPException
 from redis.asyncio import Redis
