@@ -19,12 +19,13 @@ The proxy is **disabled by default**. Both server-only environment variables are
 
 - `VCARE_CHAT_PROXY_ENABLED=true`
 - `VCARE_CHAT_BACKEND_ORIGIN=https://<reviewed-backend-host>` (or HTTP loopback only for a local reverse proxy)
+- `VCARE_CHAT_BACKEND_ALLOWED_HOSTS=<reviewed-backend-host>` for remote HTTPS origins (exact comma-separated hostname allowlist; not needed for loopback HTTP).
 
 Do not set these in production until the backend is deployed and verified behind HTTPS. Do not use `NEXT_PUBLIC_` variables for backend configuration. Keep the public demo widget unchanged until a separate, reviewed UI feature flag and consent flow are ready.
 
 ## Security review before activation
 
-- Restrict the upstream destination with deployment-level egress rules and audited server-only configuration; no client-selected URLs.
+- Restrict upstream destinations with the explicit server-only exact hostname allowlist and deployment-level egress rules; no client-selected URLs. An arbitrary HTTPS hostname is **not** accepted just because it appears in `VCARE_CHAT_BACKEND_ORIGIN`.
 - Confirm proxy trust boundaries, IP-based rate limits, backend auth, and actual public IP propagation. This proxy intentionally does not forward untrusted X-Forwarded-For.
 - Validate upstream response sizes, backend JSON schema, privacy disclosures, logging redaction, and abuse protections in staging.
 - Ensure frontend and backend have compatible deployment targets and latency budgets.
