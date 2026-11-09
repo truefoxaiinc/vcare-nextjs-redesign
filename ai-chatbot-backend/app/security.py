@@ -1,7 +1,7 @@
 """Opaque bearer credentials and fail-closed distributed throttling."""
 import hashlib
 import secrets
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException
 from redis.asyncio import Redis
@@ -28,7 +28,7 @@ def hash_token(token: str) -> str:
 
 
 def expiry(settings: Settings) -> datetime:
-    return datetime.now(timezone.utc) + timedelta(seconds=settings.session_ttl_seconds)
+    return datetime.now(UTC) + timedelta(seconds=settings.session_ttl_seconds)
 
 
 async def authenticate(db: AsyncSession, bearer: str | None) -> Conversation:
@@ -44,8 +44,8 @@ async def authenticate(db: AsyncSession, bearer: str | None) -> Conversation:
         raise HTTPException(status_code=401, detail="Invalid session credential")
     expires = conversation.expires_at
     if expires.tzinfo is None:
-        expires = expires.replace(tzinfo=timezone.utc)
-    if expires <= datetime.now(timezone.utc):
+        expires = expires.replace(tzinfo=UTC)
+    if expires <= datetime.now(UTC):
         raise HTTPException(status_code=401, detail="Session expired")
     return conversation
 
