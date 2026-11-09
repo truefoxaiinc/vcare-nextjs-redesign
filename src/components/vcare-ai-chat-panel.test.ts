@@ -8,7 +8,7 @@ const layout = readFileSync(resolve(process.cwd(), 'src/app/layout.tsx'), 'utf8'
 describe('inactive AI chat panel integration boundaries', () => {
   it('is not mounted in the production layout', () => {
     expect(layout).not.toContain('VcareAiChatPanel');
-    expect(layout).toContain('<VcareChatWidget/>');
+    expect(layout).toContain('isLiveChatEnabled() ? <VcareAiChatLauncher/> : <VcareChatWidget/>');
   });
 
   it('requires explicit consent before creating a session', () => {
