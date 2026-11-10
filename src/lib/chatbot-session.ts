@@ -2,6 +2,7 @@
  * Opt-in, in-memory browser session client for the authenticated FastAPI API.
  * Not connected to the public demo widget; no browser storage or auto-start.
  */
+const SESSION_TOKEN = /^[A-Za-z0-9_-]{24,256}$/;
 const SESSION_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const API = '/api/v1/chat/sessions';
 
@@ -30,7 +31,7 @@ export function parseSession(value: unknown): ChatSession {
     typeof data.session_id !== 'string' ||
     !validSessionId(data.session_id) ||
     typeof data.token !== 'string' ||
-    !/^[A-Za-z0-9_-]{24,256}$/.test(data.token) ||
+    !SESSION_TOKEN.test(data.token) ||
     typeof data.expires_at !== 'string' ||
     !Number.isFinite(Date.parse(data.expires_at)) ||
     Date.parse(data.expires_at) <= Date.now()
@@ -47,7 +48,7 @@ export function parseSession(value: unknown): ChatSession {
 function assertSession(session: ChatSession): void {
   if (
     !validSessionId(session.sessionId) ||
-    !session.token ||
+    !SESSION_TOKEN.test(session.token) ||
     !Number.isFinite(Date.parse(session.expiresAt)) ||
     Date.parse(session.expiresAt) <= Date.now()
   ) {
@@ -110,7 +111,7 @@ export async function deleteChatSession(
   session: ChatSession,
   signal?: AbortSignal
 ): Promise<void> {
-  if (!validSessionId(session.sessionId) || !session.token) {
+  if (!validSessionId(session.sessionId) || !SESSION_TOKEN.test(session.token)) {
     throw new Error('Invalid chat session');
   }
   const response = await fetch(API + '/' + encodeURIComponent(session.sessionId), {
