@@ -76,4 +76,23 @@ describe('same-origin session lifecycle', () => {
       })
     );
   });
+  it('rejects malformed in-memory bearer credentials before any network request', async () => {
+    const mock = vi.fn();
+    vi.stubGlobal('fetch', mock);
+    const malformed = [
+      '',
+      'short',
+      'a'.repeat(257),
+      'a'.repeat(24) + '\\r\\nX-Injected: value',
+      'a'.repeat(24) + ' space',
+      'a'.repeat(24) + '.'
+    ];
+    for (const badToken of malformed) {
+      const invalid = { ...session, token: badToken };
+      await expect(sendChatMessage(invalid, 'Hello')).rejects.toThrow('invalid');
+      await expect(deleteChatSession(invalid)).rejects.toThrow('Invalid chat session');
+    }
+    expect(mock).not.toHaveBeenCalled();
+  });
+
 });
