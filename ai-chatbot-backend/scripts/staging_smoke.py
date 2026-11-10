@@ -24,12 +24,22 @@ def origin_from_env() -> str:
         or url.hostname in {"localhost", "127.0.0.1"}
     ):
         raise ValueError("Set CHATBOT_STAGING_ORIGIN to a dedicated HTTPS staging origin")
-    # An independent exact-origin allowlist prevents accidentally targeting production.\n    allowed = os.getenv("CHATBOT_STAGING_ALLOWED_ORIGIN", "").rstrip("/")\n    if not allowed or raw.rstrip("/") != allowed:\n        raise ValueError("CHATBOT_STAGING_ORIGIN must match CHATBOT_STAGING_ALLOWED_ORIGIN")\n    if os.getenv("CHATBOT_STAGING_CONFIRM") != "yes":
+    # Exact allowlisting protects against accidentally targeting a different host.
+    allowed = os.getenv("CHATBOT_STAGING_ALLOWED_ORIGIN", "").rstrip("/")
+    if not allowed or raw.rstrip("/") != allowed:
+        raise ValueError("CHATBOT_STAGING_ORIGIN must match CHATBOT_STAGING_ALLOWED_ORIGIN")
+    if os.getenv("CHATBOT_STAGING_CONFIRM") != "yes":
         raise ValueError("Set CHATBOT_STAGING_CONFIRM=yes to authorize temporary staging data")
     return raw.rstrip("/")
 
 
-class NoRedirects(HTTPRedirectHandler):\n    def redirect_request(self, req, fp, code, msg, headers, newurl):\n        # Never forward bearer credentials to a redirected destination.\n        return None\n\n\ndef request(origin: str, path: str, method: str, token: str = "", payload=None):
+class NoRedirects(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # Never forward bearer credentials to a redirected destination.
+        return None
+
+
+def request(origin: str, path: str, method: str, token: str = "", payload=None):
     headers = {"Accept": "application/json"}
     if token:
         headers["Authorization"] = "Bearer " + token
