@@ -84,7 +84,15 @@ def smoke(origin: str) -> None:
                 status, _ = request(origin, base + "/" + session_id, "DELETE", token)
                 if status != 204:
                     raise RuntimeError("Session deletion returned unexpected status")
-                print("PASS: session deletion confirmed")
+                # A 204 alone does not prove the bearer token was revoked.
+                try:
+                    request(origin, base + "/" + session_id + "/messages", "GET", token)
+                except HTTPError as error:
+                    if error.code != 401:
+                        raise RuntimeError("Deleted session returned unexpected authorization status") from None
+                else:
+                    raise RuntimeError("Deleted session token remains usable")
+                print("PASS: session deletion and token revocation confirmed")
             except (HTTPError, URLError, TimeoutError, RuntimeError) as error:
                 print("WARNING: deletion unconfirmed; check server TTL", file=sys.stderr)
                 raise RuntimeError("Staging session cleanup failed") from error
