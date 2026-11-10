@@ -12,7 +12,7 @@ import os
 import sys
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
 def origin_from_env() -> str:
@@ -24,9 +24,19 @@ def origin_from_env() -> str:
         or url.hostname in {"localhost", "127.0.0.1"}
     ):
         raise ValueError("Set CHATBOT_STAGING_ORIGIN to a dedicated HTTPS staging origin")
+    # Exact allowlisting protects against accidentally targeting a different host.
+    allowed = os.getenv("CHATBOT_STAGING_ALLOWED_ORIGIN", "").rstrip("/")
+    if not allowed or raw.rstrip("/") != allowed:
+        raise ValueError("CHATBOT_STAGING_ORIGIN must match CHATBOT_STAGING_ALLOWED_ORIGIN")
     if os.getenv("CHATBOT_STAGING_CONFIRM") != "yes":
         raise ValueError("Set CHATBOT_STAGING_CONFIRM=yes to authorize temporary staging data")
     return raw.rstrip("/")
+
+
+class NoRedirects(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # Never forward bearer credentials to a redirected destination.
+        return None
 
 
 def request(origin: str, path: str, method: str, token: str = "", payload=None):
@@ -38,7 +48,7 @@ def request(origin: str, path: str, method: str, token: str = "", payload=None):
         headers["Content-Type"] = "application/json"
         body = json.dumps(payload).encode("utf-8")
     req = Request(origin + path, data=body, headers=headers, method=method)
-    with urlopen(req, timeout=25) as response:
+    with build_opener(NoRedirects).open(req, timeout=25) as response:
         status = response.status
         content = response.read(16384)
     return status, json.loads(content) if content else None
