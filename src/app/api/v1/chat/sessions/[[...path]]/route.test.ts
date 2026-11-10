@@ -5,32 +5,24 @@ import { DELETE, GET, POST } from './route';
 
 const id = '123e4567-e89b-12d3-a456-426614174000';
 const token = 'a'.repeat(40);
-const previousFlag = process.env.VCARE_CHAT_PROXY_ENABLED;
-const previousOrigin = process.env.VCARE_CHAT_BACKEND_ORIGIN;
-const previousAllowedHosts = process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
 
 // Explicitly reset the proxy's test environment before every case. Vitest may
 // shuffle files or reuse workers; no test may depend on a previous test's flag.
 beforeEach(() => {
-  delete process.env.VCARE_CHAT_PROXY_ENABLED;
-  delete process.env.VCARE_CHAT_BACKEND_ORIGIN;
-  delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
+  vi.stubEnv('VCARE_CHAT_PROXY_ENABLED', undefined);
+  vi.stubEnv('VCARE_CHAT_BACKEND_ORIGIN', undefined);
+  vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', undefined);
 });
 
 afterEach(() => {
   vi.unstubAllGlobals();
-  if (previousFlag === undefined) delete process.env.VCARE_CHAT_PROXY_ENABLED;
-  else process.env.VCARE_CHAT_PROXY_ENABLED = previousFlag;
-  if (previousOrigin === undefined) delete process.env.VCARE_CHAT_BACKEND_ORIGIN;
-  else process.env.VCARE_CHAT_BACKEND_ORIGIN = previousOrigin;
-  if (previousAllowedHosts === undefined) delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
-  else process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = previousAllowedHosts;
+  vi.unstubAllEnvs();
 });
 
 function enable(origin = 'http://127.0.0.1:18690') {
-  delete process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS;
-  process.env.VCARE_CHAT_PROXY_ENABLED = 'true';
-  process.env.VCARE_CHAT_BACKEND_ORIGIN = origin;
+  vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', undefined);
+  vi.stubEnv('VCARE_CHAT_PROXY_ENABLED', 'true');
+  vi.stubEnv('VCARE_CHAT_BACKEND_ORIGIN', origin);
 }
 
 function context(...path: string[]) {
@@ -39,7 +31,7 @@ function context(...path: string[]) {
 
 describe('disabled-by-default chatbot proxy', () => {
   it('returns 404 and does not fetch without an explicit enable flag', async () => {
-    delete process.env.VCARE_CHAT_PROXY_ENABLED;
+    vi.stubEnv('VCARE_CHAT_PROXY_ENABLED', undefined);
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
     const result = await POST(new NextRequest('https://vcarehardwoodfloors.ca/api/v1/chat/sessions', {
@@ -64,7 +56,7 @@ describe('disabled-by-default chatbot proxy', () => {
 
   it('permits reviewed remote HTTPS origins only when explicitly allowlisted', async () => {
     enable('https://chat.vcarehardwoodfloors.ca');
-    process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = 'chat.vcarehardwoodfloors.ca';
+    vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', 'chat.vcarehardwoodfloors.ca');
     const fetchMock = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({ session_id: id, token, expires_at: '2099-01-01T00:00:00Z' }), {
         status: 201,
@@ -85,7 +77,7 @@ describe('disabled-by-default chatbot proxy', () => {
 
   it('does not allow a substring domain match', async () => {
     enable('https://chat.vcarehardwoodfloors.ca.evil.example');
-    process.env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS = 'chat.vcarehardwoodfloors.ca';
+    vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', 'chat.vcarehardwoodfloors.ca');
     const fetchMock = vi.fn();
     vi.stubGlobal('fetch', fetchMock);
     expect((await POST(
