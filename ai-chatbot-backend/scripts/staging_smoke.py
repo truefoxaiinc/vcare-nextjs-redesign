@@ -83,6 +83,6 @@ def smoke(origin: str) -> None:
 if __name__ == "__main__":
     try:
         smoke(origin_from_env())
-    except (ValueError, RuntimeError, HTTPError, URLError, TimeoutError) as error:
+    except (ValueError, RuntimeError, HTTPError, URLError, TimeoutError):
         print("FAIL: staging smoke check; inspect staging service logs", file=sys.stderr)
         sys.exit(1)
