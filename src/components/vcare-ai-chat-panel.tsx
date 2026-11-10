@@ -30,7 +30,9 @@ export function VcareAiChatPanel() {
   }, []);
 
   async function accept() {
-    if (status !== 'consent') return;
+    // React state updates are asynchronous; the ref prevents rapid repeated
+    // consent clicks from creating multiple backend sessions.
+    if (status !== 'consent' || controller.current !== null) return;
     const active = new ChatController();
     controller.current = active;
     setError('');
