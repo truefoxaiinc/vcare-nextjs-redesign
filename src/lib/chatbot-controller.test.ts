@@ -86,4 +86,52 @@ describe('opt-in chat controller', () => {
     await expect(controller.close()).rejects.toThrow('Network unavailable');
     expect(controller.state).toBe('closed');
   });
+  it('shares a single deletion attempt across concurrent close calls', async () => {
+    const { controller, api } = setup();
+    let resolveDelete!: () => void;
+    vi.mocked(api.remove).mockImplementationOnce(
+      () => new Promise<void>((resolve) => { resolveDelete = resolve; })
+    );
+    await controller.start(true);
+    const first = controller.close();
+    const second = controller.close();
+    expect(second).toBe(first);
+    expect(controller.state).toBe('closing');
+    expect(api.remove).toHaveBeenCalledTimes(1);
+    resolveDelete();
+    await Promise.all([first, second]);
+    expect(controller.state).toBe('closed');
+    expect(api.remove).toHaveBeenCalledTimes(1);
+  });
+
+  it('shares deletion failure with every concurrent close caller', async () => {
+    const { controller, api } = setup();
+    vi.mocked(api.remove).mockRejectedValueOnce(new Error('Delete unavailable'));
+    await controller.start(true);
+    const first = controller.close();
+    const second = controller.close();
+    expect(first).toBe(second);
+    await expect(first).rejects.toThrow('Delete unavailable');
+    await expect(second).rejects.toThrow('Delete unavailable');
+    expect(api.remove).toHaveBeenCalledTimes(1);
+    expect(controller.state).toBe('closed');
+  });
+
+  it('waits for a late session creation only once during concurrent close', async () => {
+    const { controller, api } = setup();
+    let resolveCreate!: (value: typeof session) => void;
+    vi.mocked(api.create).mockImplementationOnce(
+      () => new Promise((resolve) => { resolveCreate = resolve; })
+    );
+    const starting = controller.start(true);
+    const first = controller.close();
+    const second = controller.close();
+    expect(first).toBe(second);
+    resolveCreate(session);
+    await starting;
+    await Promise.all([first, second]);
+    expect(api.remove).toHaveBeenCalledTimes(1);
+    expect(controller.state).toBe('closed');
+  });
+
 });

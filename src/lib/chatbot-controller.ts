@@ -23,6 +23,7 @@ export class ChatController {
   private operation: AbortController | null = null;
   private closeRequested = false;
   private pending: Promise<unknown> | null = null;
+  private closing: Promise<void> | null = null;
 
   constructor(private readonly api: ChatControllerDependencies = defaultDependencies) {}
 
@@ -78,23 +79,30 @@ export class ChatController {
    * Idempotent; closing before session creation waits for creation to settle.
    * Backend TTL is the fallback if deletion fails.
    */
-  async close(): Promise<void> {
-    if (this.stateValue === 'closed') return;
-    if (this.closeRequested) throw new Error('Chat close already in progress');
+  close(): Promise<void> {
+    if (this.closing) return this.closing;
+    if (this.stateValue === 'closed') return Promise.resolve();
     this.closeRequested = true;
     this.stateValue = 'closing';
     this.operation?.abort();
-    try {
-      if (this.pending) {
-        try { await this.pending; } catch { /* cancellation or network failure */ }
+
+    // Share the same deletion attempt across concurrent callers. The promise
+    // also preserves deletion failures for callers that need to show a warning.
+    const closing = (async () => {
+      try {
+        if (this.pending) {
+          try { await this.pending; } catch { /* cancellation or network failure */ }
+        }
+        const session = this.session;
+        this.session = null;
+        if (session) await this.api.remove(session);
+      } finally {
+        this.stateValue = 'closed';
+        this.operation = null;
+        this.pending = null;
       }
-      const session = this.session;
-      this.session = null;
-      if (session) await this.api.remove(session);
-    } finally {
-      this.stateValue = 'closed';
-      this.operation = null;
-      this.pending = null;
-    }
+    })();
+    this.closing = closing;
+    return closing;
   }
 }
