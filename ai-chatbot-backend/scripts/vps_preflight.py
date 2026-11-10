@@ -4,7 +4,6 @@ Does not start services, change firewall rules, or read secret values.
 """
 import argparse
 import json
-import os
 import shutil
 import socket
 import subprocess
