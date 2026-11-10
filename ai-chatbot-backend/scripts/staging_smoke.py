@@ -9,6 +9,7 @@ session in a finally block. It never prints tokens, prompts or replies.
 """
 import json
 import os
+import re
 import sys
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
@@ -54,6 +55,58 @@ def request(origin: str, path: str, method: str, token: str = "", payload=None):
     return status, json.loads(content) if content else None
 
 
+
+PRODUCT_SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SOURCE_COMMIT = re.compile(r"^[0-9a-f]{40}$")
+PRODUCT_HOSTS = {"www.vcarehardwoodfloors.ca", "vcarehardwoodfloors.ca"}
+
+
+def valid_product_card(product: object) -> bool:
+    if not isinstance(product, dict):
+        return False
+    slug = product.get("slug")
+    if not isinstance(slug, str) or not PRODUCT_SLUG.fullmatch(slug):
+        return False
+    for field in ("name", "category", "supplier", "description"):
+        if not isinstance(product.get(field), str) or not product[field].strip():
+            return False
+    if any(key in product for key in ("price", "stock")):
+        return False
+    canonical = product.get("canonical_url")
+    if not isinstance(canonical, str):
+        return False
+    try:
+        url = urlsplit(canonical)
+        return (
+            url.scheme == "https" and url.hostname in PRODUCT_HOSTS
+            and url.username is None and url.password is None
+            and url.port in (None, 443)
+            and url.path == "/products/" + slug
+            and not url.query and not url.fragment
+        )
+    except ValueError:
+        return False
+
+
+def valid_recommendations(payload: object) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    status = payload.get("evidence_status")
+    products = payload.get("products")
+    revision = payload.get("source_commit")
+    if status not in {"matched", "no_match", "unavailable"} or not isinstance(products, list):
+        return False
+    if len(products) > 3 or any(not valid_product_card(item) for item in products):
+        return False
+    if status == "matched":
+        return bool(products) and isinstance(revision, str) and bool(SOURCE_COMMIT.fullmatch(revision))
+    if products:
+        return False
+    if status == "unavailable":
+        return revision is None
+    return isinstance(revision, str) and bool(SOURCE_COMMIT.fullmatch(revision))
+
+
 def smoke(origin: str) -> None:
     base = "/api/v1/chat/sessions"
     session_id = ""
@@ -83,24 +136,9 @@ def smoke(origin: str) -> None:
         status, recommendations = request(
             origin, path + "/recommendations?" + query, "GET", token
         )
-        if (
-            status != 200 or not isinstance(recommendations, dict)
-            or recommendations.get("evidence_status") not in {"matched", "no_match", "unavailable"}
-            or not isinstance(recommendations.get("products"), list)
-        ):
+        if status != 200 or not valid_recommendations(recommendations):
             raise RuntimeError("Recommendations API contract failed")
         products = recommendations["products"]
-        if recommendations["evidence_status"] == "matched" and not products:
-            raise RuntimeError("Matched recommendations returned no products")
-        for product in products:
-            if (
-                not isinstance(product, dict)
-                or not isinstance(product.get("name"), str)
-                or not isinstance(product.get("canonical_url"), str)
-                or not product["canonical_url"].startswith("https://")
-                or any(key in product for key in ("price", "stock"))
-            ):
-                raise RuntimeError("Recommendations product contract failed")
         if os.getenv("CHATBOT_STAGING_REQUIRE_CATALOGUE") == "yes" and (
             recommendations["evidence_status"] != "matched" or not products
         ):
