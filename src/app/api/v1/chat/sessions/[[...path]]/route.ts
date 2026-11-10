@@ -33,7 +33,7 @@ function configuredUpstream(): string | null {
     ) return null;
     if (
       url.username || url.password || url.pathname !== '/' || url.search || url.hash ||
-      (url.port && !/^\\d{1,5}$/.test(url.port))
+      (url.port && !/^[0-9]{1,5}$/.test(url.port))
     ) return null;
     return url.origin;
   } catch {
