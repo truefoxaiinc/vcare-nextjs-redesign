@@ -68,7 +68,7 @@ def test_smoke_deletes_session_even_when_ai_fails(monkeypatch):
     monkeypatch.setattr(smoke_module, "request", fake_request)
     with pytest.raises(RuntimeError, match="Provider unavailable"):
         smoke_module.smoke("https://staging.example.com")
-    assert calls == ["POST", "POST", "GET", "DELETE", "GET"]
+    assert calls == ["POST", "POST", "DELETE", "GET"]
 
 def test_staging_origin_must_match_independent_allowlist(monkeypatch):
     monkeypatch.setenv("CHATBOT_STAGING_CONFIRM", "yes")
@@ -111,7 +111,7 @@ def test_smoke_rejects_unverified_token_revocation(monkeypatch, revocation_statu
     monkeypatch.setattr(smoke_module, "request", fake_request)
     with pytest.raises(RuntimeError, match="Staging session cleanup failed"):
         smoke_module.smoke("https://staging.example.com")
-    assert calls == ["POST", "POST", "DELETE", "GET"]
+    assert calls == ["POST", "POST", "GET", "DELETE", "GET"]
 
 
 def test_staging_catalogue_match_can_be_required(monkeypatch):
