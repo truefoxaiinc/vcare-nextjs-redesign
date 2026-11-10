@@ -17,6 +17,7 @@ From `ai-chatbot-backend`:
 
 ```bash
 CHATBOT_STAGING_ORIGIN=https://your-staging-host.example \\
+CHATBOT_STAGING_ALLOWED_ORIGIN=https://your-staging-host.example \\
 CHATBOT_STAGING_CONFIRM=yes \\
 python scripts/staging_smoke.py
 ```
@@ -30,3 +31,7 @@ Do **not** point this at production. This test incurs a real AI provider request
 ## Still pending
 
 Browser-level consent, accessibility, rapid-submit, failure/retry, catalogue grounding, real VPS staging deployment, observability and rollback verification. A passing smoke check alone does not authorize production launch.
+
+## Sprint 5.2 staging target safety
+
+The smoke script requires `CHATBOT_STAGING_ALLOWED_ORIGIN` to exactly match `CHATBOT_STAGING_ORIGIN`. Set the allowlisted value independently in the staging run environment and review it before running; do not copy production addresses into either variable. The script also refuses HTTP redirects, preventing authenticated session requests from following a redirect to a different host. This is a guard against accidental misconfiguration, not proof of staging isolation; operators must still verify DNS, infrastructure, and access controls.
