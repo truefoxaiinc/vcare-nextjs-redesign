@@ -1,6 +1,7 @@
 """Offline tests for the explicitly opted-in staging smoke workflow."""
 import importlib.util
 from pathlib import Path
+from urllib.error import HTTPError
 
 import pytest
 
@@ -40,11 +41,13 @@ def test_smoke_creates_sends_and_deletes(monkeypatch):
         if method == "POST":
             assert payload == {"message": "Hello"}
             return 200, {"session_id": "session-1", "reply": "Welcome!"}
+        if method == "GET":
+            raise HTTPError(origin + path, 401, "Unauthorized", {}, None)
         return 204, None
 
     monkeypatch.setattr(smoke_module, "request", fake_request)
     smoke_module.smoke("https://staging.example.com")
-    assert [call[0] for call in calls] == ["POST", "POST", "DELETE"]
+    assert [call[0] for call in calls] == ["POST", "POST", "DELETE", "GET"]
 
 
 def test_smoke_deletes_session_even_when_ai_fails(monkeypatch):
@@ -81,3 +84,25 @@ def test_staging_origin_accepts_exact_allowlisted_https_target(monkeypatch):
 def test_redirects_are_rejected_to_protect_bearer_credentials():
     handler = smoke_module.NoRedirects()
     assert handler.redirect_request(None, None, 302, "Found", {}, "https://other.example") is None
+
+
+@pytest.mark.parametrize("revocation_status", [200, 403, 404, 500])
+def test_smoke_rejects_unverified_token_revocation(monkeypatch, revocation_status):
+    calls = []
+
+    def fake_request(origin, path, method, token="", payload=None):
+        calls.append(method)
+        if method == "POST" and path.endswith("/sessions"):
+            return 201, {"session_id": "session-1", "token": "secret"}
+        if method == "POST":
+            return 200, {"session_id": "session-1", "reply": "Welcome!"}
+        if method == "DELETE":
+            return 204, None
+        if revocation_status == 200:
+            return 200, {"messages": []}
+        raise HTTPError(origin + path, revocation_status, "Unexpected", {}, None)
+
+    monkeypatch.setattr(smoke_module, "request", fake_request)
+    with pytest.raises(RuntimeError, match="Staging session cleanup failed"):
+        smoke_module.smoke("https://staging.example.com")
+    assert calls == ["POST", "POST", "DELETE", "GET"]
