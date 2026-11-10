@@ -13,6 +13,7 @@ type Message = { id: number; role: 'visitor' | 'assistant'; text: string };
 export function VcareAiChatPanel() {
   const controller = useRef<ChatController | null>(null);
   const nextId = useRef(0);
+  const sending = useRef(false);
   const [status, setStatus] = useState<'consent' | 'connecting' | 'ready' | 'sending' | 'closed'>('consent');
   const [draft, setDraft] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -53,7 +54,9 @@ export function VcareAiChatPanel() {
     event.preventDefault();
     const active = controller.current;
     const text = draft.trim();
-    if (!active || status !== 'ready' || !text || text.length > 2000) return;
+    if (!active || status !== 'ready' || sending.current || !text || text.length > 2000) return;
+    // Set synchronously before React commits the sending state.
+    sending.current = true;
     nextId.current += 1;
     const messageId = nextId.current;
     setMessages((current) => [...current, { id: messageId, role: 'visitor', text }]);
@@ -74,13 +77,17 @@ export function VcareAiChatPanel() {
         setError('The assistant could not reply. Your message is ready to retry.');
       }
     } finally {
-      if (controller.current === active) setStatus('ready');
+      if (controller.current === active) {
+        sending.current = false;
+        setStatus('ready');
+      }
     }
   }
 
   async function close() {
     const active = controller.current;
     controller.current = null;
+    sending.current = false;
     setStatus('closed');
     setDraft('');
     setMessages([]);
