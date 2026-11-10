@@ -53,7 +53,8 @@ export function VcareAiChatPanel() {
     const text = draft.trim();
     if (!active || status !== 'ready' || !text || text.length > 2000) return;
     nextId.current += 1;
-    setMessages((current) => [...current, { id: nextId.current, role: 'visitor', text }]);
+    const messageId = nextId.current;
+    setMessages((current) => [...current, { id: messageId, role: 'visitor', text }]);
     setDraft('');
     setError('');
     setStatus('sending');
@@ -63,7 +64,13 @@ export function VcareAiChatPanel() {
       nextId.current += 1;
       setMessages((current) => [...current, { id: nextId.current, role: 'assistant', text: reply }]);
     } catch {
-      if (controller.current === active) setError('The assistant could not reply. Please try again.');
+      if (controller.current === active) {
+        // Preserve the visitor's message for retry instead of silently losing it.
+        // Remove the optimistic bubble so retry will not duplicate it.
+        setMessages((current) => current.filter((message) => message.id !== messageId));
+        setDraft((current) => current || text);
+        setError('The assistant could not reply. Your message is ready to retry.');
+      }
     } finally {
       if (controller.current === active) setStatus('ready');
     }
