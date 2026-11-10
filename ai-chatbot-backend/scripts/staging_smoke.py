@@ -12,7 +12,7 @@ import os
 import sys
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
 def origin_from_env() -> str:
@@ -24,12 +24,12 @@ def origin_from_env() -> str:
         or url.hostname in {"localhost", "127.0.0.1"}
     ):
         raise ValueError("Set CHATBOT_STAGING_ORIGIN to a dedicated HTTPS staging origin")
-    if os.getenv("CHATBOT_STAGING_CONFIRM") != "yes":
+    # An independent exact-origin allowlist prevents accidentally targeting production.\n    allowed = os.getenv("CHATBOT_STAGING_ALLOWED_ORIGIN", "").rstrip("/")\n    if not allowed or raw.rstrip("/") != allowed:\n        raise ValueError("CHATBOT_STAGING_ORIGIN must match CHATBOT_STAGING_ALLOWED_ORIGIN")\n    if os.getenv("CHATBOT_STAGING_CONFIRM") != "yes":
         raise ValueError("Set CHATBOT_STAGING_CONFIRM=yes to authorize temporary staging data")
     return raw.rstrip("/")
 
 
-def request(origin: str, path: str, method: str, token: str = "", payload=None):
+class NoRedirects(HTTPRedirectHandler):\n    def redirect_request(self, req, fp, code, msg, headers, newurl):\n        # Never forward bearer credentials to a redirected destination.\n        return None\n\n\ndef request(origin: str, path: str, method: str, token: str = "", payload=None):
     headers = {"Accept": "application/json"}
     if token:
         headers["Authorization"] = "Bearer " + token
@@ -38,7 +38,7 @@ def request(origin: str, path: str, method: str, token: str = "", payload=None):
         headers["Content-Type"] = "application/json"
         body = json.dumps(payload).encode("utf-8")
     req = Request(origin + path, data=body, headers=headers, method=method)
-    with urlopen(req, timeout=25) as response:
+    with build_opener(NoRedirects).open(req, timeout=25) as response:
         status = response.status
         content = response.read(16384)
     return status, json.loads(content) if content else None
