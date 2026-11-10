@@ -27,4 +27,12 @@ describe('inactive AI chat panel integration boundaries', () => {
     expect(component).not.toContain('dangerouslySetInnerHTML');
     expect(component).toContain('{message.text}');
   });
+  it('preserves failed messages for retry without duplicate optimistic bubbles', () => {
+    expect(component).toContain('const messageId = nextId.current');
+    expect(component).toContain('current.filter((message) => message.id !== messageId)');
+    expect(component).toContain('setDraft((current) => current || text)');
+    expect(component).toContain('Your message is ready to retry');
+    expect(component).toContain('if (controller.current === active)');
+  });
+
 });
