@@ -42,4 +42,13 @@ describe('inactive AI chat panel integration boundaries', () => {
     expect(component).toContain('controller.current = null');
   });
 
+  it('blocks repeated message submissions before the sending state commits', () => {
+    expect(component).toContain('const sending = useRef(false)');
+    expect(component).toContain("status !== 'ready' || sending.current");
+    expect(component.indexOf('sending.current = true')).toBeLessThan(
+      component.indexOf("setStatus('sending')")
+    );
+    expect(component).toContain('sending.current = false');
+  });
+
 });
