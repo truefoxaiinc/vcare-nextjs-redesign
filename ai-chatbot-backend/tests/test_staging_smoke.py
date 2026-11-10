@@ -59,12 +59,14 @@ def test_smoke_deletes_session_even_when_ai_fails(monkeypatch):
             return 201, {"session_id": "session-1", "token": "secret"}
         if method == "POST":
             raise RuntimeError("Provider unavailable")
+        if method == "GET":
+            raise HTTPError(origin + path, 401, "Unauthorized", {}, None)
         return 204, None
 
     monkeypatch.setattr(smoke_module, "request", fake_request)
     with pytest.raises(RuntimeError, match="Provider unavailable"):
         smoke_module.smoke("https://staging.example.com")
-    assert calls == ["POST", "POST", "DELETE"]
+    assert calls == ["POST", "POST", "DELETE", "GET"]
 
 def test_staging_origin_must_match_independent_allowlist(monkeypatch):
     monkeypatch.setenv("CHATBOT_STAGING_CONFIRM", "yes")
