@@ -35,4 +35,11 @@ describe('inactive AI chat panel integration boundaries', () => {
     expect(component).toContain('if (controller.current === active)');
   });
 
+  it('blocks rapid repeated consent clicks before React state commits', () => {
+    expect(component).toContain("status !== 'consent' || controller.current !== null");
+    expect(component).toContain('controller.current = active');
+    expect(component.indexOf('controller.current = active')).toBeLessThan(component.indexOf('await active.start(true)'));
+    expect(component).toContain('controller.current = null');
+  });
+
 });
