@@ -41,13 +41,15 @@ def test_smoke_creates_sends_and_deletes(monkeypatch):
         if method == "POST":
             assert payload == {"message": "Hello"}
             return 200, {"session_id": "session-1", "reply": "Welcome!"}
+        if method == "GET" and "/recommendations?" in path:
+            return 200, {"evidence_status": "no_match", "products": [], "source_commit": None}
         if method == "GET":
             raise HTTPError(origin + path, 401, "Unauthorized", {}, None)
         return 204, None
 
     monkeypatch.setattr(smoke_module, "request", fake_request)
     smoke_module.smoke("https://staging.example.com")
-    assert [call[0] for call in calls] == ["POST", "POST", "DELETE", "GET"]
+    assert [call[0] for call in calls] == ["POST", "POST", "GET", "DELETE", "GET"]
 
 
 def test_smoke_deletes_session_even_when_ai_fails(monkeypatch):
@@ -100,6 +102,8 @@ def test_smoke_rejects_unverified_token_revocation(monkeypatch, revocation_statu
             return 200, {"session_id": "session-1", "reply": "Welcome!"}
         if method == "DELETE":
             return 204, None
+        if "/recommendations?" in path:
+            return 200, {"evidence_status": "no_match", "products": [], "source_commit": None}
         if revocation_status == 200:
             return 200, {"messages": []}
         raise HTTPError(origin + path, revocation_status, "Unexpected", {}, None)
@@ -107,4 +111,26 @@ def test_smoke_rejects_unverified_token_revocation(monkeypatch, revocation_statu
     monkeypatch.setattr(smoke_module, "request", fake_request)
     with pytest.raises(RuntimeError, match="Staging session cleanup failed"):
         smoke_module.smoke("https://staging.example.com")
-    assert calls == ["POST", "POST", "DELETE", "GET"]
+    assert calls == ["POST", "POST", "GET", "DELETE", "GET"]
+
+
+def test_staging_catalogue_match_can_be_required(monkeypatch):
+    monkeypatch.setenv("CHATBOT_STAGING_REQUIRE_CATALOGUE", "yes")
+    calls = []
+
+    def fake_request(origin, path, method, token="", payload=None):
+        calls.append(method)
+        if method == "POST" and path.endswith("/sessions"):
+            return 201, {"session_id": "session-1", "token": "secret"}
+        if method == "POST":
+            return 200, {"session_id": "session-1", "reply": "Hello!"}
+        if method == "GET" and "/recommendations?" in path:
+            return 200, {"evidence_status": "unavailable", "products": [], "source_commit": None}
+        if method == "DELETE":
+            return 204, None
+        raise HTTPError(origin + path, 401, "Unauthorized", {}, None)
+
+    monkeypatch.setattr(smoke_module, "request", fake_request)
+    with pytest.raises(RuntimeError, match="approved catalogue evidence"):
+        smoke_module.smoke("https://staging.example.com")
+    assert calls == ["POST", "POST", "GET", "DELETE", "GET"]

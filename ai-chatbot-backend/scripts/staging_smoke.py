@@ -11,7 +11,7 @@ import json
 import os
 import sys
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlsplit
+from urllib.parse import urlencode, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
@@ -78,6 +78,34 @@ def smoke(origin: str) -> None:
         ):
             raise RuntimeError("AI response contract failed")
         print("PASS: authenticated AI reply received")
+        # Validate the authenticated, catalogue-backed recommendations contract.
+        query = urlencode({"q": "oak flooring"})
+        status, recommendations = request(
+            origin, path + "/recommendations?" + query, "GET", token
+        )
+        if (
+            status != 200 or not isinstance(recommendations, dict)
+            or recommendations.get("evidence_status") not in {"matched", "no_match", "unavailable"}
+            or not isinstance(recommendations.get("products"), list)
+        ):
+            raise RuntimeError("Recommendations API contract failed")
+        products = recommendations["products"]
+        if recommendations["evidence_status"] == "matched" and not products:
+            raise RuntimeError("Matched recommendations returned no products")
+        for product in products:
+            if (
+                not isinstance(product, dict)
+                or not isinstance(product.get("name"), str)
+                or not isinstance(product.get("canonical_url"), str)
+                or not product["canonical_url"].startswith("https://")
+                or any(key in product for key in ("price", "stock"))
+            ):
+                raise RuntimeError("Recommendations product contract failed")
+        if os.getenv("CHATBOT_STAGING_REQUIRE_CATALOGUE") == "yes" and (
+            recommendations["evidence_status"] != "matched" or not products
+        ):
+            raise RuntimeError("Staging approved catalogue evidence is not matched")
+        print("PASS: authenticated recommendations contract validated")
     finally:
         if session_id and token:
             try:
