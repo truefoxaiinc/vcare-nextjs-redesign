@@ -42,7 +42,7 @@ def test_smoke_creates_sends_and_deletes(monkeypatch):
             assert payload == {"message": "Hello"}
             return 200, {"session_id": "session-1", "reply": "Welcome!"}
         if method == "GET" and "/recommendations?" in path:
-            return 200, {"evidence_status": "no_match", "products": [], "source_commit": None}
+            return 200, {"evidence_status": "no_match", "products": [], "source_commit": "a" * 40}
         if method == "GET":
             raise HTTPError(origin + path, 401, "Unauthorized", {}, None)
         return 204, None
@@ -103,7 +103,7 @@ def test_smoke_rejects_unverified_token_revocation(monkeypatch, revocation_statu
         if method == "DELETE":
             return 204, None
         if "/recommendations?" in path:
-            return 200, {"evidence_status": "no_match", "products": [], "source_commit": None}
+            return 200, {"evidence_status": "no_match", "products": [], "source_commit": "a" * 40}
         if revocation_status == 200:
             return 200, {"messages": []}
         raise HTTPError(origin + path, revocation_status, "Unexpected", {}, None)
