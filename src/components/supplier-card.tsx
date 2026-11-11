@@ -7,8 +7,8 @@ export function SupplierCard({ supplier }: { supplier: Supplier }) {
     <article className="supplier-card">
       <small>FLOORING SUPPLIER</small>
       {supplier.logoPath && (
-        <div className="supplier-logo">
-          <Image src={supplier.logoPath} alt={`${supplier.name} logo`} width={180} height={80} sizes="180px" style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }} />
+        <div className="supplier-logo" style={{ position: 'relative', width: 180, height: 80, maxWidth: '100%' }}>
+          <Image src={supplier.logoPath} alt={`${supplier.name} logo`} fill sizes="180px" style={{ objectFit: 'contain' }} />
         </div>
       )}
       <h3>{supplier.name}</h3>
