@@ -23,6 +23,13 @@ describe('inactive AI chat panel integration boundaries', () => {
     expect(component).toContain('could not confirm server-side deletion');
   });
 
+  it('keeps the opening consent screen concise', () => {
+    expect(component).toContain('How can we help with your floors?');
+    expect(component).toContain('Avoid sharing sensitive information');
+    expect(component).not.toContain('Welcome to Vcare.');
+    expect(component).not.toContain('Please avoid sharing sensitive personal information.');
+  });
+
   it('renders conversation content as React text, not injected HTML', () => {
     expect(component).not.toContain('dangerouslySetInnerHTML');
     expect(component).toContain('{message.text}');

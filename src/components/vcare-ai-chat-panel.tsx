@@ -102,64 +102,73 @@ export function VcareAiChatPanel() {
 
   if (status === 'closed') {
     return (
-      <section aria-label="Vcare AI chat closed">
-        <p>Chat closed. Messages have been cleared from this page.</p>
-        {deletionWarning && <p role="alert">{deletionWarning}</p>}
+      <section aria-label="Vcare AI chat closed" className="vcare-ai-chat-panel vcare-ai-chat-closed">
+        <div className="vcare-ai-chat-closed-message">
+          <span className="vcare-chat-mark" aria-hidden="true">V</span>
+          <h2>Chat closed.</h2>
+          <p>Messages have been cleared from this page.</p>
+          {deletionWarning && <p role="alert">{deletionWarning}</p>}
+        </div>
       </section>
     );
   }
 
   return (
     <section aria-labelledby="vcare-ai-chat-title" className="vcare-ai-chat-panel">
-      <h2 id="vcare-ai-chat-title">Vcare AI flooring assistant</h2>
-      {status === 'consent' ? (
-        <div>
-          <p>
-            If you start a chat, your messages will be sent to Vcare’s AI backend
-            and its configured AI model provider to generate responses. Please
-            avoid sharing sensitive personal information. Responses may be
-            inaccurate; confirm product details, pricing and availability with Vcare.
-          </p>
-          <p>
-            You can end the session and request deletion at any time. If deletion
-            cannot be confirmed, the backend’s expiry policy applies.
-          </p>
-          <button type="button" onClick={accept}>I understand — start AI chat</button>
-          {error && <p role="alert">{error}</p>}
-        </div>
-      ) : (
-        <div>
-          <div role="log" aria-live="polite" aria-label="AI chat messages" aria-relevant="additions">
-            {messages.map((message) => (
-              <p key={message.id}>
-                <strong>{message.role === 'visitor' ? 'You' : 'AI assistant'}:</strong> {message.text}
-              </p>
-            ))}
+      <header className="vcare-chat-header vcare-ai-chat-header">
+        <div className="vcare-chat-brand">
+          <span className="vcare-chat-mark" aria-hidden="true">V</span>
+          <div>
+            <span className="vcare-chat-eyebrow">VCARE FLOORING · AI ASSISTANT</span>
+            <h2 id="vcare-ai-chat-title">A little help to get started.</h2>
           </div>
-          <p role="status" aria-live="polite">
-            {status === 'connecting' ? 'Connecting securely…' :
-              status === 'sending' ? 'Preparing a response…' : 'Ready to help with flooring questions.'}
-          </p>
-          {error && <p role="alert">{error}</p>}
-          <form onSubmit={send}>
-            <label htmlFor="vcare-ai-chat-message">Your message</label>
-            <input
-              id="vcare-ai-chat-message"
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              maxLength={2000}
-              autoComplete="off"
-              disabled={status !== 'ready'}
-            />
-            <button type="submit" disabled={status !== 'ready' || !draft.trim()}>
-              Send message
-            </button>
-          </form>
-          <button type="button" onClick={() => void close()}>
-            End chat and request deletion
-          </button>
         </div>
-      )}
+      </header>
+      <div className="vcare-ai-chat-content">
+        {status === 'consent' ? (
+          <div className="vcare-ai-chat-consent">
+            <p className="vcare-ai-chat-welcome">How can we help with your floors?</p>
+            <p>
+              Starting shares your messages with Vcare and its configured AI model provider. Avoid sharing sensitive information; AI may be inaccurate. You can end the chat and request deletion, with unconfirmed sessions subject to the backend’s expiry policy.
+            </p>
+            <button className="vcare-ai-chat-primary" type="button" onClick={accept}>I understand — start AI chat</button>
+            {error && <p role="alert">{error}</p>}
+          </div>
+        ) : (
+          <div className="vcare-ai-chat-conversation">
+            <div className="vcare-ai-chat-messages" role="log" aria-live="polite" aria-label="AI chat messages" aria-relevant="additions">
+              {messages.map((message) => (
+                <p className={`vcare-ai-chat-message vcare-ai-chat-message-${message.role}`} key={message.id}>
+                  <strong>{message.role === 'visitor' ? 'You' : 'AI assistant'}:</strong> {message.text}
+                </p>
+              ))}
+            </div>
+            <p className="vcare-ai-chat-status" role="status" aria-live="polite">
+              {status === 'connecting' ? 'Connecting securely…' :
+                status === 'sending' ? 'Preparing a response…' : 'Ready to help with flooring questions.'}
+            </p>
+            {error && <p className="vcare-ai-chat-error" role="alert">{error}</p>}
+            <form className="vcare-ai-chat-form" onSubmit={send}>
+              <label htmlFor="vcare-ai-chat-message">Your message</label>
+              <input
+                id="vcare-ai-chat-message"
+                className="vcare-ai-chat-input"
+                value={draft}
+                onChange={(event) => setDraft(event.target.value)}
+                maxLength={2000}
+                autoComplete="off"
+                disabled={status !== 'ready'}
+              />
+              <button className="vcare-ai-chat-primary" type="submit" disabled={status !== 'ready' || !draft.trim()}>
+                Send message
+              </button>
+            </form>
+            <button className="vcare-ai-chat-end" type="button" onClick={() => void close()}>
+              End chat and request deletion
+            </button>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
