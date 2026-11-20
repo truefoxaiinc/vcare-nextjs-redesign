@@ -2,6 +2,53 @@
 
 Responsive, SEO-focused redesign of the Vcare Hardwood Floors public website. The site is a flooring catalogue and quote-request experience; it does not include online checkout.
 
+## Docker deployment (single Compose stack)
+
+The production stack uses one docker-compose.yml and one multi-stage Dockerfile:
+
+- web: the Next.js server. It serves the website and all Next.js /api/* backend routes from the same container.
+- db: PostgreSQL with a persistent named volume. Its host port is bound to loopback only.
+- migrate: a one-shot Prisma migration service. Compose waits for PostgreSQL health and successful migrations before starting the web service.
+
+There is no separate backend application in this repository; splitting the Next.js API routes into another container would require a separate backend implementation.
+
+### First deployment
+
+1. Install Docker Engine and the Docker Compose v2 plugin on the host.
+2. Clone this repository and enter its directory.
+3. Create the deployment environment file and replace all example credentials/secrets:
+
+~~~bash
+cp .env.docker.example .env
+nano .env
+~~~
+
+Use a long random POSTGRES_PASSWORD, update DATABASE_URL to use the same password and the Compose hostname db, and configure the Turnstile, admin-preview, and Resend values needed by the enabled features. Set NEXT_PUBLIC_SITE_URL to the real public HTTPS origin. The public Turnstile site key is a build-time value and is passed as a Docker build argument.
+
+4. Build and start the complete stack:
+
+~~~bash
+docker compose up -d --build
+docker compose ps
+docker compose logs -f web
+~~~
+
+The web service is published on APP_PORT (default 3000). Put the domain's HTTPS reverse proxy in front of this port; do not expose the PostgreSQL port publicly. The database is also reachable from the host at 127.0.0.1:5433 for controlled administration.
+
+### Operations
+
+~~~bash
+docker compose logs -f web
+docker compose logs migrate
+docker compose restart web
+docker compose up -d --build web
+docker compose down
+~~~
+
+docker compose down preserves the database volume. To intentionally delete the database and all stored enquiries, use docker compose down -v only after taking and verifying a backup. Back up vcare-postgres-data before production upgrades.
+
+The Compose migration service runs prisma migrate deploy before the web container starts. It does not create migrations; add and review migration files in source control before deployment. The notification worker endpoint is included in the Next.js API, but this Compose stack does not schedule periodic worker invocations; configure an authenticated external scheduler if automatic email processing is required.
+
 ## Run locally
 
 Dependency versions were verified from the npm registry on 2026-10-07. The exact versions are pinned in package.json and package-lock.json.

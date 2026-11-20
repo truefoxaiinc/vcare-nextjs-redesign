@@ -1,19 +1,87 @@
+name: vcareflooring-web
+
 services:
   db:
     image: postgres:17-alpine
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: vcare
-      POSTGRES_PASSWORD: vcare_local_dev_only
-      POSTGRES_DB: vcare
-    ports:
-      - "127.0.0.1:5433:5432"
+      POSTGRES_USER: ${POSTGRES_USER:-vcare}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in the Vcare .env file}
+      POSTGRES_DB: ${POSTGRES_DB:-vcare}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U vcare -d vcare"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-vcare} -d ${POSTGRES_DB:-vcare}"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 20
+      start_period: 10s
     volumes:
       - vcare-postgres-data:/var/lib/postgresql/data
+    networks:
+      - vcare
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migrator
+    restart: "no"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in the Vcare .env file}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - vcare
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.vcarehardwoodfloors.ca}
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
+        NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
+        NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.vcarehardwoodfloors.ca}
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in the Vcare .env file}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      RESEND_FROM_EMAIL: ${RESEND_FROM_EMAIL:-}
+      QUOTE_TO_EMAIL: ${QUOTE_TO_EMAIL:-}
+      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
+      NOTIFICATION_WORKER_SECRET: ${NOTIFICATION_WORKER_SECRET:-}
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
+      NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
+      NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
+    ports:
+      - "127.0.0.1:${APP_PORT:-18660}:3000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - vcare
+
+networks:
+  vcare:
+    driver: bridge
 
 volumes:
   vcare-postgres-data:
