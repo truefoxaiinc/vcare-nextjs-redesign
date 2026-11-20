@@ -340,12 +340,12 @@ const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => suppl
   { Collection: 'Origin Collection SPC', SKU: sku, Thickness: thickness, Underlay: underlay, Dimensions: '7 in × 48 in', 'Wear layer': '20 mil' }
 ));
 
-const wodenProducts = [
+const wodenProducts = ([
   ['1001 Sandy Cove', '10 Collection'], ['1002 Beach Bluff', '10 Collection'],
   ['1003 Golden Shoal', '10 Collection'], ['1004 River Clay', '10 Collection'],
   ['1005 Smoky Walnut', '10 Collection'], ['1006 Sunlit Wave', '10 Collection'],
   ['1007 Cocoa Timber', '10 Collection'], ['1008 Vintage Trail', '10 Collection']
-].map(([name, collection]) => supplierListingProduct(
+] as const).map(([name, collection]) => supplierListingProduct(
   'Woden',
   'Vinyl',
   name,
