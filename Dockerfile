@@ -39,7 +39,7 @@ CMD ["node", "server.js"]
 # One-shot image used by Compose to apply Prisma migrations before the web service starts.
 FROM base AS migrator
 ENV NODE_ENV=production
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
+COPY --from=deps /app/node_modules ./node_modules
+COPY prisma ./prisma
+COPY prisma.config.ts ./prisma.config.ts
 CMD ["./node_modules/.bin/prisma", "migrate", "deploy"]
