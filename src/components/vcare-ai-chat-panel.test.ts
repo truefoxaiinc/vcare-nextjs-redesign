@@ -4,11 +4,18 @@ import { describe, expect, it } from 'vitest';
 
 const component = readFileSync(resolve(process.cwd(), 'src/components/vcare-ai-chat-panel.tsx'), 'utf8');
 const layout = readFileSync(resolve(process.cwd(), 'src/app/layout.tsx'), 'utf8');
+const launcherGate = readFileSync(resolve(process.cwd(), 'src/components/chat-launcher-gate.tsx'), 'utf8');
+const configRoute = readFileSync(resolve(process.cwd(), 'src/app/api/v1/chat/config/route.ts'), 'utf8');
 
-describe('inactive AI chat panel integration boundaries', () => {
-  it('is not mounted in the production layout', () => {
+describe('AI chat panel integration boundaries', () => {
+  it('selects the chat launcher from runtime configuration without making pages dynamic', () => {
     expect(layout).not.toContain('VcareAiChatPanel');
-    expect(layout).toContain('isLiveChatEnabled() ? <VcareAiChatLauncher/> : <VcareChatWidget/>');
+    expect(layout).toContain('<ChatLauncherGate/>');
+    expect(launcherGate).toContain("fetch('/api/v1/chat/config'");
+    expect(launcherGate).toContain('setLiveChatEnabled(payload.enabled)');
+    expect(launcherGate).toContain('setLiveChatEnabled(false)');
+    expect(configRoute).toContain('await connection()');
+    expect(configRoute).toContain('isLiveChatEnabled()');
   });
 
   it('requires explicit consent before creating a session', () => {
