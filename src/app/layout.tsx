@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import './chat-widget.css';
 import { Footer, Header } from '@/components/site-shell';
 import { businessJsonLd, jsonLd, siteUrl } from '@/lib/seo';
 import { CookieConsent } from '@/components/cookie-consent';

@@ -21,17 +21,18 @@ describe('AI chat panel integration boundaries', () => {
   it('requires explicit consent before creating a session', () => {
     expect(component).toContain("status !== 'consent'");
     expect(component).toContain('await active.start(true)');
-    expect(component).toContain('I understand — start AI chat');
+    expect(component).toContain('Start a conversation');
   });
 
   it('discloses the AI provider and handles deletion uncertainty', () => {
     expect(component).toContain('configured AI model provider');
-    expect(component).toContain('End chat and request deletion');
+    expect(component).toContain('end the chat and request deletion');
+    expect(component).toContain('End chat');
     expect(component).toContain('could not confirm server-side deletion');
   });
 
   it('keeps the opening consent screen concise', () => {
-    expect(component).toContain('How can we help with your floors?');
+    expect(component).toContain('Let’s find the right floor for your space.');
     expect(component).toContain('Avoid sharing sensitive information');
     expect(component).not.toContain('Welcome to Vcare.');
     expect(component).not.toContain('Please avoid sharing sensitive personal information.');

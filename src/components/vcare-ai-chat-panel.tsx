@@ -5,10 +5,10 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ChatController } from '@/lib/chatbot-controller';
 
 type Message = { id: number; role: 'visitor' | 'assistant'; text: string };
+const suggestions = ['Help me choose flooring for a kitchen', 'Compare vinyl and laminate', 'How do I request a quote?'];
 
 /**
- * Standalone opt-in UI. Intentionally not mounted in the production layout.
- * No session is created until the visitor explicitly accepts the disclosure.
+ * Opt-in UI. No session is created until the visitor explicitly accepts the disclosure.
  */
 export function VcareAiChatPanel() {
   const controller = useRef<ChatController | null>(null);
@@ -118,54 +118,97 @@ export function VcareAiChatPanel() {
       <header className="vcare-chat-header vcare-ai-chat-header">
         <div className="vcare-chat-brand">
           <span className="vcare-chat-mark" aria-hidden="true">V</span>
-          <div>
-            <span className="vcare-chat-eyebrow">VCARE FLOORING · AI ASSISTANT</span>
-            <h2 id="vcare-ai-chat-title">A little help to get started.</h2>
+          <div className="vcare-ai-chat-brand-copy">
+            <h2 id="vcare-ai-chat-title">Vcare Flooring</h2>
+            <p>AI flooring assistant</p>
           </div>
         </div>
       </header>
       <div className="vcare-ai-chat-content">
         {status === 'consent' ? (
           <div className="vcare-ai-chat-consent">
-            <p className="vcare-ai-chat-welcome">How can we help with your floors?</p>
-            <p>
-              Starting shares your messages with Vcare and its configured AI model provider. Avoid sharing sensitive information; AI may be inaccurate. You can end the chat and request deletion, with unconfirmed sessions subject to the backend’s expiry policy.
-            </p>
-            <button className="vcare-ai-chat-primary" type="button" onClick={accept}>I understand — start AI chat</button>
+            <div className="vcare-ai-chat-intro">
+              <span className="vcare-ai-chat-intro-mark" aria-hidden="true">V</span>
+              <div>
+                <span className="vcare-ai-chat-eyebrow">WELCOME</span>
+                <p className="vcare-ai-chat-welcome">Let’s find the right floor for your space.</p>
+              </div>
+            </div>
+            <div className="vcare-ai-chat-disclosure">
+              <svg aria-hidden="true" viewBox="0 0 20 20" width="17" height="17">
+                <path d="M5.5 8V6.2a4.5 4.5 0 0 1 9 0V8m-10 0h11v9h-11z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                <circle cx="10" cy="12" r="1" fill="currentColor" />
+              </svg>
+              <p>Starting shares your messages with Vcare and its configured AI model provider. Avoid sharing sensitive information. AI responses can be inaccurate; verify product details and quotes with our team. You can end the chat and request deletion.</p>
+            </div>
+            <button className="vcare-ai-chat-primary" type="button" onClick={accept}>
+              Start a conversation
+              <svg aria-hidden="true" viewBox="0 0 20 20" width="17" height="17">
+                <path d="M3.5 10h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
             {error && <p role="alert">{error}</p>}
           </div>
         ) : (
           <div className="vcare-ai-chat-conversation">
             <div className="vcare-ai-chat-messages" role="log" aria-live="polite" aria-label="AI chat messages" aria-relevant="additions">
+              {messages.length === 0 && (
+                <div className="vcare-ai-chat-welcome-message">
+                  <span className="vcare-ai-chat-message-mark" aria-hidden="true">V</span>
+                  <div className="vcare-ai-chat-message vcare-ai-chat-message-assistant">
+                    <strong>Vcare AI</strong>
+                    <p>Hi! Tell me about your room or project, and I’ll help you explore flooring options.</p>
+                  </div>
+                </div>
+              )}
               {messages.map((message) => (
-                <p className={`vcare-ai-chat-message vcare-ai-chat-message-${message.role}`} key={message.id}>
-                  <strong>{message.role === 'visitor' ? 'You' : 'AI assistant'}:</strong> {message.text}
-                </p>
+                <article className={`vcare-ai-chat-message-row vcare-ai-chat-message-row-${message.role}`} key={message.id}>
+                  {message.role === 'assistant' && <span className="vcare-ai-chat-message-mark" aria-hidden="true">V</span>}
+                  <div className={`vcare-ai-chat-message vcare-ai-chat-message-${message.role}`}>
+                    <strong>{message.role === 'visitor' ? 'You' : 'Vcare AI'}</strong>
+                    <p>{message.text}</p>
+                  </div>
+                </article>
               ))}
+              {messages.length === 0 && (
+                <div className="vcare-ai-chat-suggestions" aria-label="Suggested questions">
+                  {suggestions.map((suggestion) => (
+                    <button className="vcare-ai-chat-suggestion" type="button" key={suggestion} onClick={() => setDraft(suggestion)}>
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             <p className="vcare-ai-chat-status" role="status" aria-live="polite">
               {status === 'connecting' ? 'Connecting securely…' :
-                status === 'sending' ? 'Preparing a response…' : 'Ready to help with flooring questions.'}
+                status === 'sending' ? 'Vcare AI is replying…' : 'Ready to help'}
             </p>
             {error && <p className="vcare-ai-chat-error" role="alert">{error}</p>}
             <form className="vcare-ai-chat-form" onSubmit={send}>
-              <label htmlFor="vcare-ai-chat-message">Your message</label>
-              <input
-                id="vcare-ai-chat-message"
-                className="vcare-ai-chat-input"
-                value={draft}
-                onChange={(event) => setDraft(event.target.value)}
-                maxLength={2000}
-                autoComplete="off"
-                disabled={status !== 'ready'}
-              />
-              <button className="vcare-ai-chat-primary" type="submit" disabled={status !== 'ready' || !draft.trim()}>
-                Send message
-              </button>
+              <label className="vcare-ai-chat-sr-only" htmlFor="vcare-ai-chat-message">Your message</label>
+              <div className="vcare-ai-chat-composer">
+                <input
+                  id="vcare-ai-chat-message"
+                  className="vcare-ai-chat-input"
+                  value={draft}
+                  onChange={(event) => setDraft(event.target.value)}
+                  maxLength={2000}
+                  placeholder="Ask a flooring question..."
+                  autoComplete="off"
+                  disabled={status !== 'ready'}
+                />
+                <button className="vcare-ai-chat-send" type="submit" aria-label="Send message" disabled={status !== 'ready' || !draft.trim()}>
+                  <svg aria-hidden="true" viewBox="0 0 20 20" width="18" height="18">
+                    <path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
             </form>
-            <button className="vcare-ai-chat-end" type="button" onClick={() => void close()}>
-              End chat and request deletion
-            </button>
+            <div className="vcare-ai-chat-footer">
+              <span>AI can make mistakes. Verify product details with Vcare.</span>
+              <button className="vcare-ai-chat-end" type="button" onClick={() => void close()}>End chat</button>
+            </div>
           </div>
         )}
       </div>
