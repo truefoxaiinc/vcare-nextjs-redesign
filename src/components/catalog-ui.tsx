@@ -44,7 +44,7 @@ export function ProductExplorer({ products, initialCategory, hrefBase, showAppro
           <div className="catalog-supplier-list" aria-label="Filter by supplier">
             <small>SUPPLIERS</small>
             <button className={supplier === 'All suppliers' ? 'filter-active' : ''} onClick={() => setSupplier('All suppliers')}>
-              All suppliers <span>{products.length}</span>
+              All suppliers <span>{products.filter(product => category === 'All floors' || product.category === category).length}</span>
             </button>
             {suppliers.filter(item => !query.trim() || item.name.toLowerCase().includes(query.trim().toLowerCase())).map(item => {
               const count = products.filter(product => product.supplier === item.name &&
