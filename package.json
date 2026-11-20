@@ -20,7 +20,8 @@
     "db:status": "prisma migrate status",
     "db:validate": "prisma validate",
     "predev": "node scripts/prepare-supplier-logos.mjs",
-    "prebuild": "node scripts/prepare-supplier-logos.mjs"
+    "prebuild": "node scripts/prepare-supplier-logos.mjs",
+    "catalogue:sync": "node scripts/sync-supplier-catalogues.mjs"
   },
   "dependencies": {
     "@next/env": "16.4.5",
