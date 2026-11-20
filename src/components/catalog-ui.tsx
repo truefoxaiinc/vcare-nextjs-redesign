@@ -6,7 +6,7 @@ import { categories, suppliers } from '@/data/catalog';
 import { ProductCard } from '@/components/product-card';
 import { SupplierCard } from '@/components/supplier-card';
 
-export function ProductExplorer({ products, initialCategory, hrefBase, showApprovalStatus = false, productLabel = 'verified product' }: { products: Product[]; initialCategory?: string; hrefBase?: string; showApprovalStatus?: boolean; productLabel?: string }) {
+export function ProductExplorer({ products, initialCategory, hrefBase, showApprovalStatus = false, productLabel = 'verified product', showSupplierList = false }: { products: Product[]; initialCategory?: string; hrefBase?: string; showApprovalStatus?: boolean; productLabel?: string; showSupplierList?: boolean }) {
   const [category, setCategory] = useState(initialCategory ?? 'All floors');
   const [supplier, setSupplier] = useState('All suppliers');
   const [query, setQuery] = useState('');
@@ -40,13 +40,31 @@ export function ProductExplorer({ products, initialCategory, hrefBase, showAppro
             <span>{item === 'All floors' ? products.length : products.filter(product => product.category === item).length}</span>
           </button>
         ))}
-        <label className="catalog-supplier-filter">
-          Supplier
-          <select value={supplier} onChange={event => setSupplier(event.target.value)}>
-            <option>All suppliers</option>
-            {suppliers.map(item => <option key={item.name}>{item.name}</option>)}
-          </select>
-        </label>
+        {showSupplierList ? (
+          <div className="catalog-supplier-list" aria-label="Filter by supplier">
+            <small>SUPPLIERS</small>
+            <button className={supplier === 'All suppliers' ? 'filter-active' : ''} onClick={() => setSupplier('All suppliers')}>
+              All suppliers <span>{products.filter(product => category === 'All floors' || product.category === category).length}</span>
+            </button>
+            {suppliers.filter(item => !query.trim() || item.name.toLowerCase().includes(query.trim().toLowerCase())).map(item => {
+              const count = products.filter(product => product.supplier === item.name &&
+                (category === 'All floors' || product.category === category)).length;
+              return (
+                <button key={item.name} className={supplier === item.name ? 'filter-active' : ''} onClick={() => setSupplier(item.name)}>
+                  {item.name}<span>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <label className="catalog-supplier-filter">
+            Supplier
+            <select value={supplier} onChange={event => setSupplier(event.target.value)}>
+              <option>All suppliers</option>
+              {suppliers.map(item => <option key={item.name}>{item.name}</option>)}
+            </select>
+          </label>
+        )}
         <div className="aside-note">
           <b>Not sure where to start?</b>
           <p>Tell us about your space and we’ll help narrow the options.</p>
