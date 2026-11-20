@@ -27,7 +27,7 @@ export default function OffersPage() {
             </div>
             <p>Product details and availability are confirmed with your quote.</p>
           </div>
-          <ProductExplorer products={publishedProducts} />
+          <ProductExplorer products={publishedProducts} showSupplierList />
         </div>
       </section>
     </>
