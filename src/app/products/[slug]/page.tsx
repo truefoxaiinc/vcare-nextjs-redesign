@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: product.name + ' | ' + product.category + ' Flooring',
       description: product.description,
       alternates: { canonical: '/products/' + product.slug },
-      openGraph: { url: '/products/' + product.slug, images: [{ url: product.imageUrl, alt: product.imageAlt }] }
+      openGraph: { url: '/products/' + product.slug, images: product.imageUrl ? [{ url: product.imageUrl, alt: product.imageAlt }] : undefined }
     };
   }
 

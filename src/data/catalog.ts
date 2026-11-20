@@ -9,7 +9,7 @@ export type Product = {
   category: Category;
   supplier: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
   imageAlt: string;
   sourceUrl: string;
   publicationStatus: 'draft' | 'published';
@@ -48,28 +48,28 @@ export const categories: FloorCategory[] = [
     slug: 'hardwood',
     note: 'Natural character, made to last',
     image: photo('photo-1600210492486-724fe5c67fb0'),
-    suppliers: ['Wickham', 'Tosca']
+    suppliers: ['Wickham', 'Tosca', 'Grandeur', 'Northernest', 'Sherwood']
   },
   {
     title: 'Engineered Hardwood',
     slug: 'engineered-hardwood',
     note: 'Real wood, thoughtfully built',
     image: photo('photo-1600607687939-ce8a6c25118c'),
-    suppliers: ['Floorsatwork']
+    suppliers: ['Floorsatwork', 'Grandeur', 'Northernest', 'Sherwood', 'Weiss', 'Woden']
   },
   {
     title: 'Laminate',
     slug: 'laminate',
     note: 'Everyday durability, beautifully done',
     image: photo('photo-1600566753086-00f18fb6b3ea'),
-    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring']
+    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Simba', 'Sherwood', 'Woden', 'Weiss', 'Grandeur']
   },
   {
     title: 'Vinyl',
     slug: 'vinyl',
     note: 'Water-ready style for busy homes',
     image: photo('photo-1600573472591-ee6b68d14c68'),
-    suppliers: ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring']
+    suppliers: ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring', 'Grandeur', 'Simba', 'Northernest', 'Sherwood', 'Woden', 'Weiss']
   }
 ];
 

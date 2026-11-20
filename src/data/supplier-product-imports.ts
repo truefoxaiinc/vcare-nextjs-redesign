@@ -221,6 +221,175 @@ const floorsAtWorkVinylProducts: Product[] = floorsAtWorkVinyl.map(([handle, nam
   ...publishedImport
 }));
 
+
+
+// Additional records below are taken from the approved suppliers' public catalogues.
+// Where a supplier does not expose a stable product image URL, the product is listed
+// with the intentional "Image unavailable" fallback rather than a guessed or reused image.
+const slugPart = (value: string) => value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+function supplierListingProduct(
+  supplier: string,
+  category: Product['category'],
+  name: string,
+  sourceUrl: string,
+  specifications?: Record<string, string>,
+  imageUrl?: string
+): Product {
+  return {
+    slug: slugPart(supplier) + '-' + slugPart(name),
+    name,
+    category,
+    supplier,
+    description: name + ' is listed in ' + supplier + "'s official " + category.toLowerCase() + ' catalogue. Confirm current colour options, specifications and availability with the supplier.',
+    imageUrl,
+    imageAlt: imageUrl ? 'Supplier product image for ' + supplier + ' ' + name : 'No product image supplied for ' + supplier + ' ' + name,
+    sourceUrl,
+    specifications,
+    ...publishedImport
+  };
+}
+
+const grandeurPacific = [
+  'Canterbury', 'Golden Bay', 'Queenstown', 'Wellington', '88006-2'
+].map(name => supplierListingProduct(
+  'Grandeur',
+  'Vinyl',
+  name,
+  'https://grandeurflooring.ca/commercial/commercial-products/pacific.html',
+  { Collection: 'Pacific', Construction: 'SPC vinyl' }
+));
+
+const grandeur12Collection = [
+  'Arles Natural', 'Fado Gavia', 'Fado Sotavento', 'Kalas Albar', 'Kalmar Gris',
+  'Kalas Noz', 'Roble Twilight', 'Viena Dorado', 'Wexford Tostado'
+].map(name => supplierListingProduct(
+  'Grandeur',
+  'Laminate',
+  name,
+  'https://grandeurflooring.ca/commercial/commercial-products/12-collection.html',
+  { Collection: '12 Collection', Dimensions: '8 in × 53 in × 1/2 in', 'Abrasion rating': 'AC6' }
+));
+
+const simbaSpcCodes = [
+  '58002-3', '58023-10', '58065-3', '581066-1', '58305-21', '58730-10',
+  '58730-2', '58943-01', '58943-03', '58943-06', '58943-15', '58943-16'
+];
+const simbaSpcProducts = simbaSpcCodes.map(code => supplierListingProduct(
+  'Simba',
+  'Vinyl',
+  code,
+  'https://simbaflooringcorp.com/product-category/spc-flooring/',
+  code === '58002-3'
+    ? { Collection: 'Galaxy', Construction: 'SPC', Length: '1540 mm', Width: '230 mm', Thickness: '5 mm', Underlayment: '1.5 mm IXPE', 'Wear layer': '0.5 mm', Grain: 'EIR' }
+    : { Collection: 'Galaxy', Construction: 'SPC' }
+));
+
+const simbaLaminateProducts = ['00306', '2024', '20360', '2052', '2055', '20860'].map(code =>
+  supplierListingProduct(
+    'Simba',
+    'Laminate',
+    code,
+    'https://simbaflooringcorp.com/shop/',
+    { Category: 'Water-resistant / waterproof laminate (supplier listing)' }
+  )
+);
+
+const northernestCoastal = [
+  'Warm Beechwood', 'Pure Walnut', 'Monaco', 'Nappa', 'Element', 'Celeste', 'Belize'
+].map(name => supplierListingProduct(
+  'Northernest',
+  'Engineered Hardwood',
+  name,
+  'https://northernestflooring.ca/product-category/engineered/coastal/',
+  name === 'Warm Beechwood' || name === 'Pure Walnut' || name === 'Monaco' || name === 'Nappa'
+    ? { Collection: 'Coastal', Species: 'European White Oak', Construction: 'Multi-layer engineered', Dimensions: '7-1/2 in × 3/4 in × random length', 'Wear layer': '1.5 mm', Profile: 'Tongue and groove', Finish: 'UV-lacquered matte' }
+    : { Collection: 'Coastal', Species: 'European White Oak' },
+  name === 'Warm Beechwood' ? 'https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg' : undefined
+));
+
+const sherwoodProducts = [
+  supplierListingProduct('Sherwood', 'Vinyl', '12 x 24 Vinyl Tile Click', 'https://sherwoodforestproducts.com/product/12-x-24-vinyl-tile-click/', { Thickness: '6 mm with underpad', 'Coverage per box': '20.02 sq. ft.', Colours: 'Calcutta, Stone Argento, Stone Grey, Venato' }),
+  supplierListingProduct('Sherwood', 'Vinyl', '2mm LVT Glue Down Vinyl', 'https://sherwoodforestproducts.com/shop/', { Construction: 'Glue-down LVT', Thickness: '2 mm' }),
+  supplierListingProduct('Sherwood', 'Vinyl', '4.5 MM Vinyl Click', 'https://sherwoodforestproducts.com/shop/', { Construction: 'Vinyl click', Thickness: '4.5 mm' }),
+  supplierListingProduct('Sherwood', 'Vinyl', '6 MM Vinyl Click', 'https://sherwoodforestproducts.com/shop/', { Construction: 'Vinyl click', Thickness: '6 mm' }),
+  supplierListingProduct('Sherwood', 'Vinyl', '7 MM Vinyl Click', 'https://sherwoodforestproducts.com/shop/', { Construction: 'Vinyl click', Thickness: '7 mm' }),
+  supplierListingProduct('Sherwood', 'Engineered Hardwood', '6 ½ Hickory Engineered', 'https://sherwoodforestproducts.com/shop/', { Collection: 'Engineered hardwood', Species: 'Hickory' }),
+  supplierListingProduct('Sherwood', 'Engineered Hardwood', '6 ½ Maple Engineered', 'https://sherwoodforestproducts.com/shop/', { Collection: 'Engineered hardwood', Species: 'Maple' }),
+  supplierListingProduct('Sherwood', 'Hardwood', 'Kensington Maple 4 ¼”', 'https://sherwoodforestproducts.com/product/kensington-maple/', { Construction: 'Canadian solid hardwood', Species: 'Maple', Grade: 'Select & Better', 'Coverage per box': '19 sq. ft.', Thickness: '3/4 in', Width: '4 1/4 in', Colours: 'Caraway, Cinnamon, Clove, Cocoa, Pearl, Sierra' }),
+  supplierListingProduct('Sherwood', 'Hardwood', 'Providence Ash 3 ¼”', 'https://sherwoodforestproducts.com/product-category/hardwood-flooring/', { Construction: 'Canadian solid hardwood', Species: 'Ash', Width: '3 1/4 in' }),
+  supplierListingProduct('Sherwood', 'Hardwood', 'SUMMIT II Red Oak', 'https://sherwoodforestproducts.com/product-category/hardwood-flooring/', { Construction: 'Canadian solid hardwood', Species: 'Red Oak', Widths: '3 1/4 in and 4 1/4 in' }),
+  supplierListingProduct('Sherwood', 'Hardwood', 'Uptown Maple 3 ¼”', 'https://sherwoodforestproducts.com/product/uptown-maple/', { Construction: 'Canadian solid hardwood', Species: 'Maple', Width: '3 1/4 in' })
+];
+
+const pangolinCodes = [
+  ['PS101', '7 mm', '1.5 mm IXPE'], ['PS102', '7 mm', '1.5 mm IXPE'],
+  ['PS103', '7 mm', '1.5 mm IXPE'], ['PS104', '7 mm', '1.5 mm IXPE'],
+  ['PS105', '7 mm', '1.5 mm IXPE'], ['PS106', '7 mm', '1.5 mm IXPE'],
+  ['PS107', '7 mm', '1.5 mm IXPE'], ['PS109', '7 mm', '1.5 mm IXPE'],
+  ['PS110', '8 mm', '2.0 mm EVA'], ['PS111', '8 mm', '2.0 mm EVA'],
+  ['PS112', '8 mm', '2.0 mm EVA'], ['PS114', '8 mm', '2.0 mm EVA'],
+  ['PS121', '8 mm', '2.0 mm EVA'], ['PS122', '8 mm', '2.0 mm EVA'],
+  ['PS123', '8 mm', '2.0 mm EVA'], ['PS124', '8 mm', '2.0 mm EVA']
+] as const;
+const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => supplierListingProduct(
+  'Pangolin',
+  'Vinyl',
+  'Origin Collection SPC ' + sku,
+  'https://pangolflooring.com/products',
+  { Collection: 'Origin Collection SPC', SKU: sku, Thickness: thickness, Underlay: underlay, Dimensions: '7 in × 48 in', 'Wear layer': '20 mil' }
+));
+
+const wodenProducts = ([
+  ['1001 Sandy Cove', '10 Collection'], ['1002 Beach Bluff', '10 Collection'],
+  ['1003 Golden Shoal', '10 Collection'], ['1004 River Clay', '10 Collection'],
+  ['1005 Smoky Walnut', '10 Collection'], ['1006 Sunlit Wave', '10 Collection'],
+  ['1007 Cocoa Timber', '10 Collection'], ['1008 Vintage Trail', '10 Collection']
+] as const).map(([name, collection]) => supplierListingProduct(
+  'Woden',
+  'Vinyl',
+  name,
+  'https://www.wodenflooring.com/category/all-products',
+  { Collection: collection, Structure: '8 mm SPC + 2 mm cork pad', 'Coverage per box': '15 sq. ft.', Installation: 'On, above or below grade' }
+));
+
+const weissEngineeredNames = [
+  'Golden Oak', 'Dijon', 'Mocha', 'Pebble', 'Caramel', 'Vanilla', 'Sand', 'Amber',
+  'Silvery Gray', 'Saffron', 'Seashell', 'Sandy Brown', 'Raw', 'Fortino',
+  'Hickory Walnut', 'Pure Hickory', 'Cottage Maple', 'Original Maple', 'Ash Toffee', 'Ash Natural',
+  'Toffee', 'Cream', 'Pewter', 'Penny', 'Coconut'
+];
+const weissEngineeredProducts = weissEngineeredNames.map(name => supplierListingProduct(
+  'Weiss',
+  'Engineered Hardwood',
+  name,
+  'https://www.weissflooring.ca/engineeredhardwood',
+  { 'Product line': 'Engineered hardwood' }
+));
+
+const weissSpcNames = [
+  'Venus', 'Havenest', 'Driftwood', 'Boltique', 'Covehaus', 'Sable', 'Fog', 'Reef',
+  'Coral', 'Vega', 'Tan', 'Cinnabar', 'Caviar', 'American Walnut', 'Wasaga',
+  'Varadero', 'Trunk Bay', 'Siesta', 'Lanikai', 'Hanalei', 'Copacabana', 'Bora'
+];
+const weissSpcProducts = weissSpcNames.map(name => supplierListingProduct(
+  'Weiss',
+  'Vinyl',
+  name,
+  'https://www.weissflooring.ca/spcvinyl',
+  { 'Product line': 'SPC vinyl' }
+));
+
+const weissLaminateNames = ['Zenith', 'Titanium', 'Savage', 'Meridian', 'Horizon', 'Eclipse', 'Citadel', 'Aube'];
+const weissLaminateProducts = weissLaminateNames.map(name => supplierListingProduct(
+  'Weiss',
+  'Laminate',
+  name,
+  'https://www.weissflooring.ca/premierlaminate',
+  { 'Product line': 'Premier laminate' }
+));
+
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts,
   ...toucanSpc86Products,
@@ -228,5 +397,16 @@ export const supplierProductImports: Product[] = [
   ...leeVinylProducts,
   ...wickhamHardwoodProducts,
   ...leeLaminateProducts,
-  ...floorsAtWorkVinylProducts
+  ...floorsAtWorkVinylProducts,
+  ...grandeurPacific,
+  ...grandeur12Collection,
+  ...simbaSpcProducts,
+  ...simbaLaminateProducts,
+  ...northernestCoastal,
+  ...sherwoodProducts,
+  ...pangolinProducts,
+  ...wodenProducts,
+  ...weissEngineeredProducts,
+  ...weissSpcProducts,
+  ...weissLaminateProducts
 ];
