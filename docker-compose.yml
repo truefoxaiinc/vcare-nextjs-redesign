@@ -1,13 +1,13 @@
+name: vcareflooring-web
+
 services:
   db:
     image: postgres:17-alpine
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-vcare}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vcare_local_dev_only}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in the Vcare .env file}
       POSTGRES_DB: ${POSTGRES_DB:-vcare}
-    ports:
-      - "127.0.0.1:5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-vcare} -d ${POSTGRES_DB:-vcare}"]
       interval: 5s
@@ -26,7 +26,7 @@ services:
       target: migrator
     restart: "no"
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql://vcare:vcare_local_dev_only@db:5432/vcare?schema=public}
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in the Vcare .env file}
     depends_on:
       db:
         condition: service_healthy
@@ -50,7 +50,7 @@ services:
       PORT: 3000
       HOSTNAME: 0.0.0.0
       NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.vcarehardwoodfloors.ca}
-      DATABASE_URL: ${DATABASE_URL:-postgresql://vcare:vcare_local_dev_only@db:5432/vcare?schema=public}
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in the Vcare .env file}
       ADMIN_USERNAME: ${ADMIN_USERNAME:-}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
@@ -62,7 +62,7 @@ services:
       NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
       NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
     ports:
-      - "${APP_PORT:-3000}:3000"
+      - "127.0.0.1:${APP_PORT:-18660}:3000"
     depends_on:
       migrate:
         condition: service_completed_successfully
