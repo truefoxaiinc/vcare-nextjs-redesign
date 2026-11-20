@@ -26,10 +26,16 @@ function configuredUpstream(): string | null {
       .split(',')
       .map((host) => host.trim().toLowerCase())
       .filter(Boolean);
-    const allowedRemote = url.protocol === 'https:' && allowedHosts.includes(url.hostname.toLowerCase());
+    const allowedHost = allowedHosts.includes(url.hostname.toLowerCase());
+    const allowedRemote = url.protocol === 'https:' && allowedHost;
+    const allowedInternalHttp = url.protocol === 'http:' &&
+      /^[a-z0-9.-]+$/.test(url.hostname) &&
+      allowedHost &&
+      !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname);
     if (
       !(local && url.protocol === 'http:') &&
-      !allowedRemote
+      !allowedRemote &&
+      !allowedInternalHttp
     ) return null;
     if (
       url.username || url.password || url.pathname !== '/' || url.search || url.hash ||
@@ -45,7 +51,11 @@ function sameOrigin(request: NextRequest): boolean {
   const origin = request.headers.get('origin');
   if (!origin) return true; // Non-browser clients are subject to backend bearer auth and throttling.
   try {
-    return new URL(origin).origin === request.nextUrl.origin;
+    const originUrl = new URL(origin);
+    const host = request.headers.get('host');
+    if (!host) return false;
+    const hostUrl = new URL(originUrl.protocol + '//' + host);
+    return originUrl.origin === hostUrl.origin;
   } catch {
     return false;
   }

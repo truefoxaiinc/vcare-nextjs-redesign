@@ -8,8 +8,6 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://vcare:${CHATBOT_DB_PASSWORD:?Set CHATBOT_DB_PASSWORD}@db:5432/vcare_chatbot
       REDIS_URL: redis://redis:6379/0
-    ports:
-      - "127.0.0.1:18720:8000"
     depends_on:
       db:
         condition: service_healthy
@@ -24,7 +22,11 @@ services:
     pids_limit: 100
     mem_limit: 512m
     cpus: 1.0
-    networks: [chatbot_internal, chatbot_egress]
+    networks:
+      chatbot_internal: {}
+      chatbot_egress:
+        aliases:
+          - vcare-chat-api
 
   cleanup:
     image: vcare-ai-chatbot-api:local

@@ -13,6 +13,7 @@ const nextConfig = {
     ,{ protocol: 'https', hostname: 'www.vidarflooring.com' }
     ,{ protocol: 'https', hostname: 'leeflooring.ca' }
     ,{ protocol: 'https', hostname: 'wickhamhardwood.com' }
+    ,{ protocol: 'https', hostname: 'northernestflooring.ca' }
   ] },
   async headers() {
     return [{ source: '/(.*)', headers: [

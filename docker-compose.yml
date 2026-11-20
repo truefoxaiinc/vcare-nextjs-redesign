@@ -61,6 +61,10 @@ services:
       NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
       NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
       NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
+      VCARE_AI_CHAT_UI_ENABLED: "true"
+      VCARE_CHAT_PROXY_ENABLED: "true"
+      VCARE_CHAT_BACKEND_ORIGIN: http://vcare-chat-api:8000
+      VCARE_CHAT_BACKEND_ALLOWED_HOSTS: vcare-chat-api
     ports:
       - "127.0.0.1:${APP_PORT:-18660}:3000"
     depends_on:
@@ -78,10 +82,14 @@ services:
       start_period: 30s
     networks:
       - vcare
+      - chatbot_egress
 
 networks:
   vcare:
     driver: bridge
+  chatbot_egress:
+    external: true
+    name: vcare-ai-chatbot_chatbot_egress
 
 volumes:
   vcare-postgres-data:

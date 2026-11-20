@@ -7,7 +7,8 @@ This deployment is deliberately isolated from the other applications on the VPS.
 - Compose project name is fixed to `vcareflooring-web`; Compose-created containers, bridge network, and named volume are scoped to this project.
 - The Next.js process (website plus its `/api/*` routes) is published only on host loopback: `127.0.0.1:18660` by default. It is not directly exposed to the public network.
 - PostgreSQL has no published host port. Only Vcare containers on the private-to-this-stack Compose bridge can reach it.
-- No `container_name`, shared external network, host network, global Docker cleanup, or cross-project dependency is configured.
+- The chatbot API runs in its separate `vcare-ai-chatbot` Compose project. Its API has no published host port; the website reaches it through the explicitly shared `vcare-ai-chatbot_chatbot_egress` network at `http://vcare-chat-api:8000`.
+- No `container_name`, host network, global Docker cleanup, or unrelated cross-project dependency is configured.
 - Do not use `docker compose down -v`, `docker system prune`, or commands targeting other Compose projects during this deployment.
 
 ## Prepare the server
@@ -31,6 +32,25 @@ nano .env
 ```
 
 Set a unique long random `POSTGRES_PASSWORD` and the matching `DATABASE_URL`. URL-encode reserved characters in the password inside the URL. Keep all secrets private; do not paste the contents of `.env` into chat or logs. Configure the required Turnstile and Resend values before enabling quote/email submission. The public Turnstile site key is supplied at image build time.
+
+Configure the chatbot's separate environment file without overwriting an existing one:
+
+```bash
+test -f ai-chatbot-backend/.env || install -m 600 ai-chatbot-backend/.env.example ai-chatbot-backend/.env
+chmod 600 ai-chatbot-backend/.env
+nano ai-chatbot-backend/.env
+```
+
+Set a unique `CHATBOT_DB_PASSWORD` and a valid server-side `OPENROUTER_API_KEY`. Start the chatbot first so its private Docker network exists:
+
+```bash
+cd ai-chatbot-backend
+docker compose up -d --build
+docker compose exec api alembic upgrade head
+cd ..
+```
+
+The chatbot API is reachable by the website as `http://vcare-chat-api:8000`; do not publish port 8000 on the host. The site exposes its proxy on the same-origin `/api/v1/chat/sessions` route.
 
 Check that the intended ports are free:
 

@@ -31,6 +31,15 @@ describe('server-side live AI chat rollout', () => {
       VCARE_CHAT_BACKEND_ORIGIN: 'http://127.0.0.1:18690'
     })).toBe(true);
   });
+
+  it('allows an exact allowlisted Docker-network HTTP origin', () => {
+    expect(isLiveChatEnabled({
+      VCARE_AI_CHAT_UI_ENABLED: 'true',
+      VCARE_CHAT_PROXY_ENABLED: 'true',
+      VCARE_CHAT_BACKEND_ORIGIN: 'http://api:8000',
+      VCARE_CHAT_BACKEND_ALLOWED_HOSTS: 'api'
+    })).toBe(true);
+  });
   it('rejects an HTTPS origin whose hostname is not exactly allowlisted', () => {
     expect(isLiveChatEnabled({
       ...config,

@@ -17,13 +17,14 @@ export function isLiveChatEnabled(env: Readonly<Record<string, string | undefine
     }
     const local = ['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname);
     if (local && url.protocol === 'http:') return true;
-    if (url.protocol !== 'https:') return false;
 
     const allowed = (env.VCARE_CHAT_BACKEND_ALLOWED_HOSTS ?? '')
       .split(',')
       .map((host) => host.trim().toLowerCase())
       .filter(Boolean);
-    return allowed.includes(url.hostname.toLowerCase());
+    if (!allowed.includes(url.hostname.toLowerCase())) return false;
+    if (url.protocol === 'http:' && /^[a-z0-9.-]+$/.test(url.hostname)) return true;
+    return url.protocol === 'https:';
   } catch {
     return false;
   }

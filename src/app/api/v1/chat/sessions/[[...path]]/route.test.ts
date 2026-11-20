@@ -54,6 +54,27 @@ describe('disabled-by-default chatbot proxy', () => {
     }
   );
 
+  it('permits an exact allowlisted Docker-network HTTP origin', async () => {
+    enable('http://api:8000');
+    vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', 'api');
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ session_id: id, token, expires_at: '2099-01-01T00:00:00Z' }), {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    );
+    vi.stubGlobal('fetch', fetchMock);
+    const response = await POST(
+      new NextRequest('https://vcarehardwoodfloors.ca/api/v1/chat/sessions', { method: 'POST' }),
+      context()
+    );
+    expect(response.status).toBe(201);
+    expect(fetchMock).toHaveBeenCalledWith(
+      'http://api:8000/api/v1/chat/sessions',
+      expect.objectContaining({ method: 'POST', redirect: 'manual' })
+    );
+  });
+
   it('permits reviewed remote HTTPS origins only when explicitly allowlisted', async () => {
     enable('https://chat.vcarehardwoodfloors.ca');
     vi.stubEnv('VCARE_CHAT_BACKEND_ALLOWED_HOSTS', 'chat.vcarehardwoodfloors.ca');

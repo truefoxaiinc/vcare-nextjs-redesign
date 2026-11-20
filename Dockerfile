@@ -23,7 +23,6 @@ COPY . .
 RUN npm run db:generate
 RUN npm run build
 
-# Runtime image: Next.js frontend and its /api backend routes run together.
 FROM base AS runner
 ENV NODE_ENV=production
 ENV PORT=3000
@@ -36,7 +35,6 @@ USER nextjs
 EXPOSE 3000
 CMD ["node", "server.js"]
 
-# One-shot image used by Compose to apply Prisma migrations before the web service starts.
 FROM base AS migrator
 ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
