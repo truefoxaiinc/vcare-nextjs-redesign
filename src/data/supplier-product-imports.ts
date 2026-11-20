@@ -268,7 +268,7 @@ const grandeur12Collection = [
   'Laminate',
   name,
   'https://grandeurflooring.ca/commercial/commercial-products/12-collection.html',
-  { Collection: '12 Collection', Dimensions: '8 in × 53 in × 1/2 in', Abrasion rating: 'AC6' }
+  { Collection: '12 Collection', Dimensions: '8 in × 53 in × 1/2 in', 'Abrasion rating': 'AC6' }
 ));
 
 const simbaSpcCodes = [
@@ -279,7 +279,7 @@ const simbaSpcProducts = simbaSpcCodes.map(code => supplierListingProduct(
   'Simba',
   'Vinyl',
   code,
-  'https://simbaflooringcorp.com/product/' + code.toLowerCase() + '/',
+  'https://simbaflooringcorp.com/product-category/spc-flooring/',
   code === '58002-3'
     ? { Collection: 'Galaxy', Construction: 'SPC', Length: '1540 mm', Width: '230 mm', Thickness: '5 mm', Underlayment: '1.5 mm IXPE', 'Wear layer': '0.5 mm', Grain: 'EIR' }
     : { Collection: 'Galaxy', Construction: 'SPC' }
@@ -301,7 +301,7 @@ const northernestCoastal = [
   'Northernest',
   'Engineered Hardwood',
   name,
-  'https://northernestflooring.ca/product/' + slugPart(name) + '/',
+  'https://northernestflooring.ca/product-category/engineered/coastal/',
   name === 'Warm Beechwood' || name === 'Pure Walnut' || name === 'Monaco' || name === 'Nappa'
     ? { Collection: 'Coastal', Species: 'European White Oak', Construction: 'Multi-layer engineered', Dimensions: '7-1/2 in × 3/4 in × random length', 'Wear layer': '1.5 mm', Profile: 'Tongue and groove', Finish: 'UV-lacquered matte' }
     : { Collection: 'Coastal', Species: 'European White Oak' },
@@ -349,7 +349,7 @@ const wodenProducts = [
   'Woden',
   'Vinyl',
   name,
-  'https://www.wodenflooring.com/product-page/' + slugPart(name),
+  'https://www.wodenflooring.com/category/all-products',
   { Collection: collection, Structure: '8 mm SPC + 2 mm cork pad', 'Coverage per box': '15 sq. ft.', Installation: 'On, above or below grade' }
 ));
 
@@ -364,7 +364,7 @@ const weissEngineeredProducts = weissEngineeredNames.map(name => supplierListing
   'Engineered Hardwood',
   name,
   'https://www.weissflooring.ca/engineeredhardwood',
-  { Product line: 'Engineered hardwood' }
+  { 'Product line': 'Engineered hardwood' }
 ));
 
 const weissSpcNames = [
@@ -377,7 +377,7 @@ const weissSpcProducts = weissSpcNames.map(name => supplierListingProduct(
   'Vinyl',
   name,
   'https://www.weissflooring.ca/spcvinyl',
-  { Product line: 'SPC vinyl' }
+  { 'Product line': 'SPC vinyl' }
 ));
 
 const weissLaminateNames = ['Zenith', 'Titanium', 'Savage', 'Meridian', 'Horizon', 'Eclipse', 'Citadel', 'Aube'];
@@ -386,7 +386,7 @@ const weissLaminateProducts = weissLaminateNames.map(name => supplierListingProd
   'Laminate',
   name,
   'https://www.weissflooring.ca/premierlaminate',
-  { Product line: 'Premier laminate' }
+  { 'Product line': 'Premier laminate' }
 ));
 
 
