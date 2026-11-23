@@ -310,6 +310,20 @@ describe('flooring supplier mapping', () => {
     );
   });
 
+  it('uses the supplied Mist image for the existing Pangolin PS106 SKU', () => {
+    const matching = products.filter(product => product.supplier === 'Pangolin' && product.specifications?.SKU === 'PS106');
+    expect(matching).toHaveLength(1);
+    expect(matching[0]).toMatchObject({
+      slug: 'pangolin-origin-collection-spc-ps106',
+      name: 'Origin Collection SPC - 7MM PS106 Mist',
+      imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS106%E6%8B%BC%E8%A3%85.jpg/:/rs=w:1438,h:2425',
+      specifications: { SKU: 'PS106', Colour: 'Mist', Thickness: '7 mm', Underlay: '1.5 mm IXPE' },
+      imageAuthorizationStatus: 'approved',
+      imageAuthorizedAt: '2026-11-23'
+    });
+    expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
+  });
+
   it('uses the supplied images and variant names for Pangolin Origin SPC PS101-PS105', () => {
     const variants = {
       PS101: {
