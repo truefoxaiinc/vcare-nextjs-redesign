@@ -663,6 +663,46 @@ const pangolinOriginSpcVariants: Partial<Record<PangolinSku, { name: string; col
     name: 'Origin Collection SPC - 7MM PS106 Mist',
     colour: 'Mist',
     imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS106%E6%8B%BC%E8%A3%85.jpg/:/rs=w:1438,h:2425'
+  },
+  PS107: {
+    name: 'Origin Collection SPC - 7MM PS107 Oatmeal',
+    colour: 'Oatmeal',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS107%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1853'
+  },
+  PS109: {
+    name: 'Origin Collection SPC - 7MM PS109 Dove',
+    colour: 'Dove',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS109%E5%BD%A9%E8%86%9C%E5%9B%BE.png/:/rs=w:719,h:859'
+  },
+  PS110: {
+    name: 'Origin Collection SPC - 8MM PS110 Fawn',
+    colour: 'Fawn',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS110%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854'
+  },
+  PS111: {
+    name: 'Origin Collection SPC - 8MM PS111 Flint',
+    colour: 'Flint',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS111%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854'
+  },
+  PS112: {
+    name: 'Origin Collection SPC - 8MM PS112 Palomino',
+    colour: 'Palomino',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS112%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1855'
+  },
+  PS114: {
+    name: 'Origin Collection SPC - 8MM PS114 Chamois',
+    colour: 'Chamois',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS114%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866'
+  },
+  PS121: {
+    name: 'Origin Collection SPC - 8MM PS121 Almond',
+    colour: 'Almond',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS121%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866'
+  },
+  PS122: {
+    name: 'Origin Collection SPC - 8MM PS122 Tobac',
+    colour: 'Tobac',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS122%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1863'
   }
 };
 const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
