@@ -741,6 +741,11 @@ const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
   };
 });
 
+const wodenImageUrls: Partial<Record<string, string>> = {
+  '1001 Sandy Cove': 'https://static.wixstatic.com/media/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg',
+  '1002 Beach Bluff': 'https://static.wixstatic.com/media/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg'
+};
+
 const wodenProducts = ([
   ['1001 Sandy Cove', '10 Collection'], ['1002 Beach Bluff', '10 Collection'],
   ['1003 Golden Shoal', '10 Collection'], ['1004 River Clay', '10 Collection'],
@@ -751,7 +756,8 @@ const wodenProducts = ([
   'Vinyl',
   name,
   'https://www.wodenflooring.com/category/all-products',
-  { Collection: collection, Structure: '8 mm SPC + 2 mm cork pad', 'Coverage per box': '15 sq. ft.', Installation: 'On, above or below grade' }
+  { Collection: collection, Structure: '8 mm SPC + 2 mm cork pad', 'Coverage per box': '15 sq. ft.', Installation: 'On, above or below grade' },
+  wodenImageUrls[name]
 ));
 
 const weissEngineeredNames = [
