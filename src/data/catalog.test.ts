@@ -324,6 +324,31 @@ describe('flooring supplier mapping', () => {
     expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
   });
 
+  it('maps final eight Weiss SPC vinyl images and completes image coverage', () => {
+    const images = {
+      'Bora': 'https://static.wixstatic.com/media/084e8e_b88cca64c3fb4c46b759aad11410ea7f~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bora%20Layout.jpg',
+      'Copacabana': 'https://static.wixstatic.com/media/084e8e_0b8cb3f08cc2431f89c51a2d57395235~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copacabana%20Layout.jpg',
+      'Hanalei': 'https://static.wixstatic.com/media/084e8e_db7f3388875c44ed93ce7e94964682a3~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hanalei%20Layout.jpg',
+      'Lanikai': 'https://static.wixstatic.com/media/084e8e_731ea794be1b454c940813f2fdba4439~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Lanikai%20Layout.jpg',
+      'Siesta': 'https://static.wixstatic.com/media/084e8e_1ebdb39b72814c899eced11429ce7dbe~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Siesta%20Layout%20(2).jpg',
+      'Trunk Bay': 'https://static.wixstatic.com/media/084e8e_afb855f90a4b451fbf0c25aff2f47126~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Trunk%20Bay%20Layout.jpg',
+      'Varadero': 'https://static.wixstatic.com/media/084e8e_60a6136bdcb5442784a53e0929e1e8cb~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Varadero%20Layout.jpg',
+      'Wasaga': 'https://static.wixstatic.com/media/084e8e_b8eefa2b70714ad6a54f15b746766a4e~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Wasaga%20Layout.jpg'
+    };
+    for (const [name, imageUrl] of Object.entries(images)) {
+      const matching = products.filter(product => product.supplier === 'Weiss' && product.category === 'Vinyl' && product.name === name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0].slug).toBe(`weiss-${name.toLowerCase().replace(/ /g, '-')}`);
+      expect(matching[0].imageUrl).toBe(imageUrl);
+      expect(matching[0].imageAlt).toBe(`Supplier product image for Weiss ${name}`);
+      expect(matching[0].specifications).toMatchObject({ 'Product line': 'SPC vinyl' });
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+    const weissSpc = products.filter(product => product.supplier === 'Weiss' && product.category === 'Vinyl' && product.specifications['Product line'] === 'SPC vinyl');
+    expect(weissSpc).toHaveLength(22);
+    expect(weissSpc.every(product => Boolean(product.imageUrl))).toBe(true);
+  });
+
   it('maps five more Weiss SPC vinyl images without changing product details', () => {
     const images = {
       'American Walnut': 'https://static.wixstatic.com/media/084e8e_a9bb5cf871e44fedb495e244cd5d6eba~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/American%20Walnut%20%20Layout.jpg',
