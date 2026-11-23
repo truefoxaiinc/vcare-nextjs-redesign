@@ -324,6 +324,22 @@ describe('flooring supplier mapping', () => {
     expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
   });
 
+  it('uses supplied Woden Sandy Cove and Beach Bluff images on existing products', () => {
+    const expected = {
+      '1001 Sandy Cove': 'https://static.wixstatic.com/media/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg',
+      '1002 Beach Bluff': 'https://static.wixstatic.com/media/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg'
+    };
+    for (const [name, imageUrl] of Object.entries(expected)) {
+      const matching = products.filter(product => product.supplier === 'Woden' && product.name === name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0].slug).toBe(`woden-${name.toLowerCase().replace(/ /g, '-')}`);
+      expect(matching[0].imageUrl).toBe(imageUrl);
+      expect(matching[0].imageAlt).toBe(`Supplier product image for Woden ${name}`);
+      expect(matching[0].specifications).toMatchObject({ Collection: '10 Collection', Structure: '8 mm SPC + 2 mm cork pad' });
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('maps the supplied PS123 Biscuit and PS124 Mocha images without duplicating SKUs', () => {
     const variants = {
       PS123: { name: 'Origin Collection SPC - 8MM PS123 Biscuit', colour: 'Biscuit', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS123%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1867' },
