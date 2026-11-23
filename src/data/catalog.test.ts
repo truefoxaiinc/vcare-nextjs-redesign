@@ -5,10 +5,11 @@ import sitemap from '@/app/sitemap';
 import { siteUrl } from '@/lib/seo';
 
 describe('flooring supplier mapping', () => {
-  it('uses only the 12 client-approved suppliers in the requested order', () => {
+  it('lists the approved suppliers and the additional logo-only suppliers', () => {
     expect(suppliers.map(supplier => supplier.name)).toEqual([
       'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
-      'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss'
+      'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss',
+      'Purelux', 'Vidar'
     ]);
     expect(Object.fromEntries(categories.map(category => [category.title, category.suppliers]))).toEqual({
       'Hardwood': ['Wickham', 'Tosca'],
@@ -19,14 +20,22 @@ describe('flooring supplier mapping', () => {
     expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
   });
 
-  it('maps all twelve supplied supplier logos', () => {
+  it('maps all fourteen supplied supplier logos and keeps new brands out of product publishing', () => {
     const withLogos = suppliers.filter(supplier => supplier.logoPath);
-    expect(withLogos).toHaveLength(12);
+    expect(withLogos).toHaveLength(14);
     expect(withLogos.every(supplier => supplier.logoPath?.startsWith('/images/suppliers/'))).toBe(true);
     expect(suppliers.find(supplier => supplier.name === 'Pangolin')?.logoPath).toContain('Pangol-logo.webp');
     expect(suppliers.find(supplier => supplier.name === 'Woden')?.logoPath).toContain('woodenflooring-logo.avif');
     expect(suppliers.find(supplier => supplier.name === 'Sherwood')?.logoPath).toContain('sharwood-logo.jpeg');
     expect(suppliers.find(supplier => supplier.name === 'Lee Flooring')?.logoPath).toContain('Lee%20Flooring-logo.webp');
+    expect(suppliers.find(supplier => supplier.name === 'Purelux')?.logoPath).toContain('Purelux-footer-logo-.png');
+    expect(suppliers.find(supplier => supplier.name === 'Purelux')?.logoBackground).toBe('dark');
+    expect(suppliers.find(supplier => supplier.name === 'Purelux')?.productCatalogueEnabled).toBe(false);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.logoPath).toContain('vidar-logo.png');
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.productCatalogueEnabled).toBe(false);
+    expect(suppliers.find(supplier => supplier.name === 'Purelux')?.categories).toEqual([]);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.categories).toEqual([]);
+    expect(publishedProducts.some(product => product.supplier === 'Vidar' || product.supplier === 'Purelux')).toBe(false);
   });
 
   it('imports the 48 existing supplier products and applies client-reported authorization', () => {

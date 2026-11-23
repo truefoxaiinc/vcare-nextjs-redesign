@@ -1,7 +1,7 @@
 import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Copy the twelve mapped supplier assets from docs to Next.js public assets.
+// Copy mapped supplier assets from docs to Next.js public assets.
 const files = [
   "grandeurflooring-logo.png",
   "Tosca-logo.webp",
@@ -14,7 +14,9 @@ const files = [
   "Pangol-logo.webp",
   "woodenflooring-logo.avif",
   "Lee Flooring-logo.webp",
-  "Weiss-logo.avif"
+  "Weiss-logo.avif",
+  "Purelux-footer-logo-.png",
+  "vidar-logo.png"
 ];
 const source = join(process.cwd(), 'docs', 'supplier-logos');
 const destination = join(process.cwd(), 'public', 'images', 'suppliers');

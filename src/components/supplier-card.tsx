@@ -7,7 +7,7 @@ export function SupplierCard({ supplier }: { supplier: Supplier }) {
     <article className="supplier-card">
       <small>FLOORING SUPPLIER</small>
       {supplier.logoPath && (
-        <div className="supplier-logo" style={{ position: 'relative', width: 180, height: 80, maxWidth: '100%' }}>
+        <div className={`supplier-logo${supplier.logoBackground ? ` supplier-logo-${supplier.logoBackground}` : ''}`}>
           <Image src={supplier.logoPath} alt={`${supplier.name} logo`} fill sizes="180px" style={{ objectFit: 'contain' }} />
         </div>
       )}

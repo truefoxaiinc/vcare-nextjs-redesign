@@ -38,6 +38,8 @@ export type Supplier = {
   categories: Category[];
   /** Approved, locally hosted logo asset. Omit until supplied and licensed. */
   logoPath?: string;
+  logoBackground?: 'dark';
+  productCatalogueEnabled: boolean;
 };
 
 const photo = (id: string) => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1100&q=82';
@@ -86,16 +88,23 @@ const supplierLogoFiles: Record<string, string> = {
   "Pangolin": "Pangol-logo.webp",
   "Woden": "woodenflooring-logo.avif",
   "Lee Flooring": "Lee Flooring-logo.webp",
-  "Weiss": "Weiss-logo.avif"
+  "Weiss": "Weiss-logo.avif",
+  "Purelux": "Purelux-footer-logo-.png",
+  "Vidar": "vidar-logo.png"
 };
 
-/** Client-approved supplier names. Do not infer product ranges for unclassified suppliers. */
+const productCatalogueDisabledSuppliers = new Set(['Purelux', 'Vidar']);
+
+/** Public supplier directory. Do not infer product ranges for unclassified suppliers. */
 export const suppliers: Supplier[] = [
   'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
-  'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss'
+  'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss',
+  'Purelux', 'Vidar'
 ].map(name => ({
   name,
   logoPath: supplierLogoFiles[name] ? '/images/suppliers/' + encodeURIComponent(supplierLogoFiles[name]) : undefined,
+  logoBackground: name === 'Purelux' ? 'dark' : undefined,
+  productCatalogueEnabled: !productCatalogueDisabledSuppliers.has(name),
   categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
 }));
 
@@ -103,7 +112,7 @@ const approvedSupplierAliases: Record<string, string> = {
   'Floors at Work': 'Floorsatwork',
   'Pangolin Floors': 'Pangolin'
 };
-const approvedSupplierNames = new Set(suppliers.map(supplier => supplier.name));
+const approvedSupplierNames = new Set(suppliers.filter(supplier => supplier.productCatalogueEnabled).map(supplier => supplier.name));
 
 const existingProductRecords: Product[] = [
   {
