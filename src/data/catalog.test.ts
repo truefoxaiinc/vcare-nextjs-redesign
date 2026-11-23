@@ -324,6 +324,26 @@ describe('flooring supplier mapping', () => {
     expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
   });
 
+  it('maps the supplied PS123 Biscuit and PS124 Mocha images without duplicating SKUs', () => {
+    const variants = {
+      PS123: { name: 'Origin Collection SPC - 8MM PS123 Biscuit', colour: 'Biscuit', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS123%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1867' },
+      PS124: { name: 'Origin Collection SPC - 8MM PS124 Mocha', colour: 'Mocha', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS124%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:1007' }
+    };
+    for (const [sku, variant] of Object.entries(variants)) {
+      const matching = products.filter(product => product.supplier === 'Pangolin' && product.specifications?.SKU === sku);
+      expect(matching).toHaveLength(1);
+      const product = matching[0];
+      expect(product.slug).toBe(`pangolin-origin-collection-spc-${sku.toLowerCase()}`);
+      expect(product.name).toBe(variant.name);
+      expect(product.imageUrl).toBe(variant.imageUrl);
+      expect(product.specifications).toMatchObject({ SKU: sku, Colour: variant.colour, Thickness: '8 mm', Underlay: '2.0 mm EVA' });
+      expect(product.imageAuthorizationStatus).toBe('approved');
+      expect(product.imageAuthorizedAt).toBe('2026-11-23');
+      expect(product.descriptionAuthorizedAt).toBe('2026-11-23');
+      expect(isProductPublishable(product)).toBe(true);
+    }
+  });
+
   it('maps eight supplied Pangolin variants without changing existing SKU slugs', () => {
     const variants = {
       PS107: { name: 'Origin Collection SPC - 7MM PS107 Oatmeal', colour: 'Oatmeal', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS107%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1853' },
