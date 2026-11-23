@@ -1,5 +1,20 @@
 import type { Product } from '@/data/catalog';
-import { clientReportedAuthorization, vidarProductDisplayAuthorization } from '@/data/catalog-authorization';
+import {
+  clientReportedAuthorization,
+  grandeurLaminateDisplayAuthorization,
+  grandeurProductDisplayAuthorization,
+  grandeurSolidHardwoodDisplayAuthorization,
+  grandeurVinylDisplayAuthorization,
+  northernestCoastalImageDisplayAuthorization,
+  simba2024LaminateDisplayAuthorization,
+  simba2052LaminateDisplayAuthorization,
+  simba20360LaminateDisplayAuthorization,
+  simba20860LaminateDisplayAuthorization,
+  simba2055LaminateDisplayAuthorization,
+  simbaLaminateDisplayAuthorization,
+  simbaProductDisplayAuthorization,
+  vidarProductDisplayAuthorization
+} from '@/data/catalog-authorization';
 
 const publishedImport = {
   publicationStatus: 'published' as const,
@@ -282,63 +297,315 @@ const vidarLaminateImports: Product[] = vidarLaminateProducts.map(([code, imageP
   };
 });
 
+const grandeurPacificProductImages: Partial<Record<string, string>> = {
+  Canterbury: 'https://grandeurflooring.ca/images/products/thumb/canterbury-491550.jpg',
+  'Golden Bay': 'https://grandeurflooring.ca/images/products/thumb/golden-bay.jpg',
+  Queenstown: 'https://grandeurflooring.ca/images/products/thumb/queenstown.jpg',
+  '88006-2': 'https://grandeurflooring.ca/images/products/thumb/88006-2-103521.jpg'
+};
+
 const grandeurPacific = [
   'Canterbury', 'Golden Bay', 'Queenstown', 'Wellington', '88006-2'
-].map(name => supplierListingProduct(
-  'Grandeur',
-  'Vinyl',
-  name,
-  'https://grandeurflooring.ca/commercial/commercial-products/pacific.html',
-  { Collection: 'Pacific', Construction: 'SPC vinyl' }
-));
+].map(name => {
+  const imageUrl = grandeurPacificProductImages[name];
+  const product = supplierListingProduct(
+    'Grandeur',
+    'Vinyl',
+    name,
+    imageUrl
+      ? `https://grandeurflooring.ca/${slugPart(name)}.html`
+      : 'https://grandeurflooring.ca/commercial/commercial-products/pacific.html',
+    { Collection: 'Pacific', Construction: 'SPC vinyl' },
+    imageUrl
+  );
+  return imageUrl ? { ...product, ...grandeurVinylDisplayAuthorization } : product;
+});
 
 const grandeur12Collection = [
-  'Arles Natural', 'Fado Gavia', 'Fado Sotavento', 'Kalas Albar', 'Kalmar Gris',
-  'Kalas Noz', 'Roble Twilight', 'Viena Dorado', 'Wexford Tostado'
-].map(name => supplierListingProduct(
-  'Grandeur',
-  'Laminate',
-  name,
-  'https://grandeurflooring.ca/commercial/commercial-products/12-collection.html',
-  { Collection: '12 Collection', Dimensions: '8 in × 53 in × 1/2 in', 'Abrasion rating': 'AC6' }
-));
+  ['Arles Natural', 'arles-natural', 'arles-natural-347519.jpg'],
+  ['Fado Gavia', 'fado-gavia', 'fado-gavia-963161.jpg'],
+  ['Fado Sotavento', 'fado-sotavento', 'fado-sotavento-541593.jpg'],
+  ['Kalas Albar', 'kalas-albar', 'kalas-albar-008841.jpg'],
+  ['Kalmar Gris', 'kalmar-gris', 'kalmar-gris-517179.jpg'],
+  ['Kalas Noz', 'kalas-noz', 'kalas-noz-323524.jpg'],
+  ['Roble Twilight', 'roble-twilight', 'roble-twilight-274332.jpg'],
+  ['Viena Dorado', 'viena-dorado', 'viena-dorado-747254.jpg'],
+  ['Wexford Tostado', 'wexford-tostado', 'wexford-tostado-021187.jpg']
+] as const;
+
+const grandeurLaminateProducts: Product[] = grandeur12Collection.map(([name, slug, image]) => ({
+  ...supplierListingProduct(
+    'Grandeur',
+    'Laminate',
+    name,
+    `https://grandeurflooring.ca/${slug}.html`,
+    { Collection: '12 Collection', Dimensions: '53 in × 8 in × 1/2 in', 'Abrasion rating': 'AC6' },
+    `https://grandeurflooring.ca/images/products/thumb/${image}`
+  ),
+  description: `Grandeur lists ${name} in its 12 Collection laminate range with 53-inch by 8-inch planks and an AC6 abrasion rating.`,
+  imageAlt: `Grandeur ${name} laminate flooring`,
+  ...grandeurLaminateDisplayAuthorization
+}));
+
+const grandeurEngineeredHardwood = [
+  ['Scandinavia', 'White Oak', '6-1/2 in × 3/4 in × random length', 'scandinavia.jpg'],
+  ['Paradise', 'White Oak', '6 in × 3/4 in', 'paradise.png'],
+  ['Artisan', 'Hickory', '6-1/2 in × 3/4 in', 'artisan-177450.jpg'],
+  ['Ultra', 'White Oak', '7-1/2 in × 3/4 in', 'ultra.jpg'],
+  ['Sunshine', 'White Oak', '6 in × 3/4 in', 'sunshine.jpg'],
+  ['Metropolitan', 'White Oak', '7-1/2 in × 3/4 in', 'metropolitan.jpg'],
+  ['Elevation', 'Hickory', '7-1/2 in × 3/4 in', 'elevation.jpg'],
+  ['Divine', 'Maple', '7-1/2 in × 3/4 in', 'divine-237531.jpg'],
+  ['Enterprise', 'White Oak', '7-1/2 in × 3/4 in', 'enterprise.jpg'],
+  ['Crown Land', 'White Oak', '7-1/2 in × 3/4 in', 'crown-land.jpg'],
+  ['Herringbone', 'White Oak', '5 in × 3/4 in × 24 in; 6 in × 3/4 in × 36 in', 'herringbone.png'],
+  ['Elite', 'White Oak', '9-1/2 in × 3/4 in × 86 in', 'elite.jpg'],
+  ['Regal', 'White Oak', '7-1/2 in × 3/4 in; 6 in × 3/4 in', 'regal.jpg'],
+  ['Regal Plus', 'White Oak', '7-1/2 in × 3/4 in; 6 in × 3/4 in; herringbone', 'regal-plus-583932.jpg'],
+  ['Atelier', 'White Oak', '7-1/2 in × 3/4 in', 'atelier-049705.png']
+] as const;
+
+const grandeurEngineeredProducts: Product[] = grandeurEngineeredHardwood.map(([name, species, dimensions, image]) => {
+  const slug = slugPart(name);
+  const product = supplierListingProduct(
+    'Grandeur',
+    'Engineered Hardwood',
+    name,
+    `https://grandeurflooring.ca/${slug}.html`,
+    { Collection: name, Species: species, Dimensions: dimensions },
+    `https://grandeurflooring.ca/images/products-collections/${image}`
+  );
+  return {
+    ...product,
+    description: `Grandeur lists ${name} as an engineered hardwood collection in ${species}. Confirm current colour options, specifications and availability with Vcare.`,
+    imageAlt: `Grandeur ${name} engineered hardwood collection`,
+    ...grandeurProductDisplayAuthorization
+  };
+});
+
+const grandeurSolidHardwoodProducts: Product[] = [{
+  ...supplierListingProduct(
+    'Grandeur',
+    'Hardwood',
+    'Contemporary',
+    'https://grandeurflooring.ca/contemporary-62.html',
+    { Collection: 'Contemporary', Species: 'Red Oak', Dimensions: '4-1/4 in × 3/4 in' },
+    'https://grandeurflooring.ca/images/products-collections/contemporary.jpg'
+  ),
+  description: 'Grandeur lists Contemporary as a solid hardwood collection in Red Oak with 4-1/4-inch by 3/4-inch planks.',
+  imageAlt: 'Grandeur Contemporary solid hardwood collection',
+  ...grandeurSolidHardwoodDisplayAuthorization
+}];
+
+const grandeurVinylCollections = [
+  ['Atlantic', 'SPC', 'Drop Lock', '5.0/0.3 mm', '5g-click-spc-flooring.jpg'],
+  ['Continental', 'SPC', 'Drop Lock', '6.0/0.3 mm; 7.0/0.5 mm', 'continental.jpg'],
+  ['Pacific', 'SPC', 'Drop Lock', '7.0/0.5 mm', 'pacific-36.jpg'],
+  ['Anchor 7', 'SPC', 'Drop Lock', '7.0/0.5 mm', 'anchor-7-461848.jpg'],
+  ['Wonder 7', 'SPC', 'Drop Lock', '7.0/0.5 mm', 'wonder-7.jpg'],
+  ['Inov8', 'SPC', 'Välinge 5G Click', '8.0/0.5 mm', 'inov8.jpg'],
+  ['Designer', 'SPC Herringbone', 'Drop Lock', '7.0/0.5 mm', 'designer-240747.png'],
+  ['Bliss', 'WPC', 'Välinge 5G Click', '8.5/0.55 mm', 'bliss.jpg'],
+  ['BEACON', 'Engineered Vinyl', 'Välinge 5G Click', '9.0/0.55 mm', 'beacon-706786.jpg'],
+  ['Supreme X', 'WPC', 'Välinge 5G Click', '10/0.55 mm', 'supreme-x.jpg'],
+  ['Essential', 'Dry-Back', 'Glue Down', '3.0/0.5 mm', 'essential.jpg'],
+  ['Entrepreneur', 'Dry-Back', 'Glue Down', '4.0/0.5 mm', 'entrepreneur-280224.jpg'],
+  ['Timeless', 'Loose-Lay', 'Glue Down', '5.0/0.5 mm', 'timeless.jpg'],
+  ['Ultimate', 'Loose-Lay', 'Glue Down', '5.0/0.7 mm', 'ultimate.jpg']
+] as const;
+
+const grandeurVinylProducts: Product[] = grandeurVinylCollections.map(([name, construction, installation, productSpec, image]) => {
+  const slug = slugPart(name);
+  const product = supplierListingProduct(
+    'Grandeur',
+    'Vinyl',
+    name,
+    `https://grandeurflooring.ca/${slug}.html`,
+    {
+      Collection: name,
+      Construction: construction,
+      Installation: installation,
+      'Supplier specification': productSpec
+    },
+    `https://grandeurflooring.ca/images/products-collections/${image}`
+  );
+  return {
+    ...product,
+    description: `Grandeur lists ${name} in its vinyl flooring range as ${construction}, with ${installation} installation and supplier specification ${productSpec}. Confirm current options and availability with Vcare.`,
+    imageAlt: `Grandeur ${name} vinyl flooring collection`,
+    ...grandeurVinylDisplayAuthorization
+  };
+});
 
 const simbaSpcCodes = [
   '58002-3', '58023-10', '58065-3', '581066-1', '58305-21', '58730-10',
   '58730-2', '58943-01', '58943-03', '58943-06', '58943-15', '58943-16'
 ];
-const simbaSpcProducts = simbaSpcCodes.map(code => supplierListingProduct(
-  'Simba',
-  'Vinyl',
-  code,
-  'https://simbaflooringcorp.com/product-category/spc-flooring/',
-  code === '58002-3'
-    ? { Collection: 'Galaxy', Construction: 'SPC', Length: '1540 mm', Width: '230 mm', Thickness: '5 mm', Underlayment: '1.5 mm IXPE', 'Wear layer': '0.5 mm', Grain: 'EIR' }
-    : { Collection: 'Galaxy', Construction: 'SPC' }
-));
+const simbaSpcImages: Partial<Record<string, string>> = {
+  '58002-3': 'https://simbaflooringcorp.com/wp-content/uploads/2024/01/58002-3.jpg',
+  '58023-10': 'https://simbaflooringcorp.com/wp-content/uploads/2024/01/58023-10.jpg',
+  '58065-3': 'https://simbaflooringcorp.com/wp-content/uploads/2024/01/58065-3.jpg',
+  '581066-1': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/581066-1-scaled.jpg',
+  '58305-21': 'https://simbaflooringcorp.com/wp-content/uploads/2024/12/58305-21-scaled.jpg',
+  '58730-10': 'https://simbaflooringcorp.com/wp-content/uploads/2024/12/58730-10-scaled.jpg',
+  '58730-2': 'https://simbaflooringcorp.com/wp-content/uploads/2024/12/58730-2-scaled.jpg',
+  '58943-01': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/58943-01-scaled.jpg',
+  '58943-03': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/58943-03-scaled.jpg',
+  '58943-06': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/58943-06-scaled.jpg',
+  '58943-15': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/58943-15-scaled.jpg',
+  '58943-16': 'https://simbaflooringcorp.com/wp-content/uploads/2022/03/58943-16-scaled.jpg'
+};
+const simbaSpcProducts = simbaSpcCodes.map(code => {
+  const imageUrl = simbaSpcImages[code];
+  const product = supplierListingProduct(
+    'Simba',
+    'Vinyl',
+    code,
+    'https://simbaflooringcorp.com/product-category/spc-flooring/',
+    code === '58002-3'
+      ? { Collection: 'Galaxy', Construction: 'SPC', Length: '1540 mm', Width: '230 mm', Thickness: '5 mm', Underlayment: '1.5 mm IXPE', 'Wear layer': '0.5 mm', Grain: 'EIR' }
+      : { Collection: 'Galaxy', Construction: 'SPC' },
+    imageUrl
+  );
+  return imageUrl ? { ...product, ...simbaProductDisplayAuthorization } : product;
+});
 
-const simbaLaminateProducts = ['00306', '2024', '20360', '2052', '2055', '20860'].map(code =>
-  supplierListingProduct(
+const simbaLaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2026/10/PHOTO-2026-10-15-20-51-56.jpg';
+const simbaLaminateDescription = 'Simba’s Water Resistant Laminate Collection pairs a 12 mm rigid core with a 2 mm attached underlay for 14 mm total thickness. Its water-resistant construction is designed for everyday residential use and occasional spills; confirm current options and availability with Vcare.';
+const simba2024LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2024.jpg';
+const simba2052LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2025.jpg';
+const simba20360LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/12/20360-scaled.jpg';
+const simba20860LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/12/20860-scaled.jpg';
+const simba2055LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2055.jpg';
+const simbaWaterproofLaminateDescription = 'Simba’s AC4 waterproof laminate is designed for residential and light commercial spaces. It is described as resisting scratches, dents, and fading, making it suitable for high-traffic and moisture-prone rooms such as kitchens and bathrooms. Easy to install and maintain, it offers a hardwood- or stone-inspired look at an affordable price.';
+const simbaWaterproofLaminateSpecifications = {
+  'Wear class': 'AC4',
+  'Water resistance': 'Waterproof',
+  'Recommended use': 'Residential and light commercial',
+  'Surface durability': 'Resists scratches, dents, and fading'
+};
+const simbaLaminateProducts = ['00306', '2024', '20360', '2052', '2055', '20860'].map(code => {
+  const sourceUrl = code === '20360' || code === '20860' || code === '2055'
+    ? 'https://simbaflooringcorp.com/product-category/waterproof-laminate/'
+    : 'https://simbaflooringcorp.com/shop/';
+  const product = supplierListingProduct(
     'Simba',
     'Laminate',
     code,
-    'https://simbaflooringcorp.com/shop/',
-    { Category: 'Water-resistant / waterproof laminate (supplier listing)' }
-  )
-);
+    sourceUrl,
+    {
+      Collection: 'Water Resistant Laminate Collection',
+      Construction: '12 mm rigid core + 2 mm attached underlay',
+      'Total thickness': '14 mm',
+      'Water resistance': 'Water-resistant'
+    },
+    simbaLaminateImageUrl
+  );
 
+  if (code === '2024') {
+    return {
+      ...product,
+      imageUrl: simba2024LaminateImageUrl,
+      imageAlt: 'Simba 2024 AC4 waterproof laminate flooring',
+      description: simbaWaterproofLaminateDescription,
+      specifications: {
+        ...product.specifications,
+        ...simbaWaterproofLaminateSpecifications
+      },
+      ...simba2024LaminateDisplayAuthorization
+    };
+  }
+
+  if (code === '2052') {
+    return {
+      ...product,
+      imageUrl: simba2052LaminateImageUrl,
+      imageAlt: 'Simba 2052 AC4 waterproof laminate flooring',
+      description: simbaWaterproofLaminateDescription,
+      specifications: {
+        ...product.specifications,
+        ...simbaWaterproofLaminateSpecifications
+      },
+      ...simba2052LaminateDisplayAuthorization
+    };
+  }
+
+  if (code === '20360') {
+    return {
+      ...product,
+      imageUrl: simba20360LaminateImageUrl,
+      imageAlt: 'Simba 20360 AC4 waterproof laminate flooring',
+      description: simbaWaterproofLaminateDescription,
+      specifications: {
+        ...product.specifications,
+        ...simbaWaterproofLaminateSpecifications
+      },
+      ...simba20360LaminateDisplayAuthorization
+    };
+  }
+
+  if (code === '20860') {
+    return {
+      ...product,
+      imageUrl: simba20860LaminateImageUrl,
+      imageAlt: 'Simba 20860 AC4 waterproof laminate flooring',
+      description: simbaWaterproofLaminateDescription,
+      specifications: {
+        ...product.specifications,
+        ...simbaWaterproofLaminateSpecifications
+      },
+      ...simba20860LaminateDisplayAuthorization
+    };
+  }
+
+  if (code === '2055') {
+    return {
+      ...product,
+      imageUrl: simba2055LaminateImageUrl,
+      imageAlt: 'Simba 2055 AC4 waterproof laminate flooring',
+      description: simbaWaterproofLaminateDescription,
+      specifications: {
+        ...product.specifications,
+        ...simbaWaterproofLaminateSpecifications
+      },
+      ...simba2055LaminateDisplayAuthorization
+    };
+  }
+
+  return {
+    ...product,
+    description: simbaLaminateDescription,
+    ...simbaLaminateDisplayAuthorization
+  };
+});
+
+const northernestCoastalImages: Record<string, string> = {
+  'Warm Beechwood': 'https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg',
+  'Pure Walnut': 'https://northernestflooring.ca/wp-content/uploads/2026/01/PURE-WALNUT-2.jpg',
+  Nappa: 'https://northernestflooring.ca/wp-content/uploads/2026/01/NAPPA-3.jpg',
+  Monaco: 'https://northernestflooring.ca/wp-content/uploads/2026/01/Monaco-2.jpg',
+  Element: 'https://northernestflooring.ca/wp-content/uploads/2025/10/ELEMENT-1.jpg',
+  Celeste: 'https://northernestflooring.ca/wp-content/uploads/2025/10/CELESTE-2.jpg',
+  Belize: 'https://northernestflooring.ca/wp-content/uploads/2025/10/Belize-1-450x225.jpg'
+};
 const northernestCoastal = [
   'Warm Beechwood', 'Pure Walnut', 'Monaco', 'Nappa', 'Element', 'Celeste', 'Belize'
-].map(name => supplierListingProduct(
-  'Northernest',
-  'Engineered Hardwood',
-  name,
-  'https://northernestflooring.ca/product-category/engineered/coastal/',
-  name === 'Warm Beechwood' || name === 'Pure Walnut' || name === 'Monaco' || name === 'Nappa'
-    ? { Collection: 'Coastal', Species: 'European White Oak', Construction: 'Multi-layer engineered', Dimensions: '7-1/2 in × 3/4 in × random length', 'Wear layer': '1.5 mm', Profile: 'Tongue and groove', Finish: 'UV-lacquered matte' }
-    : { Collection: 'Coastal', Species: 'European White Oak' },
-  name === 'Warm Beechwood' ? 'https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg' : undefined
-));
+].map(name => {
+  const product = supplierListingProduct(
+    'Northernest',
+    'Engineered Hardwood',
+    name,
+    'https://northernestflooring.ca/product-category/engineered/coastal/',
+    name === 'Warm Beechwood' || name === 'Pure Walnut' || name === 'Monaco' || name === 'Nappa'
+      ? { Collection: 'Coastal', Species: 'European White Oak', Construction: 'Multi-layer engineered', Dimensions: '7-1/2 in × 3/4 in × random length', 'Wear layer': '1.5 mm', Profile: 'Tongue and groove', Finish: 'UV-lacquered matte' }
+      : { Collection: 'Coastal', Species: 'European White Oak' },
+    northernestCoastalImages[name]
+  );
+
+  return name === 'Warm Beechwood'
+    ? product
+    : { ...product, ...northernestCoastalImageDisplayAuthorization };
+});
 
 const sherwoodProducts = [
   supplierListingProduct('Sherwood', 'Vinyl', '12 x 24 Vinyl Tile Click', 'https://sherwoodforestproducts.com/product/12-x-24-vinyl-tile-click/', { Thickness: '6 mm with underpad', 'Coverage per box': '20.02 sq. ft.', Colours: 'Calcutta, Stone Argento, Stone Grey, Venato' }),
@@ -432,7 +699,10 @@ export const supplierProductImports: Product[] = [
   ...leeLaminateProducts,
   ...floorsAtWorkVinylProducts,
   ...grandeurPacific,
-  ...grandeur12Collection,
+  ...grandeurLaminateProducts,
+  ...grandeurEngineeredProducts,
+  ...grandeurSolidHardwoodProducts,
+  ...grandeurVinylProducts,
   ...simbaSpcProducts,
   ...simbaLaminateProducts,
   ...northernestCoastal,

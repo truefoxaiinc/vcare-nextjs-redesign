@@ -35,12 +35,13 @@ export type FloorCategory = {
 
 export type Supplier = {
   name: string;
+  slug: string;
   categories: Category[];
   /** Approved, locally hosted logo asset. Omit until supplied and licensed. */
   logoPath?: string;
   logoBackground?: 'dark';
   productCatalogueEnabled: boolean;
-  productListingHref?: string;
+  productListingHref: string;
 };
 
 const photo = (id: string) => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1100&q=82';
@@ -95,6 +96,7 @@ const supplierLogoFiles: Record<string, string> = {
 };
 
 const productCatalogueDisabledSuppliers = new Set(['Purelux']);
+const supplierSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 /** Public supplier directory. Do not infer product ranges for unclassified suppliers. */
 export const suppliers: Supplier[] = [
@@ -103,10 +105,11 @@ export const suppliers: Supplier[] = [
   'Purelux', 'Vidar'
 ].map(name => ({
   name,
+  slug: supplierSlug(name),
   logoPath: supplierLogoFiles[name] ? '/images/suppliers/' + encodeURIComponent(supplierLogoFiles[name]) : undefined,
   logoBackground: name === 'Purelux' ? 'dark' : undefined,
   productCatalogueEnabled: !productCatalogueDisabledSuppliers.has(name),
-  productListingHref: name === 'Vidar' ? '/suppliers/vidar' : undefined,
+  productListingHref: '/suppliers/' + supplierSlug(name),
   categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
 }));
 

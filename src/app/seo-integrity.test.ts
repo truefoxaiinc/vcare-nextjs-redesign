@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import sitemap from '@/app/sitemap';
 import robots from '@/app/robots';
-import { publishedProducts } from '@/data/catalog';
+import { publishedProducts, suppliers } from '@/data/catalog';
 import { siteUrl } from '@/lib/seo';
 
 describe('search index integrity', () => {
@@ -21,7 +21,10 @@ describe('search index integrity', () => {
 
   it('includes only published product URLs', () => {
     const urls = new Set(sitemap().map(entry => entry.url));
-    expect(urls.has(`${siteUrl}/suppliers/vidar`)).toBe(true);
+    expect(urls.has(`${siteUrl}/suppliers`)).toBe(true);
+    for (const supplier of suppliers) {
+      expect(urls.has(`${siteUrl}/suppliers/${supplier.slug}`)).toBe(true);
+    }
     for (const product of publishedProducts) {
       expect(urls.has(`${siteUrl}/products/${product.slug}`)).toBe(true);
     }

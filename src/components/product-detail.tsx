@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import type { Product } from '@/data/catalog';
+import Image from 'next/image';
+import { suppliers, type Product } from '@/data/catalog';
 import { CatalogProductImage } from '@/components/catalog-product-image';
 import { ProductCard } from '@/components/product-card';
 import { Breadcrumbs } from '@/components/site-shell';
@@ -14,14 +15,25 @@ type Props = {
 };
 
 export function ProductDetail({ product, related, categoryHref, productsHref = '/products', productHrefBase = '/products', preview = false }: Props) {
+  const supplier = suppliers.find(item => item.name === product.supplier);
+
   return <>
     <div className="product-detail container">
       <Breadcrumbs items={[{ label: preview ? 'Draft catalogue' : 'Shop floors', href: productsHref }, { label: product.category, href: categoryHref }, { label: product.name }]} />
       <div className="detail-grid">
         <div className="detail-photo"><CatalogProductImage src={product.imageUrl} alt={product.imageAlt} sizes="(max-width: 760px) 100vw, 55vw" priority /></div>
         <div className="detail-copy">
-          <span className="detail-kicker">{product.category} · {product.supplier}</span>
+          <span className="detail-kicker">{product.category}{supplier?.logoPath ? '' : ' · ' + product.supplier}</span>
           <h1>{product.name}</h1>
+          {supplier?.logoPath && (
+            <Link className="detail-supplier-link" href={supplier.productListingHref} aria-label={`Browse ${supplier.name} products`}>
+              <span className={`detail-supplier-logo${supplier.logoBackground ? ` detail-supplier-logo-${supplier.logoBackground}` : ''}`}>
+                <Image src={supplier.logoPath} alt="" fill sizes="94px" style={{ objectFit: 'contain' }} />
+              </span>
+              <span className="detail-supplier-copy"><small>SUPPLIER</small><strong>{supplier.name}</strong></span>
+              <span className="detail-supplier-arrow" aria-hidden="true">↗</span>
+            </Link>
+          )}
           <p>{product.description}</p>
           {preview && <p className="product-approval-status">Image authorization: {product.imageAuthorizationStatus} · Description authorization: {product.descriptionAuthorizationStatus ?? 'pending'} · Publication: {product.publicationStatus}{product.sourceStatus === 'unresolved' ? ' · Source link unresolved' : ''}</p>}
           {product.specifications && <div className="spec-list">{Object.entries(product.specifications).map(([label, value]) => <div className="spec-row" key={label}><b>{label}</b><span>{value}</span></div>)}</div>}

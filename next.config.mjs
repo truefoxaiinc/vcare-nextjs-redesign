@@ -14,6 +14,14 @@ const nextConfig = {
     ,{ protocol: 'https', hostname: 'leeflooring.ca' }
     ,{ protocol: 'https', hostname: 'wickhamhardwood.com' }
     ,{ protocol: 'https', hostname: 'northernestflooring.ca' }
+    ,{ protocol: 'https', hostname: 'grandeurflooring.ca', pathname: '/images/products-collections/**', search: '' }
+    ,{ protocol: 'https', hostname: 'grandeurflooring.ca', pathname: '/images/products/thumb/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2024/01/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2022/03/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2024/12/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2026/10/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/03/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/12/**', search: '' }
   ] },
   async headers() {
     return [{ source: '/(.*)', headers: [
