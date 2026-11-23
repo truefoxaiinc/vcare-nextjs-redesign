@@ -324,6 +324,25 @@ describe('flooring supplier mapping', () => {
     expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
   });
 
+  it('maps five supplied Weiss SPC vinyl images to existing vinyl products', () => {
+    const images = {
+      'Venus': 'https://static.wixstatic.com/media/084e8e_0905f994ecd747c583a9733b76bf5da5~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Venus2.jpg',
+      'Havenest': 'https://static.wixstatic.com/media/084e8e_5f4f875111fa4dc68c7147f93e43ac08~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Havenest1.jpg',
+      'Driftwood': 'https://static.wixstatic.com/media/084e8e_118bfb9b8a664ef996a5b3ec48ad4fa7~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Driftwood2.jpg',
+      'Boltique': 'https://static.wixstatic.com/media/084e8e_0cc0cb76dce64648bcf2c1d871a6beee~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Boltique2.jpg',
+      'Covehaus': 'https://static.wixstatic.com/media/084e8e_b25b9dfe295c43e0a534245fed05e292~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Covehaus1.jpg'
+    };
+    for (const [name, imageUrl] of Object.entries(images)) {
+      const matching = products.filter(product => product.supplier === 'Weiss' && product.category === 'Vinyl' && product.name === name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0].slug).toBe(`weiss-${name.toLowerCase().replace(/ /g, '-')}`);
+      expect(matching[0].imageUrl).toBe(imageUrl);
+      expect(matching[0].imageAlt).toBe(`Supplier product image for Weiss ${name}`);
+      expect(matching[0].specifications).toMatchObject({ 'Product line': 'SPC vinyl' });
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('maps final five Weiss engineered hardwood images to existing products', () => {
     const images = {
       'Toffee': 'https://static.wixstatic.com/media/084e8e_73c8ca37dd304ab7b71f85490407f63a~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Toffee%20%E9%93%BA%E8%A3%85%E5%9B%BE_JPG.jpg',
