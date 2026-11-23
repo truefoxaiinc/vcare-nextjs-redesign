@@ -818,6 +818,14 @@ const weissEngineeredProducts = weissEngineeredNames.map(name => supplierListing
   weissEngineeredImageUrls[name]
 ));
 
+const weissSpcImageUrls: Partial<Record<string, string>> = {
+  'Venus': 'https://static.wixstatic.com/media/084e8e_0905f994ecd747c583a9733b76bf5da5~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Venus2.jpg',
+  'Havenest': 'https://static.wixstatic.com/media/084e8e_5f4f875111fa4dc68c7147f93e43ac08~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Havenest1.jpg',
+  'Driftwood': 'https://static.wixstatic.com/media/084e8e_118bfb9b8a664ef996a5b3ec48ad4fa7~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Driftwood2.jpg',
+  'Boltique': 'https://static.wixstatic.com/media/084e8e_0cc0cb76dce64648bcf2c1d871a6beee~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Boltique2.jpg',
+  'Covehaus': 'https://static.wixstatic.com/media/084e8e_b25b9dfe295c43e0a534245fed05e292~mv2.jpg/v1/fill/w_211,h_211,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Covehaus1.jpg'
+};
+
 const weissSpcNames = [
   'Venus', 'Havenest', 'Driftwood', 'Boltique', 'Covehaus', 'Sable', 'Fog', 'Reef',
   'Coral', 'Vega', 'Tan', 'Cinnabar', 'Caviar', 'American Walnut', 'Wasaga',
@@ -828,7 +836,8 @@ const weissSpcProducts = weissSpcNames.map(name => supplierListingProduct(
   'Vinyl',
   name,
   'https://www.weissflooring.ca/spcvinyl',
-  { 'Product line': 'SPC vinyl' }
+  { 'Product line': 'SPC vinyl' },
+  weissSpcImageUrls[name]
 ));
 
 const weissLaminateNames = ['Zenith', 'Titanium', 'Savage', 'Meridian', 'Horizon', 'Eclipse', 'Citadel', 'Aube'];
