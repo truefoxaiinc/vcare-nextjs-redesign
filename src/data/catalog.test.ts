@@ -324,6 +324,32 @@ describe('flooring supplier mapping', () => {
     expect(matching[0] && isProductPublishable(matching[0])).toBe(true);
   });
 
+  it('maps eight supplied Pangolin variants without changing existing SKU slugs', () => {
+    const variants = {
+      PS107: { name: 'Origin Collection SPC - 7MM PS107 Oatmeal', colour: 'Oatmeal', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS107%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1853' },
+      PS109: { name: 'Origin Collection SPC - 7MM PS109 Dove', colour: 'Dove', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS109%E5%BD%A9%E8%86%9C%E5%9B%BE.png/:/rs=w:719,h:859' },
+      PS110: { name: 'Origin Collection SPC - 8MM PS110 Fawn', colour: 'Fawn', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS110%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854' },
+      PS111: { name: 'Origin Collection SPC - 8MM PS111 Flint', colour: 'Flint', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS111%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854' },
+      PS112: { name: 'Origin Collection SPC - 8MM PS112 Palomino', colour: 'Palomino', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS112%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1855' },
+      PS114: { name: 'Origin Collection SPC - 8MM PS114 Chamois', colour: 'Chamois', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS114%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866' },
+      PS121: { name: 'Origin Collection SPC - 8MM PS121 Almond', colour: 'Almond', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS121%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866' },
+      PS122: { name: 'Origin Collection SPC - 8MM PS122 Tobac', colour: 'Tobac', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS122%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1863' }
+    };
+    for (const [sku, variant] of Object.entries(variants)) {
+      const matching = products.filter(product => product.supplier === 'Pangolin' && product.specifications?.SKU === sku);
+      expect(matching).toHaveLength(1);
+      const product = matching[0];
+      expect(product.slug).toBe(`pangolin-origin-collection-spc-${sku.toLowerCase()}`);
+      expect(product.name).toBe(variant.name);
+      expect(product.imageUrl).toBe(variant.imageUrl);
+      expect(product.specifications).toMatchObject({ Colour: variant.colour, Thickness: variant.thickness });
+      expect(product.imageAuthorizationStatus).toBe('approved');
+      expect(product.imageAuthorizedAt).toBe('2026-11-23');
+      expect(product.descriptionAuthorizedAt).toBe('2026-11-23');
+      expect(isProductPublishable(product)).toBe(true);
+    }
+  });
+
   it('uses the supplied images and variant names for Pangolin Origin SPC PS101-PS105', () => {
     const variants = {
       PS101: {
