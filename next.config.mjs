@@ -23,6 +23,7 @@ const nextConfig = {
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/03/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/12/**', search: '' }
     ,{ protocol: 'https', hostname: 'img1.wsimg.com', pathname: '/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/**', search: '' }
+    ,{ protocol: 'https', hostname: 'static.wixstatic.com', pathname: '/media/d8ccde_*~mv2.jpg/**', search: '' }
   ] },
   async headers() {
     return [{ source: '/(.*)', headers: [
