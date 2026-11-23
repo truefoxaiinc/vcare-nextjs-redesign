@@ -13,6 +13,11 @@ export function SupplierCard({ supplier }: { supplier: Supplier }) {
       )}
       <h3>{supplier.name}</h3>
       {supplier.categories.length > 0 && <p>{supplier.categories.join(' · ')}</p>}
+      {supplier.productListingHref && (
+        <Link className="supplier-products-link" href={supplier.productListingHref}>
+          Browse products <span aria-hidden="true">↗</span>
+        </Link>
+      )}
       <Link className="product-quote" href={'/get-a-quote?product=' + encodeURIComponent(supplier.name)}>
         Request a Quote <span aria-hidden="true">↗</span>
       </Link>

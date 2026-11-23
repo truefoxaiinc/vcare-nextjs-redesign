@@ -3,7 +3,7 @@ import { categories, posts, publishedProducts } from '@/data/catalog';
 import { siteUrl } from '@/lib/seo';
 
 export default function sitemap():MetadataRoute.Sitemap {
- const staticPaths=['','/products','/offers','/installation-services','/get-a-quote','/about','/contact-us','/gallery','/faq','/blog','/service-areas','/service-areas/thornton','/service-areas/barrie','/privacy-policy','/terms'];
+ const staticPaths=['','/products','/suppliers/vidar','/offers','/installation-services','/get-a-quote','/about','/contact-us','/gallery','/faq','/blog','/service-areas','/service-areas/thornton','/service-areas/barrie','/privacy-policy','/terms'];
  return [
   ...staticPaths.map(path=>({url:siteUrl+path,changeFrequency:path===''?'weekly' as const:'monthly' as const,priority:path===''?1:path==='/products'||path==='/get-a-quote'?0.9:0.6})),
   ...categories.map(c=>({url:siteUrl+'/products/'+c.slug,changeFrequency:'weekly' as const,priority:0.8})),

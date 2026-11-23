@@ -40,6 +40,7 @@ export type Supplier = {
   logoPath?: string;
   logoBackground?: 'dark';
   productCatalogueEnabled: boolean;
+  productListingHref?: string;
 };
 
 const photo = (id: string) => 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1100&q=82';
@@ -57,14 +58,14 @@ export const categories: FloorCategory[] = [
     slug: 'engineered-hardwood',
     note: 'Real wood, thoughtfully built',
     image: photo('photo-1600607687939-ce8a6c25118c'),
-    suppliers: ['Floorsatwork', 'Grandeur', 'Northernest', 'Sherwood', 'Weiss', 'Woden']
+    suppliers: ['Floorsatwork', 'Grandeur', 'Northernest', 'Sherwood', 'Weiss', 'Woden', 'Vidar']
   },
   {
     title: 'Laminate',
     slug: 'laminate',
     note: 'Everyday durability, beautifully done',
     image: photo('photo-1600566753086-00f18fb6b3ea'),
-    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Simba', 'Sherwood', 'Woden', 'Weiss', 'Grandeur']
+    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Simba', 'Sherwood', 'Woden', 'Weiss', 'Grandeur', 'Vidar']
   },
   {
     title: 'Vinyl',
@@ -93,7 +94,7 @@ const supplierLogoFiles: Record<string, string> = {
   "Vidar": "vidar-logo.png"
 };
 
-const productCatalogueDisabledSuppliers = new Set(['Purelux', 'Vidar']);
+const productCatalogueDisabledSuppliers = new Set(['Purelux']);
 
 /** Public supplier directory. Do not infer product ranges for unclassified suppliers. */
 export const suppliers: Supplier[] = [
@@ -105,6 +106,7 @@ export const suppliers: Supplier[] = [
   logoPath: supplierLogoFiles[name] ? '/images/suppliers/' + encodeURIComponent(supplierLogoFiles[name]) : undefined,
   logoBackground: name === 'Purelux' ? 'dark' : undefined,
   productCatalogueEnabled: !productCatalogueDisabledSuppliers.has(name),
+  productListingHref: name === 'Vidar' ? '/suppliers/vidar' : undefined,
   categories: categories.filter(category => category.suppliers.includes(name)).map(category => category.title)
 }));
 

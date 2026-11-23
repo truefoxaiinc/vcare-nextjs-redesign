@@ -21,6 +21,7 @@ describe('search index integrity', () => {
 
   it('includes only published product URLs', () => {
     const urls = new Set(sitemap().map(entry => entry.url));
+    expect(urls.has(`${siteUrl}/suppliers/vidar`)).toBe(true);
     for (const product of publishedProducts) {
       expect(urls.has(`${siteUrl}/products/${product.slug}`)).toBe(true);
     }

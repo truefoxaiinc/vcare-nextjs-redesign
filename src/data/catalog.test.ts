@@ -5,7 +5,7 @@ import sitemap from '@/app/sitemap';
 import { siteUrl } from '@/lib/seo';
 
 describe('flooring supplier mapping', () => {
-  it('lists the approved suppliers and the additional logo-only suppliers', () => {
+  it('lists approved suppliers and the additional supplier brands', () => {
     expect(suppliers.map(supplier => supplier.name)).toEqual([
       'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
       'Northernest', 'Sherwood', 'Pangolin', 'Lee Flooring', 'Woden', 'Weiss',
@@ -13,14 +13,16 @@ describe('flooring supplier mapping', () => {
     ]);
     expect(Object.fromEntries(categories.map(category => [category.title, category.suppliers]))).toEqual({
       'Hardwood': ['Wickham', 'Tosca'],
-      'Engineered Hardwood': ['Floorsatwork'],
-      'Laminate': ['Toucan', 'Floorsatwork', 'Lee Flooring'],
+      'Engineered Hardwood': ['Floorsatwork', 'Vidar'],
+      'Laminate': ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Vidar'],
       'Vinyl': ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring']
     });
     expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.productListingHref).toBe('/suppliers/vidar');
   });
 
-  it('maps all fourteen supplied supplier logos and keeps new brands out of product publishing', () => {
+  it('maps all fourteen supplied supplier logos and keeps unapproved brands out of product publishing', () => {
     const withLogos = suppliers.filter(supplier => supplier.logoPath);
     expect(withLogos).toHaveLength(14);
     expect(withLogos.every(supplier => supplier.logoPath?.startsWith('/images/suppliers/'))).toBe(true);
@@ -32,13 +34,42 @@ describe('flooring supplier mapping', () => {
     expect(suppliers.find(supplier => supplier.name === 'Purelux')?.logoBackground).toBe('dark');
     expect(suppliers.find(supplier => supplier.name === 'Purelux')?.productCatalogueEnabled).toBe(false);
     expect(suppliers.find(supplier => supplier.name === 'Vidar')?.logoPath).toContain('vidar-logo.png');
-    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.productCatalogueEnabled).toBe(false);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.productCatalogueEnabled).toBe(true);
     expect(suppliers.find(supplier => supplier.name === 'Purelux')?.categories).toEqual([]);
-    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.categories).toEqual([]);
-    expect(publishedProducts.some(product => product.supplier === 'Vidar' || product.supplier === 'Purelux')).toBe(false);
+    expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
+    expect(publishedProducts.some(product => product.supplier === 'Purelux')).toBe(false);
   });
 
-  it('imports the 48 existing supplier products and applies client-reported authorization', () => {
+  it('links Vidar to its published products and floor categories', () => {
+    const vidar = suppliers.find(supplier => supplier.name === 'Vidar');
+    expect(vidar?.productListingHref).toBe('/suppliers/vidar');
+    expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
+    expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
+    expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(9);
+  });
+
+  it('publishes Vidar laminate collections with supplier images and verified specifications', () => {
+    const vidarLaminateProducts = publishedProducts.filter(product => product.supplier === 'Vidar' && product.category === 'Laminate');
+    expect(vidarLaminateProducts.map(product => product.name)).toEqual([
+      'Laminate Flooring Collection-DB25',
+      'Laminate Flooring Collection-HZ',
+      'Laminate Flooring Collection-LP',
+      'Laminate Flooring Collection-NK25',
+      'Laminate Flooring Collection-SD25',
+      'Laminate Flooring Collection-TF25'
+    ]);
+    expect(vidarLaminateProducts.every(product =>
+      product.imageUrl?.includes('vidarflooring.com/media/acfgallery/content/') &&
+      product.sourceUrl.includes('vidarflooring.com/en/component/content/article/') &&
+      product.specifications?.Thickness === '1/2 inch' &&
+      product.specifications.Width === '7 1/2 inch' &&
+      product.imageAuthorizedAt === '2026-11-23' &&
+      isProductPublishable(product)
+    )).toBe(true);
+  });
+
+  it('imports supplier products and applies client-reported authorization', () => {
     expect(products).toHaveLength(48);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
@@ -46,13 +77,14 @@ describe('flooring supplier mapping', () => {
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 10,
+      Vidar: 16,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
     });
 
     for (const product of products) {
+      const authorizationDate = product.supplier === 'Vidar' && product.category === 'Laminate' ? '2026-11-23' : '2026-10-19';
       // Preserve historical imported records for review, even when the supplier is no longer approved for display.
       expect(product.sourceUrl).toMatch(/^https:\/\//);
       expect(product.imageUrl).toMatch(/^https:\/\//);
@@ -61,24 +93,23 @@ describe('flooring supplier mapping', () => {
       expect(product.descriptionAuthorizationStatus).toBe('approved');
       expect(product.imageAuthorizedBy).toBe('Vcare client (reported)');
       expect(product.descriptionAuthorizedBy).toBe('Vcare client (reported)');
-      expect(product.imageAuthorizedAt).toBe('2026-10-19');
-      expect(product.descriptionAuthorizedAt).toBe('2026-10-19');
+      expect(product.imageAuthorizedAt).toBe(authorizationDate);
+      expect(product.descriptionAuthorizedAt).toBe(authorizationDate);
       expect(product.imageAuthorizationReference).toContain('Client-reported');
       expect(product.descriptionAuthorizationReference).toContain('Client-reported');
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(41);
-    expect(publishedProducts).toHaveLength(38);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(47);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
-    expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(false);
+    expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
   });
 
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(10);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(16);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -92,7 +123,13 @@ describe('flooring supplier mapping', () => {
     expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified').map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
-      'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19'
+      'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-db25?catid=18',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-hz?catid=18',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-lp?catid=18',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-nk25?catid=18',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-sd25?catid=18',
+      'https://vidarflooring.com/en/component/content/article/laminate-flooring-collection-tf25?catid=18'
     ]);
   });
 

@@ -1,5 +1,5 @@
 import type { Product } from '@/data/catalog';
-import { clientReportedAuthorization } from '@/data/catalog-authorization';
+import { clientReportedAuthorization, vidarProductDisplayAuthorization } from '@/data/catalog-authorization';
 
 const publishedImport = {
   publicationStatus: 'published' as const,
@@ -250,6 +250,38 @@ function supplierListingProduct(
   };
 }
 
+const vidarLaminateProducts = [
+  ['DB25', '222/9/Laminate_Flooring_Collection-DB25_1_original.jpg', 'laminate-flooring-collection-db25'],
+  ['HZ', '258/9/Laminate_Flooring_Collection-HZ_1_original.jpg', 'laminate-flooring-collection-hz'],
+  ['LP', '259/9/Laminate_Flooring_Collection-LP_1_original.jpg', 'laminate-flooring-collection-lp'],
+  ['NK25', '219/9/Laminate_Flooring_Collection-NK25_1_original.jpg', 'laminate-flooring-collection-nk25'],
+  ['SD25', '220/9/Laminate_Flooring_Collection-SD25_1_original.jpg', 'laminate-flooring-collection-sd25'],
+  ['TF25', '221/9/Laminate_Flooring_Collection-TF25_1_original.jpg', 'laminate-flooring-collection-tf25']
+] as const;
+
+const vidarLaminateImports: Product[] = vidarLaminateProducts.map(([code, imagePath, sourcePath]) => {
+  const name = `Laminate Flooring Collection-${code}`;
+  const product = supplierListingProduct(
+    'Vidar',
+    'Laminate',
+    name,
+    `https://vidarflooring.com/en/component/content/article/${sourcePath}?catid=18`,
+    {
+      Collection: 'Laminate',
+      Thickness: '1/2 inch',
+      Width: '7 1/2 inch',
+      'Surface texture': 'Wirebrushed'
+    },
+    `https://vidarflooring.com/media/acfgallery/content/${imagePath}`
+  );
+  return {
+    ...product,
+    description: `Vidar lists this laminate collection with 1/2-inch thickness, 7 1/2-inch width and a wirebrushed surface. Confirm current colour options and availability when requesting a quote.`,
+    imageAlt: `Vidar ${code} laminate flooring collection`,
+    ...vidarProductDisplayAuthorization
+  };
+});
+
 const grandeurPacific = [
   'Canterbury', 'Golden Bay', 'Queenstown', 'Wellington', '88006-2'
 ].map(name => supplierListingProduct(
@@ -392,6 +424,7 @@ const weissLaminateProducts = weissLaminateNames.map(name => supplierListingProd
 
 export const supplierProductImports: Product[] = [
   ...vidarProducts,
+  ...vidarLaminateImports,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
   ...leeVinylProducts,
