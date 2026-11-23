@@ -703,6 +703,16 @@ const pangolinOriginSpcVariants: Partial<Record<PangolinSku, { name: string; col
     name: 'Origin Collection SPC - 8MM PS122 Tobac',
     colour: 'Tobac',
     imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS122%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1863'
+  },
+  PS123: {
+    name: 'Origin Collection SPC - 8MM PS123 Biscuit',
+    colour: 'Biscuit',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS123%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1867'
+  },
+  PS124: {
+    name: 'Origin Collection SPC - 8MM PS124 Mocha',
+    colour: 'Mocha',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS124%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:1007'
   }
 };
 const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
