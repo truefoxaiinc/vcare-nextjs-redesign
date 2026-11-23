@@ -6,6 +6,7 @@ import {
   grandeurSolidHardwoodDisplayAuthorization,
   grandeurVinylDisplayAuthorization,
   northernestCoastalImageDisplayAuthorization,
+  pangolinOriginSpcDisplayAuthorization,
   simba2024LaminateDisplayAuthorization,
   simba2052LaminateDisplayAuthorization,
   simba20360LaminateDisplayAuthorization,
@@ -631,13 +632,59 @@ const pangolinCodes = [
   ['PS121', '8 mm', '2.0 mm EVA'], ['PS122', '8 mm', '2.0 mm EVA'],
   ['PS123', '8 mm', '2.0 mm EVA'], ['PS124', '8 mm', '2.0 mm EVA']
 ] as const;
-const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => supplierListingProduct(
-  'Pangolin',
-  'Vinyl',
-  'Origin Collection SPC ' + sku,
-  'https://pangolflooring.com/products',
-  { Collection: 'Origin Collection SPC', SKU: sku, Thickness: thickness, Underlay: underlay, Dimensions: '7 in × 48 in', 'Wear layer': '20 mil' }
-));
+type PangolinSku = typeof pangolinCodes[number][0];
+const pangolinOriginSpcVariants: Partial<Record<PangolinSku, { name: string; colour: string; imageUrl: string }>> = {
+  PS101: {
+    name: 'Origin Collection SPC - 7MM PS101 Syrup',
+    colour: 'Syrup',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS101%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+  },
+  PS102: {
+    name: 'Origin Collection SPC - 7MM PS102 Toffee',
+    colour: 'Toffee',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS102%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:950'
+  },
+  PS103: {
+    name: 'Origin Collection SPC - 7MM PS103 Charcoal',
+    colour: 'Charcoal',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS103%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+  },
+  PS104: {
+    name: 'Origin Collection SPC - 7MM PS104 Slate',
+    colour: 'Slate',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS104%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1868'
+  },
+  PS105: {
+    name: 'Origin Collection SPC - 7MM PS105 Cream',
+    colour: 'Cream',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS105%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1856'
+  }
+};
+const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
+  const product = supplierListingProduct(
+    'Pangolin',
+    'Vinyl',
+    'Origin Collection SPC ' + sku,
+    'https://pangolflooring.com/products',
+    { Collection: 'Origin Collection SPC', SKU: sku, Thickness: thickness, Underlay: underlay, Dimensions: '7 in × 48 in', 'Wear layer': '20 mil' }
+  );
+  const variant = pangolinOriginSpcVariants[sku];
+
+  if (!variant) return product;
+
+  return {
+    ...product,
+    name: variant.name,
+    description: variant.name + ' is listed in Pangolin’s Origin Collection SPC. Confirm current colour options, specifications and availability with the supplier.',
+    imageUrl: variant.imageUrl,
+    imageAlt: 'Pangolin ' + variant.name + ' flooring',
+    specifications: {
+      ...product.specifications,
+      Colour: variant.colour
+    },
+    ...pangolinOriginSpcDisplayAuthorization
+  };
+});
 
 const wodenProducts = ([
   ['1001 Sandy Cove', '10 Collection'], ['1002 Beach Bluff', '10 Collection'],

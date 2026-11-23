@@ -93,6 +93,18 @@ export const northernestCoastalImageDisplayAuthorization = {
   imageAuthorizationReference: 'Client-reported instruction to display the supplied Northernest Coastal collection images dated 2026-11-23'
 } as const;
 
+/** Client-reported permission recorded for the Pangolin Origin SPC variants on 2026-11-23. */
+export const pangolinOriginSpcDisplayAuthorization = {
+  imageAuthorizationStatus: 'approved' as const,
+  imageAuthorizedBy: 'Vcare client (reported)',
+  imageAuthorizedAt: '2026-11-23',
+  imageAuthorizationReference: 'Client-reported instruction to display the supplied Pangolin Origin Collection SPC images for PS101-PS105 dated 2026-11-23',
+  descriptionAuthorizationStatus: 'approved' as const,
+  descriptionAuthorizedBy: 'Vcare client (reported)',
+  descriptionAuthorizedAt: '2026-11-23',
+  descriptionAuthorizationReference: 'Client-reported instruction to list Pangolin Origin Collection SPC variants PS101-PS105 dated 2026-11-23'
+} as const;
+
 /** Client-reported permission recorded from the Simba laminate image and details request on 2026-11-23. */
 export const simbaLaminateDisplayAuthorization = {
   imageAuthorizationStatus: 'approved' as const,

@@ -310,6 +310,51 @@ describe('flooring supplier mapping', () => {
     );
   });
 
+  it('uses the supplied images and variant names for Pangolin Origin SPC PS101-PS105', () => {
+    const variants = {
+      PS101: {
+        name: 'Origin Collection SPC - 7MM PS101 Syrup',
+        colour: 'Syrup',
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS101%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+      },
+      PS102: {
+        name: 'Origin Collection SPC - 7MM PS102 Toffee',
+        colour: 'Toffee',
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS102%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:950'
+      },
+      PS103: {
+        name: 'Origin Collection SPC - 7MM PS103 Charcoal',
+        colour: 'Charcoal',
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS103%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+      },
+      PS104: {
+        name: 'Origin Collection SPC - 7MM PS104 Slate',
+        colour: 'Slate',
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS104%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1868'
+      },
+      PS105: {
+        name: 'Origin Collection SPC - 7MM PS105 Cream',
+        colour: 'Cream',
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS105%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1856'
+      },
+    };
+    const products = publishedProducts.filter(product =>
+      product.supplier === 'Pangolin' && product.category === 'Vinyl'
+    );
+
+    expect(products).toHaveLength(16);
+    for (const [sku, variant] of Object.entries(variants)) {
+      const product = products.find(item => item.specifications?.SKU === sku);
+      expect(product?.name).toBe(variant.name);
+      expect(product?.slug).toBe(`pangolin-origin-collection-spc-${sku.toLowerCase()}`);
+      expect(product?.imageUrl).toBe(variant.imageUrl);
+      expect(product?.specifications?.Colour).toBe(variant.colour);
+      expect(product?.imageAuthorizedAt).toBe('2026-11-23');
+      expect(product?.descriptionAuthorizedAt).toBe('2026-11-23');
+      expect(product && isProductPublishable(product)).toBe(true);
+    }
+  });
+
   it('updates the Grandeur laminate collection records with the supplied images', () => {
     const grandeurLaminateProducts = publishedProducts.filter(product =>
       product.supplier === 'Grandeur' && product.category === 'Laminate'
