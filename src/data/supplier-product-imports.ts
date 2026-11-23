@@ -658,6 +658,11 @@ const pangolinOriginSpcVariants: Partial<Record<PangolinSku, { name: string; col
     name: 'Origin Collection SPC - 7MM PS105 Cream',
     colour: 'Cream',
     imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS105%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1856'
+  },
+  PS106: {
+    name: 'Origin Collection SPC - 7MM PS106 Mist',
+    colour: 'Mist',
+    imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS106%E6%8B%BC%E8%A3%85.jpg/:/rs=w:1438,h:2425'
   }
 };
 const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
