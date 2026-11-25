@@ -10697,6 +10697,181 @@ const northernestVinylProducts: Product[] = northernestVinylCatalogue.map(({ nam
   description
 }));
 
+const wickhamEuroProducts: Product[] = [
+  {
+    "name": "White Oak, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-barewood-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-BAREWOOD-Web.jpg",
+    "description": "Discover the European White Oak, Barewood color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Barewood",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-beach-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-BEACH-Web.jpg",
+    "description": "Discover White Oak Beach color engineered hardwood flooring by Wickham. A stable, elegant and durable European white oak floor that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Beach",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cappuccino-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-MAT-CAPPUCINO-Web.jpg",
+    "description": "Discover the European White Oak, Cappuccino color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Cappuccino",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cedar-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-Cedar-Web.jpg",
+    "description": "Discover the European White Oak, Cedar color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Cedar",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Forest Hills",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-forest-hills/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-Forest-Hills-Web.jpg",
+    "description": "Discover the European White Oak, Forest Hills color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Forest Hills",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-haze-color/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-HAZE-Web.jpg",
+    "description": "Discover the European White Oak, Haze color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Haze",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-naked-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-Naked-Web.jpg",
+    "description": "Discover the European White Oak, Naked color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Naked",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-natural-5/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-Natural-Web.jpg",
+    "description": "Discover the European White Oak, Natural color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Natural",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-playa-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Euro-Engineered-White-Oak-Playa-1.png",
+    "description": "Discover the European White Oak Playa color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Playa",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-rome-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-ROME-Web.jpg",
+    "description": "Discover the European White Oak, Rome color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Rome",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-taupe-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-Taupe-Web.jpg",
+    "description": "Discover the European White Oak, Taupe color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Taupe",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  },
+  {
+    "name": "White Oak, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-walnut-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Chene-blanc-euro-WALNUT-Web.jpg",
+    "description": "Discover the European White Oak, Walnut color, offered in engineered wood. A stable and flawless flooring that suits any space.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Walnut",
+      "Collection": "Euro Engineered",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "7 1/2 in (190.5 mm)",
+      "Finishes": "Matte 10°, Satin 35°, Semi-gloss 55°"
+    }
+  }
+].map(({name, sourceUrl, imageUrl, description, specifications}) => ({
+  ...supplierListingProduct('Wickham', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
+  slug: 'wickham-euro-engineered-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -10709,6 +10884,7 @@ export const supplierProductImports: Product[] = [
   ...toucanLuxcoreProducts,
   ...leeVinylProducts,
   ...wickhamHardwoodProducts,
+  ...wickhamEuroProducts,
   ...leeLaminateProducts,
   ...leeHybridProducts,
   ...leeAdditionalEngineeredProducts,
