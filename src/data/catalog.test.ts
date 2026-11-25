@@ -632,6 +632,321 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('imports sixteen distinct Lee Hybrid Engineered products by product URL rather than repeated SKU', () => {
+    const variants = [
+  {
+    "name": "Havana",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Havana_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/havana/",
+    "specifications": {
+      "Product": "Havana",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Warm Oak",
+      "Sq feet per box": "20.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "50",
+      "Weight / Box": "45 lbs",
+      "Weight / Skid": "2250 lbs"
+    }
+  },
+  {
+    "name": "Toronto",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Toronto_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/toronto/",
+    "specifications": {
+      "Product": "Toronto",
+      "SKU": "8387",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Light Grey",
+      "Sq feet per box": "20.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "50",
+      "Weight / Box": "45 lbs",
+      "Weight / Skid": "2250 lbs"
+    }
+  },
+  {
+    "name": "Chicago",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Chicago.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/chicago/",
+    "specifications": {
+      "Product": "Chicago",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Golden Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    }
+  },
+  {
+    "name": "Vancouver",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Vancouver_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/vancouver/",
+    "specifications": {
+      "Product": "Vancouver",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Pearl Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    }
+  },
+  {
+    "name": "New York",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Newyork_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/newyork/",
+    "specifications": {
+      "Product": "New York",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Sand Beige",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    }
+  },
+  {
+    "name": "Halifax",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Halifax_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/halifax/",
+    "specifications": {
+      "Product": "Halifax",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Light Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    }
+  },
+  {
+    "name": "Atlanta",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Atlanta_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/atlanta/",
+    "specifications": {
+      "Product": "Atlanta",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Walnut Brown",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    }
+  },
+  {
+    "name": "Montreal",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Montreal_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/montreal/",
+    "specifications": {
+      "Product": "Montreal",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Grey Oak",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "Las Vegas",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Las-vegas_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/lasvegas/",
+    "specifications": {
+      "Product": "Las Vegas",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Wheat Gold",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "San Francisco",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Sans_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/sanfrancisco/",
+    "specifications": {
+      "Product": "San Francisco",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Linen Oak",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "Boston",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Boston.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/boston/",
+    "specifications": {
+      "Product": "Boston",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Dune Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "Denver",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Denver.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/denver/",
+    "specifications": {
+      "Product": "Denver",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Silver Mist Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "Houston",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Houston.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/houston/",
+    "specifications": {
+      "Product": "Houston",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Smoked Walnut",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "Philadelphia",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Philadelphia.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/philadelphia/",
+    "specifications": {
+      "Product": "Philadelphia",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Linen Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "San Diego",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/San-Diego.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/san-diego/",
+    "specifications": {
+      "Product": "San Diego",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Golden Wheat Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  },
+  {
+    "name": "New Orleans",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/New-Orleans.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/new-orleans/",
+    "specifications": {
+      "Product": "New Orleans",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Champagne Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Engineered Hardwood' && product.sourceUrl === variant.sourceUrl);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('imports 120 unique Woden products with supplier URLs and specifications', () => {
     const woden = products.filter(product => product.supplier === 'Woden');
     expect(woden).toHaveLength(120);
@@ -1821,7 +2136,7 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(253);
+    expect(products).toHaveLength(269);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
@@ -1830,7 +2145,7 @@ describe('flooring supplier mapping', () => {
       Toucan: 15,
       Vidar: 111,
       Tosca: 5,
-      'Lee Flooring': 7,
+      'Lee Flooring': 23,
       Wickham: 4
     });
 
@@ -1857,7 +2172,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(252);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(268);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
