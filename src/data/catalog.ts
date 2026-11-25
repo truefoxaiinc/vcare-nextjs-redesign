@@ -1,4 +1,5 @@
 import { supplierProductImports } from '@/data/supplier-product-imports';
+import { toucanLaminateProducts } from '@/data/toucan-laminate-products';
 import { clientReportedAuthorization } from '@/data/catalog-authorization';
 
 export type Category = 'Engineered Hardwood' | 'Hardwood' | 'Laminate' | 'Vinyl';
@@ -10,6 +11,7 @@ export type Product = {
   supplier: string;
   description: string;
   imageUrl?: string;
+  additionalImages?: string[];
   imageAlt: string;
   sourceUrl: string;
   publicationStatus: 'draft' | 'published';
@@ -259,7 +261,11 @@ const existingProducts: Product[] = existingProductRecords.map(product => ({
   ...clientReportedAuthorization
 }));
 
-export const products: Product[] = [...existingProducts, ...supplierProductImports];
+export const products: Product[] = [
+  ...existingProducts.filter(product => !toucanLaminateProducts.some(toucan => toucan.sourceUrl === product.sourceUrl)),
+  ...supplierProductImports,
+  ...toucanLaminateProducts
+];
 
 export function isProductPublishable(product: Product): boolean {
   return product.publicationStatus === 'published' &&
