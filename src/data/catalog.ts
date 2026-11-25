@@ -52,7 +52,7 @@ export const categories: FloorCategory[] = [
     slug: 'hardwood',
     note: 'Natural character, made to last',
     image: photo('photo-1600210492486-724fe5c67fb0'),
-    suppliers: ['Wickham', 'Tosca', 'Grandeur', 'Northernest', 'Sherwood']
+    suppliers: ['Wickham', 'Tosca', 'Grandeur', 'Northernest', 'Sherwood', 'Lee Flooring']
   },
   {
     title: 'Engineered Hardwood',
