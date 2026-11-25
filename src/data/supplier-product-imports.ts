@@ -6945,6 +6945,268 @@ const northernestLaminateProducts: Product[] = northernestLaminateCatalogue.map(
   description
 }));
 
+const northernestVinylCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: string; description: string; specifications: Record<string, string> }> = [
+  {
+    "name": "Mabella",
+    "sourceUrl": "https://northernestflooring.ca/product/mabella/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/Mabella-45-Degree.png",
+    "description": "Mabella showcases a warm, elegant oak aesthetic with graceful grain patterns and subtle natural character.…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Banff",
+    "sourceUrl": "https://northernestflooring.ca/product/banff/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/Banff-Floor.png",
+    "description": "Banff delivers lodge-chic comfort: mid-brown notes warmed by honey highlights and a touch of weathering.…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Whispering",
+    "sourceUrl": "https://northernestflooring.ca/product/whispering/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Whispering-45-Degree.png",
+    "description": "Whispering offers a soft, pale vinyl look with gentle wood grain and a light, calming…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Reflections",
+    "sourceUrl": "https://northernestflooring.ca/product/reflections/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Reflection-45-Degree.png",
+    "description": "Reflections brings a warm natural vinyl look with soft oak grain and subtle tonal variation.…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Laurel",
+    "sourceUrl": "https://northernestflooring.ca/product/laurel/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Laurel-45-degree.png",
+    "description": "Laurel offers a warm natural vinyl look with soft oak grain and a clean, inviting…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Horizon",
+    "sourceUrl": "https://northernestflooring.ca/product/horizon/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Horizon-45-Degree.png",
+    "description": "Horizon offers a soft beige vinyl look with gentle oak grain and a calm, natural…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Foggy",
+    "sourceUrl": "https://northernestflooring.ca/product/foggy/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Foggy-45-Degree.png",
+    "description": "Foggy offers a soft greige vinyl look with gentle oak grain and a muted, calming…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Bluff",
+    "sourceUrl": "https://northernestflooring.ca/product/bluff/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Bluff-45-Degree.png",
+    "description": "Bluff offers a soft grey-beige vinyl look with gentle oak grain and a light, natural…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Allure",
+    "sourceUrl": "https://northernestflooring.ca/product/allure/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Allure-45-Degree.png",
+    "description": "Allure brings a warm golden vinyl look with soft oak grain and a welcoming natural…",
+    "specifications": {
+      "Collection": "Antique 9mm",
+      "Construction": "SPC",
+      "Structure": "Rigid Core Vinyl With 1.5 mm IXPE",
+      "Thickness": "9 mm / 3/8\"",
+      "Length": "1524 mm / 60\"",
+      "Width": "183 mm / 7.25\"",
+      "Underpad": "1.5 mm IXPE",
+      "Impact Sound Reduction": "(IIC) 78",
+      "Sound Transmission Class": "(STC) 73",
+      "Carton Size": "17.84 sq.ft/box",
+      "Carton Weight": "35.42 lbs"
+    }
+  },
+  {
+    "name": "Bontt",
+    "sourceUrl": "https://northernestflooring.ca/product/bontt/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Bontt.jpg",
+    "description": "Bontt offers a soft natural vinyl look with gentle oak grain and a muted beige…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Urban Safari",
+    "sourceUrl": "https://northernestflooring.ca/product/urban-safari/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Uraban-Safari-45-Degree.png",
+    "description": "Earthy and confident, Urban Safari layers camel, tobacco, and espresso grain. It grounds modern industrial…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Bianco",
+    "sourceUrl": "https://northernestflooring.ca/product/bianco/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/BIANCO-45-Degree.png",
+    "description": "Crisp yet warm, Bianco leans natural rather than stark. Cream-blonde boards with delicate grain create…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Mapple Fog",
+    "sourceUrl": "https://northernestflooring.ca/product/maple-fog/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Maple-Fog-45-Degree.png",
+    "description": "Maple Fog captures that just-sandblasted look—light maple tones softened with misty grey. It brightens interiors…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Dusty Diamond",
+    "sourceUrl": "https://northernestflooring.ca/product/dusty-diamond/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Dusty-Diamond-45-Degree.png",
+    "description": "A modern neutral with depth, Dusty Diamond mixes mushroom beige and gentle smoke. The grain…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Azure Sky",
+    "sourceUrl": "https://northernestflooring.ca/product/azure-sky/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Azure-Sky-45-Degree.png",
+    "description": "Despite its name, Azure Sky stays wonderfully versatile: pale natural oak kissed with a whisper…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Hoover",
+    "sourceUrl": "https://northernestflooring.ca/product/hoover/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/05c30499-a419-4488-82e8-acaa0e787732.png",
+    "description": "Hoover is a sophisticated mid-grey with soft, silvery grain. It tempers bright daylight and balances…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Athabasca",
+    "sourceUrl": "https://northernestflooring.ca/product/athabasca/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Athabasca-45-Degree.png",
+    "description": "Inspired by alpine rivers, Athabasca blends neutral driftwood browns with faint grey undertones. The effect…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Saffiano",
+    "sourceUrl": "https://northernestflooring.ca/product/saffiano/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/SAFFIANO-45-degree.png",
+    "description": "Tailored and modern, Saffiano channels the look of brushed leather translated into oak—cool taupes with…",
+    "specifications": {
+      "Collection": "300 Series",
+      "Construction": "SPC",
+      "Supplier data review": "Pending"
+    }
+  }
+];
+const northernestVinylProducts: Product[] = northernestVinylCatalogue.map(({ name, sourceUrl, imageUrl, description, specifications }) => ({
+  ...supplierListingProduct('Northernest', 'Vinyl', name, sourceUrl, specifications, imageUrl),
+  slug: 'northernest-vinyl-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -6972,6 +7234,7 @@ export const supplierProductImports: Product[] = [
   ...northernestCoastal,
   ...northernestMapleProducts,
   ...northernestLaminateProducts,
+  ...northernestVinylProducts,
   ...sherwoodProducts,
   ...pangolinProducts,
   ...wodenProducts,
