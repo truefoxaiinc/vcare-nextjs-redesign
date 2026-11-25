@@ -6720,6 +6720,231 @@ const northernestMapleProducts: Product[] = [
   description
 }));
 
+const northernestLaminateCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: string; description: string; specifications: Record<string, string> }> = [
+  {
+    "name": "Robusto",
+    "sourceUrl": "https://northernestflooring.ca/product/robusto/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Robusto-3D-render.png",
+    "description": "A bold, mid-brown statement plank with confident grain and substantial presence. Robusto anchors open-concept areas and balances high-contrast palettes. The tactile finish minimizes glare, while its richer color masks traffic patterns between entries and great rooms.",
+    "specifications": {
+      "Construction": "Laminate on HDF core",
+      "Thickness": "12 mm",
+      "Surface": "4-sided micro-bevel",
+      "Edges": "Click-lock floating",
+      "Collection": "Dominion",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Finish": "Textured, low-gloss",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Urban Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/urban-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/urban-oak-3d-Render.png",
+    "description": "Urban Oak is listed in Northernest's Mountain laminate collection. Confirm colour and finish with the supplier.",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Storm Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/storm-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/storm-oak-3d-Render.png",
+    "description": "Moody charcoal-brown with weather-darkened edges that add drama without heaviness. Storm Oak anchors large, sunlit rooms and frames lighter furniture beautifully. The look is modern lodge: clean silhouettes, stone, and textured textiles underfoot.",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Silver Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/silver-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/silver-oak-3d-Render.png",
+    "description": "Pearl-grey with a hint of taupe, Silver Oak strikes the rare balance of cool and inviting. It tempers bold paint colors and modernizes dark furniture. Expect that “designer neutral” effect—crisp lines, soft light, and easy styling across seasons.",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Prestige Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/prestige-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Prestige-Oak-3d-Render.png",
+    "description": "A tailored mid-brown—neither too red nor too grey—with refined grain movement. Prestige Oak delivers classic good looks for traditional or transitional interiors. Pair it",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Harbour Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/harbour-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/harbour-oak-3d-Render.png",
+    "description": "Salt-washed beige with driftwood undertones and relaxed cathedrals. Harbour Oak sets a breezy, coastal mood in kitchens and family rooms. It softens dark cabinetry, complements woven textures, and feels right at home with linen, rattan, and brass.",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Eastern Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/eastern-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/eastern-oak-3d-Render.png",
+    "description": "Warm honey-beige with refined grain movement evokes freshly finished oak. Eastern Oak is versatile enough for traditional trim or modern millwork, bringing welcoming tone to kitchens and family spaces while keeping surfaces forgiving to crumbs and paw prints.",
+    "specifications": {
+      "Construction": "Laminate on HDF core",
+      "Thickness": "12 mm",
+      "Surface": "4-sided micro-bevel",
+      "Edges": "Click-lock floating",
+      "Collection": "Dominion",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Finish": "Textured, low-gloss",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "City Mood",
+    "sourceUrl": "https://northernestflooring.ca/product/city-mood/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/city-mood-3d-Render.png",
+    "description": "Cool greige with balanced taupe and subtle saw-cut texture—perfect for condos and contemporary spaces. City Mood lightens rooms without feeling stark, harmonizing effortlessly with concrete, black fixtures, and minimalist décor for that polished, urban-loft vibe.",
+    "specifications": {
+      "Construction": "Laminate on HDF core",
+      "Thickness": "12 mm",
+      "Surface": "4-sided micro-bevel",
+      "Edges": "Click-lock floating",
+      "Collection": "Dominion",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Finish": "Textured, low-gloss",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Antique Dark",
+    "sourceUrl": "https://northernestflooring.ca/product/antique-dark/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/antique-dark-3D-Render.png",
+    "description": "A heritage-inspired brown with charcoal undertones, Antique Dark brings cozy, pub-style character to living rooms and dens. The wire-worn visual and beveled edges add depth, disguising everyday scuffs while giving modern furniture a handsome, storied backdrop.",
+    "specifications": {
+      "Construction": "Laminate on HDF core",
+      "Thickness": "12 mm",
+      "Surface": "4-sided micro-bevel",
+      "Edges": "Click-lock floating",
+      "Collection": "Dominion",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Finish": "Textured, low-gloss",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "Everest Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/everest-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/everest-oak-3d-Render.png",
+    "description": "Cool, high-altitude neutrals with quiet knots and a powder-dry finish. Everest Oak brightens rooms without skewing blue, pairing easily with concrete, black metals, and soft greys. Clean, contemporary, and calm—perfect for airy living rooms and minimalist bedrooms.",
+    "specifications": {
+      "Construction": "12 mm laminate plank, embossed-in-register texture, HDF core",
+      "Dimensions": "Wide plank (~6½″) × long (~48″), 4-sided micro-bevel",
+      "Surface": "Surface Wire-brush/EIR matte",
+      "Wear rating": "AC4 (heavy residential / light commercial)",
+      "Edge treatment": "Waxed, moisture-resistant joints",
+      "Locking system": "Click-lock (angle/ drop)",
+      "Underlayment": "Compatible with attached or separate pad",
+      "Subfloors": "Concrete, plywood/OSB, existing resilient/hardwood",
+      "Radiant heat": "Hydronic or electric, ≤ 29 °C (85 °F) surface",
+      "Collection": "Mountain",
+      "Thickness": "12 mm",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "American Walnut",
+    "sourceUrl": "https://northernestflooring.ca/product/american-walnut/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/American-Walnut-3d-Render.png",
+    "description": "Rich, mocha tones and flowing grain patterning capture the warmth of classic walnut. The deep palette grounds open layouts, while the satin-matte texture softens sheen and footprints. Pair with cream walls and brass accents for a timeless, tailored look.",
+    "specifications": {
+      "Construction": "Laminate on HDF core",
+      "Thickness": "12 mm",
+      "Surface": "4-sided micro-bevel",
+      "Edges": "Click-lock floating",
+      "Collection": "Dominion",
+      "AC rating": "AC4",
+      "Installation": "Floating",
+      "Finish": "Textured, low-gloss",
+      "Supplier data review": "Pending"
+    }
+  }
+];
+const northernestLaminateProducts: Product[] = northernestLaminateCatalogue.map(({ name, sourceUrl, imageUrl, description, specifications }) => ({
+  ...supplierListingProduct('Northernest', 'Laminate', name, sourceUrl, specifications, imageUrl),
+  slug: 'northernest-laminate-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -6746,6 +6971,7 @@ export const supplierProductImports: Product[] = [
   ...simbaLaminateProducts,
   ...northernestCoastal,
   ...northernestMapleProducts,
+  ...northernestLaminateProducts,
   ...sherwoodProducts,
   ...pangolinProducts,
   ...wodenProducts,
