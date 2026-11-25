@@ -271,7 +271,10 @@ const vidarAdditionalEngineeredProducts: Product[] = [
   ["9-inch-american-white-oak-naked-oak","9'' Collection American White Oak – Naked Oak","American White Oak","9-inch","Naked Oak","https://vidarflooring.com/images/Flooring%20pictures/9_Collection_-_American_White_Oak-Naked_Oak.jpg"],
   ["9-inch-american-white-oak-silver-stone","9'' Collection American White Oak – Silver Stone","American White Oak","9-inch","Silver Stone","https://vidarflooring.com/images/Silverstone-AB.jpg"],
   ["9-inch-american-white-oak-wheatberry","9'' Collection American White Oak – Wheatberry","American White Oak","9-inch","Wheatberry","https://vidarflooring.com/images/9_Collection_-_American_White_Oak-Wheatberry.jpg"],
-  ["american-black-walnut-10-naked-walnut","American Black Walnut 10 Collection – Naked Walnut","American Black Walnut","10 Collection","Naked Walnut","https://vidarflooring.com/images/American_Black_Walnut_10_Collection-Natural_AB_Select_and_Better-1.jpg"]
+  ["american-black-walnut-10-naked-walnut","American Black Walnut 10 Collection – Naked Walnut","American Black Walnut","10 Collection","Naked Walnut","https://vidarflooring.com/images/American_Black_Walnut_10_Collection-Natural_AB_Select_and_Better-1.jpg"],
+  ["american-black-walnut-6-natural","American Black Walnut 6 Collection – Natural","American Black Walnut","6 Collection","Natural","https://vidarflooring.com/images/American_Black_Walnut_6_Collection-Natural_AB_Select_and_Better.jpg"],
+  ["american-black-walnut-7-chocolate","American Black Walnut 7 Collection – Chocolate","American Black Walnut","7 Collection","Chocolate","https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Chocolate_ABC_Select.jpg"],
+  ["american-black-walnut-7-natural","American Black Walnut 7 Collection – Natural","American Black Walnut","7 Collection","Natural","https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Natural_AB_Select_and_Better.jpg"]
 ].map(([slug, name, species, collection, colour, imageUrl]) => ({
   ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, imageUrl, {
     Species: species,
