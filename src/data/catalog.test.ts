@@ -290,15 +290,15 @@ describe('flooring supplier mapping', () => {
     expect(maple.every(product => product.imageUrl && isProductPublishable(product))).toBe(true);
   });
 
-  it('retains 67 distinct Northernest listings and gates unresolved records', () => {
+  it('retains 67 distinct Northernest listings with client-approved publication', () => {
     const northernest = products.filter(product => product.supplier === 'Northernest' && product.category === 'Engineered Hardwood');
     expect(northernest).toHaveLength(67);
     expect(new Set(northernest.map(product => product.slug)).size).toBe(67);
     expect(new Set(northernest.map(product => product.sourceUrl)).size).toBe(67);
-    expect(northernest.filter(product => product.publicationStatus === 'draft')).toHaveLength(56);
-    expect(northernest.filter(product => isProductPublishable(product))).toHaveLength(11);
+    expect(northernest.filter(product => product.publicationStatus === 'draft')).toHaveLength(0);
+    expect(northernest.filter(product => isProductPublishable(product))).toHaveLength(67);
     expect(northernest.filter(product => product.name === 'Canyon Oak').map(product => product.slug).sort()).toEqual(['northernest-canyon-oak', 'northernest-canyon-oak-2']);
-    expect(northernest.find(product => product.name === 'Untitled')?.publicationStatus).toBe('draft');
+    expect(northernest.find(product => product.name === 'Untitled')?.publicationStatus).toBe('published');
   });
 
   it('uses the supplied Mist image for the existing Pangolin PS106 SKU', () => {
