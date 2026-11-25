@@ -10872,6 +10872,73 @@ const wickhamEuroProducts: Product[] = [
   description
 }));
 
+const wickhamMountainProducts: Product[] = [
+  {
+    "name": "Birch, Artic",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-artic/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Mountain-home-Artic-Web.jpg",
+    "description": "Discover the artisanal Artic Birch flooring, offered in solid hardwood. A durable surface that stands out for its authentic appearance.",
+    "specifications": {
+      "Species": "Birch",
+      "Colour": "Artic",
+      "Collection": "Mountain Home",
+      "Construction": "Solid Hardwood",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "5 in (127 mm)",
+      "Finish": "Matte 10°"
+    }
+  },
+  {
+    "name": "Red Oak, Jay Peak",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-jay-peak/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Moutain-Home-Jay-peak-Web.jpg",
+    "description": "Discover the artisanal Jay Peak Red Oak flooring, offered in solid hardwood. A durable surface that stands out for its authentic appearance.",
+    "specifications": {
+      "Species": "Red Oak",
+      "Colour": "Jay Peak",
+      "Collection": "Mountain Home",
+      "Construction": "Solid Hardwood",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "5 in (127 mm)",
+      "Finish": "Matte 10°"
+    }
+  },
+  {
+    "name": "White Oak, Ember",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-ember/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Mount-7-1-2-ember-Web.jpg",
+    "description": "Discover the artisanal Ember White Oak flooring, offered in solid hardwood. A durable surface that stands out for its authentic appearance.",
+    "specifications": {
+      "Species": "White Oak",
+      "Colour": "Ember",
+      "Collection": "Mountain Home",
+      "Construction": "Solid Hardwood",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "5 in (127 mm)",
+      "Finish": "Matte 10°"
+    }
+  },
+  {
+    "name": "Birch, Retro",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-retro/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/06/Mountain-home-RETRO-2-Web.jpg",
+    "description": "Discover the artisanal Retro Birch flooring, offered in solid hardwood. A durable surface that stands out for its authentic appearance.",
+    "specifications": {
+      "Species": "Birch",
+      "Colour": "Retro",
+      "Collection": "Mountain Home",
+      "Construction": "Solid Hardwood",
+      "Thickness": "3/4 in (19 mm)",
+      "Width": "5 in (127 mm)",
+      "Finish": "Matte 10°"
+    }
+  }
+].map(({name, sourceUrl, imageUrl, description, specifications}) => ({
+  ...supplierListingProduct('Wickham', 'Hardwood', name, sourceUrl, specifications, imageUrl),
+  slug: 'wickham-mountain-home-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -10885,6 +10952,7 @@ export const supplierProductImports: Product[] = [
   ...leeVinylProducts,
   ...wickhamHardwoodProducts,
   ...wickhamEuroProducts,
+  ...wickhamMountainProducts,
   ...leeLaminateProducts,
   ...leeHybridProducts,
   ...leeAdditionalEngineeredProducts,
