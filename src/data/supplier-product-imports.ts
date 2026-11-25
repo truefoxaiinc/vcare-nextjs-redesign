@@ -266,6 +266,22 @@ function supplierListingProduct(
   };
 }
 
+const vidarAdditionalEngineeredProducts: Product[] = [
+  ["9-inch-american-white-oak-macaroon","9'' Collection American White Oak – Macaroon","American White Oak","9-inch","Macaroon","https://vidarflooring.com/images/Macaroon3.jpg"],
+  ["9-inch-american-white-oak-naked-oak","9'' Collection American White Oak – Naked Oak","American White Oak","9-inch","Naked Oak","https://vidarflooring.com/images/Flooring%20pictures/9_Collection_-_American_White_Oak-Naked_Oak.jpg"],
+  ["9-inch-american-white-oak-silver-stone","9'' Collection American White Oak – Silver Stone","American White Oak","9-inch","Silver Stone","https://vidarflooring.com/images/Silverstone-AB.jpg"],
+  ["9-inch-american-white-oak-wheatberry","9'' Collection American White Oak – Wheatberry","American White Oak","9-inch","Wheatberry","https://vidarflooring.com/images/9_Collection_-_American_White_Oak-Wheatberry.jpg"],
+  ["american-black-walnut-10-naked-walnut","American Black Walnut 10 Collection – Naked Walnut","American Black Walnut","10 Collection","Naked Walnut","https://vidarflooring.com/images/American_Black_Walnut_10_Collection-Natural_AB_Select_and_Better-1.jpg"]
+].map(([slug, name, species, collection, colour, imageUrl]) => ({
+  ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, imageUrl, {
+    Species: species,
+    Collection: collection,
+    Colour: colour
+  }, imageUrl),
+  slug: `vidar-${slug}`,
+  ...vidarProductDisplayAuthorization
+}));
+
 const vidarLaminateProducts = [
   ['DB25', '222/9/Laminate_Flooring_Collection-DB25_1_original.jpg', 'laminate-flooring-collection-db25'],
   ['HZ', '258/9/Laminate_Flooring_Collection-HZ_1_original.jpg', 'laminate-flooring-collection-hz'],
@@ -881,6 +897,7 @@ const weissLaminateProducts = weissLaminateNames.map(name => supplierListingProd
 
 export const supplierProductImports: Product[] = [
   ...vidarProducts,
+  ...vidarAdditionalEngineeredProducts,
   ...vidarLaminateImports,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
