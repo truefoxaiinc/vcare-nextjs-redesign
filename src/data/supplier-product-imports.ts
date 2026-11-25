@@ -403,6 +403,147 @@ const vidarPatternedOakProducts: Product[] = [
   ...vidarProductDisplayAuthorization
 }));
 
+const vidarOakListingProducts: Product[] = [
+  {
+    "name": "American Oak 6 Collection-Coffee",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Coffee.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-coffee?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Coffee"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Fortino",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Fortino_ABSelect_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-fortino?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Fortino"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Honey Wheat",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Honey_Wheat_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-honey-wheat?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Honey Wheat"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Moon Light",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Moon_Light_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-moon-light?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Moon Light"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-naked-oak?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Naked Oak"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Silver Stone",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Silver_Stone_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-silver-stone?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Silver Stone"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Sky_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-sky?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Sky"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Smoke Grey",
+    "imageUrl": "https://vidarflooring.com/images/2American_Oak_6_Collection-Smoke_Grey_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-smoke-grey?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Smoke Grey"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Toffee_Crunch_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection-Wheat Berry",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Wheat_Berry_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-6-collection-wheat-berry?catid=19",
+    "specifications": {
+      "Collection": "American Oak 6",
+      "Colour": "Wheat Berry"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Charcoal",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Charcoal_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-charcoal?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Charcoal"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Coyote",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Coyote_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-coyote?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Coyote"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-naked-oak?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Naked Oak"
+    }
+  }
+].map(({ name, imageUrl, sourceUrl, specifications }) => ({
+  ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
+  ...vidarProductDisplayAuthorization
+}));
+
 const vidarLaminateProducts = [
   ['DB25', '222/9/Laminate_Flooring_Collection-DB25_1_original.jpg', 'laminate-flooring-collection-db25'],
   ['HZ', '258/9/Laminate_Flooring_Collection-HZ_1_original.jpg', 'laminate-flooring-collection-hz'],
@@ -1020,6 +1161,7 @@ export const supplierProductImports: Product[] = [
   ...vidarProducts,
   ...vidarAdditionalEngineeredProducts,
   ...vidarPatternedOakProducts,
+  ...vidarOakListingProducts,
   ...vidarLaminateImports,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
