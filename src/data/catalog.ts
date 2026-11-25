@@ -73,7 +73,7 @@ export const categories: FloorCategory[] = [
     slug: 'vinyl',
     note: 'Water-ready style for busy homes',
     image: photo('photo-1600573472591-ee6b68d14c68'),
-    suppliers: ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring', 'Grandeur', 'Simba', 'Northernest', 'Sherwood', 'Woden', 'Weiss']
+    suppliers: ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring', 'Grandeur', 'Simba', 'Northernest', 'Sherwood', 'Woden', 'Weiss', 'Vidar']
   }
 ];
 
