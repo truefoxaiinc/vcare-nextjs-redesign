@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(9);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(14);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -685,6 +685,57 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('adds five distinct Vidar engineered hardwood variants using supplied images', () => {
+    const variants = [
+  [
+    "9-inch-american-white-oak-macaroon",
+    "9'' Collection American White Oak – Macaroon",
+    "American White Oak",
+    "9-inch",
+    "Macaroon",
+    "https://vidarflooring.com/images/Macaroon3.jpg"
+  ],
+  [
+    "9-inch-american-white-oak-naked-oak",
+    "9'' Collection American White Oak – Naked Oak",
+    "American White Oak",
+    "9-inch",
+    "Naked Oak",
+    "https://vidarflooring.com/images/Flooring%20pictures/9_Collection_-_American_White_Oak-Naked_Oak.jpg"
+  ],
+  [
+    "9-inch-american-white-oak-silver-stone",
+    "9'' Collection American White Oak – Silver Stone",
+    "American White Oak",
+    "9-inch",
+    "Silver Stone",
+    "https://vidarflooring.com/images/Silverstone-AB.jpg"
+  ],
+  [
+    "9-inch-american-white-oak-wheatberry",
+    "9'' Collection American White Oak – Wheatberry",
+    "American White Oak",
+    "9-inch",
+    "Wheatberry",
+    "https://vidarflooring.com/images/9_Collection_-_American_White_Oak-Wheatberry.jpg"
+  ],
+  [
+    "american-black-walnut-10-naked-walnut",
+    "American Black Walnut 10 Collection – Naked Walnut",
+    "American Black Walnut",
+    "10 Collection",
+    "Naked Walnut",
+    "https://vidarflooring.com/images/American_Black_Walnut_10_Collection-Natural_AB_Select_and_Better-1.jpg"
+  ]
+];
+    for (const [slug, name, species, collection, colour, imageUrl] of variants) {
+      const matching = products.filter(product => product.slug === `vidar-${slug}`);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject({ name, supplier: 'Vidar', category: 'Engineered Hardwood', imageUrl, specifications: { Species: species, Collection: collection, Colour: colour } });
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('publishes Vidar laminate collections with supplier images and verified specifications', () => {
     const vidarLaminateProducts = publishedProducts.filter(product => product.supplier === 'Vidar' && product.category === 'Laminate');
     expect(vidarLaminateProducts.map(product => product.name)).toEqual([
@@ -706,14 +757,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(48);
+    expect(products).toHaveLength(53);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 16,
+      Vidar: 21,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -721,7 +772,7 @@ describe('flooring supplier mapping', () => {
 
     for (const product of products) {
       const recentAuthorization =
-        (product.supplier === 'Vidar' && product.category === 'Laminate') ||
+        (product.supplier === 'Vidar' && (product.category === 'Laminate' || product.sourceUrl.startsWith('https://vidarflooring.com/images/'))) ||
         (product.supplier === 'Simba' && (
           product.category === 'Laminate' ||
           (product.category === 'Vinyl' && product.specifications?.Construction === 'SPC')
@@ -742,7 +793,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(47);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(52);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -751,7 +802,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(16);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(21);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -762,7 +813,7 @@ describe('flooring supplier mapping', () => {
 
   it('records unresolved supplier source links for admin review', () => {
     expect(products.filter(product => product.sourceStatus === 'unresolved').map(product => product.supplier)).toEqual(Array(7).fill('Vidar'));
-    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified').map(product => product.sourceUrl)).toEqual([
+    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/')).map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
