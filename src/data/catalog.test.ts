@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(17);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(25);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -685,6 +685,129 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('maps supplied Vidar Chevron, Herringbone and Oak 6 images and specifications', () => {
+    const variants = [
+  {
+    "name": "American Oak 5 Chevron Collection – Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Chevron_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Select & Better",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "American Oak 5 Chevron Collection – Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Chevron_Collection-Naked_Oak_ABSelect_and_Better.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Select & Better",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Naked Oak"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Camel",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Camel_ABCD_Character.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Camel"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Pearl_ABC_Select.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch, 9/16 inch",
+      "Grade": "Character, Select",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Pearl"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Silver Stone",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Silver_Stone_ABC_Select.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch, 9/16 inch",
+      "Grade": "Select",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Silver Stone"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Sky_ABCD_Character.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Sky"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection – Black Brown",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Black_Brown.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "6 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "2 mm",
+      "Collection": "American Oak 6",
+      "Colour": "Black Brown"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection – Camel",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Camel.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "6 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "2 mm",
+      "Collection": "American Oak 6",
+      "Colour": "Camel"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('adds three Vidar Black Walnut 6 and 7 collection variants with complete image URLs', () => {
     const variants = [
   [
@@ -792,14 +915,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(56);
+    expect(products).toHaveLength(64);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 24,
+      Vidar: 32,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -828,7 +951,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(55);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(63);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -837,7 +960,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(24);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(32);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
