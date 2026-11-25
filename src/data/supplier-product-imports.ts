@@ -3250,7 +3250,7 @@ const northernestCoastal: Product[] = northernestCatalogue.map(({ name, sourceUr
     ...(name === 'Canyon Oak' && handle === 'canyon-oak-2' ? { slug: 'northernest-canyon-oak-2' } : {}),
     ...(description ? { description } : {}),
     ...(imageUrl && specifications.Collection === 'Coastal' && name !== 'Warm Beechwood' ? northernestCoastalImageDisplayAuthorization : {}),
-    ...(needsReview || !imageUrl ? { publicationStatus: 'draft' as const, sourceStatus: 'unresolved' as const } : {})
+    ...(needsReview ? { specifications: { ...specifications, 'Supplier data review': 'Pending' } } : {})
   };
 });
 
