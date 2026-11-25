@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(91);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(97);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -683,6 +683,173 @@ describe('flooring supplier mapping', () => {
     expect(new Set(suppliers.map(supplier => supplier.slug)).size).toBe(suppliers.length);
     expect(suppliers.every(supplier => supplier.productListingHref === '/suppliers/' + supplier.slug)).toBe(true);
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
+  });
+
+  it('maps all fifteen West of Canada listings without duplicate variants', () => {
+    const variants = [
+  {
+    "name": "7 1/2'' Collection American White Oak – Driftwood",
+    "imageUrl": "https://vidarflooring.com/images/2_Collection_-_American_White_Oak-Driftwood.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19",
+    "specifications": {
+      "Collection": "7 1/2'' Collection American White Oak",
+      "Colour": "Driftwood",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "7 1/2'' Collection American White Oak – Honeywheat",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/2_Collection_-_American_White_Oak-Honeywheat_-_new.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-honey-wheat?catid=19",
+    "specifications": {
+      "Collection": "7 1/2'' Collection American White Oak",
+      "Colour": "Honeywheat",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "7 1/2'' Collection American White Oak – Moonlight",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/2_Collection_-_American_White_Oak-Moonlight_-_new.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19",
+    "specifications": {
+      "Collection": "7 1/2'' Collection American White Oak",
+      "Colour": "Moonlight",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "7 1/2'' Collection American White Oak – Night Owl",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/2_Collection_-_American_White_Oak-Night_Owl_-_new.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-night-owl?catid=19",
+    "specifications": {
+      "Collection": "7 1/2'' Collection American White Oak",
+      "Colour": "Night Owl",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "7 1/2'' Collection American White Oak – Urban Grey",
+    "imageUrl": "https://vidarflooring.com/images/2_Collection_-_American_White_Oak-Urban_Grey.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19",
+    "specifications": {
+      "Collection": "7 1/2'' Collection American White Oak",
+      "Colour": "Urban Grey",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Daybreak",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/9_Collection_-_American_White_Oak-Daybreak.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/naked-oak-daybreak?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Daybreak",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/Macaroon3.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/9-collection-american-white-oak-macaroon?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Macaroon",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/9_Collection_-_American_White_Oak-Naked_Oak.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-naked-oak?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Naked Oak",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Silver Stone",
+    "imageUrl": "https://vidarflooring.com/images/Silverstone-AB.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/naked-oak-silver-stone?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Silver Stone",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Urban Grey",
+    "imageUrl": "https://vidarflooring.com/images/Urban_Grey.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/naked-oak-urban-grey?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Urban Grey",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "9'' Collection American White Oak – Wheatberry",
+    "imageUrl": "https://vidarflooring.com/images/9_Collection_-_American_White_Oak-Wheatberry.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-wheat-berry?catid=19",
+    "specifications": {
+      "Collection": "9'' Collection American White Oak",
+      "Colour": "Wheatberry",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "American Black Walnut 7 Collection – Natural",
+    "imageUrl": "https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Natural_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-black-walnut-7-collection-natural?catid=19",
+    "specifications": {
+      "Collection": "American Black Walnut 7 Collection",
+      "Colour": "Natural",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "American Black Walnut 7 Collection – Provence",
+    "imageUrl": "https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Provence_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-black-walnut-7-collection-provence?catid=19",
+    "specifications": {
+      "Collection": "American Black Walnut 7 Collection",
+      "Colour": "Provence",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Herringbone_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-5-herringbone-collection-naked-oak?catid=19",
+    "specifications": {
+      "Collection": "American Oak 5 Herringbone Collection",
+      "Colour": "Naked Oak",
+      "Region": "West of Canada"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Pearl_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-5-herringbone-collection-pearl?catid=19",
+    "specifications": {
+      "Collection": "American Oak 5 Herringbone Collection",
+      "Colour": "Pearl",
+      "Region": "West of Canada"
+    }
+  }
+];
+    for (const [index, variant] of variants.entries()) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0].specifications?.Region).toBe('West of Canada');
+      if ([1, 3, 5, 9, 12, 13].includes(index)) {
+        expect(matching[0]).toMatchObject(variant);
+      } else {
+        expect(matching[0].specifications?.['West of Canada image']).toBe(variant.imageUrl);
+        expect(matching[0].specifications?.['West of Canada product page']).toBe(variant.sourceUrl);
+      }
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
   });
 
   it('imports six Vidar White Ash and Versailles listings', () => {
@@ -1564,14 +1731,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(130);
+    expect(products).toHaveLength(136);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 98,
+      Vidar: 104,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -1579,7 +1746,7 @@ describe('flooring supplier mapping', () => {
 
     for (const product of products) {
       const recentAuthorization =
-        (product.supplier === 'Vidar' && (product.category === 'Laminate' || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)))) ||
+        (product.supplier === 'Vidar' && (product.category === 'Laminate' || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)))) ||
         (product.supplier === 'Simba' && (
           product.category === 'Laminate' ||
           (product.category === 'Vinyl' && product.specifications?.Construction === 'SPC')
@@ -1600,7 +1767,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(129);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(135);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -1609,7 +1776,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(98);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(104);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -1620,7 +1787,7 @@ describe('flooring supplier mapping', () => {
 
   it('records unresolved supplier source links for admin review', () => {
     expect(products.filter(product => product.sourceStatus === 'unresolved').map(product => product.supplier)).toEqual(Array(7).fill('Vidar'));
-    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
+    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
