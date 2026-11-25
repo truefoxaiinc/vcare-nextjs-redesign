@@ -19,6 +19,7 @@ const nextConfig = {
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2024/01/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2022/03/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2024/12/**', search: '' }
+    ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2026/08/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2026/10/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/03/**', search: '' }
     ,{ protocol: 'https', hostname: 'simbaflooringcorp.com', pathname: '/wp-content/uploads/2021/12/**', search: '' }
