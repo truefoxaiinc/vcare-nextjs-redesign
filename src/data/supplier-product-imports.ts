@@ -3548,6 +3548,333 @@ const vidarSpcProducts = [
   ...vidarProductDisplayAuthorization
 }));
 
+const leeHybridProducts = [
+  {
+    "name": "Havana",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Havana_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/havana/",
+    "specifications": {
+      "Product": "Havana",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Warm Oak",
+      "Sq feet per box": "20.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "50",
+      "Weight / Box": "45 lbs",
+      "Weight / Skid": "2250 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Toronto",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Toronto_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/toronto/",
+    "specifications": {
+      "Product": "Toronto",
+      "SKU": "8387",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Light Grey",
+      "Sq feet per box": "20.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "50",
+      "Weight / Box": "45 lbs",
+      "Weight / Skid": "2250 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Chicago",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Chicago.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/chicago/",
+    "specifications": {
+      "Product": "Chicago",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Golden Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Vancouver",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Vancouver_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/vancouver/",
+    "specifications": {
+      "Product": "Vancouver",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Pearl Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "New York",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Newyork_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/newyork/",
+    "specifications": {
+      "Product": "New York",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Sand Beige",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Halifax",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Halifax_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/halifax/",
+    "specifications": {
+      "Product": "Halifax",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Light Oak",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Atlanta",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Atlanta_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/atlanta/",
+    "specifications": {
+      "Product": "Atlanta",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "7 3/4\" x 3/4\"",
+      "Color": "Walnut Brown",
+      "Sq feet per box": "23.98",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Montreal",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Montreal_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/montreal/",
+    "specifications": {
+      "Product": "Montreal",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Grey Oak",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Las Vegas",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Las-vegas_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/lasvegas/",
+    "specifications": {
+      "Product": "Las Vegas",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Wheat Gold",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "San Francisco",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/09/Sans_1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/sanfrancisco/",
+    "specifications": {
+      "Product": "San Francisco",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "9 1/2\" x 3/4\"",
+      "Color": "Linen Oak",
+      "Sq feet per box": "26.08",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Boston",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Boston.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/boston/",
+    "specifications": {
+      "Product": "Boston",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Dune Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Denver",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Denver.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/denver/",
+    "specifications": {
+      "Product": "Denver",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Silver Mist Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Houston",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Houston.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/houston/",
+    "specifications": {
+      "Product": "Houston",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Smoked Walnut",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Philadelphia",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/Philadelphia.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/philadelphia/",
+    "specifications": {
+      "Product": "Philadelphia",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Linen Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "San Diego",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/San-Diego.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/san-diego/",
+    "specifications": {
+      "Product": "San Diego",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Golden Wheat Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "New Orleans",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2026/07/New-Orleans.webp",
+    "sourceUrl": "https://leeflooring.ca/products/hybrid/new-orleans/",
+    "specifications": {
+      "Product": "New Orleans",
+      "SKU": "7480",
+      "Collection": "Hybrid Engineered",
+      "Dimensions": "6 1/2\" x 3/4\"",
+      "Color": "Champagne Oak",
+      "Sq feet per box": "19.97",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "48",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2640 lbs"
+    },
+    "description": "Timeless and versatile. Our Lee Engineered Hardwood collection boasts a rich, natural texture and a classic aesthetic, bringing warmth and character to any interior. Each plank is meticulously crafted to highlight the natural beauty of wood while ensuring durability and longevity. Coordinating trims and moldings are available to provide a flawless finish, seamlessly enhancing your hardwood flooring. To ensure availability, please place your accessory orders at least one week in advance and specify any unique preferences. Kindly note that all accessories are made to order and are non-refundable and non-exchangeable."
+  }
+].map(({ name, imageUrl, sourceUrl, specifications, description }) => ({
+  ...supplierListingProduct('Lee Flooring', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
+  slug: 'lee-flooring-hybrid-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -3561,6 +3888,7 @@ export const supplierProductImports: Product[] = [
   ...leeVinylProducts,
   ...wickhamHardwoodProducts,
   ...leeLaminateProducts,
+  ...leeHybridProducts,
   ...floorsAtWorkVinylProducts,
   ...grandeurPacific,
   ...grandeurLaminateProducts,
