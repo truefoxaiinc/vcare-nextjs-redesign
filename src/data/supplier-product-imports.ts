@@ -538,6 +538,141 @@ const vidarOakListingProducts: Product[] = [
       "Collection": "American Oak 7",
       "Colour": "Naked Oak"
     }
+  },
+  {
+    "name": "American Oak 7 Collection-Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Pearl_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-pearl?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Pearl"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Silver Stone",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Silver_Stone_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-silver-stone?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Silver Stone"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Sky_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-sky?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Sky"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Snow White",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Snow_White_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-snow-white?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Snow White"
+    }
+  },
+  {
+    "name": "American Oak 7 Collection-Wheat Berry",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Wheat_Berry_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-wheat-berry?catid=19",
+    "specifications": {
+      "Collection": "American Oak 7",
+      "Colour": "Wheat Berry"
+    }
+  },
+  {
+    "name": "American Oak 9 Collection-Daisy",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_9_Collection-Daisy_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-9-collection-daisy?catid=19",
+    "specifications": {
+      "Collection": "American Oak 9",
+      "Colour": "Daisy"
+    }
+  },
+  {
+    "name": "American Oak 9 Collection-Sandy Grey",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_9_Collection-Sandy_Grey_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-9-collection-sandy-grey?catid=19",
+    "specifications": {
+      "Collection": "American Oak 9",
+      "Colour": "Sandy Grey"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Camel",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Camel_ABCD_Character_1.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-camel?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Camel"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Coffee",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Coffee_ABCD_Character_1.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-coffee?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Coffee"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Fortino",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Fortino_AB_Select_and_Better_1.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-fortino?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Fortino"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Honey Wheat",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Honey_Wheat_AB_Select_and_Better_1_16.14.35.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-honey-wheat?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Honey Wheat"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Macaroon_AB_Select_and_Better_1_16.15.11.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Moon Light",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Moon_Light_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-moon-light?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Moon Light"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-naked-oak?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Naked Oak"
+    }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_Click_5_Collection-Sky_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-sky?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Sky"
+    }
   }
 ].map(({ name, imageUrl, sourceUrl, specifications }) => ({
   ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
