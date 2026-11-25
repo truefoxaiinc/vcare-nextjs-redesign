@@ -282,6 +282,16 @@ describe('flooring supplier mapping', () => {
     expect(simba2055 && isProductPublishable(simba2055)).toBe(true);
   });
 
+  it('imports eighteen Northernest SPC vinyl listings', () => {
+    const vinyl = products.filter(product => product.supplier === 'Northernest' && product.category === 'Vinyl');
+    expect(vinyl).toHaveLength(18);
+    expect(new Set(vinyl.map(product => product.slug)).size).toBe(18);
+    expect(new Set(vinyl.map(product => product.sourceUrl)).size).toBe(18);
+    expect(vinyl.filter(product => product.specifications?.Collection === '300 Series')).toHaveLength(11);
+    expect(vinyl.filter(product => product.specifications?.Collection === 'Antique 9mm')).toHaveLength(7);
+    expect(vinyl.every(product => product.imageUrl && isProductPublishable(product))).toBe(true);
+  });
+
   it('imports eleven Northernest laminate listings', () => {
     const laminate = products.filter(product => product.supplier === 'Northernest' && product.category === 'Laminate');
     expect(laminate).toHaveLength(11);
