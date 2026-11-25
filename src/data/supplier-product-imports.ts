@@ -11153,7 +11153,396 @@ const simbaEngineeredProducts = simbaEngineeredCatalogue.map(({name,sourceUrl,im
   slug: 'simba-engineered-' + slugPart(name)
 }));
 
+const simbaOakCatalogue: Array<{name:string;sourceUrl:string;imageUrl:string;specifications:Record<string,string>;description:string}> = [
+  {
+    "name": "Autumn Valley",
+    "sourceUrl": "https://simbaflooringcorp.com/product/autumn-valley-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Autumn-Valley.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47604",
+      "Wood": "Oak",
+      "Colour": "Autumn Valley",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "12/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Beige",
+    "sourceUrl": "https://simbaflooringcorp.com/product/beige/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Beige-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47597",
+      "Wood": "White Oak",
+      "Colour": "Beige",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "18/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Chevron Chestnut",
+    "sourceUrl": "https://simbaflooringcorp.com/product/chevron-chestnut-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Chevron-Chestnut.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47598",
+      "Wood": "White Oak",
+      "Colour": "Chevron Chestnut",
+      "Construction": "Engineered Hardwood",
+      "Length": "600MM",
+      "Width": "127MM",
+      "Thickness": "12/2.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "French Beige",
+    "sourceUrl": "https://simbaflooringcorp.com/product/french-beigh/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/French-Beige-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "2354",
+      "Wood": "Oak",
+      "Colour": "French Beige",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Greyish",
+    "sourceUrl": "https://simbaflooringcorp.com/product/greyish-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Greyish-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47599",
+      "Wood": "Oak",
+      "Colour": "Greyish",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Honey",
+    "sourceUrl": "https://simbaflooringcorp.com/product/honey/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/honey-2-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1766",
+      "Wood": "Oak",
+      "Colour": "Honey",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Lion",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lion/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lion-1-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1890",
+      "Wood": "Oak",
+      "Colour": "Lion",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Lisboa",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lisboa/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Lisboa-2-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1911",
+      "Wood": "Oak",
+      "Colour": "Lisboa",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/4.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Liverpool",
+    "sourceUrl": "https://simbaflooringcorp.com/product/liverpool-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Liverpool-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47600",
+      "Wood": "Oak",
+      "Colour": "Liverpool",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Marseille",
+    "sourceUrl": "https://simbaflooringcorp.com/product/oak-pearl-river-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Marseille-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47601",
+      "Wood": "Oak",
+      "Colour": "Marseille",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "12/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Nantes",
+    "sourceUrl": "https://simbaflooringcorp.com/product/nantes-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Nantes-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47603",
+      "Wood": "Oak",
+      "Colour": "Nantes",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Oak Natural",
+    "sourceUrl": "https://simbaflooringcorp.com/product/oak-natural/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-2-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1913",
+      "Wood": "Oak",
+      "Colour": "Oak Natural",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Oak Natural +",
+    "sourceUrl": "https://simbaflooringcorp.com/product/oak-natural-3/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Natural-1-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1916",
+      "Wood": "Oak",
+      "Colour": "Oak Natural +",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "12/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Pearl River",
+    "sourceUrl": "https://simbaflooringcorp.com/product/oak-pearl-river/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2019/03/Pearl-River-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "2679",
+      "Wood": "Oak",
+      "Colour": "Pearl River",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Plymouth",
+    "sourceUrl": "https://simbaflooringcorp.com/product/plymouth/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2018/01/Plymouth-1-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "2403",
+      "Wood": "Oak",
+      "Colour": "Plymouth",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "15/3.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Sicily",
+    "sourceUrl": "https://simbaflooringcorp.com/product/sicily/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Oak-Sicily-1-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1754",
+      "Wood": "White Oak",
+      "Colour": "Sicily",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Silver Powder",
+    "sourceUrl": "https://simbaflooringcorp.com/product/silver-powder/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Silver-powder-1-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "1758",
+      "Wood": "Oak",
+      "Colour": "Silver Powder",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Umber",
+    "sourceUrl": "https://simbaflooringcorp.com/product/umber/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Umber-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47602",
+      "Wood": "Oak",
+      "Colour": "Umber",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "127MM",
+      "Thickness": "12/2.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Valence",
+    "sourceUrl": "https://simbaflooringcorp.com/product/valence-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Valence-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47611",
+      "Wood": "Oak",
+      "Colour": "Valence",
+      "Construction": "Engineered Hardwood",
+      "Length": "1900MM",
+      "Width": "190MM",
+      "Thickness": "12/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  },
+  {
+    "name": "Vienna",
+    "sourceUrl": "https://simbaflooringcorp.com/product/vienna/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Vienna-scaled.jpg",
+    "specifications": {
+      "Collection": "Oak",
+      "SKU": "47612",
+      "Wood": "Oak",
+      "Colour": "Vienna",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    },
+    "description": "Engineered hardwood flooring brings warmth and elegance to your home while enhancing its value. Explore our wide selection of finishes, wood species, and plank widths to find the perfect match for your space. Falling in love with this look? Shop at a retailer near you today!"
+  }
+];
+const simbaOakProducts = simbaOakCatalogue.map(({name,sourceUrl,imageUrl,specifications,description}) => ({
+  ...supplierListingProduct('Simba','Engineered Hardwood',name,sourceUrl,specifications,imageUrl),
+  slug: 'simba-oak-' + specifications.SKU,
+  description
+}));
+
 export const supplierProductImports: Product[] = [
+  ...simbaOakProducts,
   ...simbaEngineeredProducts,
   ...simbaLvtProducts,
   ...vidarProducts.map(withVidarWestListing),
