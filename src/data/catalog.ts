@@ -66,7 +66,7 @@ export const categories: FloorCategory[] = [
     slug: 'laminate',
     note: 'Everyday durability, beautifully done',
     image: photo('photo-1600566753086-00f18fb6b3ea'),
-    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Simba', 'Sherwood', 'Woden', 'Weiss', 'Grandeur', 'Vidar']
+    suppliers: ['Toucan', 'Floorsatwork', 'Lee Flooring', 'Simba', 'Sherwood', 'Woden', 'Weiss', 'Grandeur', 'Vidar', 'Northernest']
   },
   {
     title: 'Vinyl',
