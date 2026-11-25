@@ -11541,7 +11541,118 @@ const simbaOakProducts = simbaOakCatalogue.map(({name,sourceUrl,imageUrl,specifi
   description
 }));
 
+const simbaYellowstoneCatalogue: Array<{name:string;sourceUrl:string;imageUrl:string;specifications:Record<string,string>;description:string}> = [
+  {
+    "name": "68022",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68022/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_06.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47875",
+      "Product code": "68022",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  },
+  {
+    "name": "68347-7",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68347-7/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_03.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47872",
+      "Product code": "68347-7",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  },
+  {
+    "name": "68363",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68363/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_02.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47866",
+      "Product code": "68363",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  },
+  {
+    "name": "68493",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68493/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_01.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47863",
+      "Product code": "68493",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  },
+  {
+    "name": "68628",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68628/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_04.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47873",
+      "Product code": "68628",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  },
+  {
+    "name": "68629",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68629/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_05.jpg",
+    "description": "The Yellowstone SPC Collection combines modern design with exceptional durability and everyday performance. Featuring an 8mm total thickness, each plank is constructed with a 6mm rigid core and 2mm attached underlay, providing a solid and comfortable foundation. Designed for demanding everyday environments, the collection is 100% waterproof, making it a practical flooring choice for areas where moisture and spills are a concern. A durable 20 mil (0.5 mm) wear layer provides added protection for long-lasting performance while helping the flooring maintain its appearance over time. The Yellowstone Collection also delivers impressive acoustic performance, with sound ratings of IIC 78 and STC 76, helping reduce both impact and airborne sound transmission. This combination of waterproof construction, durability, acoustic performance, and contemporary styling makes Yellowstone SPC a versatile flooring solution for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Yellowstone",
+      "SKU": "47874",
+      "Product code": "68629",
+      "Construction": "8mm total thickness — 6mm rigid core + 2mm attached underlay",
+      "Length × width": "1524 × 228 mm",
+      "Wear layer": "20 mil (0.5 mm)",
+      "Performance": "100% waterproof",
+      "Sound rating": "IIC = 78 / STC = 76",
+      "Supplier data review": "Thickness conflict: dimensions 3mm, construction 8mm; Supplier laminate tag conflicts with SPC product description"
+    }
+  }
+];
+const simbaYellowstoneProducts = simbaYellowstoneCatalogue.map(({name,sourceUrl,imageUrl,specifications,description}) => ({
+  ...supplierListingProduct('Simba','Vinyl',name,sourceUrl,specifications,imageUrl),
+  slug: 'simba-yellowstone-' + specifications.SKU,
+  description
+}));
+
 export const supplierProductImports: Product[] = [
+  ...simbaYellowstoneProducts,
   ...simbaOakProducts,
   ...simbaEngineeredProducts,
   ...simbaLvtProducts,
