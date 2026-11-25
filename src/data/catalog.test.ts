@@ -632,6 +632,117 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('imports five unique Lee solid hardwood products', () => {
+    const variants = [
+  {
+    "name": "Solid Hickory Rome",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-Hickory-Rome_2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-hickory-rome/",
+    "specifications": {
+      "Product": "Solid Hickory Rome",
+      "SKU": "7789",
+      "Collection": "Premium",
+      "Dimensions": "4-1/4\" x 3/4\"",
+      "Color": "Rustic Hickory",
+      "Sq feet per box": "19.9",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "Hickory"
+    }
+  },
+  {
+    "name": "Solid Hickory Natural",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-Hickory-Natural-2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-hickory-natural/",
+    "specifications": {
+      "Product": "Solid Hickory Natural",
+      "SKU": "7899",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\"X3/4\"",
+      "Color": "Natural Hickory",
+      "Sq feet per box": "19.9",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Installation options": "Nail Down / Glue Down",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "Hickory"
+    }
+  },
+  {
+    "name": "Solid White Oak Milan",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-oak-Milan-1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-white-oak-milan/",
+    "specifications": {
+      "Product": "Solid Milan",
+      "SKU": "7709",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Deep White Oak",
+      "Sq feet per box": "22.1",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "White Oak"
+    }
+  },
+  {
+    "name": "Solid White Oak Athens",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-oak-Athens-1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-white-oak-athens/",
+    "specifications": {
+      "Product": "Solid Athens",
+      "SKU": "8899",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Deep White Oak",
+      "Sq feet per box": "22.1",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "White Oak"
+    }
+  },
+  {
+    "name": "Solid Acacia Natural",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Acacia_2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-acacia-natural/",
+    "specifications": {
+      "Product": "Solid Acacia Natural",
+      "SKU": "2234",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Dark Acacia",
+      "Sq feet per box": "22.4",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "60 lbs",
+      "Weight / Skid": "2400 lbs",
+      "Species": "Acacia"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Hardwood' && product.sourceUrl === variant.sourceUrl);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('imports twenty-five Lee Premium Engineered, Heritage Hills and Solvara products', () => {
     const variants = [
   {
@@ -2822,7 +2933,7 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(294);
+    expect(products).toHaveLength(299);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
@@ -2831,7 +2942,7 @@ describe('flooring supplier mapping', () => {
       Toucan: 15,
       Vidar: 111,
       Tosca: 5,
-      'Lee Flooring': 48,
+      'Lee Flooring': 53,
       Wickham: 4
     });
 
@@ -2858,7 +2969,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(293);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(298);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
