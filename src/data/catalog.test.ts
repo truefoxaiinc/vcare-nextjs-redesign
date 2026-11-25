@@ -685,6 +685,49 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('adds Seattle regional information to six existing Vidar products without duplicates', () => {
+    const variants = [
+  {
+    "name": "7 1/2'' Collection American White Oak – Night Owl",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/2_Collection_-_American_White_Oak-Night_Owl_-_new.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-night-owl?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-macaroon?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-naked-oak?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Pearl_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-pearl?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Sky_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-sky?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Wheat Berry",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Wheat_Berry_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-wheat-berry?catid=19"
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0].specifications?.Region).toContain('Seattle');
+      expect(matching[0].specifications?.['Seattle image']).toBe(variant.imageUrl);
+      expect(matching[0].specifications?.['Seattle product page']).toBe(variant.sourceUrl);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('maps all fifteen West of Canada listings without duplicate variants', () => {
     const variants = [
   {
@@ -841,9 +884,9 @@ describe('flooring supplier mapping', () => {
     for (const [index, variant] of variants.entries()) {
       const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
       expect(matching).toHaveLength(1);
-      expect(matching[0].specifications?.Region).toBe('West of Canada');
+      expect(matching[0].specifications?.Region).toContain('West of Canada');
       if ([1, 3, 5, 9, 12, 13].includes(index)) {
-        expect(matching[0]).toMatchObject(variant);
+        expect(matching[0]).toMatchObject({ ...variant, specifications: { ...variant.specifications, Region: matching[0].specifications?.Region } });
       } else {
         expect(matching[0].specifications?.['West of Canada image']).toBe(variant.imageUrl);
         expect(matching[0].specifications?.['West of Canada product page']).toBe(variant.sourceUrl);
