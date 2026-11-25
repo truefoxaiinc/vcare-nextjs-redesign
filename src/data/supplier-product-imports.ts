@@ -6599,6 +6599,127 @@ const leeSolidProducts = [
   }
 ].map(({ name, imageUrl, sourceUrl, specifications, description }) => ({ ...supplierListingProduct('Lee Flooring', 'Hardwood', name, sourceUrl, specifications, imageUrl), description }));
 
+const northernestMapleProducts: Product[] = [
+  {
+    "name": "Fraser",
+    "sourceUrl": "https://northernestflooring.ca/product/fraser/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Fraser-1.jpg",
+    "description": "Fraser brings a rich, dark maple tone with natural character and a refined matte finish. Its timeless warmth adds depth and elegance to Toronto homes, making it a strong choice for interiors that feel both classic and contemporary.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  },
+  {
+    "name": "Subruce",
+    "sourceUrl": "https://northernestflooring.ca/product/subruce/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Subruce-1.jpg",
+    "description": "Contemporary taupe-brown with a subtle grey cast. Subruce tempers strong sunlight and complements black windows, cool stone, and matte-metal accents.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  },
+  {
+    "name": "Imperial",
+    "sourceUrl": "https://northernestflooring.ca/product/imperial/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Imperial-1.jpg",
+    "description": "Classic medium brown—timeless, tailored, and easy to pair. Imperial bridges light walls and darker cabinetry for a cohesive, high-end look throughout the home.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  },
+  {
+    "name": "Hemlock",
+    "sourceUrl": "https://northernestflooring.ca/product/hemlock/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/preview-2.jpg",
+    "description": "Light natural maple with a whisper of wheat. Hemlock brightens small spaces and keeps sightlines clean—Scandinavian calm with authentic hardwood warmth.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  },
+  {
+    "name": "Mackenzie",
+    "sourceUrl": "https://northernestflooring.ca/product/mackenzie/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Makenzie-1.jpg",
+    "description": "Warm mid-brown with toasted undertones. Mackenzie delivers heritage comfort without heaviness—perfect with shaker kitchens, stone fireplaces, and linen upholstery.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  },
+  {
+    "name": "Dark Mocha",
+    "sourceUrl": "https://northernestflooring.ca/product/dark-moka/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/preview-3.jpg",
+    "description": "A deep espresso brown that instantly elevates a room. Dark Mocha grounds airy palettes, flatters marble and brass, and hides daily scuffs thanks to its low-gloss finish.",
+    "specifications": {
+      "Species": "North American Maple",
+      "Construction": "Solid hardwood (¾″ thick)",
+      "Width & Length": "Traditional solid widths × RL (site-finish look)",
+      "Profile": "Tongue & Groove, 4-sided micro-bevel",
+      "Surface": "Wirebrushed / smooth matte (by colour)",
+      "Finish": "Factory urethane with aluminum-oxide",
+      "Grade": "Select & Better with natural character",
+      "Coverage": "21.7 sq ft / box",
+      "Install Locations": "On / Above grade over plywood/OSB",
+      "Collection": "Maple",
+      "Thickness": "¾″"
+    }
+  }
+].map(({ name, sourceUrl, imageUrl, description, specifications }) => ({
+  ...supplierListingProduct('Northernest', 'Hardwood', name, sourceUrl, specifications, imageUrl),
+  slug: 'northernest-maple-' + slugPart(name),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -6624,6 +6745,7 @@ export const supplierProductImports: Product[] = [
   ...simbaSpcProducts,
   ...simbaLaminateProducts,
   ...northernestCoastal,
+  ...northernestMapleProducts,
   ...sherwoodProducts,
   ...pangolinProducts,
   ...wodenProducts,
