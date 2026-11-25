@@ -59,7 +59,7 @@ export const categories: FloorCategory[] = [
     slug: 'engineered-hardwood',
     note: 'Real wood, thoughtfully built',
     image: photo('photo-1600607687939-ce8a6c25118c'),
-    suppliers: ['Floorsatwork', 'Grandeur', 'Northernest', 'Sherwood', 'Weiss', 'Woden', 'Vidar', 'Lee Flooring']
+    suppliers: ['Floorsatwork', 'Grandeur', 'Northernest', 'Sherwood', 'Weiss', 'Woden', 'Vidar', 'Lee Flooring', 'Wickham']
   },
   {
     title: 'Laminate',
