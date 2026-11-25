@@ -3242,9 +3242,16 @@ const northernestCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: s
     "needsReview": true
   }
 ];
-const northernestCoastal: Product[] = northernestCatalogue.map(({ name, sourceUrl, imageUrl, specifications, description }) => {
+const northernestCoastal: Product[] = northernestCatalogue.map(({ name, sourceUrl, imageUrl, specifications, description, needsReview }) => {
   const product = supplierListingProduct('Northernest', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl || undefined);
-  return { ...product, ...(description ? { description } : {}), ...(imageUrl && name !== 'Warm Beechwood' ? northernestCoastalImageDisplayAuthorization : {}) };
+  const handle = new URL(sourceUrl).pathname.split('/').filter(Boolean).pop();
+  return {
+    ...product,
+    ...(name === 'Canyon Oak' && handle === 'canyon-oak-2' ? { slug: 'northernest-canyon-oak-2' } : {}),
+    ...(description ? { description } : {}),
+    ...(imageUrl && specifications.Collection === 'Coastal' && name !== 'Warm Beechwood' ? northernestCoastalImageDisplayAuthorization : {}),
+    ...(needsReview || !imageUrl ? { publicationStatus: 'draft' as const, sourceStatus: 'unresolved' as const } : {})
+  };
 });
 
 const sherwoodProducts = [
