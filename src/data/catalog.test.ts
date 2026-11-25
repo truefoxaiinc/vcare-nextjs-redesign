@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(14);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(17);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -685,6 +685,41 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('adds three Vidar Black Walnut 6 and 7 collection variants with complete image URLs', () => {
+    const variants = [
+  [
+    "american-black-walnut-6-natural",
+    "American Black Walnut 6 Collection – Natural",
+    "American Black Walnut",
+    "6 Collection",
+    "Natural",
+    "https://vidarflooring.com/images/American_Black_Walnut_6_Collection-Natural_AB_Select_and_Better.jpg"
+  ],
+  [
+    "american-black-walnut-7-chocolate",
+    "American Black Walnut 7 Collection – Chocolate",
+    "American Black Walnut",
+    "7 Collection",
+    "Chocolate",
+    "https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Chocolate_ABC_Select.jpg"
+  ],
+  [
+    "american-black-walnut-7-natural",
+    "American Black Walnut 7 Collection – Natural",
+    "American Black Walnut",
+    "7 Collection",
+    "Natural",
+    "https://vidarflooring.com/images/American_Black_Walnut_7_Collection-Natural_AB_Select_and_Better.jpg"
+  ]
+];
+    for (const [slug, name, species, collection, colour, imageUrl] of variants) {
+      const matching = products.filter(product => product.slug === `vidar-${slug}`);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject({ name, supplier: 'Vidar', category: 'Engineered Hardwood', imageUrl, specifications: { Species: species, Collection: collection, Colour: colour } });
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('adds five distinct Vidar engineered hardwood variants using supplied images', () => {
     const variants = [
   [
@@ -757,14 +792,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(53);
+    expect(products).toHaveLength(56);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 21,
+      Vidar: 24,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -793,7 +828,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(52);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(55);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -802,7 +837,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(21);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(24);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
