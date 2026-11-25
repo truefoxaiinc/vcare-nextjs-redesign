@@ -1478,39 +1478,1686 @@ const pangolinProducts = pangolinCodes.map(([sku, thickness, underlay]) => {
   };
 });
 
-const wodenImageUrls: Partial<Record<string, string>> = {
-  '1001 Sandy Cove': 'https://static.wixstatic.com/media/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg',
-  '1002 Beach Bluff': 'https://static.wixstatic.com/media/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg',
-  '1003 Golden Shoal': 'https://static.wixstatic.com/media/d8ccde_e498bb6fafc142d6a72fcbed13b10b22~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e498bb6fafc142d6a72fcbed13b10b22~mv2.jpg',
-  '1004 River Clay': 'https://static.wixstatic.com/media/d8ccde_c8168225fcca498c80aaccb7acdf877d~mv2.jpg/v1/fill/w_1280,h_771,al_c,q_85,enc_avif,quality_auto/d8ccde_c8168225fcca498c80aaccb7acdf877d~mv2.jpg',
-  '1005 Smoky Walnut': 'https://static.wixstatic.com/media/d8ccde_e4f4095a307d4ca5a630d5402abdc3ac~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e4f4095a307d4ca5a630d5402abdc3ac~mv2.jpg',
-  '1006 Sunlit Wave': 'https://static.wixstatic.com/media/d8ccde_fcb31b9dc277474e9e01b50b7939a6cd~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_fcb31b9dc277474e9e01b50b7939a6cd~mv2.jpg',
-  '1007 Cocoa Timber': 'https://static.wixstatic.com/media/d8ccde_b2d0d4f95cc24122926e256cabdbc5dc~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_b2d0d4f95cc24122926e256cabdbc5dc~mv2.jpg',
-  '1008 Vintage Trail': 'https://static.wixstatic.com/media/d8ccde_6c16fcacd1e241a387463fed3b203153~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_6c16fcacd1e241a387463fed3b203153~mv2.jpg',
-  'Como AB': 'https://static.wixstatic.com/media/d8ccde_f02b25e4dd394c59b7bdd658485c9afe~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_f02b25e4dd394c59b7bdd658485c9afe~mv2.jpg',
-  'Alba AB': 'https://static.wixstatic.com/media/d8ccde_e1ff29730f34461c87ffbff408459544~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e1ff29730f34461c87ffbff408459544~mv2.jpg'
-};
-
-const wodenProducts = ([
-  ['1001 Sandy Cove', '10 Collection'], ['1002 Beach Bluff', '10 Collection'],
-  ['1003 Golden Shoal', '10 Collection'], ['1004 River Clay', '10 Collection'],
-  ['1005 Smoky Walnut', '10 Collection'], ['1006 Sunlit Wave', '10 Collection'],
-  ['1007 Cocoa Timber', '10 Collection'], ['1008 Vintage Trail', '10 Collection']
-] as const).map(([name, collection]) => supplierListingProduct(
-  'Woden',
-  'Vinyl',
-  name,
-  'https://www.wodenflooring.com/category/all-products',
-  { Collection: collection, Structure: '8 mm SPC + 2 mm cork pad', 'Coverage per box': '15 sq. ft.', Installation: 'On, above or below grade' },
-  wodenImageUrls[name]
-));
-
-const wodenAdditionalProducts = (['Como AB', 'Alba AB'] as const).map(name => supplierListingProduct(
-  'Woden', 'Vinyl', name,
-  'https://www.wodenflooring.com/category/all-products',
-  undefined,
-  wodenImageUrls[name]
-));
+const wodenCatalogue = [
+  {
+    "name": "1001 Sandy Cove",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1001-sandy-cove",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1002 Beach Bluff",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1002-beach-bluff",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1003 Golden Shoal",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e498bb6fafc142d6a72fcbed13b10b22~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1003-golden-shoal",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1004 River Clay",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c8168225fcca498c80aaccb7acdf877d~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1004-river-clay",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1005 Smoky Walnut",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e4f4095a307d4ca5a630d5402abdc3ac~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1005-smoky-walnut",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1006 Sunlit Wave",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_fcb31b9dc277474e9e01b50b7939a6cd~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1006-sunlit-wave",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1007 Cocoa Timber",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_b2d0d4f95cc24122926e256cabdbc5dc~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1007-cocoa-timber",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1008 Vintage Trail",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_6c16fcacd1e241a387463fed3b203153~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1008-vintage-trail",
+    "specifications": {
+      "Collection": "10 Collection",
+      "Product": "10 Collection",
+      "Structure": "8mm SPC + 2MM CORK pad",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "Como AB",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_f02b25e4dd394c59b7bdd658485c9afe~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/como-ab",
+    "specifications": {
+      "Collection": "6 ½ Monte Rosa Collection",
+      "Product": "6 ½ Monte Rosa Collection",
+      "Thickness": "3mm top layer AB/ABC Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Alba AB",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e1ff29730f34461c87ffbff408459544~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/alba-ab",
+    "specifications": {
+      "Collection": "6 ½ Monte Rosa Collection",
+      "Product": "6 ½ Monte Rosa Collection",
+      "Thickness": "3mm top layer AB/ABC Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Verona AB",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_2e1efdaef2874a5591a294ffe8830dd4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/verona-ab",
+    "specifications": {
+      "Collection": "6 ½ Monte Rosa Collection",
+      "Product": "6 ½ Monte Rosa Collection",
+      "Thickness": "3mm top layer AB/ABC Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Pisa AB/ABC",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_7257683065e84b0bae1c1e0d04ffc184~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/pisa-ab-abc",
+    "specifications": {
+      "Collection": "6 ½ Monte Rosa Collection",
+      "Product": "6 ½ Monte Rosa Collection",
+      "Thickness": "3mm top layer AB/ABC Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "505",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_cc0a91cc85e84987be5279a7730022e7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/505",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Looselay Collection",
+      "Structure": "48.4“ x 7.44\"x 5mm pure vinyl",
+      "Sq feet per box": "25 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "504",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ee1d21a5d93c4ef496f8886f08ccb886~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/504",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Looselay Collection",
+      "Structure": "48.4“ x 7.44\"x 5mm pure vinyl",
+      "Sq feet per box": "25 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "503",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_87612e1ee3d1475383bf800468842a42~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/503",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Looselay Collection",
+      "Structure": "48.4“ x 7.44\"x 5mm pure vinyl",
+      "Sq feet per box": "25 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "502",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_945a2babc33646abab15cfd8565ab0c4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/502",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Looselay Collection",
+      "Structure": "48.4“ x 7.44\"x 5mm pure vinyl",
+      "Sq feet per box": "25 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "501",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_0402a5d850704a5ea01cf33fc2b3963e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/501",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Looselay Collection",
+      "Structure": "48.4“ x 7.44\"x 5mm pure vinyl",
+      "Sq feet per box": "25 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "304",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_6e59ece7ad2241b1866fb4ecc4696424~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/304",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Glue Down",
+      "Structure": "48\"x 7.25\"x3mm installation glue; pure vinyl",
+      "Sq feet per box": "38.80 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "303",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_945a2babc33646abab15cfd8565ab0c4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/303",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Glue Down",
+      "Structure": "48\"x 7.25\"x3mm installation glue; pure vinyl",
+      "Sq feet per box": "38.80 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "302",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_87612e1ee3d1475383bf800468842a42~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/302",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Glue Down",
+      "Structure": "48\"x 7.25\"x3mm installation glue; pure vinyl",
+      "Sq feet per box": "38.80 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "301",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_3e425e7bf37d459aaa61a667fcfe1bad~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/301",
+    "specifications": {
+      "Collection": "GlueDown Collection",
+      "Product": "Glue Down",
+      "Structure": "48\"x 7.25\"x3mm installation glue; pure vinyl",
+      "Sq feet per box": "38.80 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "107 Sicily",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_72e9321d32eb45608b9b86a935fe8b83~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/107-sicily-1",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "Cloudbeam",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_a7123ca5ed214b60b84d037213e56aa7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/cloudbeam",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Silkstone",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_a7123ca5ed214b60b84d037213e56aa7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/silkstone",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Creamwood",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_d26e31e0252f48258cba63462f7687f8~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/creamwood",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Snowhaze ABC",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_b15f796aae0b49ebbf84b21d6158fc6f~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/snowhaze-abc",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Oatlight ABC",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_5e8d6c768ebd476c8849d1c2b02d1c47~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/oatlight-abc",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Snowhaze AB",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_dcde5fb8ceb34d059d135e79710942fc~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/snowhaze-ab",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Oatlight AB",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_de65e3e179a64805a1189dc847e0fc53~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/oatlight-ab",
+    "specifications": {
+      "Collection": "Lumine Collection",
+      "Product": "Lumine Collection",
+      "Thickness": "4mm top layer AB Grade",
+      "Size and Structure": "Wirebrushed; 6-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Sanremo",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_162352388a45484d980c1c700cc47fbd~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/sanremo",
+    "specifications": {
+      "Collection": "Monte Rosa Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Twilight",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_51a5c86ede944524afd8812f107686fb~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/twilight",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Swamark; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Bluff",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_191ff580ff5d4e58b4a0dfa10e298fca~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/bluff",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Swamark; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Whisky Barrel",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_7257683065e84b0bae1c1e0d04ffc184~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/whisky-barrel",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Wirebrushed; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Aroma",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_5f0260de29e9416389ad944da69f7967~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/aroma",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Wirebrushed; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Moonlit",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1899ac2025eb4d65963331265c3c059b~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/moonlit",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Swamark; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "Mysa",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_fe4dfc6630cc4c97b194db1ae2730d68~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/mysa",
+    "specifications": {
+      "Collection": "Timbercraft Collection",
+      "Product": "Timbercraft Collection",
+      "Thickness": "3mm top layer ABC Grade",
+      "Size and Structure": "Smoked and Wirebrushed; 7-1/2\"x 3/4× RL(16\" to 74\") At least 50% full length"
+    }
+  },
+  {
+    "name": "1101 Night Freeze",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_8dbd37d1d05948e6b65108be95342dce~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1101-night-freeze",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1102 Camellia",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_989221e7de354900b001759b8bfe419b~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1102-camellia",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1103 Moon Fly",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_de6571bd3ea04bd6936832729ec9f22f~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1103-moon-fly",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1104 Vintage Cream",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c01464da5e32445c8c2c51af698ed74c~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1104-vintage-cream",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1105 Silver Mist",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_5f2c385e69844ffab1f864fc0e154bd4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1105-silver-mist",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1106 Twilight",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_cb2b49379fae4ecf915cedacf74af26f~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1106-twilight",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1107 Wild Truffle",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_237ac4722a3344e98cf13f2ad0ba582a~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1107-wild-truffle",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "1108 Wheatfield",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_15e7c9168943400080dfbd8837957f2b~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1108-wheatfield",
+    "specifications": {
+      "Collection": "11 Collection",
+      "Product": "11 Collection (1101-1108)",
+      "Thickness": "11 mm",
+      "Size": "5 ft*9 inch",
+      "Veneer Thickness": "22mil",
+      "Sq feet per box": "15 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "Milan Herringbone",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ea1652cec357486e8693a718f799a63e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/milan-herringbone",
+    "specifications": {
+      "Collection": "Monte Rosa Herringbone Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Nice Herringbone",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_2cdf27d93c6947d781e7235e4ff2b480~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/nice-herringbone",
+    "specifications": {
+      "Collection": "Monte Rosa Herringbone Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Menton Herringbone",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_6991e38e2e404038ae19b1ff289078bf~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/menton-herringbone",
+    "specifications": {
+      "Collection": "Monte Rosa Herringbone Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Turin Herringbone",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_cc9d08b4e2c4446d866580cd01f47b71~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/turin-herringbone",
+    "specifications": {
+      "Collection": "Monte Rosa Herringbone Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Turin",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_f996903da0e941b09a559aaa856c2145~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/turin",
+    "specifications": {
+      "Collection": "Monte Rosa Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Milan",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_408e570abe524c7db1ad11a14a6fed12~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/milan",
+    "specifications": {
+      "Collection": "Monte Rosa Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "Nice",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_6189508fe5be437cb7c7ff473092bdd3~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/nice",
+    "specifications": {
+      "Collection": "Monte Rosa Collection",
+      "Product": "Monte Rosa Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "7-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "AB",
+      "Top Layer": "3mm"
+    }
+  },
+  {
+    "name": "1206 Cliff",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_0fb681ce9a774fc4b88a2302bca3796d~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1206-pearl",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "1205 Basin",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_24a784db1f234216b68af56c356a9e8c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1205-landmark",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "1204 Glacier",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c2e915aa60064ffd95f544dfde33ee79~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1204-glacier",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "1203 Meteor",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_4f463a51c31249cb802c6b7ab7573f2e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1203-meteor",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "1202 Terra",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1998e6901af442de8182229349a604ec~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1202-terra",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "1201 Plain",
+    "category": "Laminate",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_97968f789e744f219cde925217f458b7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/1201-plain",
+    "specifications": {
+      "Collection": "12 Collection",
+      "Product": "Laminate 12 Collection",
+      "Structure": "1515*196*12mm 6pcs/box",
+      "Sq feet per box": "19.18 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Modern Grey",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_2a451526ebf94d349f4121846638b127~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/modern-grey",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Hudson",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_31afff7691ac4319a797bcc245f57a89~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/hudson",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Charcoal",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_33cc90844dc84bb788d4f20c4e4cfdf7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/charcoal",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Woodland",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_9342036ed98e45a99cef4ea104488294~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/woodland",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Rock Cliffs",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c835a2ec8d9a46e48fe95edd1a1da7ac~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/rock-cliffs",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Cloudy Grey",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_897cbdc3693b43a8ae39256a932d6d46~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/cloudy-grey",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "FOG",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_aaad56db61964a6c80eab07701e4d37e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/fog",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Vivid White",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_5242d10bb9e2425d8114b1c6a4e099a8~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/vivid-white",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Blizzard",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_32f47c94c81248978d1df3a93887de78~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/blizzard",
+    "specifications": {
+      "Collection": "Vermont Collection",
+      "Product": "Vermont Collection - Engineered Hardwood Flooring",
+      "Species": "American Oak",
+      "Structure": "6-1/2\"× 3/4\"× RL (16\" to 74\")",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABC",
+      "Sq feet per box": "22.75 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Raven",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_9b25c95e780b4212a05b020064d24257~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/raven",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Skye",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_b5944912352a4657a891bc925742632b~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/skye",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Rocky",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_31943b17315b44e4919c1ac78e0ec1da~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/rocky",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Coyote",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_b463d5d6247d4714a7a39dac18fefd11~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/coyote",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Chelsea",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_4a79767af350411782db9760ce8a372c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/chelsea",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Romance",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_9f31479122864f5982f307aaa35d7db9~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/romance",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Drift Wood",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ff85499f178b450e9ba2b16e1435933d~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/drift-wood",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Natural",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_42e82607e1a14a07a9accb683a07be11~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/natural",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Townsend",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1e5bc421c0be4adb919365566460f576~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/townsend",
+    "specifications": {
+      "Collection": "Grand Chateau Collection",
+      "Product": "Grand Chateau Collection - Engineered Hardwood Flooring",
+      "Species": "Oak",
+      "Structure": "7-1/2\"x 3/4xRL(16\" to 74\"), At least 50% full-length",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "23.93 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Gold Coast",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_50fb8cf6519f406f922532e8f9b1437d~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/gold-coast",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Timberwolf",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_468fc077c88744a49fed2fdc858e9571~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/timberwolf",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Cashmere",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_b011f64d83a147b7bc8a466445fbdec3~mv2.png",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/cashmere",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Irish Tea",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_79d51b26a7e0422482e7c80706b4bb0c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/irish-tea",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Monaco",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1be6abccb01242018a2536faa740ae37~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/monaco",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "Noble",
+    "category": "Engineered Hardwood",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e657e08b2d1f48cdb57f6e423f414042~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/frozen-oak",
+    "specifications": {
+      "Collection": "Elite Collection",
+      "Product": "Elite Collection - Engineered Hardwood Flooring",
+      "Structure": "6-1/2\"x 3/4× RL(16\" to 74\"), At least 50% full length",
+      "Veneer Thickness": "2mm",
+      "Surface Texture": "Wire Brushed",
+      "Grade": "ABCD",
+      "Sq feet per box": "20.50 SQFT/BOX"
+    }
+  },
+  {
+    "name": "H01 Prestige Natural",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_81538dd5e3464a68974f01b0499fc487~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/h01-prestige-natural",
+    "specifications": {
+      "Collection": "Vinyl Herringbone Collection",
+      "Product": "Vinyl Herringbone Collection (H01-H04)",
+      "Structure": "5.5mm+1.5mm IXPE Pad 4 Sides Painted Bevel",
+      "Dimensions": "128 (5\") x 615 (24\") x 7mm",
+      "Sq feet per box": "20.34 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "H02 Seaside Motel",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_7ba7699e928543a498f3c691644a8179~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/h02-seaside-motel",
+    "specifications": {
+      "Collection": "Vinyl Herringbone Collection",
+      "Product": "Vinyl Herringbone Collection (H01-H04)",
+      "Structure": "5.5mm+1.5mm IXPE Pad 4 Sides Painted Bevel",
+      "Dimensions": "128 (5\") x 615 (24\") x 7mm",
+      "Sq feet per box": "20.34 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "H03 Honey Oak",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_8b642eafaa4b4c87948f0ccb91a5b0ad~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/h03-honey-oak",
+    "specifications": {
+      "Collection": "Vinyl Herringbone Collection",
+      "Product": "Vinyl Herringbone Collection (H01-H04)",
+      "Structure": "5.5mm+1.5mm IXPE Pad 4 Sides Painted Bevel",
+      "Dimensions": "128 (5\") x 615 (24\") x 7mm",
+      "Sq feet per box": "20.34 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "H04 Light Champagene",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1f0e32558f8c420792e04ba9e8d1d4e8~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/h04-light-champagene",
+    "specifications": {
+      "Collection": "Vinyl Herringbone Collection",
+      "Product": "Vinyl Herringbone Collection (H01-H04)",
+      "Structure": "5.5mm+1.5mm IXPE Pad 4 Sides Painted Bevel",
+      "Dimensions": "128 (5\") x 615 (24\") x 7mm",
+      "Sq feet per box": "20.34 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "901 Sea Breeze",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_0147ceb014f64f0bb091471e5ae36a33~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/901sea-breeze",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "902 Foggy Rockies",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_945a2babc33646abab15cfd8565ab0c4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/902-foggy-rockies",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "903 Eternal Cosmos",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_72e9321d32eb45608b9b86a935fe8b83~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/903-eternal-cosmos",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "904 Vanilla Coconut",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e3a25e3d16d84dbeb348a0b0ebc9be3c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/904-vanilla-coconut",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "905 Monarch Coast",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c5c6ab21fc304fa9a7162fbd39c54a97~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/905-monarch-coast",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "906 Boundless Sand",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_cc0a91cc85e84987be5279a7730022e7~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/906-boundless-sand",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "907 Sandstone",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_87612e1ee3d1475383bf800468842a42~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/907-sandstone",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "908 Charleston",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e626efdefdf448879858097c691b877c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/908-charleston",
+    "specifications": {
+      "Collection": "9 Collection",
+      "Product": "9 Collection (901-906)",
+      "Structure": "7 mm+ 2mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 9mm",
+      "Veneer Thickness": "0.55mm/22mil",
+      "Sq feet per box": "14.76 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "106 Beach",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_d5a2270b890d49edbb1d02c49ef58d8e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/106-beach",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "105 Pacific",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_945b8655d8954e2abdd0efc5af89c32f~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/105-pacific",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "104 Bedford",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_8833afa3d3c74ccbb0a9bade712fa8ba~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/104-bedford",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "103 Jasper",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_1b6b228ed01b4d1e8831e677646739c1~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/103-jasper",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "102 Woodcraft",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_44542c82d6a9402bada85ef940be0f7f~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/102-woodcraft",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23.62 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "101 Farmhouse",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e626efdefdf448879858097c691b877c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/101",
+    "specifications": {
+      "Collection": "7 Garnet Collection",
+      "Product": "7 Garnet Collection (101-107)",
+      "Structure": "5mm+2mm Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Sq feet per box": "23. SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "812 Grand Basin",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_67234af1f8f042afa2fff1ab37979518~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/712",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "811 Mount Harbor",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_31cae97250274a1cbdc709151c8360d6~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/711",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "810 Capital Reef",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_0402a5d850704a5ea01cf33fc2b3963e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/710",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "809 Greek Cabin",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ccba306c0f924d7fa071184cadb787a2~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/709",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "808 Late Autumn",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_66260bf1ecc84ad3936dd48eb8690b36~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/708",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "807 Arcodia",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_599b6ca9af1b43f8b24744f38a934381~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/707",
+    "specifications": {
+      "Collection": "7 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "806 Rustic Pier",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_a143fe46567a44fba39126f8b08ce4fb~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/706",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "805 Misty Island",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_6e59ece7ad2241b1866fb4ecc4696424~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/705",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "804 Trail Bay",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_362cb04bd6da407598c0c90f29a439f4~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/704",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "803 Ashy Stone",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_54ee3baea1d443bfaec0a31f552178e6~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/703",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "802 Sierra Canyon",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_17f0b172fe7f4b2dbc976718b725a81e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/702",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 8mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "801 Sandy Shell",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_723bfe4eea09469c871b9bdad86737ac~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/701",
+    "specifications": {
+      "Collection": "8 Diamond Collection",
+      "Product": "8 Diamond Collection",
+      "Structure": "6.0mm+2.0mm XPE",
+      "Dimensions": "180 (7\") x 1524 (60\") x 7mm",
+      "Veneer Thickness": "0.5mm/20mil",
+      "Sq feet per box": "17.72 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "610",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_af2c25e78231421f98526c6e3c701e55~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/610",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "609",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ee1d21a5d93c4ef496f8886f08ccb886~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/609",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "608",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_665bfc92a99c48f3b45ccf949b4f7f78~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/608",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "607",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_87612e1ee3d1475383bf800468842a42~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/607",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "606",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_ecf0b71bb4414620910b4a758bbd63ee~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/606",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "605",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_c5c6ab21fc304fa9a7162fbd39c54a97~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/605",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "603",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_0094d333c347467a97f659bc4628b39e~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/603",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "602",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_3e425e7bf37d459aaa61a667fcfe1bad~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/602",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  },
+  {
+    "name": "601",
+    "category": "Vinyl",
+    "imageUrl": "https://static.wixstatic.com/media/d8ccde_e3a25e3d16d84dbeb348a0b0ebc9be3c~mv2.jpg",
+    "sourceUrl": "https://www.wodenflooring.com/product-page/601",
+    "specifications": {
+      "Collection": "6 Collection",
+      "Product": "6 Collection (601-610)",
+      "Structure": "4.5mm SPC+1.5mm EVA Pad",
+      "Dimensions": "180 (7\") x 1524 (60\") x 6mm",
+      "Sq feet per box": "20.67 SQFT/BOX",
+      "Installation options": "On, above, or below grade"
+    }
+  }
+] satisfies Array<{ name: string; category: Product['category']; imageUrl: string; sourceUrl: string; specifications: Record<string, string> }>;
+const wodenProducts = wodenCatalogue.map(({ name, category, imageUrl, sourceUrl, specifications }) => supplierListingProduct('Woden', category, name, sourceUrl, specifications, imageUrl));
 
 const weissEngineeredImageUrls: Partial<Record<string, string>> = {
   'Golden Oak': 'https://static.wixstatic.com/media/084e8e_2f739ae6107c470b96f47cef6986d66e~mv2.jpg/v1/fill/w_293,h_291,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/golden%20oak%E9%93%BA%E8%A3%85%E5%9B%BE.jpg',
@@ -1926,7 +3573,6 @@ export const supplierProductImports: Product[] = [
   ...sherwoodProducts,
   ...pangolinProducts,
   ...wodenProducts,
-  ...wodenAdditionalProducts,
   ...weissEngineeredProducts,
   ...weissSpcProducts,
   ...weissLaminateProducts
