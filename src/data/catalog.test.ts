@@ -282,32 +282,15 @@ describe('flooring supplier mapping', () => {
     expect(simba2055 && isProductPublishable(simba2055)).toBe(true);
   });
 
-  it('uses the supplied images for Northernest Coastal products', () => {
-    const images = {
-      'Pure Walnut': 'https://northernestflooring.ca/wp-content/uploads/2026/01/PURE-WALNUT-2.jpg',
-      Nappa: 'https://northernestflooring.ca/wp-content/uploads/2026/01/NAPPA-3.jpg',
-      Monaco: 'https://northernestflooring.ca/wp-content/uploads/2026/01/Monaco-2.jpg',
-      Element: 'https://northernestflooring.ca/wp-content/uploads/2025/10/ELEMENT-1.jpg',
-      Celeste: 'https://northernestflooring.ca/wp-content/uploads/2025/10/CELESTE-2.jpg',
-      Belize: 'https://northernestflooring.ca/wp-content/uploads/2025/10/Belize-1-450x225.jpg'
-    };
-    const products = publishedProducts.filter(product =>
-      product.supplier === 'Northernest' && product.category === 'Engineered Hardwood'
-    );
-
-    expect(products).toHaveLength(7);
-    for (const [name, imageUrl] of Object.entries(images)) {
-      const product = products.find(item => item.name === name);
-      expect(product?.imageUrl).toBe(imageUrl);
-      expect(product?.imageAuthorizationStatus).toBe('approved');
-      expect(product?.imageAuthorizedAt).toBe('2026-11-23');
-      expect(product?.imageAuthorizationReference).toContain('Northernest Coastal');
-      expect(product && isProductPublishable(product)).toBe(true);
-    }
-
-    expect(products.find(product => product.name === 'Warm Beechwood')?.imageUrl).toBe(
-      'https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg'
-    );
+  it('retains 67 distinct Northernest listings and gates unresolved records', () => {
+    const northernest = products.filter(product => product.supplier === 'Northernest' && product.category === 'Engineered Hardwood');
+    expect(northernest).toHaveLength(67);
+    expect(new Set(northernest.map(product => product.slug)).size).toBe(67);
+    expect(new Set(northernest.map(product => product.sourceUrl)).size).toBe(67);
+    expect(northernest.filter(product => product.publicationStatus === 'draft')).toHaveLength(56);
+    expect(northernest.filter(product => isProductPublishable(product))).toHaveLength(11);
+    expect(northernest.filter(product => product.name === 'Canyon Oak').map(product => product.slug).sort()).toEqual(['northernest-canyon-oak', 'northernest-canyon-oak-2']);
+    expect(northernest.find(product => product.name === 'Untitled')?.publicationStatus).toBe('draft');
   });
 
   it('uses the supplied Mist image for the existing Pangolin PS106 SKU', () => {
