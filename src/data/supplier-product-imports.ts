@@ -7,12 +7,6 @@ import {
   grandeurVinylDisplayAuthorization,
   northernestCoastalImageDisplayAuthorization,
   pangolinOriginSpcDisplayAuthorization,
-  simba2024LaminateDisplayAuthorization,
-  simba2052LaminateDisplayAuthorization,
-  simba20360LaminateDisplayAuthorization,
-  simba20860LaminateDisplayAuthorization,
-  simba2055LaminateDisplayAuthorization,
-  simbaLaminateDisplayAuthorization,
   simbaProductDisplayAuthorization,
   vidarProductDisplayAuthorization
 } from '@/data/catalog-authorization';
@@ -5424,114 +5418,563 @@ const simbaSpcProducts = simbaSpcCodes.map(code => {
   return imageUrl ? { ...product, ...simbaProductDisplayAuthorization } : product;
 });
 
-const simbaLaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2026/10/PHOTO-2026-10-15-20-51-56.jpg';
-const simbaLaminateDescription = 'Simba’s Water Resistant Laminate Collection pairs a 12 mm rigid core with a 2 mm attached underlay for 14 mm total thickness. Its water-resistant construction is designed for everyday residential use and occasional spills; confirm current options and availability with Vcare.';
-const simba2024LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2024.jpg';
-const simba2052LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2025.jpg';
-const simba20360LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/12/20360-scaled.jpg';
-const simba20860LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/12/20860-scaled.jpg';
-const simba2055LaminateImageUrl = 'https://simbaflooringcorp.com/wp-content/uploads/2021/03/2055.jpg';
-const simbaWaterproofLaminateDescription = 'Simba’s AC4 waterproof laminate is designed for residential and light commercial spaces. It is described as resisting scratches, dents, and fading, making it suitable for high-traffic and moisture-prone rooms such as kitchens and bathrooms. Easy to install and maintain, it offers a hardwood- or stone-inspired look at an affordable price.';
-const simbaWaterproofLaminateSpecifications = {
-  'Wear class': 'AC4',
-  'Water resistance': 'Waterproof',
-  'Recommended use': 'Residential and light commercial',
-  'Surface durability': 'Resists scratches, dents, and fading'
-};
-const simbaLaminateProducts = ['00306', '2024', '20360', '2052', '2055', '20860'].map(code => {
-  const sourceUrl = code === '20360' || code === '20860' || code === '2055'
-    ? 'https://simbaflooringcorp.com/product-category/waterproof-laminate/'
-    : 'https://simbaflooringcorp.com/shop/';
-  const product = supplierListingProduct(
-    'Simba',
-    'Laminate',
-    code,
-    sourceUrl,
-    {
-      Collection: 'Water Resistant Laminate Collection',
-      Construction: '12 mm rigid core + 2 mm attached underlay',
-      'Total thickness': '14 mm',
-      'Water resistance': 'Water-resistant'
-    },
-    simbaLaminateImageUrl
-  );
-
-  if (code === '2024') {
-    return {
-      ...product,
-      imageUrl: simba2024LaminateImageUrl,
-      imageAlt: 'Simba 2024 AC4 waterproof laminate flooring',
-      description: simbaWaterproofLaminateDescription,
-      specifications: {
-        ...product.specifications,
-        ...simbaWaterproofLaminateSpecifications
-      },
-      ...simba2024LaminateDisplayAuthorization
-    };
+const simbaLaminateCatalogue: Array<{name:string;sourceUrl:string;imageUrl:string;description:string;specifications:Record<string,string>}> = [
+  {
+    "name": "2024",
+    "sourceUrl": "https://simbaflooringcorp.com/product/2024/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2024.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46473",
+      "Product code": "2024",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "20360",
+    "sourceUrl": "https://simbaflooringcorp.com/product/20360/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20360-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46604",
+      "Product code": "20360",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "2052",
+    "sourceUrl": "https://simbaflooringcorp.com/product/2052/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2025.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46474",
+      "Product code": "2024",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "2055",
+    "sourceUrl": "https://simbaflooringcorp.com/product/2055/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/03/2055.jpg",
+    "description": "Name 2055 Length 1218MM Width 196MM Thickness 12MM Material 100% Organic wood fiber, Degradable & Recyclable Class AC4 Grain Embossed in Register (EIR) Finish Semi Gloss",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46475",
+      "Product code": "2055",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof"
+    }
+  },
+  {
+    "name": "20860",
+    "sourceUrl": "https://simbaflooringcorp.com/product/20860/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/20860-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46606",
+      "Product code": "20860",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "5086",
+    "sourceUrl": "https://simbaflooringcorp.com/product/5086/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/5086-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46600",
+      "Product code": "5086",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "6088",
+    "sourceUrl": "https://simbaflooringcorp.com/product/6088/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2021/12/6088-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "46602",
+      "Product code": "6088",
+      "Dimensions": "1218 x 196 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "720462",
+    "sourceUrl": "https://simbaflooringcorp.com/product/728211-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/01/720462-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47818",
+      "Product code": "720462",
+      "Dimensions": "1835 x 236 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "721065",
+    "sourceUrl": "https://simbaflooringcorp.com/product/720462/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/721065-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47769",
+      "Product code": "721065",
+      "Dimensions": "1835 x 236 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "721287",
+    "sourceUrl": "https://simbaflooringcorp.com/product/721287/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/721287-1.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47024",
+      "Product code": "721287",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72146",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72146/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72146.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47023",
+      "Product code": "72146",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72147",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72147/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72147.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47014",
+      "Product code": "72147",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72148",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72148/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72148.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47017",
+      "Product code": "72148",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72161",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72161/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72161.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47016",
+      "Product code": "72161",
+      "Dimensions": "1215 x 195 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72164",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72164/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72164.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47013",
+      "Product code": "72164",
+      "Dimensions": "1215 x 195 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "72777",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72777/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/72777.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47015",
+      "Product code": "72777",
+      "Dimensions": "1215 x 195 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "728211",
+    "sourceUrl": "https://simbaflooringcorp.com/product/728211/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/728211.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47025",
+      "Product code": "728211",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "SH003",
+    "sourceUrl": "https://simbaflooringcorp.com/product/sh003/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/01/SH003.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Waterproof Laminate",
+      "SKU": "47030",
+      "Product code": "SH003",
+      "Dimensions": "1215 x 195 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Waterproof",
+      "Application": "Residential, Light Commercial"
+    }
+  },
+  {
+    "name": "00306",
+    "sourceUrl": "https://simbaflooringcorp.com/product/00306/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/10/PHOTO-2026-10-15-20-51-56.jpg",
+    "description": "Our Water Resistant Laminate Collection combines durability, comfort, and contemporary style to create a practical flooring solution for modern interiors. Featuring a substantial 14mm total thickness, each plank is constructed with a 12mm rigid core and 2mm attached underlay, providing a strong and stable foundation underfoot. The substantial construction helps deliver a comfortable, solid feel while the integrated underlay adds an extra layer of support and convenience. Designed with everyday living in mind, its water-resistant construction makes it a practical choice for spaces where occasional spills and moisture may occur. With its combination of stability, durability, comfort, and modern aesthetics, the Water Resistant Laminate Collection offers a versatile flooring solution that brings the natural look and warmth of laminate into today’s residential interiors.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47911",
+      "Product code": "00306",
+      "Thickness": "14 mm",
+      "Water resistance": "Water Resistant",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72019",
+    "sourceUrl": "https://simbaflooringcorp.com/product/728211-2-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72019-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47820",
+      "Product code": "72019",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72113",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72113/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72113-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47823",
+      "Product code": "72113",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72134",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72134/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_07.jpg",
+    "description": "Our Water Resistant Laminate Collection combines durability, comfort, and contemporary style to create a practical flooring solution for modern interiors. Featuring a substantial 14mm total thickness, each plank is constructed with a 12mm rigid core and 2mm attached underlay, providing a strong and stable foundation underfoot. The substantial construction helps deliver a comfortable, solid feel while the integrated underlay adds an extra layer of support and convenience. Designed with everyday living in mind, its water-resistant construction makes it a practical choice for spaces where occasional spills and moisture may occur. With its combination of stability, durability, comfort, and modern aesthetics, the Water Resistant Laminate Collection offers a versatile flooring solution that brings the natural look and warmth of laminate into today’s residential interiors.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47876",
+      "Product code": "72134",
+      "Thickness": "14 mm",
+      "Water resistance": "Water Resistant",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72166",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72166/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_08.jpg",
+    "description": "Our Water Resistant Laminate Collection combines durability, comfort, and contemporary style to create a practical flooring solution for modern interiors. Featuring a substantial 14mm total thickness, each plank is constructed with a 12mm rigid core and 2mm attached underlay, providing a strong and stable foundation underfoot. The substantial construction helps deliver a comfortable, solid feel while the integrated underlay adds an extra layer of support and convenience. Designed with everyday living in mind, its water-resistant construction makes it a practical choice for spaces where occasional spills and moisture may occur. With its combination of stability, durability, comfort, and modern aesthetics, the Water Resistant Laminate Collection offers a versatile flooring solution that brings the natural look and warmth of laminate into today’s residential interiors.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47879",
+      "Product code": "72166",
+      "Thickness": "14 mm",
+      "Water resistance": "Water Resistant",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72493",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72493/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72493-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47825",
+      "Product code": "72493",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72495",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72495/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72495-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47827",
+      "Product code": "72493",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72523",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72523/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72523-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47829",
+      "Product code": "72523",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72740",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72740/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72740-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47831",
+      "Product code": "72740",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72741",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72741/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72741-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47833",
+      "Product code": "72741",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
+  },
+  {
+    "name": "72814",
+    "sourceUrl": "https://simbaflooringcorp.com/product/72814/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2025/06/72814-scaled.jpg",
+    "description": "Waterproof laminate AC4 is durable, water-resistant, and ideal for both residential and light commercial use. It resists scratches, dents, and fading, making it perfect for high-traffic and moisture-prone areas like kitchens and bathrooms. Easy to install and maintain, it offers the look of hardwood or stone at an affordable price.",
+    "specifications": {
+      "Collection": "Water Resistant Laminate",
+      "SKU": "47835",
+      "Product code": "72814",
+      "Dimensions": "1515 x 238 mm",
+      "Thickness": "12MM",
+      "Material": "100% Organic wood fiber, Degradable & Recyclable",
+      "AC rating": "AC4",
+      "Underlay": "2mm IXPE",
+      "Surface": "Embossed in Register (EIR)",
+      "Finish": "Semi Gloss",
+      "Water resistance": "Water Resistant",
+      "Application": "Residential, Light Commercial",
+      "Supplier data review": "Pending"
+    }
   }
-
-  if (code === '2052') {
-    return {
-      ...product,
-      imageUrl: simba2052LaminateImageUrl,
-      imageAlt: 'Simba 2052 AC4 waterproof laminate flooring',
-      description: simbaWaterproofLaminateDescription,
-      specifications: {
-        ...product.specifications,
-        ...simbaWaterproofLaminateSpecifications
-      },
-      ...simba2052LaminateDisplayAuthorization
-    };
-  }
-
-  if (code === '20360') {
-    return {
-      ...product,
-      imageUrl: simba20360LaminateImageUrl,
-      imageAlt: 'Simba 20360 AC4 waterproof laminate flooring',
-      description: simbaWaterproofLaminateDescription,
-      specifications: {
-        ...product.specifications,
-        ...simbaWaterproofLaminateSpecifications
-      },
-      ...simba20360LaminateDisplayAuthorization
-    };
-  }
-
-  if (code === '20860') {
-    return {
-      ...product,
-      imageUrl: simba20860LaminateImageUrl,
-      imageAlt: 'Simba 20860 AC4 waterproof laminate flooring',
-      description: simbaWaterproofLaminateDescription,
-      specifications: {
-        ...product.specifications,
-        ...simbaWaterproofLaminateSpecifications
-      },
-      ...simba20860LaminateDisplayAuthorization
-    };
-  }
-
-  if (code === '2055') {
-    return {
-      ...product,
-      imageUrl: simba2055LaminateImageUrl,
-      imageAlt: 'Simba 2055 AC4 waterproof laminate flooring',
-      description: simbaWaterproofLaminateDescription,
-      specifications: {
-        ...product.specifications,
-        ...simbaWaterproofLaminateSpecifications
-      },
-      ...simba2055LaminateDisplayAuthorization
-    };
-  }
-
-  return {
-    ...product,
-    description: simbaLaminateDescription,
-    ...simbaLaminateDisplayAuthorization
-  };
-});
+];
+const simbaLaminateProducts = simbaLaminateCatalogue.map(({name,sourceUrl,imageUrl,description,specifications}) => ({
+  ...supplierListingProduct('Simba','Laminate',name,sourceUrl,specifications,imageUrl),
+  description
+}));
 
 const northernestCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: string; specifications: Record<string, string>; description: string; needsReview: boolean }> = [
   {
