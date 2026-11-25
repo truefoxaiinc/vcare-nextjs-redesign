@@ -10939,7 +10939,142 @@ const wickhamMountainProducts: Product[] = [
   description
 }));
 
+const simbaLvtProducts: Product[] = [
+  {
+    "name": "LVT 1550-7",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-1550-7/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_15.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47894",
+      "Product code": "1550-7",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 20105",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-20105/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_16.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47895",
+      "Product code": "20105",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 32301",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-32301/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_09.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47880",
+      "Product code": "32301",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 83741",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-83741/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_11.jpeg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47890",
+      "Product code": "83741",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 88280-4",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-88280-4/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_10.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47889",
+      "Product code": "88280-4",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 88322-1",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-88322-1/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_14.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47893",
+      "Product code": "88322-1",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 88347-6",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-88347-6/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_13.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47892",
+      "Product code": "88347-6",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  },
+  {
+    "name": "LVT 88421-4",
+    "sourceUrl": "https://simbaflooringcorp.com/product/lvt-88421-4/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2026/08/image_12.jpg",
+    "description": "For a sleek, modern, and versatile flooring option, our Luxury Vinyl Tile (LVT) Collection combines contemporary aesthetics with durable construction for everyday interiors. Designed to complement a wide variety of décor styles, the collection offers an attractive flooring solution for spaces ranging from clean and minimalist to warm and traditional. Each plank features a durable 20 mil (0.5 mm) wear layer, providing a protective surface designed to help maintain the flooring’s appearance over time. With plank dimensions of 1524 × 228 mm, the generous format creates a clean, streamlined look that works beautifully across both smaller rooms and larger open spaces. Available in a selection of contemporary designs and finishes, the LVT Collection makes it easy to achieve the look and atmosphere that best suits your space. Its combination of durability, versatility, and modern design makes it an excellent choice for a wide range of residential and commercial interiors.",
+    "specifications": {
+      "Collection": "Luxury Vinyl Tile",
+      "SKU": "47891",
+      "Product code": "88421-4",
+      "Plank Dimensions": "1524 × 228 mm",
+      "Total Thickness": "3 mm",
+      "Wear Layer": "20 mil (0.5 mm)",
+      "Product Type": "Luxury Vinyl Tile (LVT)",
+      "Design": "Contemporary, versatile plank format"
+    }
+  }
+].map(({name, sourceUrl, imageUrl, description, specifications}) => ({
+  ...supplierListingProduct('Simba', 'Vinyl', name, sourceUrl, specifications, imageUrl),
+  description
+}));
+
 export const supplierProductImports: Product[] = [
+  ...simbaLvtProducts,
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
   ...vidarPatternedOakProducts.map(withVidarWestListing),
