@@ -694,31 +694,3521 @@ const leeVinylProducts: Product[] = leeVinylCatalogue.map(({ name, imageUrl, sou
   ...(description ? { description } : {})
 }));
 
-const wickhamAsh = [
-  ['almond', 'Almond', '2025/01/Domestic-plancher-bois-franc-ash-frene-almond-amande-hardwood-floor.jpg'],
-  ['antique', 'Antique', '2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-antique.jpg'],
-  ['barewood-2', 'Barewood', '2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-barewood.jpg'],
-  ['beach', 'Beach', '2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-beach.jpg']
-] as const;
-
-const wickhamHardwoodProducts: Product[] = wickhamAsh.map(([handle, colour, imagePath]) => ({
-  slug: `wickham-domestic-ash-${colour.toLowerCase()}`,
-  name: `Ash, ${colour}`,
-  category: 'Hardwood',
-  supplier: 'Wickham',
-  description: `Wickham lists Ash, ${colour} in its Domestic collection with solid and engineered hardwood construction options and matte, satin or semi-gloss finishes.`,
-  imageUrl: `https://wickhamhardwood.com/wp-content/uploads/${imagePath}`,
-  imageAlt: `Supplier product image for Wickham Domestic Ash ${colour}`,
-  sourceUrl: `https://wickhamhardwood.com/product/ash-${handle}/`,
-  specifications: {
-    Species: 'Ash',
-    Collection: 'Domestic',
-    'Solid widths': '2 1/4 in, 3 1/4 in, 4 1/4 in, 5 in',
-    'Engineered 1/2 width': '5 in',
-    'Engineered 3/4 width': '7 in',
-    Finishes: 'Matte 10°, Satin 35°, Semi-gloss 55°'
+const wickhamDomesticCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: string; category: Product['category']; specifications: Record<string, string>; review: boolean }> = [
+  {
+    "name": "Ash, Almond",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-almond/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-ash-frene-almond-amande-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Almond",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
   },
-  ...publishedImport
+  {
+    "name": "Ash, Antique",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-antique/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-antique.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Antique",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-barewood-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-barewood.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Barewood",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-beach/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-beach.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Beach",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Bronze",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-bronze-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-bronze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Bronze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-cappuccino/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-ash-frene-cappuccino-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Cappuccino",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-cedar/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-cedar.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Cedar",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Charcoal",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-charcoal-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-charcoal.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Charcoal",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Cherry",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-cherry/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-cherry.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Cherry",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-cinnamon-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Classic",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-classic/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-classic.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Classic",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Coffee",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-coffee/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-coffee.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Coffee",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-copper-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Cream",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-cream/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-cream.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Cream",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Edison",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-edison-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-edison.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Edison",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Elegance",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-elegance/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-elegance.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Elegance",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Forest Hill",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-forest-hill/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-forest-hill.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Forest Hill",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Frost",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-frost-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-Ash-frene-frost-gel-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Frost",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Glacier",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-glacier/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-ash-frene-glacier-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Glacier",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Graphite",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-graphite-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-graphite.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Graphite",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-haze-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Honey Gold",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-honey-gold-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-honey-gold.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Honey Gold",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Jasper",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-jasper-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-jasper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Jasper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Kelya",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-kelya-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-kelya.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Kelya",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Lyon",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-lyon-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-lyon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Lyon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Manchester",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-manchester/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-manchester.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Manchester",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Moka",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-moka-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-moka.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Moka",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Montebello",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-montebello-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-montebello.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Montebello",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-naked-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-naked.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Naked",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-natural/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Nevada",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-nevada/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-nevada.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Nevada",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Pearl",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-pearl-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-pearl.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Pearl",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-playa/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Ash-Playa.png",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Playa",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Prairie",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-prairie-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-Prairie.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Prairie",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Pyramid",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-pyramid/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-pyramid.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Pyramid",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-rome/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-rome.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Rome",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Sahara",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-sahara/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-ash-frene-sahara-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Sahara",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Sandbank",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-sandbank/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-sanbank.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Sandbank",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Savana",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-savana-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-savana.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Savana",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Sierra",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-sierra-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-sierra.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Sierra",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Snow",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-snow/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-ash-frene-white-wash.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Snow",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-taupe/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-taupe.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Taupe",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Urban Grey",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-urban-grey-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-urban-grey.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Urban Grey",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Vine",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-vine/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-vine.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Vine",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-walnut/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-walnut.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Western",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-western-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-western.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Western",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Ash, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/ash-wheat-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-frene-ash-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Ash",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Almond",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-almond/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-birch-merisier-almond-amande-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Almond",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Antique",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-antique/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-antique.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Antique",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-barewood/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-brich-barewood.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Barewood",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-beach-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-beach.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Beach",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Bronze",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-bronze/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-bronze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Bronze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-cappuccino/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-birch-merisier-cappuccino-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Cappuccino",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-cedar/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-cedar.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Cedar",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Charcoal",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-charcoal/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-charcoal.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Charcoal",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Cherry",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-cherry/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-cherry.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Cherry",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-cinnamon/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Classic",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-classic/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-classic.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Classic",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Coffee",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-coffee/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-coffee.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Coffee",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-copper/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Cream",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-cream/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-cream.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Cream",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Edison",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-edison/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-edison.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Edison",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Elegance",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-elegance/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-elegance.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Elegance",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Forest Hill",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-forest-hill/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-forest-hill.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Forest Hill",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Frost",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-frost/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-birch-merisier-frost-gel-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Frost",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Glacier",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-glacier/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-birch-merisier-glacier-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Glacier",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Graphite",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-graphite/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-graphite.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Graphite",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-haze/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Honey Gold",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-honey-gold/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-honey-gold.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Honey Gold",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Jasper",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-jasper/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-jasper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Jasper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Kelya",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-kelya/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-kelya.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Kelya",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Lyon",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-lyon/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-lyon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Lyon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Manchester",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-manchester/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-manchester.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Manchester",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Moka",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-moka/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-moka.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Moka",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Montebello",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-montebello/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-montebello.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Montebello",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-naked/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-naked.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Naked",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-natural/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Nevada",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-nevada/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-nevada.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Nevada",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Pearl",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-pearl/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-pearl.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Pearl",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-playa/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Birch-Playa-1.png",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Playa",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Prairie",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-prairie/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-prairie.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Prairie",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Pyramid",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-pyramid/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-pyramid.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Pyramid",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-rome/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-rome.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Rome",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Sahara",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-sahara/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-birch-merisier-sahara-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Sahara",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Sandbank",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-sandbank/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-sanbank.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Sandbank",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Savana",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-savana/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-savana.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Savana",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Sierra",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-sierra/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-sierra.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Sierra",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Snow",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-snow/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-white-wash.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Snow",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-taupe/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-taupe.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Taupe",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Urban Grey",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-urban-grey/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-urban-grey.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Urban Grey",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Vine",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-vine/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-vine.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Vine",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-walnut/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-walnut.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Western",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-western/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-western.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Western",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Birch, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/birch-wheat/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-merisier-birch-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Birch",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-cinnamon/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-copper/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-haze/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-natural/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-walnut/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-walnut.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Hickory, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/hickory-wheat/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-hickory-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Hickory",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Almond",
+    "sourceUrl": "https://wickhamhardwood.com/product/hard-maple-almond/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-hard-maple-erable-almond-mande-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Almond",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Antique",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-antique-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-antique.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Antique",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-barewood-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-barewood.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Barewood",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-beach-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-beach.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Beach",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Bronze",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-bronze-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-bronze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Bronze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/hard-maple-cappuccino/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-hard-maple-erable-cappuccino-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Cappuccino",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-cedar-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-cedar.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Cedar",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Charcoal",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-charcoal/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-charcoal.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Charcoal",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Cherry",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-cherry/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-cherry.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Cherry",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-cinnamon-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Classic",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-classic-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-classic.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Classic",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Coffee",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-coffee-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-coffee.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Coffee",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-copper-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Cream",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-cream/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-cream.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Cream",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Edison",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-edison/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-edison.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Edison",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Elegance",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-elegance/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-elegance.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Elegance",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Forest Hill",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-forest-hill-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-forest-hill.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Forest Hill",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Frost",
+    "sourceUrl": "https://wickhamhardwood.com/product/hard-maple-frost-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-hard-maple-erable-frost-gel-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Frost",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Glacier",
+    "sourceUrl": "https://wickhamhardwood.com/product/hard-maple-glacier/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-hard-maple-erable-glacier-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Glacier",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Graphite",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-graphite/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-graphite.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Graphite",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-haze-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Honey Gold",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-honey-gold/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-honey-gold.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Honey Gold",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Jasper",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-jasper/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-jasper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Jasper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Kelya",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-kelya/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-kelya.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Kelya",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Lyon",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-lyon-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-lyon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Lyon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Manchester",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-manchester-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-manchester.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Manchester",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Moka",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-moka-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-moka.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Moka",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Montebello",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-montebello-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-montebello.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Montebello",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-naked-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/Domestic_Maple_Canadian-Plus_Naked-1.jpeg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Naked",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-natural-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Nevada",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-nevada-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-nevada.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Nevada",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Pearl",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-pearl-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-pearl.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Pearl",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-playa/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Maple-Playa-2-1.png",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Playa",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Prairie",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-prairie-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-prairie.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Prairie",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Pyramid",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-pyramid-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-pyramide.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Pyramid",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-rome-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-rome.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Rome",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Sahara",
+    "sourceUrl": "https://wickhamhardwood.com/product/hard-maple-sahara/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-hard-maple-erable-sahara-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Sahara",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Sandbank",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-sandbank-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-sandbank.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Sandbank",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Savana",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-savana/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-savana.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Savana",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Sierra",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-sierra-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-sierra.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Sierra",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Snow",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-snow-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-white-wash.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Snow",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-taupe-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-taupe.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Taupe",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Urban Grey",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-urban-grey/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-urban-grey.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Urban Grey",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Vine",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-vine-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-vine.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Vine",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-walnut-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-walnut.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Western",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-western-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-western.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Western",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Maple, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/maple-wheat-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-erable-hard-maple-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Maple",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Almond",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-almond/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-red-oak-chene-rouge-almond-amande-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Almond",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Antique",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-antique-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-antique.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Antique",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-barewood-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-barewood.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Barewood",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-beach/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-beach.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Beach",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Bronze",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-bronze/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-bronze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Bronze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-cappuccino/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-red-oak-chene-rouge-cappuccino-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Cappuccino",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-cedar/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-cedar.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Cedar",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Charcoal",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-charcoal-5/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-charcoal.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Charcoal",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Cherry",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-cherry/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-cherry.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Cherry",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-cinnamon-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Classic",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-classic-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-classic.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Classic",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Coffee",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-coffee/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-coffee.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Coffee",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-copper-4/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Cream",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-cream/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-cream.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Cream",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Edison",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-edison-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-edison.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Edison",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Elegance",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-elegance/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-elegance.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Elegance",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Forest Hill",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-forest-hill-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/Domestic_Red-Oak_Forest-Hills.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Forest Hill",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Frost",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-frost/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-red-oak-chene-rouge-frost-gel-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Frost",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Glacier",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-glacier/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-red-oak-chene-rouge-glacier-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Glacier",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Graphite",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-graphite-6/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-graphite.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Graphite",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-haze-4-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Honey Gold",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-honey-gold-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-honey-gold.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Honey Gold",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Jasper",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-jasper/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-Jasper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Jasper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Kelya",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-kelya-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-Kelya.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Kelya",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Lyon",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-lyon-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-Lyon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Lyon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Manchester",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-manchester/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-manchester.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Manchester",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Moka",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-moka-6/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-moka.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Moka",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Montebello",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-montebello/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-montebello.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Montebello",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-naked/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-naked.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Naked",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-natural-5/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Nevada",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-nevada-6/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-nevada.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Nevada",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Pearl",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-pearl/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-pearl.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Pearl",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-playa-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Red-Oak-Playa.png",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Playa",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Extra matte 5°, Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Prairie",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-prairie/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-prairie.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Prairie",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Pyramid",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-pyramid-6/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-pyramide.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Pyramid",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-rome/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-rome.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Rome",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Sahara",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-sahara/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-red-oak-chene-rouge-sahara-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Sahara",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Sandbank",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-sandbank/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-sandbank.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Sandbank",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Savana",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-savana-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-savana.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Savana",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Sierra",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-sierra/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-aok-sierra.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Sierra",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Snow",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-snow-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-white-wash.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Snow",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-taupe/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-taupe.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Taupe",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Urban Grey",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-urban-grey-5/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-gris-urbain.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Urban Grey",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Vine",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-vine/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-vine.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Vine",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-walnut/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-walnut.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Western",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-western-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-western.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Western",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "Red Oak, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/red-oak-wheat/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-rouge-red-oak-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "Red Oak",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm), 7 in (178 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Almond",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-almond/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-white-oak-chene-blanc-amande-almonde-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Almond",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Antique",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-antique/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-antique.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Antique",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Barewood",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-barewood-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-barewood.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Barewood",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Beach",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-beach-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-beach.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Beach",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Bronze",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-bronze-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-bronze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Bronze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Cappuccino",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cappuccino/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-white-oak-chene-blanc-cappuccino-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Cappuccino",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Cedar",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cedar/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-cedar.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Cedar",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Charcoal",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-charcoal-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-charcoal.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Charcoal",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Cherry",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cherry-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-cherry.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Cherry",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Cinnamon",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cinnamon/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-cinnamon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Cinnamon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Classic",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-classic-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-classic.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Classic",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Coffee",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-coffee-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-coffee.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Coffee",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Copper",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-copper-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-copper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Copper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Cream",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-cream-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-cream.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Cream",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Edison",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-edison-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-edison.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Edison",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Elegance",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-elegance/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-elegance.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Elegance",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Forest Hill",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-forest-hill-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-forest-hill.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Forest Hill",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Frost",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-frost/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-white-oak-chene-blanc-frost-gel-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Frost",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Glacier",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-glacier/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-white-oak-chene-blanc-glacier-hardwood.floor_.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Glacier",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Graphite",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-graphite-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-graphite.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Graphite",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Haze",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-haze/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-haze.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Haze",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Honey Gold",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-honey-gold-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-honey-gold.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Honey Gold",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Jasper",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-jasper-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-jasper.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Jasper",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Kelya",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-kelya/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-kelya.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Kelya",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Lyon",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-lyon-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-lyon.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Lyon",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Manchester",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-manchester-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-manchester.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Manchester",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Moka",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-moka-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-moka.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Moka",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Montebello",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-montebello/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-montebello.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Montebello",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Naked",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-naked/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-naked.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Naked",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Natural",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-natural/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-naturel.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Natural",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Nevada",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-nevada/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-nevada.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Nevada",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Pearl",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-pearl/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-pearl.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Pearl",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Playa",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-playa-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2026/03/Chene-Blanc-Playa.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Playa",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°Engineered 3/4Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Prairie",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-prairie/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-prairie.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Prairie",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Pyramid",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-pyramide/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-pyramide.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Pyramid",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Rome",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-rome-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-rome.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Rome",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Sahara",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-sahara/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2025/01/Domestic-plancher-bois-franc-white-oak-chene-blanc-sahara-hardwood-floor.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Sahara",
+      "Solid": "Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Sandbank",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-sandbank/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-sandbank.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Sandbank",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Savana",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-savana/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-savana.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Savana",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Sierra",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-sierra/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-sierra.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Sierra",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Snow",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-snow-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-white-wash.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Snow",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Taupe",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-taupe-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-taupe.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Taupe",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Urban Grey",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-urban-grey-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-gris-urbain-urban-grey.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Urban Grey",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Vine",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-vine-2/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-vine.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Vine",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Walnut",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-walnut/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-walnut.jpg.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Walnut",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Western",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-western-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-western.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Western",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  },
+  {
+    "name": "White Oak, Wheat",
+    "sourceUrl": "https://wickhamhardwood.com/product/white-oak-wheat-3/",
+    "imageUrl": "https://wickhamhardwood.com/wp-content/uploads/2023/01/hardwood-flooring-plancher-bois-domestic-chene-blanc-white-oak-wheat.jpg",
+    "category": "Hardwood",
+    "specifications": {
+      "Species": "White Oak",
+      "Collection": "Domestic",
+      "Colour": "Wheat",
+      "Solid": "Solid 3/4 in. (19 mm)Widths:  2 1/4 in (57 mm), 3 1/4 in (83 mm), 4 1/4 in (108 mm), 5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 1/2 (Elite)": "Engineered Elite 1/2 in. (13 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°",
+      "Engineered 3/4 (Elite Plus)": "Engineered Elite Plus 3/4 in. (19 mm)Widths:  5 in (127 mm); Finish:  Matte 10°, Satin 35°, Semi-gloss 55°"
+    },
+    "review": false
+  }
+];
+
+const wickhamHardwoodProducts: Product[] = wickhamDomesticCatalogue.map(({ name, sourceUrl, imageUrl, category, specifications, review }) => ({
+  ...supplierListingProduct('Wickham', category, name, sourceUrl, specifications, imageUrl),
+  slug: 'wickham-domestic-' + slugPart(name),
+  ...(review ? { publicationStatus: 'draft' as const, sourceStatus: 'unresolved' as const } : {})
 }));
 
 const leeSignatureLaminate = [
