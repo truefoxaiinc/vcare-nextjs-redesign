@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(70);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(85);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -683,6 +683,152 @@ describe('flooring supplier mapping', () => {
     expect(new Set(suppliers.map(supplier => supplier.slug)).size).toBe(suppliers.length);
     expect(suppliers.every(supplier => supplier.productListingHref === '/suppliers/' + supplier.slug)).toBe(true);
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
+  });
+
+  it('imports fifteen Vidar European White Ash 6 and 7 listings', () => {
+    const variants = [
+  {
+    "name": "European White Ash 6 Collection-Day Break",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Day_Break_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-day-break?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Day Break"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Frost White",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Frost_White_ABCSelect.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-frost-white?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Frost White"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Landmark",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Landmark_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-landmark?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Landmark"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Natural",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Natural_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-natural?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Natural"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Sandy",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Sandy_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-sandy?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Sandy"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Toffee_Crunch_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Whistler",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Whistler_ABC_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-whistler?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Whistler"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Day Break",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Day_Break_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-day-break?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Day Break"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Ebony",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Ebony_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-ebony?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Ebony"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Frost White",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Frost_White_ABCSelect.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-frost-white?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Frost White"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Night Owl",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Night_Owl_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-night-owl?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Night Owl"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Raw",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Raw_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-raw?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Raw"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
   });
 
   it('imports fifteen additional Vidar American Oak, Black Walnut and European Oak listings', () => {
@@ -1353,14 +1499,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(109);
+    expect(products).toHaveLength(124);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 77,
+      Vidar: 92,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -1368,7 +1514,7 @@ describe('flooring supplier mapping', () => {
 
     for (const product of products) {
       const recentAuthorization =
-        (product.supplier === 'Vidar' && (product.category === 'Laminate' || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?)-collection-/.test(product.sourceUrl)))) ||
+        (product.supplier === 'Vidar' && (product.category === 'Laminate' || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67])-collection-/.test(product.sourceUrl)))) ||
         (product.supplier === 'Simba' && (
           product.category === 'Laminate' ||
           (product.category === 'Vinyl' && product.specifications?.Construction === 'SPC')
@@ -1389,7 +1535,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(108);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(123);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -1398,7 +1544,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(77);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(92);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -1409,7 +1555,7 @@ describe('flooring supplier mapping', () => {
 
   it('records unresolved supplier source links for admin review', () => {
     expect(products.filter(product => product.sourceStatus === 'unresolved').map(product => product.supplier)).toEqual(Array(7).fill('Vidar'));
-    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?)-collection-/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
+    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67])-collection-/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
