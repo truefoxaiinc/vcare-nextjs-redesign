@@ -6,6 +6,14 @@ import sitemap from '@/app/sitemap';
 import { siteUrl } from '@/lib/seo';
 
 describe('flooring supplier mapping', () => {
+  it('imports eight distinct Simba luxury vinyl tile products', () => {
+    const lvt = products.filter(product => product.supplier === 'Simba' && product.category === 'Vinyl' && product.specifications?.Collection === 'Luxury Vinyl Tile');
+    expect(lvt).toHaveLength(8);
+    expect(new Set(lvt.map(product => product.slug)).size).toBe(8);
+    expect(new Set(lvt.map(product => product.sourceUrl)).size).toBe(8);
+    expect(lvt.every(product => product.imageUrl && isProductPublishable(product))).toBe(true);
+  });
+
   it('lists approved suppliers and the additional supplier brands', () => {
     expect(suppliers.map(supplier => supplier.name)).toEqual([
       'Grandeur', 'Tosca', 'Floorsatwork', 'Toucan', 'Simba', 'Wickham',
