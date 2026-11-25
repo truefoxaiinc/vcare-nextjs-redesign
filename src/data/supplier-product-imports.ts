@@ -182,33 +182,217 @@ const wickhamHardwoodProducts: Product[] = wickhamAsh.map(([handle, colour, imag
 }));
 
 const leeSignatureLaminate = [
-  ['r1', 'R01', '3311', 'Soft Beige Oak', 'R01A.webp'],
-  ['r2', 'R02', '3312', 'Desert Oak', 'R02A.webp'],
-  ['r4', 'R04', '8764', 'Light Honey Oak', 'R04A.webp']
+  [
+    "R01",
+    "3311",
+    "Soft Beige Oak",
+    "R01A-300x300.webp"
+  ],
+  [
+    "R02",
+    "3312",
+    "Desert Oak",
+    "R02A-300x300.webp"
+  ],
+  [
+    "R03",
+    "9977",
+    "Classic Golden Oak",
+    "R03A-300x300.webp"
+  ],
+  [
+    "R04",
+    "8764",
+    "Light Honey Oak",
+    "R04A-300x300.webp"
+  ],
+  [
+    "R05",
+    "3422",
+    "Amber Oak",
+    "R05A-300x300.webp"
+  ],
+  [
+    "R06",
+    "2234",
+    "Glacier Grey Oak",
+    "R06A-300x300.webp"
+  ],
+  [
+    "R07",
+    "8892",
+    "Fog Grey Oak",
+    "R07A-300x300.webp"
+  ],
+  [
+    "R08",
+    "9877",
+    "Hazelnut Brown Oak",
+    "R08A-300x300.webp"
+  ],
+  [
+    "R09",
+    "1123",
+    "Deep Chestnut",
+    "R09A-300x300.webp"
+  ],
+  [
+    "R11",
+    "9899",
+    "Ebony Oak",
+    "R11A-300x300.webp"
+  ],
+  [
+    "T01",
+    "9437",
+    "Light Golden Oak",
+    "T01-300x300.webp"
+  ],
+  [
+    "T02",
+    "5011",
+    "Honey Oak",
+    "T02-300x300.webp"
+  ],
+  [
+    "T03",
+    "2097",
+    "Grey Oak",
+    "T03-300x300.webp"
+  ],
+  [
+    "T04",
+    "1312",
+    "Dune Oak",
+    "T04-300x300.webp"
+  ],
+  [
+    "T05",
+    "3343",
+    "Hazelnut Oak",
+    "T05-300x300.webp"
+  ],
+  [
+    "T06",
+    "4456",
+    "Cream Oak",
+    "T06-300x300.webp"
+  ],
+  [
+    "T07",
+    "4321",
+    "Charcoal Grey Oak",
+    "T7B-300x300.webp"
+  ],
+  [
+    "T08",
+    "2222",
+    "Rose Beige Oak",
+    "T8B-300x300.webp"
+  ],
+  [
+    "T09",
+    "3345",
+    "Foggy Grey Oak",
+    "T9B-300x300.webp"
+  ],
+  [
+    "T10",
+    "3099",
+    "Chestnut Oak",
+    "T10B-300x300.webp"
+  ],
+  [
+    "98001",
+    "8876",
+    "Honey Oak",
+    "98001-300x300.webp"
+  ],
+  [
+    "98002",
+    "6788",
+    "Light Maple",
+    "98002-300x300.webp"
+  ],
+  [
+    "98003",
+    "5677",
+    "Vintage Smoked Oak",
+    "98003-300x300.webp"
+  ],
+  [
+    "98004",
+    "2233",
+    "Pale Grey Oak",
+    "98004-300x300.webp"
+  ],
+  [
+    "98005",
+    "6678",
+    "Glacier Grey Oak",
+    "98005-300x300.webp"
+  ],
+  [
+    "98006",
+    "8888",
+    "Steel Grey Oak",
+    "98006-300x300.webp"
+  ],
+  [
+    "98007",
+    "7789",
+    "Weathered Oak",
+    "98007-300x300.webp"
+  ],
+  [
+    "98008",
+    "5699",
+    "Dark Walnut",
+    "98008-300x300.webp"
+  ],
+  [
+    "98009",
+    "8899",
+    "Reddish Brown Oak",
+    "98009-300x300.webp"
+  ],
+  [
+    "98011",
+    "2222",
+    "Charcoal Black Oak",
+    "98011-300x300.webp"
+  ],
+  [
+    "98012",
+    "6577",
+    "White Maple",
+    "98012-300x300.webp"
+  ],
+  [
+    "98013",
+    "4456",
+    "Light Walnut Oak",
+    "98013-300x300.webp"
+  ]
 ] as const;
 
-const leeLaminateProducts: Product[] = leeSignatureLaminate.map(([handle, name, sku, colour, image]) => ({
-  slug: `lee-flooring-signature-${handle}`,
-  name,
-  category: 'Laminate',
-  supplier: 'Lee Flooring',
-  description: `Lee Flooring lists ${name} (${colour}) in its 24-hour water-resistant Signature laminate collection with an AC4 rating and floating installation.`,
-  imageUrl: `https://leeflooring.ca/wp-content/uploads/2025/03/${image}`,
-  imageAlt: `Supplier product image for Lee Flooring ${name} ${colour}`,
-  sourceUrl: `https://leeflooring.ca/products/laminate/water-resistant/signature/${handle}/`,
-  specifications: {
-    SKU: sku,
-    Collection: '24Hr Water-Resistant Signature',
-    Colour: colour,
-    Dimensions: '7 1/2 in × 1/2 in × 48 in',
-    'AC rating': 'AC4',
-    'Coverage per box': '20.8 sq. ft.',
-    Installation: 'Floating',
-    'Radiant heat': 'Suitable for hydronic systems',
-    Warranty: '35-year residential'
-  },
-  ...publishedImport
-}));
+const leeLaminateProducts: Product[] = leeSignatureLaminate.map(([name, sku, colour, image]) => {
+  const soho = name.startsWith('98');
+  const collection = soho ? 'Soho' : name.startsWith('R') ? '24Hr Water-Resistant' : '72Hr Water-Resistant';
+  const handle = name.startsWith('R') ? 'r' + Number(name.slice(1)) : name.toLowerCase();
+  const sourceUrl = 'https://leeflooring.ca/products/laminate/' + (soho ? 'soho/' + name + '/' + name : 'water-resistant/signature/' + handle) + '/';
+  return {
+    ...supplierListingProduct('Lee Flooring', 'Laminate', name, sourceUrl, {
+      SKU: sku, Collection: collection, Colour: colour,
+      Dimensions: soho ? '7"x1/2"x48"' : '7 1/2"x1/2"x48"',
+      'AC rating': 'AC4', 'Coverage per box': soho ? '18.46' : '20.8',
+      Installation: 'Floating', 'Radiant heat': 'Suitable for use with hydronic systems',
+      Warranty: '35 year residential', 'Box / Skid': soho ? '50' : '45',
+      'Weight / Box': soho ? '37 lbs' : '20 lbs', 'Weight / Skid': soho ? '1850 lbs' : '900 lbs'
+    }, 'https://leeflooring.ca/wp-content/uploads/2025/03/' + image),
+    slug: 'lee-flooring-' + (soho ? 'soho-' : 'signature-') + handle
+  };
+});
 
 const floorsAtWorkVinyl = [
   ['7mm-classic-collection', '7mm Classic Collection', 'bali.jpg?v=1787544689', '7mm NAF Classic', '7 mm', '7 mm × 182 mm × 1524 mm', '17.91 sq. ft.'],
