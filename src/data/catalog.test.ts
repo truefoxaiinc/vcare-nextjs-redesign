@@ -512,61 +512,8 @@ describe('flooring supplier mapping', () => {
     }
   });
 
-  it('maps Woden 1006–1008 images and adds Como AB and Alba AB', () => {
-    const images = {
-      '1006 Sunlit Wave': 'https://static.wixstatic.com/media/d8ccde_fcb31b9dc277474e9e01b50b7939a6cd~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_fcb31b9dc277474e9e01b50b7939a6cd~mv2.jpg',
-      '1007 Cocoa Timber': 'https://static.wixstatic.com/media/d8ccde_b2d0d4f95cc24122926e256cabdbc5dc~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_b2d0d4f95cc24122926e256cabdbc5dc~mv2.jpg',
-      '1008 Vintage Trail': 'https://static.wixstatic.com/media/d8ccde_6c16fcacd1e241a387463fed3b203153~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_6c16fcacd1e241a387463fed3b203153~mv2.jpg',
-      'Como AB': 'https://static.wixstatic.com/media/d8ccde_f02b25e4dd394c59b7bdd658485c9afe~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_f02b25e4dd394c59b7bdd658485c9afe~mv2.jpg',
-      'Alba AB': 'https://static.wixstatic.com/media/d8ccde_e1ff29730f34461c87ffbff408459544~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e1ff29730f34461c87ffbff408459544~mv2.jpg'
-    };
-    for (const [name, imageUrl] of Object.entries(images)) {
-      const matching = products.filter(product => product.supplier === 'Woden' && product.name === name);
-      expect(matching).toHaveLength(1);
-      expect(matching[0].slug).toBe(`woden-${name.toLowerCase().replace(/ /g, '-')}`);
-      expect(matching[0].imageUrl).toBe(imageUrl);
-      expect(matching[0].imageAlt).toBe(`Supplier product image for Woden ${name}`);
-      expect(isProductPublishable(matching[0])).toBe(true);
-      if (name.startsWith('100')) {
-        expect(matching[0].specifications).toMatchObject({ Collection: '10 Collection', Structure: '8 mm SPC + 2 mm cork pad' });
-      } else {
-        expect(matching[0].specifications).toBeUndefined();
-      }
-    }
-  });
 
-  it('maps Woden 1003–1005 supplier images to existing products', () => {
-    const images = {
-      '1003 Golden Shoal': 'https://static.wixstatic.com/media/d8ccde_e498bb6fafc142d6a72fcbed13b10b22~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e498bb6fafc142d6a72fcbed13b10b22~mv2.jpg',
-      '1004 River Clay': 'https://static.wixstatic.com/media/d8ccde_c8168225fcca498c80aaccb7acdf877d~mv2.jpg/v1/fill/w_1280,h_771,al_c,q_85,enc_avif,quality_auto/d8ccde_c8168225fcca498c80aaccb7acdf877d~mv2.jpg',
-      '1005 Smoky Walnut': 'https://static.wixstatic.com/media/d8ccde_e4f4095a307d4ca5a630d5402abdc3ac~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_e4f4095a307d4ca5a630d5402abdc3ac~mv2.jpg'
-    };
-    for (const [name, imageUrl] of Object.entries(images)) {
-      const matching = products.filter(product => product.supplier === 'Woden' && product.name === name);
-      expect(matching).toHaveLength(1);
-      expect(matching[0].slug).toBe(`woden-${name.toLowerCase().replace(/ /g, '-')}`);
-      expect(matching[0].imageUrl).toBe(imageUrl);
-      expect(matching[0].imageAlt).toBe(`Supplier product image for Woden ${name}`);
-      expect(matching[0].specifications).toMatchObject({ Collection: '10 Collection', Structure: '8 mm SPC + 2 mm cork pad' });
-      expect(isProductPublishable(matching[0])).toBe(true);
-    }
-  });
 
-  it('uses supplied Woden Sandy Cove and Beach Bluff images on existing products', () => {
-    const expected = {
-      '1001 Sandy Cove': 'https://static.wixstatic.com/media/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg/v1/fill/w_1960,h_1180,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_183ab2eb5f3644f88ddfe40d925d8d70~mv2.jpg',
-      '1002 Beach Bluff': 'https://static.wixstatic.com/media/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg/v1/fill/w_1225,h_738,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/d8ccde_3615f2eb4ca244d8a8c3500762f52c37~mv2.jpg'
-    };
-    for (const [name, imageUrl] of Object.entries(expected)) {
-      const matching = products.filter(product => product.supplier === 'Woden' && product.name === name);
-      expect(matching).toHaveLength(1);
-      expect(matching[0].slug).toBe(`woden-${name.toLowerCase().replace(/ /g, '-')}`);
-      expect(matching[0].imageUrl).toBe(imageUrl);
-      expect(matching[0].imageAlt).toBe(`Supplier product image for Woden ${name}`);
-      expect(matching[0].specifications).toMatchObject({ Collection: '10 Collection', Structure: '8 mm SPC + 2 mm cork pad' });
-      expect(isProductPublishable(matching[0])).toBe(true);
-    }
-  });
 
   it('maps the supplied PS123 Biscuit and PS124 Mocha images without duplicating SKUs', () => {
     const variants = {
@@ -683,6 +630,17 @@ describe('flooring supplier mapping', () => {
     expect(new Set(suppliers.map(supplier => supplier.slug)).size).toBe(suppliers.length);
     expect(suppliers.every(supplier => supplier.productListingHref === '/suppliers/' + supplier.slug)).toBe(true);
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
+  });
+
+  it('imports 120 unique Woden products with supplier URLs and specifications', () => {
+    const woden = products.filter(product => product.supplier === 'Woden');
+    expect(woden).toHaveLength(120);
+    expect(new Set(woden.map(product => product.slug)).size).toBe(120);
+    expect(new Set(woden.map(product => product.sourceUrl)).size).toBe(120);
+    expect(woden.every(product => product.sourceUrl.startsWith('https://www.wodenflooring.com/product-page/') && product.imageUrl?.startsWith('https://static.wixstatic.com/media/') && product.specifications?.Collection)).toBe(true);
+    expect(woden.filter(product => product.category === 'Engineered Hardwood')).toHaveLength(49);
+    expect(woden.filter(product => product.category === 'Vinyl')).toHaveLength(65);
+    expect(woden.filter(product => product.category === 'Laminate')).toHaveLength(6);
   });
 
   it('imports seven East of Canada Vidar SPC vinyl products', () => {
@@ -1863,7 +1821,7 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(143);
+    expect(products).toHaveLength(253);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
@@ -1899,7 +1857,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(142);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(252);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
