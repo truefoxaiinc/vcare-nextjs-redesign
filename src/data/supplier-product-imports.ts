@@ -808,6 +808,141 @@ const vidarOakListingProducts: Product[] = [
       "Collection": "European Oak",
       "Colour": "Joffre Lake"
     }
+  },
+  {
+    "name": "European White Ash 6 Collection-Day Break",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Day_Break_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-day-break?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Day Break"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Frost White",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Frost_White_ABCSelect.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-frost-white?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Frost White"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Landmark",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Landmark_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-landmark?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Landmark"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Natural",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Natural_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-natural?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Natural"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Sandy",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Sandy_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-sandy?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Sandy"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Toffee_Crunch_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European White Ash 6 Collection-Whistler",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_6_Collection-Whistler_ABC_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-6-collection-whistler?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 6",
+      "Colour": "Whistler"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Day Break",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Day_Break_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-day-break?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Day Break"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Ebony",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Ebony_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-ebony?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Ebony"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Frost White",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Frost_White_ABCSelect.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-frost-white?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Frost White"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-macaroon?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Night Owl",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Night_Owl_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-night-owl?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Night Owl"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Raw",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Raw_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-raw?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Raw"
+    }
   }
 ].map(({ name, imageUrl, sourceUrl, specifications }) => ({
   ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
