@@ -4582,6 +4582,114 @@ const leeAdditionalEngineeredProducts = [
   ...(description ? { description } : {})
 }));
 
+const leeSolidProducts = [
+  {
+    "name": "Solid Hickory Rome",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-Hickory-Rome_2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-hickory-rome/",
+    "specifications": {
+      "Product": "Solid Hickory Rome",
+      "SKU": "7789",
+      "Collection": "Premium",
+      "Dimensions": "4-1/4\" x 3/4\"",
+      "Color": "Rustic Hickory",
+      "Sq feet per box": "19.9",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "Hickory"
+    },
+    "description": "Timeless Strength and Natural Beauty. Our Leery Solid Hardwood Flooring collection showcases the pure essence of wood, with rich textures and a classic appeal that brings warmth and sophistication to any space. Each plank is crafted from premium solid hardwood, ensuring unmatched durability and longevity while enhancing the natural character of your floors.\nCoordinating trims and moldings are available to create a seamless, polished finish, perfectly complementing your flooring. To ensure availability, please place accessory orders at least one week in advance and specify any special requirements. Kindly note that all accessories are custom-made and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Solid Hickory Natural",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-Hickory-Natural-2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-hickory-natural/",
+    "specifications": {
+      "Product": "Solid Hickory Natural",
+      "SKU": "7899",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\"X3/4\"",
+      "Color": "Natural Hickory",
+      "Sq feet per box": "19.9",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Installation options": "Nail Down / Glue Down",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "Hickory"
+    },
+    "description": "Timeless Strength and Natural Beauty. Our Leery Solid Hardwood Flooring collection showcases the pure essence of wood, with rich textures and a classic appeal that brings warmth and sophistication to any space. Each plank is crafted from premium solid hardwood, ensuring unmatched durability and longevity while enhancing the natural character of your floors.\nCoordinating trims and moldings are available to create a seamless, polished finish, perfectly complementing your flooring. To ensure availability, please place accessory orders at least one week in advance and specify any special requirements. Kindly note that all accessories are custom-made and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Solid White Oak Milan",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-oak-Milan-1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-white-oak-milan/",
+    "specifications": {
+      "Product": "Solid Milan",
+      "SKU": "7709",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Deep White Oak",
+      "Sq feet per box": "22.1",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "White Oak"
+    },
+    "description": "Timeless Strength and Natural Beauty. Our Leery Solid Hardwood Flooring collection showcases the pure essence of wood, with rich textures and a classic appeal that brings warmth and sophistication to any space. Each plank is crafted from premium solid hardwood, ensuring unmatched durability and longevity while enhancing the natural character of your floors.\nCoordinating trims and moldings are available to create a seamless, polished finish, perfectly complementing your flooring. To ensure availability, please place accessory orders at least one week in advance and specify any special requirements. Kindly note that all accessories are custom-made and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Solid White Oak Athens",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Solid-oak-Athens-1.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-white-oak-athens/",
+    "specifications": {
+      "Product": "Solid Athens",
+      "SKU": "8899",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Deep White Oak",
+      "Sq feet per box": "22.1",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "55 lbs",
+      "Weight / Skid": "2200 lbs",
+      "Species": "White Oak"
+    },
+    "description": "Timeless Strength and Natural Beauty. Our Leery Solid Hardwood Flooring collection showcases the pure essence of wood, with rich textures and a classic appeal that brings warmth and sophistication to any space. Each plank is crafted from premium solid hardwood, ensuring unmatched durability and longevity while enhancing the natural character of your floors.\nCoordinating trims and moldings are available to create a seamless, polished finish, perfectly complementing your flooring. To ensure availability, please place accessory orders at least one week in advance and specify any special requirements. Kindly note that all accessories are custom-made and are non-refundable and non-exchangeable."
+  },
+  {
+    "name": "Solid Acacia Natural",
+    "imageUrl": "https://leeflooring.ca/wp-content/uploads/2025/03/Acacia_2.webp",
+    "sourceUrl": "https://leeflooring.ca/products/solid-hardwood/premium/solid-acacia-natural/",
+    "specifications": {
+      "Product": "Solid Acacia Natural",
+      "SKU": "2234",
+      "Collection": "Premium",
+      "Dimensions": "4-3/4\" x 3/4\"",
+      "Color": "Dark Acacia",
+      "Sq feet per box": "22.4",
+      "Installation options": "Nail Down / Glue Down",
+      "Radiant Heat": "Suitable for use with hydronic systems",
+      "Limited Warranty": "35 year residential",
+      "Box / Skid": "40",
+      "Weight / Box": "60 lbs",
+      "Weight / Skid": "2400 lbs",
+      "Species": "Acacia"
+    },
+    "description": "Timeless Strength and Natural Beauty. Our Leery Solid Hardwood Flooring collection showcases the pure essence of wood, with rich textures and a classic appeal that brings warmth and sophistication to any space. Each plank is crafted from premium solid hardwood, ensuring unmatched durability and longevity while enhancing the natural character of your floors.\nCoordinating trims and moldings are available to create a seamless, polished finish, perfectly complementing your flooring. To ensure availability, please place accessory orders at least one week in advance and specify any special requirements. Kindly note that all accessories are custom-made and are non-refundable and non-exchangeable."
+  }
+].map(({ name, imageUrl, sourceUrl, specifications, description }) => ({ ...supplierListingProduct('Lee Flooring', 'Hardwood', name, sourceUrl, specifications, imageUrl), description }));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -4597,6 +4705,7 @@ export const supplierProductImports: Product[] = [
   ...leeLaminateProducts,
   ...leeHybridProducts,
   ...leeAdditionalEngineeredProducts,
+  ...leeSolidProducts,
   ...floorsAtWorkVinylProducts,
   ...grandeurPacific,
   ...grandeurLaminateProducts,
