@@ -285,6 +285,124 @@ const vidarAdditionalEngineeredProducts: Product[] = [
   ...vidarProductDisplayAuthorization
 }));
 
+const vidarPatternedOakProducts: Product[] = [
+  {
+    "name": "American Oak 5 Chevron Collection – Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Chevron_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Select & Better",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Macaroon"
+    }
+  },
+  {
+    "name": "American Oak 5 Chevron Collection – Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Chevron_Collection-Naked_Oak_ABSelect_and_Better.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Select & Better",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Naked Oak"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Camel",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Camel_ABCD_Character.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Camel"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Pearl_ABC_Select.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch, 9/16 inch",
+      "Grade": "Character, Select",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Pearl"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Silver Stone",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Silver_Stone_ABC_Select.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch, 9/16 inch",
+      "Grade": "Select",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Silver Stone"
+    }
+  },
+  {
+    "name": "American Oak 5 Herringbone Collection – Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_5_Herringbone_Collection-Sky_ABCD_Character.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "5 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "3 mm",
+      "Collection": "American Oak Herringbone/Chevron",
+      "Colour": "Sky"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection – Black Brown",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Black_Brown.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "6 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "2 mm",
+      "Collection": "American Oak 6",
+      "Colour": "Black Brown"
+    }
+  },
+  {
+    "name": "American Oak 6 Collection – Camel",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_6_Collection-Camel.jpg",
+    "specifications": {
+      "Species": "American White Oak",
+      "Thickness": "3/4 inch",
+      "Grade": "Character",
+      "Width": "6 inch",
+      "Surface texture": "Wirebrushed",
+      "Veneer thickness": "2 mm",
+      "Collection": "American Oak 6",
+      "Colour": "Camel"
+    }
+  }
+].map(({ name, imageUrl, specifications }) => ({
+  ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, imageUrl, specifications, imageUrl),
+  ...vidarProductDisplayAuthorization
+}));
+
 const vidarLaminateProducts = [
   ['DB25', '222/9/Laminate_Flooring_Collection-DB25_1_original.jpg', 'laminate-flooring-collection-db25'],
   ['HZ', '258/9/Laminate_Flooring_Collection-HZ_1_original.jpg', 'laminate-flooring-collection-hz'],
@@ -901,6 +1019,7 @@ const weissLaminateProducts = weissLaminateNames.map(name => supplierListingProd
 export const supplierProductImports: Product[] = [
   ...vidarProducts,
   ...vidarAdditionalEngineeredProducts,
+  ...vidarPatternedOakProducts,
   ...vidarLaminateImports,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
