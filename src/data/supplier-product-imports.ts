@@ -11899,7 +11899,336 @@ const simbaGalaxyProducts = simbaGalaxyCatalogue.map(({name,sourceUrl,imageUrl,s
   description
 }));
 
+const simbaPlanetUniverseVenusCatalogue: Array<{name:string;sourceUrl:string;imageUrl:string;specifications:Record<string,string>;description:string}> = [
+  {
+    "name": "SPC 410-5",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-410-5/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/410-5.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. Easy to install and maintain, SPC floors offer a stylish, realistic look of wood or stone with exceptional stability and comfort.",
+    "specifications": {
+      "Collection": "Planet",
+      "SKU": "46710",
+      "Product code": "410-5",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "606 x 303 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 6007-4",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-6007-4/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6007-4.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. Easy to install and maintain, SPC floors offer a stylish, realistic look of wood or stone with exceptional stability and comfort.",
+    "specifications": {
+      "Collection": "Planet",
+      "SKU": "46709",
+      "Product code": "6007-4",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "606 x 303 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 6539-1",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-6539-1/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6539-1.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. Easy to install and maintain, SPC floors offer a stylish, realistic look of wood or stone with exceptional stability and comfort.",
+    "specifications": {
+      "Collection": "Planet",
+      "SKU": "46708",
+      "Product code": "6539-1",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "606 x 303 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "68-12A",
+    "sourceUrl": "https://simbaflooringcorp.com/product/68-12a/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/Spc-68-12A-scaled.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46915",
+      "Product code": "68-12A",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "681002",
+    "sourceUrl": "https://simbaflooringcorp.com/product/681002/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/spc-681002-scaled.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46916",
+      "Product code": "681002",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 1022-3",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-1022-3/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/1022-3.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46702",
+      "Product code": "1022-3",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 1069",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-1069/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/1069.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46700",
+      "Product code": "1069",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 315D",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-315d/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/315D.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46698",
+      "Product code": "315D",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 6607-9",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-6607-9/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6607-9.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46696",
+      "Product code": "6607-9",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 6661-10",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-6661-10/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6661-10.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46706",
+      "Product code": "6661-10",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 6681",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-6681/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/6681.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46707",
+      "Product code": "6681",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 817",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-817/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/817.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46697",
+      "Product code": "817",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC 90616-4",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-90616-4/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/90616-4.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46704",
+      "Product code": "90616-4",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "SPC SP005",
+    "sourceUrl": "https://simbaflooringcorp.com/product/spc-sp005-2/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2022/03/SP005.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. With grain embossing, it offers a realistic wood or stone texture for added style. Easy to install and maintain, SPC floors combine aesthetics, stability, and comfort.",
+    "specifications": {
+      "Collection": "Universe",
+      "SKU": "46703",
+      "Product code": "SP005",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "1220 x 180 mm",
+      "Thickness": "5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.3MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "981231-6",
+    "sourceUrl": "https://simbaflooringcorp.com/product/981231-6/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/SPC-981231-6-scaled.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. Easy to install and maintain, SPC floors offer a stylish, realistic look of wood or stone with exceptional stability and comfort.",
+    "specifications": {
+      "Collection": "Venus",
+      "SKU": "46918",
+      "Product code": "981231-6",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "750 x 150 mm",
+      "Thickness": "5.5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.5MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  },
+  {
+    "name": "981231-9",
+    "sourceUrl": "https://simbaflooringcorp.com/product/981231-9/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2023/04/spc-981231-9-1-scaled.jpg",
+    "description": "SPC (Stone Plastic Composite) flooring is highly durable, waterproof, and perfect for both residential and commercial use. Its rigid core resists dents, scratches, and moisture, making it ideal for high-traffic and wet areas. Easy to install and maintain, SPC floors offer a stylish, realistic look of wood or stone with exceptional stability and comfort.",
+    "specifications": {
+      "Collection": "Venus",
+      "SKU": "46917",
+      "Product code": "981231-9",
+      "Construction": "Stone Plastic Composite",
+      "Dimensions": "750 x 150 mm",
+      "Thickness": "5.5MM",
+      "Underlay": "1.5mm IXPE",
+      "Wear layer": "0.5MM",
+      "Surface": "Emboss",
+      "Waterproof": "Yes",
+      "Application": "Residential, Commercial",
+      "Supplier data review": "Confirm whether stated thickness includes attached underlay"
+    }
+  }
+];
+const simbaPlanetUniverseVenusProducts = simbaPlanetUniverseVenusCatalogue.map(({name,sourceUrl,imageUrl,specifications,description}) => ({
+  ...supplierListingProduct('Simba','Vinyl',name,sourceUrl,specifications,imageUrl),
+  slug: 'simba-' + slugPart(specifications.Collection) + '-' + specifications.SKU,
+  description
+}));
+
 export const supplierProductImports: Product[] = [
+  ...simbaPlanetUniverseVenusProducts,
   ...simbaGalaxyProducts,
   ...simbaYellowstoneProducts,
   ...simbaOakProducts,
