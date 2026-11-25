@@ -1818,6 +1818,89 @@ function withVidarSeattleListing(product: Product): Product {
   return { ...product, specifications: { ...product.specifications, Region: region ? region + ', Seattle' : 'Seattle', 'Seattle image': listing.imageUrl, 'Seattle product page': listing.sourceUrl } };
 }
 
+const vidarSpcProducts = [
+  {
+    "name": "VS81(MACAROON)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs81-macaroon/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs81-macaroon?catid=27",
+    "specifications": {
+      "SKU": "VS81",
+      "Colour": "MACAROON",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS82(YUKON)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs82-yukon/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs82-yukon?catid=27",
+    "specifications": {
+      "SKU": "VS82",
+      "Colour": "YUKON",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS83(NAKED OAK)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs83-naked-oak/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs83-naked-oak?catid=27",
+    "specifications": {
+      "SKU": "VS83",
+      "Colour": "NAKED OAK",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS84(TOFFEE CRUNCH)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs84-toffee-crunch/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs84-toffee-crunch?catid=27",
+    "specifications": {
+      "SKU": "VS84",
+      "Colour": "TOFFEE CRUNCH",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS86(CAMEL)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs86-camel/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs86-camel?catid=27",
+    "specifications": {
+      "SKU": "VS86",
+      "Colour": "CAMEL",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS87(SUNSET)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs87-sunset/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs87-sunset?catid=27",
+    "specifications": {
+      "SKU": "VS87",
+      "Colour": "SUNSET",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS88(SKY)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs88-sky/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs88-sky?catid=27",
+    "specifications": {
+      "SKU": "VS88",
+      "Colour": "SKY",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  }
+].map(({ name, imageUrl, sourceUrl, specifications }) => ({
+  ...supplierListingProduct('Vidar', 'Vinyl', name, sourceUrl, specifications, imageUrl),
+  ...vidarProductDisplayAuthorization
+}));
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
@@ -1825,6 +1908,7 @@ export const supplierProductImports: Product[] = [
   ...vidarWestNewProducts.map(withVidarSeattleListing),
   ...vidarOakListingProducts.map(withVidarSeattleListing),
   ...vidarLaminateImports,
+  ...vidarSpcProducts,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
   ...leeVinylProducts,
