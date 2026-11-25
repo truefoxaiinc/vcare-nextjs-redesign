@@ -19,7 +19,7 @@ describe('flooring supplier mapping', () => {
       'Vinyl': ['Toucan', 'Floorsatwork', 'Pangolin', 'Lee Flooring']
     });
     expect(suppliers.find(supplier => supplier.name === 'Grandeur')?.categories).toEqual([]);
-    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
+    expect(suppliers.find(supplier => supplier.name === 'Vidar')?.categories).toEqual(['Engineered Hardwood', 'Laminate', 'Vinyl']);
     expect(suppliers.find(supplier => supplier.name === 'Vidar')?.productListingHref).toBe('/suppliers/vidar');
   });
 
@@ -44,10 +44,10 @@ describe('flooring supplier mapping', () => {
   it('links Vidar to its published products and floor categories', () => {
     const vidar = suppliers.find(supplier => supplier.name === 'Vidar');
     expect(vidar?.productListingHref).toBe('/suppliers/vidar');
-    expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
+    expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate', 'Vinyl']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(97);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(104);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -683,6 +683,95 @@ describe('flooring supplier mapping', () => {
     expect(new Set(suppliers.map(supplier => supplier.slug)).size).toBe(suppliers.length);
     expect(suppliers.every(supplier => supplier.productListingHref === '/suppliers/' + supplier.slug)).toBe(true);
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
+  });
+
+  it('imports seven East of Canada Vidar SPC vinyl products', () => {
+    const variants = [
+  {
+    "name": "VS81(MACAROON)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs81-macaroon/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs81-macaroon?catid=27",
+    "specifications": {
+      "SKU": "VS81",
+      "Colour": "MACAROON",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS82(YUKON)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs82-yukon/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs82-yukon?catid=27",
+    "specifications": {
+      "SKU": "VS82",
+      "Colour": "YUKON",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS83(NAKED OAK)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs83-naked-oak/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs83-naked-oak?catid=27",
+    "specifications": {
+      "SKU": "VS83",
+      "Colour": "NAKED OAK",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS84(TOFFEE CRUNCH)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs84-toffee-crunch/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs84-toffee-crunch?catid=27",
+    "specifications": {
+      "SKU": "VS84",
+      "Colour": "TOFFEE CRUNCH",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS86(CAMEL)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs86-camel/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs86-camel?catid=27",
+    "specifications": {
+      "SKU": "VS86",
+      "Colour": "CAMEL",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS87(SUNSET)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs87-sunset/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs87-sunset?catid=27",
+    "specifications": {
+      "SKU": "VS87",
+      "Colour": "SUNSET",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  },
+  {
+    "name": "VS88(SKY)",
+    "imageUrl": "https://vidarflooring.com/images/SPC/vs88-sky/cover.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/vs88-sky?catid=27",
+    "specifications": {
+      "SKU": "VS88",
+      "Colour": "SKY",
+      "Construction": "SPC",
+      "Region": "East of Canada"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Vinyl' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+    expect(categories.find(category => category.title === 'Vinyl')?.suppliers).toContain('Vidar');
   });
 
   it('adds Seattle regional information to six existing Vidar products without duplicates', () => {
@@ -1774,14 +1863,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(136);
+    expect(products).toHaveLength(143);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 104,
+      Vidar: 111,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -1789,7 +1878,7 @@ describe('flooring supplier mapping', () => {
 
     for (const product of products) {
       const recentAuthorization =
-        (product.supplier === 'Vidar' && (product.category === 'Laminate' || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)))) ||
+        (product.supplier === 'Vidar' && (product.category === 'Laminate' || product.category === 'Vinyl' || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)))) ||
         (product.supplier === 'Simba' && (
           product.category === 'Laminate' ||
           (product.category === 'Vinyl' && product.specifications?.Construction === 'SPC')
@@ -1810,7 +1899,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(135);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(142);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -1819,7 +1908,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(104);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(111);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -1830,7 +1919,7 @@ describe('flooring supplier mapping', () => {
 
   it('records unresolved supplier source links for admin review', () => {
     expect(products.filter(product => product.sourceStatus === 'unresolved').map(product => product.supplier)).toEqual(Array(7).fill('Vidar'));
-    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
+    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && product.category !== 'Vinyl' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-honey-wheat|american-oak-night-owl|naked-oak-daybreak|naked-oak-urban-grey|american-black-walnut-7-collection-provence|american-oak-5-herringbone-collection-naked-oak)\?catid=19$/.test(product.sourceUrl) && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?|european-white-ash-[67]|versailles-flooring)-collection(?:-|\?)/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
