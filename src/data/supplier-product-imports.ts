@@ -1779,12 +1779,51 @@ function withVidarWestListing(product: Product): Product {
   return { ...product, specifications: { ...product.specifications, Region: 'West of Canada', 'West of Canada image': listing.imageUrl, 'West of Canada product page': listing.sourceUrl } };
 }
 
+const vidarSeattleListings = [
+  {
+    "name": "7 1/2'' Collection American White Oak – Night Owl",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/2_Collection_-_American_White_Oak-Night_Owl_-_new.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-night-owl?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Macaroon",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Macaroon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-macaroon?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Naked Oak",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Naked_Oak_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-naked-oak?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Pearl",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Pearl_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-pearl?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Sky",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Sky_ABCD_Character.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-sky?catid=19"
+  },
+  {
+    "name": "American Oak 7 Collection-Wheat Berry",
+    "imageUrl": "https://vidarflooring.com/images/American_Oak_7_Collection-Wheat_Berry_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-7-collection-wheat-berry?catid=19"
+  }
+];
+function withVidarSeattleListing(product: Product): Product {
+  const listing = vidarSeattleListings.find(item => item.name === product.name);
+  if (!listing) return product;
+  const region = product.specifications?.Region;
+  return { ...product, specifications: { ...product.specifications, Region: region ? region + ', Seattle' : 'Seattle', 'Seattle image': listing.imageUrl, 'Seattle product page': listing.sourceUrl } };
+}
+
 export const supplierProductImports: Product[] = [
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
   ...vidarPatternedOakProducts.map(withVidarWestListing),
-  ...vidarWestNewProducts,
-  ...vidarOakListingProducts,
+  ...vidarWestNewProducts.map(withVidarSeattleListing),
+  ...vidarOakListingProducts.map(withVidarSeattleListing),
   ...vidarLaminateImports,
   ...toucanSpc86Products,
   ...toucanLuxcoreProducts,
