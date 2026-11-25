@@ -426,7 +426,9 @@ const floorsAtWorkVinylProducts: Product[] = floorsAtWorkVinyl.map(([handle, nam
 // Additional records below are taken from the approved suppliers' public catalogues.
 // Where a supplier does not expose a stable product image URL, the product is listed
 // with the intentional "Image unavailable" fallback rather than a guessed or reused image.
-const slugPart = (value: string) => value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function slugPart(value: string) {
+  return value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
 
 function supplierListingProduct(
   supplier: string,
