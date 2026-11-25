@@ -282,6 +282,16 @@ describe('flooring supplier mapping', () => {
     expect(simba2055 && isProductPublishable(simba2055)).toBe(true);
   });
 
+  it('imports eleven Northernest laminate listings', () => {
+    const laminate = products.filter(product => product.supplier === 'Northernest' && product.category === 'Laminate');
+    expect(laminate).toHaveLength(11);
+    expect(new Set(laminate.map(product => product.slug)).size).toBe(11);
+    expect(new Set(laminate.map(product => product.sourceUrl)).size).toBe(11);
+    expect(laminate.filter(product => product.specifications?.Collection === 'Dominion')).toHaveLength(5);
+    expect(laminate.filter(product => product.specifications?.Collection === 'Mountain')).toHaveLength(6);
+    expect(laminate.every(product => product.imageUrl && isProductPublishable(product))).toBe(true);
+  });
+
   it('imports six unique Northernest Maple hardwood products', () => {
     const maple = products.filter(product => product.supplier === 'Northernest' && product.category === 'Hardwood' && product.specifications?.Collection === 'Maple');
     expect(maple).toHaveLength(6);
