@@ -11073,7 +11073,88 @@ const simbaLvtProducts: Product[] = [
   description
 }));
 
+const simbaEngineeredCatalogue: Array<{name: string; sourceUrl: string; imageUrl: string; specifications: Record<string,string>}> = [
+  {
+    "name": "Acacia Natural",
+    "sourceUrl": "https://simbaflooringcorp.com/product/acacia-natural/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/COMING-SOON.jpg",
+    "specifications": {
+      "Collection": "Acacia",
+      "SKU": "1982",
+      "Wood": "Acacia",
+      "Colour": "Natural",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "127MM",
+      "Thickness": "12/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Handscraped",
+      "Supplier data review": "Verify veneer interpretation",
+      "Image status": "Supplier coming soon placeholder"
+    }
+  },
+  {
+    "name": "Birch Natural",
+    "sourceUrl": "https://simbaflooringcorp.com/product/birch-natural/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Birch-Natural.jpg",
+    "specifications": {
+      "Collection": "Birch",
+      "SKU": "47615",
+      "Wood": "Birch",
+      "Colour": "Natural",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/2.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    }
+  },
+  {
+    "name": "Hickory American",
+    "sourceUrl": "https://simbaflooringcorp.com/product/american/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2017/10/Hickory-American-scaled.jpg",
+    "specifications": {
+      "Collection": "Hickory",
+      "SKU": "1986",
+      "Wood": "Hickory",
+      "Colour": "American",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/1.2MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Handscraped",
+      "Supplier data review": "Verify veneer interpretation"
+    }
+  },
+  {
+    "name": "Hickory Natural",
+    "sourceUrl": "https://simbaflooringcorp.com/product/hickory-natural/",
+    "imageUrl": "https://simbaflooringcorp.com/wp-content/uploads/2024/12/Hickory-Natural.jpg",
+    "specifications": {
+      "Collection": "Hickory",
+      "SKU": "47616",
+      "Wood": "Hickory",
+      "Colour": "Natural",
+      "Construction": "Engineered Hardwood",
+      "Length": "1210MM",
+      "Width": "165MM",
+      "Thickness": "15/2.0MM",
+      "Finish": "UV Lacquer",
+      "Surface": "Wire Brushed",
+      "Supplier data review": "Verify veneer interpretation"
+    }
+  }
+];
+const simbaEngineeredProducts = simbaEngineeredCatalogue.map(({name,sourceUrl,imageUrl,specifications}) => ({
+  ...supplierListingProduct('Simba', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
+  slug: 'simba-engineered-' + slugPart(name)
+}));
+
 export const supplierProductImports: Product[] = [
+  ...simbaEngineeredProducts,
   ...simbaLvtProducts,
   ...vidarProducts.map(withVidarWestListing),
   ...vidarAdditionalEngineeredProducts.map(withVidarWestListing),
