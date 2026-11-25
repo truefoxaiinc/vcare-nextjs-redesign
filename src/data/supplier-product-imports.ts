@@ -943,6 +943,60 @@ const vidarOakListingProducts: Product[] = [
       "Collection": "European White Ash 7",
       "Colour": "Raw"
     }
+  },
+  {
+    "name": "European White Ash 7 Collection-Sandy",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Sandy_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-sandy?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Sandy"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Sunset",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Sunset_ABC_Select.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-sunset?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Sunset"
+    }
+  },
+  {
+    "name": "European White Ash 7 Collection-Whistler",
+    "imageUrl": "https://vidarflooring.com/images/European_White_Ash_7_Collection-Whistler_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-white-ash-7-collection-whistler?catid=19",
+    "specifications": {
+      "Collection": "European White Ash 7",
+      "Colour": "Whistler"
+    }
+  },
+  {
+    "name": "Versailles Flooring Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/Flooring%20pictures/Versailles%20Flooring%20Collection-Clear.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/versailles-flooring-collection?catid=19",
+    "specifications": {
+      "Collection": "Versailles Flooring",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "Versailles Flooring Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/Versailles_Flooring_Collection-Toffee_Crunch_1.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/versailles-flooring-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "Versailles Flooring",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "Versailles Flooring Collection-Yukon",
+    "imageUrl": "https://vidarflooring.com/images/Versailles_Flooring_Collection-Yukon_1.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/versailles-flooring-collection-yukon?catid=19",
+    "specifications": {
+      "Collection": "Versailles Flooring",
+      "Colour": "Yukon"
+    }
   }
 ].map(({ name, imageUrl, sourceUrl, specifications }) => ({
   ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
