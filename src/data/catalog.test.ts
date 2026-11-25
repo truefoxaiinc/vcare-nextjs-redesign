@@ -1744,6 +1744,16 @@ describe('flooring supplier mapping', () => {
     }
   });
 
+  it('imports all 32 distinct Lee Flooring laminate variants', () => {
+    const laminate = products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate');
+    expect(laminate).toHaveLength(32);
+    expect(new Set(laminate.map(product => product.sourceUrl)).size).toBe(32);
+    expect(new Set(laminate.map(product => product.slug)).size).toBe(32);
+    for (const [collection, count] of [['24Hr Water-Resistant', 10], ['72Hr Water-Resistant', 10], ['Soho', 12]] as const) {
+      expect(laminate.filter(product => product.specifications?.Collection === collection)).toHaveLength(count);
+    }
+  });
+
   it('imports 120 unique Woden products with supplier URLs and specifications', () => {
     const woden = products.filter(product => product.supplier === 'Woden');
     expect(woden).toHaveLength(120);
@@ -2933,7 +2943,7 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(299);
+    expect(products).toHaveLength(328);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
@@ -2942,7 +2952,7 @@ describe('flooring supplier mapping', () => {
       Toucan: 15,
       Vidar: 111,
       Tosca: 5,
-      'Lee Flooring': 53,
+      'Lee Flooring': 82,
       Wickham: 4
     });
 
@@ -2969,7 +2979,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(298);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(327);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -2981,7 +2991,7 @@ describe('flooring supplier mapping', () => {
     expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(111);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
-    expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
+    expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(32);
     expect(products.filter(product => product.supplier === 'Floors at Work' && product.category === 'Vinyl')).toHaveLength(5);
     expect(products.filter(product => product.supplier === 'Wickham' && product.category === 'Hardwood')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Vidar' || (product.supplier === 'Toucan' && product.category === 'Vinyl')).every(product => product.specifications && Object.keys(product.specifications).length > 0)).toBe(true);
