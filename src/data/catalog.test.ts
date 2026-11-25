@@ -47,7 +47,7 @@ describe('flooring supplier mapping', () => {
     expect(vidar?.categories).toEqual(['Engineered Hardwood', 'Laminate']);
     expect(categories.find(category => category.title === 'Engineered Hardwood')?.suppliers).toContain('Vidar');
     expect(categories.find(category => category.title === 'Laminate')?.suppliers).toContain('Vidar');
-    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(55);
+    expect(publishedProducts.filter(product => product.supplier === 'Vidar')).toHaveLength(70);
   });
 
   it('publishes the supplied Grandeur engineered-hardwood collections with their images', () => {
@@ -685,6 +685,152 @@ describe('flooring supplier mapping', () => {
     expect(generateSupplierStaticParams()).toEqual(suppliers.map(supplier => ({ slug: supplier.slug })));
   });
 
+  it('imports fifteen additional Vidar American Oak, Black Walnut and European Oak listings', () => {
+    const variants = [
+  {
+    "name": "American Oak Click 5 Collection-Smoke Grey",
+    "imageUrl": "https://vidarflooring.com/images/SMOKE_GREY-CLICK_-_%E5%B7%B2%E7%BC%96%E8%BE%91.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-smoke-grey?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Smoke Grey"
+    }
+  },
+  {
+    "name": "American Oak Herringbone Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/Toffee_Crunch2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-herringbone-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "American Oak Herringbone",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Chocolate",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Chocolate_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-chocolate?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Chocolate"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Natural",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Natural_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-natural?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Natural"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Provence",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Provence_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-provence?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Provence"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Banff",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_5_Herringbone_Collection-Banff_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-banff?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Banff"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_5_Herringbone_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Toffee_Crunch_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Yukon",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Yukon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-yukon?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Yukon"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Banff",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Banff_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-banff?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Banff"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Jasper",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Jasper_EF_Rustic.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-jasper?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Jasper"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Toffee_Crunch_AB_Select_and_Better_v2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Yukon",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Yukon_AB_Select_and_Better_v2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-yukon?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Yukon"
+    }
+  },
+  {
+    "name": "European Oak Collection-Joffre Lake",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Joffre_Lake_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-collection-joffre-lake?catid=19",
+    "specifications": {
+      "Collection": "European Oak",
+      "Colour": "Joffre Lake"
+    }
+  }
+];
+    for (const variant of variants) {
+      const matching = products.filter(product => product.supplier === 'Vidar' && product.category === 'Engineered Hardwood' && product.name === variant.name);
+      expect(matching).toHaveLength(1);
+      expect(matching[0]).toMatchObject(variant);
+      expect(isProductPublishable(matching[0])).toBe(true);
+    }
+  });
+
   it('imports fifteen additional Vidar Oak 7, Oak 9 and Click 5 listings', () => {
     const variants = [
   {
@@ -1207,14 +1353,14 @@ describe('flooring supplier mapping', () => {
   });
 
   it('imports supplier products and applies client-reported authorization', () => {
-    expect(products).toHaveLength(94);
+    expect(products).toHaveLength(109);
     expect(products.reduce<Record<string, number>>((counts, product) => {
       counts[product.supplier] = (counts[product.supplier] ?? 0) + 1;
       return counts;
     }, {})).toEqual({
       'Floors at Work': 7,
       Toucan: 15,
-      Vidar: 62,
+      Vidar: 77,
       Tosca: 5,
       'Lee Flooring': 7,
       Wickham: 4
@@ -1222,7 +1368,7 @@ describe('flooring supplier mapping', () => {
 
     for (const product of products) {
       const recentAuthorization =
-        (product.supplier === 'Vidar' && (product.category === 'Laminate' || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/american-oak-(?:[679]|click-5)-collection-/.test(product.sourceUrl)))) ||
+        (product.supplier === 'Vidar' && (product.category === 'Laminate' || (product.sourceUrl.startsWith('https://vidarflooring.com/images/') || /^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?)-collection-/.test(product.sourceUrl)))) ||
         (product.supplier === 'Simba' && (
           product.category === 'Laminate' ||
           (product.category === 'Vinyl' && product.specifications?.Construction === 'SPC')
@@ -1243,7 +1389,7 @@ describe('flooring supplier mapping', () => {
       expect(product.publicationStatus).toBe(product.sourceStatus === 'unresolved' ? 'draft' : 'published');
     }
     expect(products.filter(product => product.sourceStatus === 'unresolved')).toHaveLength(7);
-    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(93);
+    expect(products.filter(product => product.publicationStatus === 'published')).toHaveLength(108);
     expect(publishedProducts.every(product => suppliers.some(supplier => supplier.name === product.supplier))).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Vidar')).toBe(true);
     expect(publishedProducts.some(product => product.supplier === 'Floors at Work')).toBe(false);
@@ -1252,7 +1398,7 @@ describe('flooring supplier mapping', () => {
   it('stages resumable supplier imports without duplicate slugs or source URLs', () => {
     expect(new Set(products.map(product => product.slug)).size).toBe(products.length);
     expect(new Set(products.map(product => product.sourceUrl)).size).toBe(products.length);
-    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(62);
+    expect(products.filter(product => product.supplier === 'Vidar')).toHaveLength(77);
     expect(products.filter(product => product.supplier === 'Toucan' && product.category === 'Vinyl')).toHaveLength(12);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Vinyl')).toHaveLength(4);
     expect(products.filter(product => product.supplier === 'Lee Flooring' && product.category === 'Laminate')).toHaveLength(3);
@@ -1263,7 +1409,7 @@ describe('flooring supplier mapping', () => {
 
   it('records unresolved supplier source links for admin review', () => {
     expect(products.filter(product => product.sourceStatus === 'unresolved').map(product => product.supplier)).toEqual(Array(7).fill('Vidar'));
-    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/american-oak-(?:[679]|click-5)-collection-/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
+    expect(products.filter(product => product.supplier === 'Vidar' && product.sourceStatus === 'verified' && !product.sourceUrl.startsWith('https://vidarflooring.com/images/') && !/^https:\/\/vidarflooring\.com\/en\/component\/content\/article\/(?:american-oak-(?:[679]|click-5|herringbone)|black-walnut-5-herringbone|european-oak(?:-5-herringbone|-7)?)-collection-/.test(product.sourceUrl)).map(product => product.sourceUrl)).toEqual([
       'https://www.vidarflooring.com/en/component/content/article/american-oak-driftwood?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2%E2%80%98%E2%80%99-collection-american-white-oak-moon-light?catid=19',
       'https://www.vidarflooring.com/en/component/content/article/7-1-2-collection-american-white-oak-urban-grey?catid=19',
