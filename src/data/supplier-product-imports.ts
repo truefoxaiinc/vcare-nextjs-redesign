@@ -2043,32 +2043,1208 @@ const simbaLaminateProducts = ['00306', '2024', '20360', '2052', '2055', '20860'
   };
 });
 
-const northernestCoastalImages: Record<string, string> = {
-  'Warm Beechwood': 'https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg',
-  'Pure Walnut': 'https://northernestflooring.ca/wp-content/uploads/2026/01/PURE-WALNUT-2.jpg',
-  Nappa: 'https://northernestflooring.ca/wp-content/uploads/2026/01/NAPPA-3.jpg',
-  Monaco: 'https://northernestflooring.ca/wp-content/uploads/2026/01/Monaco-2.jpg',
-  Element: 'https://northernestflooring.ca/wp-content/uploads/2025/10/ELEMENT-1.jpg',
-  Celeste: 'https://northernestflooring.ca/wp-content/uploads/2025/10/CELESTE-2.jpg',
-  Belize: 'https://northernestflooring.ca/wp-content/uploads/2025/10/Belize-1-450x225.jpg'
-};
-const northernestCoastal = [
-  'Warm Beechwood', 'Pure Walnut', 'Monaco', 'Nappa', 'Element', 'Celeste', 'Belize'
-].map(name => {
-  const product = supplierListingProduct(
-    'Northernest',
-    'Engineered Hardwood',
-    name,
-    'https://northernestflooring.ca/product-category/engineered/coastal/',
-    name === 'Warm Beechwood' || name === 'Pure Walnut' || name === 'Monaco' || name === 'Nappa'
-      ? { Collection: 'Coastal', Species: 'European White Oak', Construction: 'Multi-layer engineered', Dimensions: '7-1/2 in × 3/4 in × random length', 'Wear layer': '1.5 mm', Profile: 'Tongue and groove', Finish: 'UV-lacquered matte' }
-      : { Collection: 'Coastal', Species: 'European White Oak' },
-    northernestCoastalImages[name]
-  );
-
-  return name === 'Warm Beechwood'
-    ? product
-    : { ...product, ...northernestCoastalImageDisplayAuthorization };
+const northernestCatalogue: Array<{ name: string; sourceUrl: string; imageUrl: string; specifications: Record<string, string>; description: string; needsReview: boolean }> = [
+  {
+    "name": "Snow Drift",
+    "sourceUrl": "https://northernestflooring.ca/product/snow-drift/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/SnowDrift.png",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Locking/Profile": "Tongue & Groove",
+      "Veneer Thickness": "4MM",
+      "Finish": "UV Lacquered",
+      "Grade": "AB",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire, Brushed",
+      "Collection": "We the North 4mm"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Montego Bay",
+    "sourceUrl": "https://northernestflooring.ca/product/montego-bay/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/Montego-Bay.png",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Locking/Profile": "Tongue & Groove",
+      "Veneer Thickness": "4MM",
+      "Finish": "UV Lacquered",
+      "Grade": "AB",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire, Brushed",
+      "Collection": "We the North 4mm"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Madera",
+    "sourceUrl": "https://northernestflooring.ca/product/madera/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/Madera.png",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Locking/Profile": "Tongue & Groove",
+      "Veneer Thickness": "4MM",
+      "Finish": "UV Lacquered",
+      "Grade": "AB",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire, Brushed",
+      "Collection": "We the North 4mm"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Canyon Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/canyon-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/07/Canyon-Oak.png",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Locking/Profile": "Tongue & Groove",
+      "Veneer Thickness": "4MM",
+      "Finish": "UV Lacquered",
+      "Grade": "AB",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire, Brushed",
+      "Collection": "We the North 4mm"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Youken White",
+    "sourceUrl": "https://northernestflooring.ca/product/youken-white/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Youken-White-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "2MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Malmo",
+    "sourceUrl": "https://northernestflooring.ca/product/malmo/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Malmo-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "2MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Latte",
+    "sourceUrl": "https://northernestflooring.ca/product/latte/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Latte-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "2MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Gothom Burg",
+    "sourceUrl": "https://northernestflooring.ca/product/gothom-burg/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Gothom-Burg-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "2MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Woodland",
+    "sourceUrl": "https://northernestflooring.ca/product/woodland/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Woodland-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Snowdrift",
+    "sourceUrl": "https://northernestflooring.ca/product/snowdrift/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Snowdrift-01-to-send-2.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Black Wallnut",
+    "sourceUrl": "https://northernestflooring.ca/product/black-wallnut/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Black-wallnut-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Vince",
+    "sourceUrl": "https://northernestflooring.ca/product/vince/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/04/Vince-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Zeus",
+    "sourceUrl": "https://northernestflooring.ca/product/zeus/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Zues-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Mitis",
+    "sourceUrl": "https://northernestflooring.ca/product/mitis/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Mitis-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Barcelona",
+    "sourceUrl": "https://northernestflooring.ca/product/barcelona/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Barcelona-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Canvas",
+    "sourceUrl": "https://northernestflooring.ca/product/canvas/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Canvas-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Albatross",
+    "sourceUrl": "https://northernestflooring.ca/product/albatross/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Albatross.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Buckingham",
+    "sourceUrl": "https://northernestflooring.ca/product/buckingham/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Buckgham-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Versailles",
+    "sourceUrl": "https://northernestflooring.ca/product/versailles/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Versilles-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Titan",
+    "sourceUrl": "https://northernestflooring.ca/product/titan/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Titan-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Pegasus",
+    "sourceUrl": "https://northernestflooring.ca/product/pegasus/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Pegasus-01-to-end.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Sand Dune",
+    "sourceUrl": "https://northernestflooring.ca/product/sand-dune/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Sanddune-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Magnifique",
+    "sourceUrl": "https://northernestflooring.ca/product/magnifique/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Magnifique-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Petrus",
+    "sourceUrl": "https://northernestflooring.ca/product/petrus/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Petrus-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Atlantis",
+    "sourceUrl": "https://northernestflooring.ca/product/atlantis/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Atlantis-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Black Cedar",
+    "sourceUrl": "https://northernestflooring.ca/product/black-cedar/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Black-Cedar-01-to-send.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6 ½″ × RL (Long Length)",
+      "Construction": "Engineered (1.2 mm white-oak veneer / multi-layer core)",
+      "Texture & Finish": "Texture & Finish Brushed + UV-lacquer, matte",
+      "Coverage": "25.58 sq ft / box",
+      "Grade": "ABCD",
+      "Install Options": "On/Above/Below grade (T&G)",
+      "Warranty": "35-year residential"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Smoky Mountain",
+    "sourceUrl": "https://northernestflooring.ca/product/smoky-mountain/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Smokey-Mountain-01-to-send.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6 ½″ × RL (Long Length)",
+      "Construction": "Engineered (1.2 mm white-oak veneer / multi-layer core)",
+      "Texture & Finish": "Texture & Finish Brushed + UV-lacquer, matte",
+      "Coverage": "25.58 sq ft / box",
+      "Grade": "ABCD",
+      "Install Options": "On/Above/Below grade (T&G)",
+      "Warranty": "35-year residential"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Old Country",
+    "sourceUrl": "https://northernestflooring.ca/product/old-country/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Old-Country-01-to-send.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6 ½″ × RL (Long Length)",
+      "Construction": "Engineered (1.2 mm white-oak veneer / multi-layer core)",
+      "Texture & Finish": "Texture & Finish Brushed + UV-lacquer, matte",
+      "Coverage": "25.58 sq ft / box",
+      "Grade": "ABCD",
+      "Install Options": "On/Above/Below grade (T&G)",
+      "Warranty": "35-year residential"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Falcon Grey",
+    "sourceUrl": "https://northernestflooring.ca/product/falcon-grey/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Falcon-Grey-01-to-send.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6 ½″ × RL (Long Length)",
+      "Construction": "Engineered (1.2 mm white-oak veneer / multi-layer core)",
+      "Texture & Finish": "Texture & Finish Brushed + UV-lacquer, matte",
+      "Coverage": "25.58 sq ft / box",
+      "Grade": "ABCD",
+      "Install Options": "On/Above/Below grade (T&G)",
+      "Warranty": "35-year residential"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Elegant",
+    "sourceUrl": "https://northernestflooring.ca/product/elegant/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Elegant-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6-1/2″ x3/4”× RL",
+      "Construction": "Engineered hickory (1.2 mm wear layer)",
+      "Profile": "Tongue-and-groove",
+      "Finish": "UV-lacquered, matte",
+      "Texture": "Handscraped / distressed / brushed",
+      "Coverage": "19.41 sq ft/box",
+      "Warranties": "35-year residential (limited)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Bristol",
+    "sourceUrl": "https://northernestflooring.ca/product/bristol/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Bristol-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6-1/2″ x3/4”× RL",
+      "Construction": "Engineered hickory (1.2 mm wear layer)",
+      "Profile": "Tongue-and-groove",
+      "Finish": "UV-lacquered, matte",
+      "Texture": "Handscraped / distressed / brushed",
+      "Coverage": "19.41 sq ft/box",
+      "Warranties": "35-year residential (limited)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Cinder",
+    "sourceUrl": "https://northernestflooring.ca/product/cinder/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Cinder-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Birol",
+    "sourceUrl": "https://northernestflooring.ca/product/birol/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Birol-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Canyon Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/canyon-oak-2/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Canyon-Oak-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Sand Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/sand-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Sand-Oak-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Frozen Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/frozen-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Frozen-Oak-01-to-send.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "American Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/american-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/American-Oak-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "190 mm × 1900 mm (7 ½″ × 6′) — ~35% 600–1300 mm shorts",
+      "Wear Layer": "3 mm European white oak",
+      "Core": "15 mm WBP eucalyptus / mixed poplar",
+      "Joint / Edge": "4‑side T&G, 0.5 mm micro‑bevel",
+      "Surface / Finish": "Wire‑brushed, 5% matte UV‑cured anti‑scratch (Treffert / Teknos",
+      "Moisture Content": "8–12%",
+      "Grade": "ABCD Natural",
+      "Certifications": "CE, FSC, FloorScore®, CARB II, E1"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Warm Beechwood",
+    "sourceUrl": "https://northernestflooring.ca/product/warm-beechwood/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/WARM-BEECHWOOD-View-1-2.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Pure Walnut",
+    "sourceUrl": "https://northernestflooring.ca/product/pure-walnut/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/PURE-WALNUT-2.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Surface Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Monaco",
+    "sourceUrl": "https://northernestflooring.ca/product/monaco/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/Monaco-2.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Nappa",
+    "sourceUrl": "https://northernestflooring.ca/product/nappa/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2026/01/NAPPA-3.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Surface Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Nautilus",
+    "sourceUrl": "https://northernestflooring.ca/product/nautilus/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Nautlus-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Smokehouse",
+    "sourceUrl": "https://northernestflooring.ca/product/smokehouse/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Smokhouse.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Width & Length": "Wide plank, random lengths (up to 6ft)",
+      "Profile": "Tongue & Groove, micro-bevel",
+      "Surface": "Wire-brushed, matte",
+      "Finish": "Low-gloss, UV Lacquered",
+      "Grade": "ABCD (natural)",
+      "Coverage": "sq ft / box",
+      "Certifications": "FloorScore® / CARB II / E1 (as applicable)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Pacific Coast",
+    "sourceUrl": "https://northernestflooring.ca/product/pacific-coast/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Pacific-Coast-1.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Width & Length": "Wide plank, random lengths (up to 6ft)",
+      "Profile": "Tongue & Groove, micro-bevel",
+      "Surface": "Wire-brushed, matte",
+      "Finish": "Low-gloss, UV Lacquered",
+      "Grade": "ABCD (natural)",
+      "Coverage": "sq ft / box",
+      "Certifications": "FloorScore® / CARB II / E1 (as applicable)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Grey Timber",
+    "sourceUrl": "https://northernestflooring.ca/product/grey-timber/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Grey-Timber.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Width & Length": "Wide plank, random lengths (up to 6ft)",
+      "Profile": "Tongue & Groove, micro-bevel",
+      "Surface": "Wire-brushed, matte",
+      "Finish": "Low-gloss, UV Lacquered",
+      "Grade": "ABCD (natural)",
+      "Coverage": "sq ft / box",
+      "Certifications": "FloorScore® / CARB II / E1 (as applicable)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Damask",
+    "sourceUrl": "https://northernestflooring.ca/product/damask/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Damask.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Width & Length": "Wide plank, random lengths (up to 6ft)",
+      "Profile": "Tongue & Groove, micro-bevel",
+      "Surface": "Wire-brushed, matte",
+      "Finish": "Low-gloss, UV Lacquered",
+      "Grade": "ABCD (natural)",
+      "Coverage": "sq ft / box",
+      "Certifications": "FloorScore® / CARB II / E1 (as applicable)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Borado",
+    "sourceUrl": "https://northernestflooring.ca/product/borado/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/10/element--scaled.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Construction": "Multi-layer engineered",
+      "Width & Length": "Wide plank, random lengths (up to 6ft)",
+      "Profile": "Tongue & Groove, micro-bevel",
+      "Surface": "Wire-brushed, matte",
+      "Finish": "Low-gloss, UV Lacquered",
+      "Grade": "ABCD (natural)",
+      "Coverage": "sq ft / box",
+      "Certifications": "FloorScore® / CARB II / E1 (as applicable)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Ash Grey",
+    "sourceUrl": "https://northernestflooring.ca/product/colours/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Ash-Grey-01-to-send-Good.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6 ½″ × RL (Long Length)",
+      "Construction": "Engineered (1.2 mm white-oak veneer / multi-layer core)",
+      "Texture & Finish": "Texture & Finish Brushed + UV-lacquer, matte",
+      "Coverage": "25.58 sq ft / box",
+      "Grade": "ABCD",
+      "Install Options": "On/Above/Below grade (T&G)",
+      "Warranty": "35-year residential"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Manhattan",
+    "sourceUrl": "https://northernestflooring.ca/product/manhattan/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Manhaten-01-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6-1/2″ x3/4”× RL",
+      "Construction": "Engineered hickory (1.2 mm wear layer)",
+      "Profile": "Tongue-and-groove",
+      "Finish": "UV-lacquered, matte",
+      "Texture": "Handscraped / distressed / brushed",
+      "Coverage": "19.41 sq ft/box",
+      "Warranties": "35-year residential (limited)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Kodiak",
+    "sourceUrl": "https://northernestflooring.ca/product/kodiak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Kodiak-02-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6-1/2″ x3/4”× RL",
+      "Construction": "Engineered hickory (1.2 mm wear layer)",
+      "Profile": "Tongue-and-groove",
+      "Finish": "UV-lacquered, matte",
+      "Texture": "Handscraped / distressed / brushed",
+      "Coverage": "19.41 sq ft/box",
+      "Warranties": "35-year residential (limited)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "African Hickory",
+    "sourceUrl": "https://northernestflooring.ca/product/african-hickory/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/African-Hickroy-02-to-send-1.jpg",
+    "specifications": {
+      "Thickness": "19 mm (¾″)",
+      "Width & Length": "6-1/2″ x3/4”× RL",
+      "Construction": "Engineered hickory (1.2 mm wear layer)",
+      "Profile": "Tongue-and-groove",
+      "Finish": "UV-lacquered, matte",
+      "Texture": "Handscraped / distressed / brushed",
+      "Coverage": "19.41 sq ft/box",
+      "Warranties": "35-year residential (limited)"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Smoke",
+    "sourceUrl": "https://northernestflooring.ca/product/smoke/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Smoke-01-to-send.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Mid Oak",
+    "sourceUrl": "https://northernestflooring.ca/product/mid-oak/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Mid-Oak-03-to-send-1.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Light Grey",
+    "sourceUrl": "https://northernestflooring.ca/product/light-grey/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Light-Grey-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Kentucky",
+    "sourceUrl": "https://northernestflooring.ca/product/kentucky/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Kentucy-02-to-send.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Hazelnut",
+    "sourceUrl": "https://northernestflooring.ca/product/hazelnut/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Hazelnut-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Tongue & Groove": "Wear Layer",
+      "1.5 mm": "Surface",
+      "UV-lacquered (matte": "Grade",
+      "ABCD": "Colour Variation",
+      "Low–Medium": "Coverage",
+      "23.73 sq ft / box": "Warranty"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Grey Stone",
+    "sourceUrl": "https://northernestflooring.ca/product/grey-stone/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Grey-stone-01-to-send-1.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "6″ × ¾″ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Wolfsburg",
+    "sourceUrl": "https://northernestflooring.ca/product/wolfsburg/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Wolfs-Burg-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Reverie",
+    "sourceUrl": "https://northernestflooring.ca/product/reverie/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Riverie-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Pala",
+    "sourceUrl": "https://northernestflooring.ca/product/pala/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Pala-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Moxie",
+    "sourceUrl": "https://northernestflooring.ca/product/moxie/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Moxie-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Karsea",
+    "sourceUrl": "https://northernestflooring.ca/product/karsia/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/12/Karesa-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Element",
+    "sourceUrl": "https://northernestflooring.ca/product/element/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/10/ELEMENT-1.jpg",
+    "specifications": {
+      "Element": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Celeste",
+    "sourceUrl": "https://northernestflooring.ca/product/celeste/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/10/CELESTE-2.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Belize",
+    "sourceUrl": "https://northernestflooring.ca/product/belize/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/10/Belize-2.jpg",
+    "specifications": {
+      "Species": "White Oak",
+      "Construction": "Multi-layer engineered",
+      "Dimensions": "7-1/2’’x 3/4’’ × RL",
+      "Profile": "Tongue & Groove",
+      "Wear Layer": "1.5 mm",
+      "Surface": "Brushed, matte",
+      "Finish": "UV-lacquered (matte)",
+      "Grade": "ABCD",
+      "Colour Variation": "Low–Medium",
+      "Collection": "Coastal"
+    },
+    "description": "",
+    "needsReview": false
+  },
+  {
+    "name": "Ardor",
+    "sourceUrl": "https://northernestflooring.ca/product/nation-series/",
+    "imageUrl": "https://northernestflooring.ca/wp-content/uploads/2025/10/Ardor-01-to-send.jpg",
+    "specifications": {
+      "Species": "European White Oak",
+      "Structure": "Multi-layered Engineered",
+      "Dimensions": "7-1/2” x ¾” x RL",
+      "Locking/Profile": "Tongue and Groove",
+      "Veneer Thickness": "3 MM",
+      "Finish": "UV Lacquered",
+      "Grade": "ABCD",
+      "Coating": "UV Lacquer",
+      "Texture": "Wire Brushed"
+    },
+    "description": "",
+    "needsReview": true
+  },
+  {
+    "name": "Untitled",
+    "sourceUrl": "https://northernestflooring.ca/product/912/",
+    "imageUrl": "",
+    "specifications": {},
+    "description": "",
+    "needsReview": true
+  }
+];
+const northernestCoastal: Product[] = northernestCatalogue.map(({ name, sourceUrl, imageUrl, specifications, description }) => {
+  const product = supplierListingProduct('Northernest', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl || undefined);
+  return { ...product, ...(description ? { description } : {}), ...(imageUrl && name !== 'Warm Beechwood' ? northernestCoastalImageDisplayAuthorization : {}) };
 });
 
 const sherwoodProducts = [
