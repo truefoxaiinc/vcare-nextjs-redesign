@@ -316,7 +316,7 @@ describe('flooring supplier mapping', () => {
     expect(matching[0]).toMatchObject({
       slug: 'pangolin-origin-collection-spc-ps106',
       name: 'Origin Collection SPC - 7MM PS106 Mist',
-      imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS106%E6%8B%BC%E8%A3%85.jpg/:/rs=w:1438,h:2425',
+      imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS106%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true',
       specifications: { SKU: 'PS106', Colour: 'Mist', Thickness: '7 mm', Underlay: '1.5 mm IXPE' },
       imageAuthorizationStatus: 'approved',
       imageAuthorizedAt: '2026-11-23'
@@ -517,8 +517,8 @@ describe('flooring supplier mapping', () => {
 
   it('maps the supplied PS123 Biscuit and PS124 Mocha images without duplicating SKUs', () => {
     const variants = {
-      PS123: { name: 'Origin Collection SPC - 8MM PS123 Biscuit', colour: 'Biscuit', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS123%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1867' },
-      PS124: { name: 'Origin Collection SPC - 8MM PS124 Mocha', colour: 'Mocha', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS124%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:1007' }
+      PS123: { name: 'Origin Collection SPC - 8MM PS123 Biscuit', colour: 'Biscuit', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS123%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:2.07%25,w:91.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS124: { name: 'Origin Collection SPC - 8MM PS124 Mocha', colour: 'Mocha', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS124%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:14.28%25,w:71.44%25,h:100%25/rs=w:776,h:583,cg:true' }
     };
     for (const [sku, variant] of Object.entries(variants)) {
       const matching = products.filter(product => product.supplier === 'Pangolin' && product.specifications?.SKU === sku);
@@ -537,14 +537,14 @@ describe('flooring supplier mapping', () => {
 
   it('maps eight supplied Pangolin variants without changing existing SKU slugs', () => {
     const variants = {
-      PS107: { name: 'Origin Collection SPC - 7MM PS107 Oatmeal', colour: 'Oatmeal', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS107%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1853' },
-      PS109: { name: 'Origin Collection SPC - 7MM PS109 Dove', colour: 'Dove', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS109%E5%BD%A9%E8%86%9C%E5%9B%BE.png/:/rs=w:719,h:859' },
-      PS110: { name: 'Origin Collection SPC - 8MM PS110 Fawn', colour: 'Fawn', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS110%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854' },
-      PS111: { name: 'Origin Collection SPC - 8MM PS111 Flint', colour: 'Flint', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS111%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1854' },
-      PS112: { name: 'Origin Collection SPC - 8MM PS112 Palomino', colour: 'Palomino', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS112%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1855' },
-      PS114: { name: 'Origin Collection SPC - 8MM PS114 Chamois', colour: 'Chamois', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS114%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866' },
-      PS121: { name: 'Origin Collection SPC - 8MM PS121 Almond', colour: 'Almond', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS121%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1866' },
-      PS122: { name: 'Origin Collection SPC - 8MM PS122 Tobac', colour: 'Tobac', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS122%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1863' }
+      PS107: { name: 'Origin Collection SPC - 7MM PS107 Oatmeal', colour: 'Oatmeal', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS107%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS109: { name: 'Origin Collection SPC - 7MM PS109 Dove', colour: 'Dove', thickness: '7 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS109%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/rs=w:776,h:583,cg:true,m/cr=w:776,h:583' },
+      PS110: { name: 'Origin Collection SPC - 8MM PS110 Fawn', colour: 'Fawn', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS110%E6%95%88%E6%9E%9C%E5%9B%BE1.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS111: { name: 'Origin Collection SPC - 8MM PS111 Flint', colour: 'Flint', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS111%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS112: { name: 'Origin Collection SPC - 8MM PS112 Palomino', colour: 'Palomino', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS112%E6%95%88%E6%9E%9C%E5%9B%BE-dcb0f06.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS114: { name: 'Origin Collection SPC - 8MM PS114 Chamois', colour: 'Chamois', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS114%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:4.15%25,w:91.7%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS121: { name: 'Origin Collection SPC - 8MM PS121 Almond', colour: 'Almond', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS121%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:4.13%25,w:91.75%25,h:100%25/rs=w:776,h:583,cg:true' },
+      PS122: { name: 'Origin Collection SPC - 8MM PS122 Tobac', colour: 'Tobac', thickness: '8 mm', imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS122%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:3.09%25,w:91.75%25,h:100%25/rs=w:776,h:583,cg:true' }
     };
     for (const [sku, variant] of Object.entries(variants)) {
       const matching = products.filter(product => product.supplier === 'Pangolin' && product.specifications?.SKU === sku);
@@ -566,27 +566,27 @@ describe('flooring supplier mapping', () => {
       PS101: {
         name: 'Origin Collection SPC - 7MM PS101 Syrup',
         colour: 'Syrup',
-        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS101%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS101%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true'
       },
       PS102: {
         name: 'Origin Collection SPC - 7MM PS102 Toffee',
         colour: 'Toffee',
-        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS102%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:719,h:950'
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS102%E6%95%88%E6%9E%9C%E5%9B%BEjpg-166bb97.jpg/:/cr=t:0%25,l:3.25%25,w:91.59%25,h:100%25/rs=w:776,h:583,cg:true'
       },
       PS103: {
         name: 'Origin Collection SPC - 7MM PS103 Charcoal',
         colour: 'Charcoal',
-        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS103%E5%BD%A9%E8%86%9C%E5%9B%BE.jpg/:/rs=w:1438,h:1865'
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS103%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true'
       },
       PS104: {
         name: 'Origin Collection SPC - 7MM PS104 Slate',
         colour: 'Slate',
-        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS104%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1868'
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS104%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:4.2%25,w:91.59%25,h:100%25/rs=w:776,h:583,cg:true'
       },
       PS105: {
         name: 'Origin Collection SPC - 7MM PS105 Cream',
         colour: 'Cream',
-        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS105%E6%8B%BC%E8%A3%85%E5%9B%BE.jpg/:/rs=w:1438,h:1856'
+        imageUrl: 'https://img1.wsimg.com/isteam/ip/55c0572d-d847-4f6a-9d85-8c297ad4e5fb/PS105%E6%95%88%E6%9E%9C%E5%9B%BE.jpg/:/cr=t:0%25,l:0.12%25,w:99.75%25,h:100%25/rs=w:776,h:583,cg:true'
       },
     };
     const products = publishedProducts.filter(product =>
