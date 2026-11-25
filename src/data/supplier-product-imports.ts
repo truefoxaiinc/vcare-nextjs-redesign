@@ -673,6 +673,141 @@ const vidarOakListingProducts: Product[] = [
       "Collection": "American Oak Click 5",
       "Colour": "Sky"
     }
+  },
+  {
+    "name": "American Oak Click 5 Collection-Smoke Grey",
+    "imageUrl": "https://vidarflooring.com/images/SMOKE_GREY-CLICK_-_%E5%B7%B2%E7%BC%96%E8%BE%91.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-click-5-collection-smoke-grey?catid=19",
+    "specifications": {
+      "Collection": "American Oak Click 5",
+      "Colour": "Smoke Grey"
+    }
+  },
+  {
+    "name": "American Oak Herringbone Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/Toffee_Crunch2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/american-oak-herringbone-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "American Oak Herringbone",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Chocolate",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Chocolate_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-chocolate?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Chocolate"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Natural",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Natural_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-natural?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Natural"
+    }
+  },
+  {
+    "name": "Black Walnut 5 Herringbone Collection-Provence",
+    "imageUrl": "https://vidarflooring.com/images/Black_Walnut_5_Herringbone_Collection-Provence_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/black-walnut-5-herringbone-collection-provence?catid=19",
+    "specifications": {
+      "Collection": "Black Walnut 5 Herringbone",
+      "Colour": "Provence"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Banff",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_5_Herringbone_Collection-Banff_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-banff?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Banff"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_5_Herringbone_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Toffee_Crunch_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European Oak 5 Herringbone Collection-Yukon",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Yukon_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-5-herringbone-collection-yukon?catid=19",
+    "specifications": {
+      "Collection": "European Oak 5 Herringbone",
+      "Colour": "Yukon"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Banff",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Banff_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-banff?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Banff"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Clear",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Clear_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-clear?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Clear"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Jasper",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Jasper_EF_Rustic.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-jasper?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Jasper"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Toffee Crunch",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Toffee_Crunch_AB_Select_and_Better_v2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-toffee-crunch?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Toffee Crunch"
+    }
+  },
+  {
+    "name": "European Oak 7 Collection-Yukon",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Yukon_AB_Select_and_Better_v2.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-7-collection-yukon?catid=19",
+    "specifications": {
+      "Collection": "European Oak 7",
+      "Colour": "Yukon"
+    }
+  },
+  {
+    "name": "European Oak Collection-Joffre Lake",
+    "imageUrl": "https://vidarflooring.com/images/European_Oak_7_Collection-Joffre_Lake_AB_Select_and_Better.jpg",
+    "sourceUrl": "https://vidarflooring.com/en/component/content/article/european-oak-collection-joffre-lake?catid=19",
+    "specifications": {
+      "Collection": "European Oak",
+      "Colour": "Joffre Lake"
+    }
   }
 ].map(({ name, imageUrl, sourceUrl, specifications }) => ({
   ...supplierListingProduct('Vidar', 'Engineered Hardwood', name, sourceUrl, specifications, imageUrl),
